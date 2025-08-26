@@ -81,14 +81,11 @@ const WhoItsFor = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="profile-card group"
+              className="card-hover"
             >
-              <div className="bg-card-bg border border-red-500/20 rounded-xl p-6 h-full relative overflow-hidden">
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
+              <div className="bg-card-bg border border-red-500/20 rounded-xl p-6 h-full">
                 {/* Content */}
-                <div className="relative z-10">
+                <div>
                   {/* Icon */}
                   <div className="text-4xl mb-4">{industry.icon}</div>
                   
@@ -118,7 +115,7 @@ const WhoItsFor = () => {
                   </div>
 
                   {/* Benefits */}
-                  <div>
+                  <div className="mb-6">
                     <h4 className="text-sm font-semibold text-green-500 mb-3 uppercase tracking-wide">
                       NightShield Benefits
                     </h4>
@@ -133,29 +130,19 @@ const WhoItsFor = () => {
                       ))}
                     </ul>
                   </div>
-                </div>
 
-                {/* Hover Reveal Content */}
-                <div className="absolute inset-0 bg-black/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                  <div className="text-center p-6">
-                    <h4 className="text-xl font-bold text-white mb-4">
-                      Perfect for {industry.name}
-                    </h4>
-                    <p className="text-gray-300 mb-6">
-                      Get a customized demo tailored specifically for your {industry.name.toLowerCase()} needs.
-                    </p>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => {
-                        const element = document.querySelector('#contact')
-                        if (element) element.scrollIntoView({ behavior: 'smooth' })
-                      }}
-                      className="btn-primary"
-                    >
-                      Get Demo
-                    </motion.button>
-                  </div>
+                  {/* CTA Button */}
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      const element = document.querySelector('#contact')
+                      if (element) element.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                    className="btn-primary w-full"
+                  >
+                    Get Demo
+                  </motion.button>
                 </div>
               </div>
             </motion.div>
