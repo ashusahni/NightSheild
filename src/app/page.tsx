@@ -1,6 +1,5 @@
 import React from 'react'
 import { Metadata } from 'next'
-import Navbar from '@/components/NightShield/Navbar'
 import Hero from '@/components/NightShield/Hero'
 import HowItWorks from '@/components/NightShield/HowItWorks'
 import Features from '@/components/NightShield/Features'
@@ -14,15 +13,14 @@ import Contact from '@/components/NightShield/Contact'
 import CookieConsent from '@/components/NightShield/CookieConsent'
 
 export const metadata: Metadata = {
-  title: 'NightShield - Real-Time AI Surveillance That Protects Venues',
-  description: 'Advanced AI surveillance system that protects venues before incidents occur. Real-time threat detection for nightclubs, casinos, event venues, and more.',
-  keywords: 'AI surveillance, venue security, real-time monitoring, threat detection, nightclub security, casino security',
+  title: 'NightShield - AI Surveillance That Protects Venues Before It\'s Too Late',
+  description: 'Real-time AI surveillance system that detects threats and protects venues before incidents occur. Advanced security for nightclubs, casinos, event venues, and more.',
+  keywords: 'AI surveillance, venue security, threat detection, nightclub security, casino security, event venue security, real-time monitoring, AI security system',
 }
 
 export default function Home() {
   return (
     <main className="bg-black text-white min-h-screen">
-      {/* <Navbar /> */}
       <Hero />
       <HowItWorks />
       <Features />

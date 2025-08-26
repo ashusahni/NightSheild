@@ -1,8 +1,6 @@
 import './globals.css'
-import Header from '@/components/Layout/Header'
 import Footer from '@/components/Layout/Footer'
 import { ThemeProvider } from 'next-themes'
-import ScrollToTop from '@/components/ScrollToTop'
 import Aoscompo from '@/utils/aos'
 
 // ✅ Import Google Fonts with next/font
@@ -44,11 +42,9 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           <Aoscompo>
-            {/* <Header /> */}
             {children}
             <Footer />
           </Aoscompo>
-          <ScrollToTop />
         </ThemeProvider>
       </body>
     </html>
