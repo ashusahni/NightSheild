@@ -1,0 +1,352 @@
+@import 'tailwindcss';
+
+@theme {
+  --container-screen-xl: 75rem;
+  --container-screen-2xl: 83.75rem;
+
+  --shadow-cause-shadow: 0px 4px 17px 0px #00000008;
+
+  --transition-duration-150: 150ms;
+
+  --spacing-8xl: 75rem;
+  --spacing-25: 35.625rem;
+  --spacing-29: 28rem;
+  --spacing-45: 45rem;
+  --spacing-50: 50rem;
+  --spacing-51: 54.375rem;
+  --spacing-85: 21rem;
+  --spacing-94: 22.5rem;
+  --spacing-120: 120rem;
+  --spacing-6_25: 6.25rem;
+  --spacing-70\%: 70%;
+  --spacing-40\%: 40%;
+  --spacing-30\%: 30%;
+  --spacing-80\%: 80%;
+  --spacing-8_5: 8.5rem;
+  --spacing-3_75: 3.75rem;
+
+  --inset-5\%: 5%;
+  --inset-35\%: 35%;
+
+  --z-index-1: 1;
+  --z-index-2: 2;
+  --z-index-999: 999;
+
+  /* NightShield Color Scheme */
+  --color-primary: #E5122F;
+  --color-secondary: #B3B3B3;
+  --color-background: #000000;
+  --color-card-bg: #0B0B0F;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B3B3B3;
+  --color-accent: #E5122F;
+  --color-border: #1a1a1a;
+  --color-success: #3cd278;
+  --color-warning: #f7931a;
+  --color-error: #cf3127;
+
+  --text-14: 0.875rem;
+  --text-14--line-height: 1.225rem;
+  --text-16: 1rem;
+  --text-16--line-height: 1.6875rem;
+  --text-17: 1.0625rem;
+  --text-17--line-height: 1.4875rem;
+  --text-18: 1.125rem;
+  --text-18--line-height: 1.5rem;
+  --text-21: 1.3125rem;
+  --text-21--line-height: 1.875rem;
+  --text-22: 1.375rem;
+  --text-22--line-height: 2rem;
+  --text-24: 1.5rem;
+  --text-24--line-height: 2rem;
+  --text-28: 1.75rem;
+  --text-28--line-height: 2.25rem;
+  --text-30: 1.875rem;
+  --text-30--line-height: 2.25rem;
+  --text-36: 2.25rem;
+  --text-36--line-height: 2.625rem;
+  --text-40: 2.5rem;
+  --text-40--line-height: 3rem;
+  --text-44: 2.75rem;
+  --text-44--line-height: 1.3;
+  --text-54: 3.375rem;
+  --text-54--line-height: 1.2;
+  --text-70: 4.375rem;
+  --text-70--line-height: 1.2;
+  --text-76: 4.75rem;
+  --text-76--line-height: 1.2;
+  --text-86: 5.375rem;
+  --text-86--line-height: 1.2;
+
+  --blur-220: 220px;
+  --blur-400: 400px;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply w-full max-w-7xl mx-auto py-0 sm:px-7 px-5;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+body {
+  font-family: var(--font-inter), sans-serif;
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 700;
+}
+
+section {
+  @apply bg-background;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0B0F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E5122F;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c01028;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E5122F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effect for red elements */
+.red-glow {
+  box-shadow: 0 0 20px rgba(229, 18, 47, 0.3);
+}
+
+.red-glow:hover {
+  box-shadow: 0 0 30px rgba(229, 18, 47, 0.5);
+}
+
+/* Animated background */
+.aurora-bg {
+  background: linear-gradient(45deg, #000000, #0B0B0F, #000000);
+  background-size: 400% 400%;
+  animation: aurora 15s ease infinite;
+}
+
+@keyframes aurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Grid texture */
+.grid-texture {
+  background-image: 
+    linear-gradient(rgba(229, 18, 47, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(229, 18, 47, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(229, 18, 47, 0.2);
+}
+
+/* Button styles */
+.btn-primary {
+  background: linear-gradient(135deg, #E5122F 0%, #c01028 100%);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(229, 18, 47, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #FFFFFF;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid #E5122F;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: #E5122F;
+  transform: translateY(-2px);
+}
+
+/* Split text animation */
+.split-text {
+  overflow: hidden;
+}
+
+.split-text span {
+  display: inline-block;
+  transform: translateY(100%);
+  animation: slideUp 0.8s ease forwards;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Spotlight card effect */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(229, 18, 47, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.spotlight-card:hover::before {
+  left: 100%;
+}
+
+/* Tilted card effect */
+.tilted-card {
+  transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+  transition: transform 0.3s ease;
+}
+
+.tilted-card:hover {
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+}
+
+/* Profile card hover effect */
+.profile-card {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(229, 18, 47, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile-card:hover::after {
+  opacity: 1;
+}
+
+.profile-card:hover {
+  transform: translateY(-10px);
+}
+
+/* Animated list */
+.animated-list li {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideInLeft 0.6s ease forwards;
+}
+
+.animated-list li:nth-child(1) { animation-delay: 0.1s; }
+.animated-list li:nth-child(2) { animation-delay: 0.2s; }
+.animated-list li:nth-child(3) { animation-delay: 0.3s; }
+.animated-list li:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Cookie consent */
+.cookie-consent {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: #0B0B0F;
+  border: 1px solid #E5122F;
+  border-radius: 8px;
+  padding: 20px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    @apply px-4;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+}
