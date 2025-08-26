@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -45,16 +46,16 @@ const Navbar = () => {
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2"
+            className="flex items-center"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center">
-              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-              </svg>
-            </div>
-            <span className="text-xl lg:text-2xl font-bold font-montserrat">
-              Night<span className="text-red-500">Shield</span>
-            </span>
+            <Image
+              src="https://file.notion.so/f/f/7e230680-dafc-816f-a623-0003873218eb/91f7344d-ae81-47f0-9089-b6f7345b8a4e/NIGHTSHIELD_(2).png?table=block&id=25b30680-dafc-81f5-a74b-c70bb918e405&spaceId=7e230680-dafc-816f-a623-0003873218eb&expirationTimestamp=1756339200000&signature=rRUDGAVfJsQ5Qn7Tyd_vWanSmDbNLFI-8t8MmVkvGEY&downloadName=LOGO+WHITE+BACKGROUND.png"
+              alt="NightShield Logo"
+              width={140}
+              height={35}
+              style={{ width: "auto", height: "auto" }}
+              quality={100}
+            />
           </motion.div>
 
           {/* Desktop Navigation */}
