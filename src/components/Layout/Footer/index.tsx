@@ -13,7 +13,9 @@ const Footer: FC = () => {
         <div className='grid grid-cols-1 sm:grid-cols-11 lg:gap-20 md:gap-6 sm:gap-12 gap-6  pb-16'>
           <div className='lg:col-span-4 md:col-span-6 col-span-6 flex flex-col gap-6'>
             <Logo />
-            <p className='text-white/60'>Transform your crypto business with Crypgo Framer, a template for startups and blockchain services.</p>
+            <p className='text-white/60'>Real-Time AI Surveillance
+That Protects Venues
+Before It's Too Late</p>
             <div className='flex gap-6 items-center relative z-1'>
               <Link href='https://www.facebook.com/' className='group'>
                 <Icon
@@ -70,7 +72,7 @@ const Footer: FC = () => {
             </ul>
           </div>
           <div className='lg:col-span-3 md:col-span-4 col-span-6'>
-            <h3 className='text-white text-24 font-medium mb-4'>Download app</h3>
+            <h3 className='text-white text-24 font-medium mb-4'> </h3>
             <div className='flex flex-col gap-4'>
               <Link href={"https://www.google.com/"}><Image src={"/images/footer/app-store-bedge.svg"} alt='play-store-bedge' width={126} height={23} /></Link>
               <Link href={"https://www.apple.com/"}><Image src={"/images/footer/app-store.svg"} alt='play-store-bedge' width={126} height={23} /></Link>
