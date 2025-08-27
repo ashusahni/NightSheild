@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-
+import DarkVeil from './DarkVeil'
 const Hero = () => {
   const scrollToContact = () => {
     const element = document.querySelector('#contact')
@@ -20,6 +20,9 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden aurora-bg">
+      <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
+  <DarkVeil />
+</div>
       {/* Background Effects */}
       <div className="absolute inset-0 grid-texture opacity-20"></div>
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-black/50 to-black"></div>
@@ -42,7 +45,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
             >
               <span className="split-text">
                 <span>Real-Time AI Surveillance</span>

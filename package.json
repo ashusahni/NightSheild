@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@appletosolutions/reactbits": "^1.0.3",
     "@iconify/icons-ion": "^1.2.10",
     "@iconify/react": "^5.2.1",
     "aos": "^2.3.4",
