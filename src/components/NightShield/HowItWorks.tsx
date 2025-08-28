@@ -2,6 +2,8 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
+import TargetCursor from './TargetCursor';
+
 
 const HowItWorks = () => {
   const steps = [
@@ -53,6 +55,7 @@ const HowItWorks = () => {
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-500/3 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-red-500/2 rounded-full blur-2xl animate-ping"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -64,12 +67,31 @@ const HowItWorks = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
+          <TargetCursor 
+            targetSelector=".cursor-target"
+            spinDuration={1.5}
+            hideDefaultCursor={false}
+          />
+
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             How <span className="text-red-500">NightShield</span> Works
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Our AI-powered surveillance system works in four simple steps to keep your venue safe 24/7
           </p>
+          
+          {/* Interactive Hint */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.5 }}
+            className="mt-6 text-sm text-gray-400"
+          >
+            <span className="inline-flex items-center gap-2">
+              <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+              Hover over the cards to see the interactive cursor
+            </span>
+          </motion.div>
         </motion.div>
 
         {/* Steps */}
@@ -84,24 +106,40 @@ const HowItWorks = () => {
               className="relative"
             >
               {/* Step Number */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              <div className="absolute -top-4 -left-4 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm z-10">
                 {index + 1}
               </div>
 
               {/* Step Card */}
-              <div className="bg-card-bg border border-red-500/20 rounded-xl p-6 h-full card-hover">
+              <div className="bg-card-bg border border-red-500/20 rounded-xl p-6 h-full card-hover cursor-target relative group hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-500">
+                {/* Hover Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Floating Particles Effect */}
+                <div className="absolute inset-0 overflow-hidden rounded-xl">
+                  <div className="absolute top-2 right-2 w-1 h-1 bg-red-500/30 rounded-full group-hover:animate-ping"></div>
+                  <div className="absolute bottom-4 left-4 w-0.5 h-0.5 bg-red-500/20 rounded-full group-hover:animate-pulse"></div>
+                </div>
+                
                 {/* Icon */}
-                <div className="w-16 h-16 bg-red-500/10 rounded-xl flex items-center justify-center mb-6 text-red-500">
+                <div className="w-16 h-16 bg-red-500/10 rounded-xl flex items-center justify-center mb-6 text-red-500 relative z-10 group-hover:scale-110 group-hover:bg-red-500/20 transition-all duration-300">
                   {step.icon}
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold mb-4 text-white">
+                <h3 className="text-xl font-bold mb-4 text-white relative z-10 group-hover:text-red-400 transition-colors duration-300">
                   {step.title}
                 </h3>
-                <p className="text-gray-300 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed relative z-10 group-hover:text-gray-200 transition-colors duration-300">
                   {step.description}
                 </p>
+                
+                {/* Interactive Border */}
+                <div className="absolute inset-0 border-2 border-transparent rounded-xl group-hover:border-red-500/30 transition-all duration-300"></div>
+                
+                {/* Corner Accents */}
+                <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-transparent group-hover:border-red-500/50 transition-all duration-300 rounded-tl-xl"></div>
+                <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-transparent group-hover:border-red-500/50 transition-all duration-300 rounded-br-xl"></div>
               </div>
 
               {/* Connection Line */}

@@ -98,6 +98,50 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+
+  /* Target Cursor Enhancements */
+  .cursor-target {
+    cursor: none;
+  }
+
+  .cursor-target:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Enhanced cursor effects when hovering over cards */
+  .cursor-target:hover ~ .target-cursor-corner {
+    border-color: #E5122F !important;
+    transform: scale(1.2);
+  }
+
+  /* Custom cursor animations */
+  @keyframes cursorPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+  }
+
+  .cursor-target:hover ~ div[class*="target-cursor"] {
+    animation: cursorPulse 1s ease-in-out infinite;
+  }
+
+  /* Custom animations for How It Works cards */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+  }
+
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(229, 18, 47, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(229, 18, 47, 0.6); }
+  }
+
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    animation: float 3s ease-in-out infinite, glow 2s ease-in-out infinite;
+  }
 }
 
 @layer utilities {
