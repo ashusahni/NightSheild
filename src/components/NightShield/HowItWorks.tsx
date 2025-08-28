@@ -11,7 +11,7 @@ const HowItWorks = () => {
       id: 1,
       title: "Camera Detection",
       description: "High-resolution cameras capture real-time footage with advanced night vision capabilities.",
-      imageUrl: "/images/logo/COVER IMAGE.jpeg",
+      videoUrl: "/images/videos/WhatsApp Video 2025-08-28 at 23.05.22_6b90b8d6.mp4",
       targetPosition: { x: 70, y: 30 },
       threatLevel: "HIGH",
       timestamp: "23:45:32"
@@ -20,7 +20,7 @@ const HowItWorks = () => {
       id: 2,
       title: "AI Brain Analysis",
       description: "Our advanced AI algorithms analyze behavior patterns and detect potential threats in milliseconds.",
-      imageUrl: "/images/logo/COVER IMAGE.jpeg",
+      videoUrl: "/images/videos/WhatsApp Video 2025-08-28 at 23.05.22_6b90b8d6.mp4",
       targetPosition: { x: 25, y: 60 },
       threatLevel: "MEDIUM",
       timestamp: "23:45:35"
@@ -29,7 +29,7 @@ const HowItWorks = () => {
       id: 3,
       title: "Instant Alert",
       description: "Security personnel receive immediate notifications via phone, tablet, or control room displays.",
-      imageUrl: "/images/logo/COVER IMAGE.jpeg",
+      videoUrl: "/images/videos/WhatsApp Video 2025-08-28 at 23.05.22_6b90b8d6.mp4",
       targetPosition: { x: 80, y: 70 },
       threatLevel: "CRITICAL",
       timestamp: "23:45:38"
@@ -38,7 +38,7 @@ const HowItWorks = () => {
       id: 4,
       title: "Evidence Recording",
       description: "All incidents are automatically recorded and stored for legal proceedings and training purposes.",
-      imageUrl: "/images/logo/COVER IMAGE.jpeg",
+      videoUrl: "/images/videos/WhatsApp Video 2025-08-28 at 23.05.22_6b90b8d6.mp4",
       targetPosition: { x: 45, y: 45 },
       threatLevel: "LOW",
       timestamp: "23:45:41"
@@ -46,7 +46,7 @@ const HowItWorks = () => {
   ]
 
   return (
-    <section id="how-it-works" className="py-20 relative overflow-hidden">
+    <section id="how-it-works" className="py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black"></div>
       <div className="absolute inset-0 grid-texture opacity-10"></div>
@@ -58,29 +58,29 @@ const HowItWorks = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-red-500/2 rounded-full blur-2xl animate-ping"></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
                 <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
 
-          <div className="flex justify-center items-center space-x-3 mb-6">
+          <div className="flex justify-center items-center space-x-4 mb-8">
             <Image 
               src="/images/logo/LOGO TRANSPARENT.png" 
               alt="NightShield Logo" 
-              width={48} 
-              height={48}
-              className="w-12 h-12"
+              width={56} 
+              height={56}
+              className="w-14 h-14"
             />
             <h2 className="text-4xl md:text-5xl font-bold">
               How <span className="text-red-500">NightShield</span> Works
             </h2>
           </div>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Our AI-powered surveillance system works in four simple steps to keep your venue safe 24/7
           </p>
           
@@ -88,7 +88,7 @@ const HowItWorks = () => {
         </motion.div>
 
         {/* Surveillance Scenes */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {surveillanceScenes.map((scene, index) => (
             <motion.div
               key={scene.id}
@@ -99,19 +99,21 @@ const HowItWorks = () => {
               className="relative"
             >
               {/* Step Number */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm z-20">
+              <div className="absolute -top-5 -left-5 w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-base z-20 shadow-lg">
                 {scene.id}
               </div>
 
               {/* Surveillance Image Container */}
-              <div className="bg-card-bg border border-red-500/20 rounded-xl overflow-hidden relative group hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-500">
-                {/* Image */}
+              <div className="bg-card-bg border border-red-500/20 rounded-2xl overflow-hidden relative group hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-500">
+                {/* Video */}
                 <div className="relative aspect-square bg-black">
-                  <Image 
-                    src={scene.imageUrl} 
-                    alt={scene.title}
-                    fill
-                    className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  <video 
+                    src={scene.videoUrl} 
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                    muted
+                    loop
+                    autoPlay
+                    playsInline
                   />
                   
                   {/* CCTV Overlay */}
@@ -171,17 +173,17 @@ const HowItWorks = () => {
                 </div>
                 
                 {/* Content */}
-                <div className="p-4">
-                  <h3 className="text-lg font-bold mb-2 text-white group-hover:text-red-400 transition-colors duration-300">
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-red-400 transition-colors duration-300">
                     {scene.title}
                   </h3>
-                  <p className="text-sm text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                  <p className="text-base text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
                     {scene.description}
                   </p>
                 </div>
                 
                 {/* Hover Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               </div>
 
               {/* Connection Line */}
@@ -198,13 +200,13 @@ const HowItWorks = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-20"
         >
-          <div className="bg-card-bg border border-red-500/20 rounded-2xl p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">
+          <div className="bg-card-bg border border-red-500/20 rounded-2xl p-10 max-w-3xl mx-auto">
+            <h3 className="text-3xl font-bold mb-6">
               Ready to Protect Your Venue?
             </h3>
-            <p className="text-gray-300 mb-6">
+            <p className="text-lg text-gray-300 mb-8 leading-relaxed">
               See NightShield in action with a live demonstration tailored to your venue type.
             </p>
             <motion.button
