@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import DarkVeil from './DarkVeil'
 
 
@@ -68,6 +69,26 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="text-center lg:text-left"
           >
+            {/* Logo */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="flex justify-center lg:justify-start mb-8"
+            >
+              <div className="flex items-center space-x-3">
+                <Image 
+                  src="/images/logo/LOGO TRANSPARENT.png" 
+                  alt="NightShield Logo" 
+                  width={64} 
+                  height={64}
+                  className="w-16 h-16"
+                />
+                <span className="text-2xl lg:text-3xl font-bold">
+                  Night<span className="text-red-500">Shield</span>
+                </span>
+              </div>
+            </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

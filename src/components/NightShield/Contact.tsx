@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -69,9 +70,18 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Get in <span className="text-red-500">Touch</span>
-          </h2>
+          <div className="flex justify-center items-center space-x-3 mb-6">
+            <Image 
+              src="/images/logo/LOGO TRANSPARENT.png" 
+              alt="NightShield Logo" 
+              width={48} 
+              height={48}
+              className="w-12 h-12"
+            />
+            <h2 className="text-4xl md:text-5xl font-bold">
+              Get in <span className="text-red-500">Touch</span>
+            </h2>
+          </div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Ready to protect your venue? Contact us for a personalized consultation and live demo.
           </p>

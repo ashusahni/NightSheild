@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const WhoItsFor = () => {
   const industries = [
@@ -64,9 +65,18 @@ const WhoItsFor = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Who <span className="text-red-500">It's For</span>
-          </h2>
+          <div className="flex justify-center items-center space-x-3 mb-6">
+            <Image 
+              src="/images/logo/LOGO TRANSPARENT.png" 
+              alt="NightShield Logo" 
+              width={48} 
+              height={48}
+              className="w-12 h-12"
+            />
+            <h2 className="text-4xl md:text-5xl font-bold">
+              Who <span className="text-red-500">It's For</span>
+            </h2>
+          </div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             NightShield is designed for venues that prioritize safety and security in high-risk environments
           </p>

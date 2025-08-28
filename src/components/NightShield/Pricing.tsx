@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = useState('monthly')
@@ -69,9 +70,18 @@ const Pricing = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Simple <span className="text-red-500">Pricing</span>
-          </h2>
+          <div className="flex justify-center items-center space-x-3 mb-6">
+            <Image 
+              src="/images/logo/LOGO TRANSPARENT.png" 
+              alt="NightShield Logo" 
+              width={48} 
+              height={48}
+              className="w-12 h-12"
+            />
+            <h2 className="text-4xl md:text-5xl font-bold">
+              Simple <span className="text-red-500">Pricing</span>
+            </h2>
+          </div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
             Choose the perfect plan for your venue size and security needs
           </p>

@@ -2,46 +2,46 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import TargetCursor from './TargetCursor';
+import Image from 'next/image'
 
 
 const HowItWorks = () => {
-  const steps = [
+  const surveillanceScenes = [
     {
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.11 3.89 23 5 23H19C20.11 23 21 22.11 21 21V9M19 9H14V4H5V21H19V9Z"/>
-        </svg>
-      ),
+      id: 1,
       title: "Camera Detection",
-      description: "High-resolution cameras capture real-time footage of your venue with advanced night vision capabilities."
+      description: "High-resolution cameras capture real-time footage with advanced night vision capabilities.",
+      imageUrl: "/images/logo/COVER IMAGE.jpeg",
+      targetPosition: { x: 70, y: 30 },
+      threatLevel: "HIGH",
+      timestamp: "23:45:32"
     },
     {
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2M12 4A8 8 0 0 1 20 12A8 8 0 0 1 12 20A8 8 0 0 1 4 12A8 8 0 0 1 12 4M12 6A6 6 0 0 0 6 12A6 6 0 0 0 12 18A6 6 0 0 0 18 12A6 6 0 0 0 12 6M12 8A4 4 0 0 1 16 12A4 4 0 0 1 12 16A4 4 0 0 1 8 12A4 4 0 0 1 12 8Z"/>
-        </svg>
-      ),
+      id: 2,
       title: "AI Brain Analysis",
-      description: "Our advanced AI algorithms analyze behavior patterns and detect potential threats in milliseconds."
+      description: "Our advanced AI algorithms analyze behavior patterns and detect potential threats in milliseconds.",
+      imageUrl: "/images/logo/COVER IMAGE.jpeg",
+      targetPosition: { x: 25, y: 60 },
+      threatLevel: "MEDIUM",
+      timestamp: "23:45:35"
     },
     {
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5A1 1 0 0 1 21 16.5V20A1 1 0 0 1 20 21A17 17 0 0 1 3 4A1 1 0 0 1 4 3H7.5A1 1 0 0 1 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z"/>
-        </svg>
-      ),
+      id: 3,
       title: "Instant Alert",
-      description: "Security personnel receive immediate notifications via phone, tablet, or control room displays."
+      description: "Security personnel receive immediate notifications via phone, tablet, or control room displays.",
+      imageUrl: "/images/logo/COVER IMAGE.jpeg",
+      targetPosition: { x: 80, y: 70 },
+      threatLevel: "CRITICAL",
+      timestamp: "23:45:38"
     },
     {
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M17 10.5V7A1 1 0 0 0 16 6H4A1 1 0 0 0 3 7V17A1 1 0 0 0 4 18H16A1 1 0 0 0 17 17V13.5L21 17.5V6.5L17 10.5Z"/>
-        </svg>
-      ),
+      id: 4,
       title: "Evidence Recording",
-      description: "All incidents are automatically recorded and stored for legal proceedings and training purposes."
+      description: "All incidents are automatically recorded and stored for legal proceedings and training purposes.",
+      imageUrl: "/images/logo/COVER IMAGE.jpeg",
+      targetPosition: { x: 45, y: 45 },
+      threatLevel: "LOW",
+      timestamp: "23:45:41"
     }
   ]
 
@@ -60,45 +60,38 @@ const HowItWorks = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div
+                <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <TargetCursor 
-            targetSelector=".cursor-target"
-            spinDuration={1.5}
-            hideDefaultCursor={false}
-          />
 
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            How <span className="text-red-500">NightShield</span> Works
-          </h2>
+          <div className="flex justify-center items-center space-x-3 mb-6">
+            <Image 
+              src="/images/logo/LOGO TRANSPARENT.png" 
+              alt="NightShield Logo" 
+              width={48} 
+              height={48}
+              className="w-12 h-12"
+            />
+            <h2 className="text-4xl md:text-5xl font-bold">
+              How <span className="text-red-500">NightShield</span> Works
+            </h2>
+          </div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Our AI-powered surveillance system works in four simple steps to keep your venue safe 24/7
           </p>
           
-          {/* Interactive Hint */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.5 }}
-            className="mt-6 text-sm text-gray-400"
-          >
-            <span className="inline-flex items-center gap-2">
-              <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-              Hover over the cards to see the interactive cursor
-            </span>
-          </motion.div>
+
         </motion.div>
 
-        {/* Steps */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
+        {/* Surveillance Scenes */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {surveillanceScenes.map((scene, index) => (
             <motion.div
-              key={index}
+              key={scene.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -106,44 +99,93 @@ const HowItWorks = () => {
               className="relative"
             >
               {/* Step Number */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm z-10">
-                {index + 1}
+              <div className="absolute -top-4 -left-4 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm z-20">
+                {scene.id}
               </div>
 
-              {/* Step Card */}
-              <div className="bg-card-bg border border-red-500/20 rounded-xl p-6 h-full card-hover cursor-target relative group hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-500">
-                {/* Hover Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                {/* Floating Particles Effect */}
-                <div className="absolute inset-0 overflow-hidden rounded-xl">
-                  <div className="absolute top-2 right-2 w-1 h-1 bg-red-500/30 rounded-full group-hover:animate-ping"></div>
-                  <div className="absolute bottom-4 left-4 w-0.5 h-0.5 bg-red-500/20 rounded-full group-hover:animate-pulse"></div>
+              {/* Surveillance Image Container */}
+              <div className="bg-card-bg border border-red-500/20 rounded-xl overflow-hidden relative group hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-500">
+                {/* Image */}
+                <div className="relative aspect-square bg-black">
+                  <Image 
+                    src={scene.imageUrl} 
+                    alt={scene.title}
+                    fill
+                    className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                  
+                  {/* CCTV Overlay */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    {/* Top Bar */}
+                    <div className="absolute top-0 left-0 right-0 h-6 bg-black/80 backdrop-blur-sm flex items-center justify-between px-3 text-white text-xs font-mono">
+                      <span className="text-red-500 font-bold">CAM {scene.id.toString().padStart(2, '0')}</span>
+                      <span className="text-gray-300">{scene.timestamp}</span>
+                    </div>
+                    
+                    {/* Threat Level Indicator */}
+                    <div className={`absolute top-2 right-2 px-2 py-1 rounded text-white text-xs font-bold ${
+                      scene.threatLevel === 'CRITICAL' ? 'bg-red-600' :
+                      scene.threatLevel === 'HIGH' ? 'bg-orange-600' :
+                      scene.threatLevel === 'MEDIUM' ? 'bg-yellow-600' :
+                      'bg-green-600'
+                    }`}>
+                      {scene.threatLevel}
+                    </div>
+                    
+                    {/* Target Lock Box */}
+                    <div 
+                      className="absolute border-2 border-red-500 border-dashed animate-pulse"
+                      style={{
+                        left: `${scene.targetPosition.x}%`,
+                        top: `${scene.targetPosition.y}%`,
+                        width: '40px',
+                        height: '40px',
+                        transform: 'translate(-50%, -50%)'
+                      }}
+                    >
+                      {/* Crosshair */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-1 h-full bg-red-500"></div>
+                        <div className="absolute w-full h-1 bg-red-500"></div>
+                      </div>
+                      
+                      {/* Corner Brackets */}
+                      <div className="absolute top-0 left-0 w-2 h-2 border-l-2 border-t-2 border-red-500"></div>
+                      <div className="absolute top-0 right-0 w-2 h-2 border-r-2 border-t-2 border-red-500"></div>
+                      <div className="absolute bottom-0 left-0 w-2 h-2 border-l-2 border-b-2 border-red-500"></div>
+                      <div className="absolute bottom-0 right-0 w-2 h-2 border-r-2 border-b-2 border-red-500"></div>
+                    </div>
+                    
+                    {/* Scan Lines */}
+                    <div className="absolute inset-0 opacity-20">
+                      <div className="h-px bg-white/30 animate-pulse"></div>
+                      <div className="h-px bg-white/20 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                    </div>
+                    
+                    {/* Corner Brackets */}
+                    <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-red-500/50"></div>
+                    <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-red-500/50"></div>
+                    <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-red-500/50"></div>
+                    <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-red-500/50"></div>
+                  </div>
                 </div>
                 
-                {/* Icon */}
-                <div className="w-16 h-16 bg-red-500/10 rounded-xl flex items-center justify-center mb-6 text-red-500 relative z-10 group-hover:scale-110 group-hover:bg-red-500/20 transition-all duration-300">
-                  {step.icon}
-                </div>
-
                 {/* Content */}
-                <h3 className="text-xl font-bold mb-4 text-white relative z-10 group-hover:text-red-400 transition-colors duration-300">
-                  {step.title}
-                </h3>
-                <p className="text-gray-300 leading-relaxed relative z-10 group-hover:text-gray-200 transition-colors duration-300">
-                  {step.description}
-                </p>
+                <div className="p-4">
+                  <h3 className="text-lg font-bold mb-2 text-white group-hover:text-red-400 transition-colors duration-300">
+                    {scene.title}
+                  </h3>
+                  <p className="text-sm text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                    {scene.description}
+                  </p>
+                </div>
                 
-                {/* Interactive Border */}
-                <div className="absolute inset-0 border-2 border-transparent rounded-xl group-hover:border-red-500/30 transition-all duration-300"></div>
-                
-                {/* Corner Accents */}
-                <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-transparent group-hover:border-red-500/50 transition-all duration-300 rounded-tl-xl"></div>
-                <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-transparent group-hover:border-red-500/50 transition-all duration-300 rounded-br-xl"></div>
+                {/* Hover Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               </div>
 
               {/* Connection Line */}
-              {index < steps.length - 1 && (
+              {index < surveillanceScenes.length - 1 && (
                 <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-red-500/50 to-transparent"></div>
               )}
             </motion.div>

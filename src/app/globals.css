@@ -99,30 +99,7 @@
     border-color: var(--color-gray-200, currentColor);
   }
 
-  /* Target Cursor Enhancements */
-  .cursor-target {
-    cursor: none;
-  }
 
-  .cursor-target:hover {
-    transform: translateY(-2px);
-  }
-
-  /* Enhanced cursor effects when hovering over cards */
-  .cursor-target:hover ~ .target-cursor-corner {
-    border-color: #E5122F !important;
-    transform: scale(1.2);
-  }
-
-  /* Custom cursor animations */
-  @keyframes cursorPulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.8; }
-  }
-
-  .cursor-target:hover ~ div[class*="target-cursor"] {
-    animation: cursorPulse 1s ease-in-out infinite;
-  }
 
   /* Custom animations for How It Works cards */
   @keyframes float {
