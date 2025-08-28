@@ -1,23 +1,13 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 
 const HowItWorks = () => {
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
+  const { isMobile, isClient } = useIsMobile()
   const surveillanceScenes = [
     {
       id: 1,
@@ -119,7 +109,15 @@ const HowItWorks = () => {
               <div className="bg-card-bg border border-red-500/20 rounded-2xl overflow-hidden relative group hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-500">
                 {/* Video/Image */}
                 <div className="relative aspect-square bg-black">
-                  {isMobile ? (
+                  {!isClient ? (
+                    // Server-side render fallback - always show image initially
+                    <Image 
+                      src="/images/logo/COVER IMAGE.jpeg"
+                      alt={scene.title}
+                      fill
+                      className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                  ) : isMobile ? (
                     <Image 
                       src="/images/logo/COVER IMAGE.jpeg"
                       alt={scene.title}

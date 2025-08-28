@@ -21,11 +21,10 @@ export const metadata: Metadata = {
   keywords: 'AI surveillance, venue security, threat detection, nightclub security, casino security, event venue security, real-time monitoring, AI security system',
   icons: {
     icon: [
-      { url: '/favicon.ico' },
       { url: '/favicon.png', type: 'image/png' }
     ],
     apple: '/favicon.png',
-    shortcut: '/favicon.ico'
+    shortcut: '/favicon.png'
   }
 }
 
