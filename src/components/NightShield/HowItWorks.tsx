@@ -1,11 +1,23 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 
 const HowItWorks = () => {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
   const surveillanceScenes = [
     {
       id: 1,
@@ -105,16 +117,26 @@ const HowItWorks = () => {
 
               {/* Surveillance Image Container */}
               <div className="bg-card-bg border border-red-500/20 rounded-2xl overflow-hidden relative group hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-500">
-                {/* Video */}
+                {/* Video/Image */}
                 <div className="relative aspect-square bg-black">
-                  <video 
-                    src={scene.videoUrl} 
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                    muted
-                    loop
-                    autoPlay
-                    playsInline
-                  />
+                  {isMobile ? (
+                    <Image 
+                      src="/images/logo/COVER IMAGE.jpeg"
+                      alt={scene.title}
+                      fill
+                      className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                  ) : (
+                    <video 
+                      src={scene.videoUrl} 
+                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                      muted
+                      loop
+                      autoPlay
+                      playsInline
+                      preload="metadata"
+                    />
+                  )}
                   
                   {/* CCTV Overlay */}
                   <div className="absolute inset-0 pointer-events-none">

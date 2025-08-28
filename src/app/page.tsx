@@ -19,6 +19,14 @@ export const metadata: Metadata = {
   title: 'NightShield - AI Surveillance That Protects Venues Before It\'s Too Late',
   description: 'Real-time AI surveillance system that detects threats and protects venues before incidents occur. Advanced security for nightclubs, casinos, event venues, and more.',
   keywords: 'AI surveillance, venue security, threat detection, nightclub security, casino security, event venue security, real-time monitoring, AI security system',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon.png', type: 'image/png' }
+    ],
+    apple: '/favicon.png',
+    shortcut: '/favicon.ico'
+  }
 }
 
 export default function Home() {

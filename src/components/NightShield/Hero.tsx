@@ -36,6 +36,15 @@ const Hero = () => {
     }
   }
 
+ const seeInAction = () => {
+  const element = document.querySelector('#how-it-works')
+ 
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' })
+  }
+  
+ }
+
   const scrollToDemo = () => {
     const element = document.querySelector('#demo')
     if (element) {
@@ -52,13 +61,13 @@ const Hero = () => {
   <DarkVeil />
 </div>
       {/* Background Effects */}
-      <div className="absolute inset-0 grid-texture opacity-20"></div>
+      <div className="absolute inset-0 grid-texture opacity-10 md:opacity-20"></div>
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-black/50 to-black"></div>
       
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-red-500/10 rounded-full blur-xl animate-pulse"></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 bg-red-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
-      <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-red-500/15 rounded-full blur-lg animate-pulse delay-500"></div>
+      {/* Floating Elements - Hidden on mobile for performance */}
+      <div className="hidden md:block absolute top-20 left-10 w-20 h-20 bg-red-500/10 rounded-full blur-xl animate-pulse"></div>
+      <div className="hidden md:block absolute bottom-20 right-10 w-32 h-32 bg-red-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
+      <div className="hidden md:block absolute top-1/2 left-1/4 w-16 h-16 bg-red-500/15 rounded-full blur-lg animate-pulse delay-500"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -131,7 +140,7 @@ const Hero = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={scrollToDemo}
+                onClick={seeInAction}
                 className="btn-secondary text-lg px-8 py-4"
               >
                 See It In Action

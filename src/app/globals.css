@@ -99,6 +99,21 @@
     border-color: var(--color-gray-200, currentColor);
   }
 
+  /* Mobile Performance Optimizations */
+  @media (max-width: 768px) {
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    video {
+      will-change: auto;
+    }
+    
+    .animate-pulse {
+      animation-duration: 2s;
+    }
+  }
+
 
 
   /* Custom animations for How It Works cards */
