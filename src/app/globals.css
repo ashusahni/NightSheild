@@ -273,9 +273,69 @@ section {
   animation: slideUp 0.8s ease forwards;
 }
 
+.split-text-container {
+  overflow: visible;
+  line-height: 1.2;
+  display: inline-block;
+}
+
+.split-text-container span {
+  display: inline-block;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Fix gradient text with animations */
+.split-text-container.gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E5122F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.split-text-container.gradient-text span {
+  -webkit-text-fill-color: inherit;
+  background: inherit;
+  -webkit-background-clip: inherit;
+  background-clip: inherit;
+}
+
 @keyframes slideUp {
   to {
     transform: translateY(0);
+  }
+}
+
+/* Enhanced animations for better performance */
+@keyframes splitSlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes splitFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes splitScale {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 

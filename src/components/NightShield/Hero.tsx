@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import DarkVeil from './DarkVeil'
+import SplitText from '../ui/SplitText'
 
 
 
@@ -58,7 +59,15 @@ const Hero = () => {
 
 
       <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
-  <DarkVeil />
+  <DarkVeil 
+    hueShift={0} // Red hue (0 degrees is red)
+    noiseIntensity={0.02} // Subtle noise for texture
+    scanlineIntensity={0.1} // Subtle scanlines
+    speed={0.3} // Slower animation for subtlety
+    scanlineFrequency={2.0} // Scanline frequency
+    warpAmount={0.02} // Subtle warping
+    resolutionScale={1}
+  />
 </div>
       {/* Background Effects */}
       <div className="absolute inset-0 grid-texture opacity-10 md:opacity-20"></div>
@@ -98,35 +107,57 @@ const Hero = () => {
                 </span>
               </div>
             </motion.div>
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
-            >
-              <span className="split-text">
-                <span>Real-Time AI Surveillance</span>
-              </span>
-              <br />
-              <span className="gradient-text">That Protects Venues</span>
-              <br />
-              <span className="text-red-500">Before It's Too Late</span>
-            </motion.h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              <div className="mb-2">
+                <SplitText 
+                  delay={0.2}
+                  duration={0.6}
+                  staggerDelay={0.02}
+                  splitBy="chars"
+                  animationType="slideUp"
+                  className=""
+                >
+                  Real-Time AI Surveillance
+                </SplitText>
+              </div>
+              <div className="mb-2">
+                <SplitText 
+                  delay={0.6}
+                  duration={0.6}
+                  staggerDelay={0.02}
+                  splitBy="chars"
+                  animationType="slideUp"
+                  className="gradient-text"
+                >
+                  That Protects Venues
+                </SplitText>
+              </div>
+              <div>
+                <SplitText 
+                  delay={1.0}
+                  duration={0.6}
+                  staggerDelay={0.02}
+                  splitBy="chars"
+                  animationType="slideUp"
+                  className="text-red-500"
+                >
+                  Before It's Too Late
+                </SplitText>
+              </div>
+            </h1>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 1.8 }}
               className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0"
             >
-              Advanced AI-powered surveillance system that detects threats in real-time, 
-              protecting your venue and customers before incidents occur.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 2.2 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <motion.button
@@ -151,7 +182,7 @@ const Hero = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              transition={{ duration: 0.8, delay: 2.6 }}
               className="grid grid-cols-3 gap-6 mt-12 max-w-md mx-auto lg:mx-0"
             >
               <div className="text-center">

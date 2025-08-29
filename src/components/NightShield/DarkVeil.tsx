@@ -53,7 +53,14 @@ vec4 cppn_fn(vec2 coordinate,float in0,float in1,float in2){
     buf[6]=sigmoid(buf[6]);buf[7]=sigmoid(buf[7]);
     buf[0]=mat4(vec4(1.6794263,1.3817469,2.9625452,0.),vec4(-1.8834411,-1.4806935,-3.5924516,0.),vec4(-1.3279216,-1.0918057,-2.3124623,0.),vec4(0.2662234,0.23235129,0.44178495,0.))*buf[0]+mat4(vec4(-0.6299101,-0.5945583,-0.9125601,0.),vec4(0.17828953,0.18300213,0.18182953,0.),vec4(-2.96544,-2.5819945,-4.9001055,0.),vec4(1.4195864,1.1868085,2.5176322,0.))*buf[1]+mat4(vec4(-1.2584374,-1.0552157,-2.1688404,0.),vec4(-0.7200217,-0.52666044,-1.438251,0.),vec4(0.15345335,0.15196142,0.272854,0.),vec4(0.945728,0.8861938,1.2766753,0.))*buf[2]+mat4(vec4(-2.4218085,-1.968602,-4.35166,0.),vec4(-22.683098,-18.0544,-41.954372,0.),vec4(0.63792,0.5470648,1.1078634,0.),vec4(-1.5489894,-1.3075932,-2.6444845,0.))*buf[3]+mat4(vec4(-0.49252132,-0.39877754,-0.91366625,0.),vec4(0.95609266,0.7923952,1.640221,0.),vec4(0.30616966,0.15693925,0.8639857,0.),vec4(1.1825981,0.94504964,2.176963,0.))*buf[4]+mat4(vec4(0.35446745,0.3293795,0.59547555,0.),vec4(-0.58784515,-0.48177817,-1.0614829,0.),vec4(2.5271258,1.9991658,4.6846647,0.),vec4(0.13042648,0.08864098,0.30187556,0.))*buf[5]+mat4(vec4(-1.7718065,-1.4033192,-3.3355875,0.),vec4(3.1664357,2.638297,5.378702,0.),vec4(-3.1724713,-2.6107926,-5.549295,0.),vec4(-2.851368,-2.249092,-5.3013067,0.))*buf[6]+mat4(vec4(1.5203838,1.2212278,2.8404984,0.),vec4(1.5210563,1.2651345,2.683903,0.),vec4(2.9789467,2.4364579,5.2347264,0.),vec4(2.2270417,1.8825914,3.8028636,0.))*buf[7]+vec4(-1.5468478,-3.6171484,0.24762098,0.);
     buf[0]=sigmoid(buf[0]);
-    return vec4(buf[0].x,buf[0].y,buf[0].z,1.);
+    
+    // Enhance red dominance in the generated colors
+    vec3 color = vec3(buf[0].x, buf[0].y, buf[0].z);
+    color.r = color.r * 1.3; // Boost red
+    color.g = color.g * 0.7; // Reduce green
+    color.b = color.b * 0.5; // Reduce blue
+    
+    return vec4(color, 1.);
 }
 
 void mainImage(out vec4 fragColor,in vec2 fragCoord){
@@ -66,9 +73,19 @@ void mainImage(out vec4 fragColor,in vec2 fragCoord){
 void main(){
     vec4 col;mainImage(col,gl_FragCoord.xy);
     col.rgb=hueShiftRGB(col.rgb,uHueShift);
+    
+    // Enhance red channel for better red theme
+    col.r = col.r * 1.2; // Boost red channel
+    col.g = col.g * 0.8; // Reduce green channel
+    col.b = col.b * 0.6; // Reduce blue channel
+    
     float scanline_val=sin(gl_FragCoord.y*uScanFreq)*0.5+0.5;
     col.rgb*=1.-(scanline_val*scanline_val)*uScan;
     col.rgb+=(rand(gl_FragCoord.xy+uTime)-0.5)*uNoise;
+    
+    // Add subtle red tint to the overall effect
+    col.rgb = mix(col.rgb, vec3(0.8, 0.1, 0.1), 0.1);
+    
     gl_FragColor=vec4(clamp(col.rgb,0.0,1.0),1.0);
 }
 `;
@@ -162,9 +179,19 @@ export default function DarkVeil({
     resolutionScale,
   ]);
   return (
-    <canvas
-      ref={ref}
-      className="w-full h-full block"
-    />
+    <div className="relative w-full h-full">
+      <canvas
+        ref={ref}
+        className="w-full h-full block"
+      />
+      {/* Subtle red overlay for enhanced theme */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at 50% 50%, rgba(229, 18, 47, 0.05) 0%, transparent 70%)',
+          mixBlendMode: 'overlay'
+        }}
+      />
+    </div>
   );
 }
