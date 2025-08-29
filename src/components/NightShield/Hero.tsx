@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import DarkVeil from './DarkVeil'
 import SplitText from '../ui/SplitText'
+import { useCounter } from '../../hooks/useCounter'
 
 
 
@@ -185,18 +186,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 2.6 }}
               className="grid grid-cols-3 gap-6 mt-12 max-w-md mx-auto lg:mx-0"
             >
-              <div className="text-center">
-                <div className="text-2xl font-bold text-red-500">99.9%</div>
-                <div className="text-sm text-gray-400">Detection Rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-red-500">&lt;2s</div>
-                <div className="text-sm text-gray-400">Response Time</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-red-500">24/7</div>
-                <div className="text-sm text-gray-400">Monitoring</div>
-              </div>
+             
             </motion.div>
           </motion.div>
 
@@ -218,110 +208,24 @@ const Hero = () => {
                   </div>
                 </div>
                 
-                {/* CCTV Frame Overlay */}
+                {/* Simplified CCTV Frame Overlay */}
                 <div className="absolute inset-0 pointer-events-none">
-                  {/* Top Bar - Camera Info */}
-                  <div className="absolute top-0 left-0 right-0 h-8 bg-black/80 backdrop-blur-sm flex items-center justify-between px-3 text-white text-xs font-mono">
-                    <div className="flex items-center space-x-3">
-                      <span className="text-red-500 font-bold">CAM 01</span>
-                      <span className="text-gray-300">NightShield AI</span>
-                      <span className="text-blue-400">ID: NS-2024-001</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-gray-300">1080p</span>
-                      <span className="text-green-400">●</span>
-                      <div className="flex items-center space-x-1">
-                        <span className="text-yellow-400">●●●●●</span>
-                        <span className="text-gray-300 text-xs">SIGNAL</span>
-                      </div>
-                    </div>
+                  {/* Simple Top Bar */}
+                  <div className="absolute top-0 left-0 right-0 h-6 bg-black/60 backdrop-blur-sm flex items-center justify-between px-3 text-white text-xs">
+                    <span className="text-red-500 font-bold">NightShield AI</span>
+                    <span className="text-green-400">● LIVE</span>
                   </div>
                   
-                  {/* Top Right - REC Indicator */}
-                  <div className="absolute top-2 right-2 flex items-center space-x-1 bg-red-500/90 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-bold">
-                    <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                    <span>REC</span>
-                    <span className="text-xs opacity-80">02:45:32</span>
-                  </div>
+                  {/* Simple Corner Brackets */}
+                  <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-red-500"></div>
+                  <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-red-500"></div>
+                  <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-red-500"></div>
+                  <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-red-500"></div>
                   
-                  {/* Bottom Left - Timestamp */}
-                  <div className="absolute bottom-2 left-2 bg-black/80 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-mono">
-                    <div className="flex items-center space-x-2">
-                      <span>{new Date().toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-')}</span>
-                      <span className="text-red-500">|</span>
-                      <span className="text-green-400">{timestamp}</span>
-                    </div>
-                  </div>
-                  
-                  {/* Bottom Right - Status Indicators */}
-                  <div className="absolute bottom-2 right-2 flex flex-col items-end space-y-1">
-                    <div className="flex items-center space-x-2">
-                      <div className="bg-green-500/90 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-bold">
-                        <span className="flex items-center space-x-1">
-                          <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
-                          <span>AI ACTIVE</span>
-                        </span>
-                      </div>
-                      <div className="bg-blue-500/90 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-bold">
-                        <span>HD</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="bg-yellow-500/90 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-bold">
-                        <span>ZOOM: 1.2x</span>
-                      </div>
-                      <div className="bg-purple-500/90 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-bold">
-                        <span>AUTO FOCUS</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Corner Brackets */}
-                  <div className="absolute top-0 left-0 w-6 h-6 border-l-2 border-t-2 border-red-500"></div>
-                  <div className="absolute top-0 right-0 w-6 h-6 border-r-2 border-t-2 border-red-500"></div>
-                  <div className="absolute bottom-0 left-0 w-6 h-6 border-l-2 border-b-2 border-red-500"></div>
-                  <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-red-500"></div>
-                  
-                  {/* Scan Lines Effect */}
-                  <div className="absolute inset-0 opacity-20">
-                    <div className="h-px bg-white/30 animate-pulse"></div>
-                    <div className="h-px bg-white/20 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                    <div className="h-px bg-white/10 animate-pulse" style={{ animationDelay: '1s' }}></div>
-                  </div>
-                  
-                  {/* Grid Overlay */}
-                  <div className="absolute inset-0 opacity-10">
-                    <div className="w-full h-full" style={{
-                      backgroundImage: `
-                        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-                      `,
-                      backgroundSize: '20px 20px'
-                    }}></div>
-                  </div>
-                  
-                  {/* Glitch Effect */}
-                  <div className="absolute inset-0 opacity-5">
-                    <div className="w-full h-full bg-gradient-to-r from-red-500/20 via-transparent to-blue-500/20 animate-pulse" style={{ animationDuration: '3s' }}></div>
-                  </div>
-                  
-                  {/* Motion Detection Box */}
-                  <div className="absolute top-1/3 left-1/4 w-32 h-24 border-2 border-red-500 border-dashed animate-pulse">
-                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-2 py-1 rounded">
-                      MOTION DETECTED
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Video Controls */}
-                <div className="absolute bottom-12 left-4 right-4">
-                  <div className="flex items-center justify-between text-white/80 text-sm">
-                    <span>NightShield Demo</span>
-                    <div className="flex items-center space-x-2">
-                      <span>2:45</span>
-                      <div className="w-16 h-1 bg-white/20 rounded-full">
-                        <div className="w-8 h-1 bg-red-500 rounded-full"></div>
-                      </div>
+                  {/* Simple Motion Detection Box */}
+                  <div className="absolute top-1/3 left-1/4 w-24 h-16 border border-red-500 border-dashed">
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+                      DETECTED
                     </div>
                   </div>
                 </div>
@@ -334,14 +238,7 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Floating Badge */}
-            <motion.div
-              animate={{ y: [-10, 10, -10] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-4 -right-4 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold"
-            >
-              LIVE DEMO
-            </motion.div>
+
           </motion.div>
         </div>
       </div>
