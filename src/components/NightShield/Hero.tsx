@@ -186,7 +186,24 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 2.6 }}
               className="grid grid-cols-3 gap-6 mt-12 max-w-md mx-auto lg:mx-0"
             >
-             
+              <div className="text-center">
+                <div className="text-2xl font-bold text-red-500">
+                  {useCounter({ end: 99.9, delay: 2600, duration: 1500, decimals: 1 })}%
+                </div>
+                <div className="text-sm text-gray-400">Detection Rate</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-red-500">
+                  &lt;{useCounter({ end: 2, delay: 2600, duration: 1500, decimals: 0 })}s
+                </div>
+                <div className="text-sm text-gray-400">Response Time</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-red-500">
+                  {useCounter({ end: 24, delay: 2600, duration: 1500, decimals: 0 })}/7
+                </div>
+                <div className="text-sm text-gray-400">Monitoring</div>
+              </div>
             </motion.div>
           </motion.div>
 
