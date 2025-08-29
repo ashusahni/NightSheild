@@ -50,6 +50,44 @@ const WhoItsFor = () => {
     }
   ]
 
+  const scrollStackVenues = [
+    {
+      title: "Nightclubs & Bars",
+      description: "High-energy environments requiring real-time threat detection and crowd control",
+      icon: "🎵",
+      riskLevel: "High Risk",
+      color: "red"
+    },
+    {
+      title: "Casinos & Gaming",
+      description: "High-value assets and strict regulatory compliance requirements",
+      icon: "🎰",
+      riskLevel: "Critical",
+      color: "red"
+    },
+    {
+      title: "Event Venues",
+      description: "Large crowds and complex emergency response coordination needs",
+      icon: "🎪",
+      riskLevel: "High Risk",
+      color: "red"
+    },
+    {
+      title: "Hotels & Resorts",
+      description: "Guest safety and discreet security monitoring for luxury environments",
+      icon: "🏨",
+      riskLevel: "Medium Risk",
+      color: "red"
+    },
+    {
+      title: "Restaurants & Pubs",
+      description: "Intoxication management and staff protection in social settings",
+      icon: "🍺",
+      riskLevel: "Medium Risk",
+      color: "red"
+    }
+  ]
+
   return (
     <section className="py-20 relative overflow-hidden">
       {/* Background */}
@@ -74,7 +112,7 @@ const WhoItsFor = () => {
               className="w-12 h-12"
             />
             <h2 className="text-4xl md:text-5xl font-bold">
-              Who <span className="text-red-500">It's For</span>
+              Who <span className="text-red-500">It&apos;s For</span>
             </h2>
           </div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -83,19 +121,18 @@ const WhoItsFor = () => {
         </motion.div>
 
         {/* Industries Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {industries.map((industry, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="card-hover"
-            >
-              <div className="bg-card-bg border border-red-500/20 rounded-xl p-6 h-full">
-                {/* Content */}
-                <div>
+        <div className="mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {industries.map((industry, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-card-bg border border-red-500/20 rounded-xl p-6 cursor-pointer transition-all duration-300 hover:border-red-500/40 hover:shadow-lg hover:shadow-red-500/10"
+              >
+                <div className="h-full flex flex-col">
                   {/* Icon */}
                   <div className="text-4xl mb-4">{industry.icon}</div>
                   
@@ -105,19 +142,19 @@ const WhoItsFor = () => {
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-gray-300 mb-6 leading-relaxed">
+                  <p className="text-gray-300 mb-6 leading-relaxed flex-grow">
                     {industry.description}
                   </p>
 
                   {/* Challenges */}
-                  <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-red-500 mb-3 uppercase tracking-wide">
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold text-red-500 mb-2 uppercase tracking-wide">
                       Key Challenges
                     </h4>
-                    <ul className="space-y-2">
+                    <ul className="space-y-1">
                       {industry.challenges.map((challenge, idx) => (
-                        <li key={idx} className="text-sm text-gray-400 flex items-center">
-                          <span className="w-1.5 h-1.5 bg-red-500 rounded-full mr-2"></span>
+                        <li key={idx} className="text-xs text-gray-400 flex items-center">
+                          <span className="w-1 h-1 bg-red-500 rounded-full mr-2"></span>
                           {challenge}
                         </li>
                       ))}
@@ -125,14 +162,14 @@ const WhoItsFor = () => {
                   </div>
 
                   {/* Benefits */}
-                  <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-green-500 mb-3 uppercase tracking-wide">
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold text-green-500 mb-2 uppercase tracking-wide">
                       NightShield Benefits
                     </h4>
-                    <ul className="space-y-2">
+                    <ul className="space-y-1">
                       {industry.benefits.map((benefit, idx) => (
-                        <li key={idx} className="text-sm text-gray-300 flex items-center">
-                          <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <li key={idx} className="text-xs text-gray-300 flex items-center">
+                          <svg className="w-3 h-3 text-green-500 mr-2" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                           </svg>
                           {benefit}
@@ -149,15 +186,72 @@ const WhoItsFor = () => {
                       const element = document.querySelector('#contact')
                       if (element) element.scrollIntoView({ behavior: 'smooth' })
                     }}
-                    className="btn-primary w-full"
+                    className="btn-primary w-full mt-auto"
                   >
                     Get Demo
                   </motion.button>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
+
+        {/* Scroll Stack Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-white mb-4">Venue Types</h3>
+            <p className="text-gray-400 text-lg">Different environments, same security excellence</p>
+          </div>
+          
+          <div className="relative">
+            <div className="flex flex-col space-y-4 max-w-2xl mx-auto">
+              {scrollStackVenues.map((venue, index) => (
+                <motion.div
+                  key={index}
+                  className="relative"
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  style={{
+                    transform: `translateY(${index * 8}px)`,
+                    zIndex: scrollStackVenues.length - index
+                  }}
+                >
+                  <div className="bg-[#0B0B0F] border border-red-500/20 rounded-2xl p-6 shadow-lg">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-2xl">
+                        {venue.icon}
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-bold text-white mb-1">
+                          {venue.title}
+                        </h4>
+                        <p className="text-gray-300 text-sm">
+                          {venue.description}
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-red-500 font-bold text-lg">
+                          {String(index + 1).padStart(2, '0')}
+                        </div>
+                        <div className="text-xs text-gray-500 mt-1">
+                          {venue.riskLevel}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
 
         {/* Bottom CTA */}
         <motion.div

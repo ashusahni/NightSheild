@@ -1,4 +1,4 @@
-import { title } from "process";
+
 
 export const footerlabels: { label: string; herf: string }[] = [
   { label: "Terms", herf: "#" },

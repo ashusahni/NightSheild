@@ -84,7 +84,7 @@ const Comparison = () => {
             </h2>
           </div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            See how NightShield's AI-powered surveillance outperforms traditional security systems
+            See how NightShield&apos;s AI-powered surveillance outperforms traditional security systems
           </p>
         </motion.div>
 
@@ -194,7 +194,7 @@ const Comparison = () => {
               Ready to Upgrade Your Security?
             </h3>
             <p className="text-gray-300 mb-6">
-              Join hundreds of venues that have already upgraded to NightShield's AI-powered protection.
+              Join hundreds of venues that have already upgraded to NightShield&apos;s AI-powered protection.
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}

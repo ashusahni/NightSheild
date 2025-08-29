@@ -68,7 +68,7 @@ const About = () => {
             </h2>
           </div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            We're on a mission to make every venue safer through cutting-edge AI technology
+                         We&apos;re on a mission to make every venue safer through cutting-edge AI technology
           </p>
         </motion.div>
 
@@ -87,7 +87,7 @@ const About = () => {
             <p className="text-lg text-gray-300 leading-relaxed text-center mb-6">
               NightShield was born from a simple belief: every venue deserves world-class security. 
               We combine advanced AI technology with deep industry expertise to create surveillance 
-              systems that don't just record incidents—they prevent them.
+                             systems that don&apos;t just record incidents—they prevent them.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed text-center">
               Our team of security experts, AI researchers, and hospitality professionals work 

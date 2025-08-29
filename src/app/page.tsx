@@ -1,14 +1,14 @@
 import React from 'react'
 import { Metadata } from 'next'
 import Hero from '@/components/NightShield/Hero'
-import HowItWorks from '@/components/NightShield/HowItWorks'
+
 import Features from '@/components/NightShield/Features'
 import WhoItsFor from '@/components/NightShield/WhoItsFor'
-import Industries from '@/components/NightShield/Industries'
-import Comparison from '@/components/NightShield/Comparison'
-import Pricing from '@/components/NightShield/Pricing'
-import Testimonials from '@/components/NightShield/Testimonials'
-import About from '@/components/NightShield/About'
+
+
+
+
+
 import Contact from '@/components/NightShield/Contact'
 import CookieConsent from '@/components/NightShield/CookieConsent'
 
@@ -32,9 +32,9 @@ export default function Home() {
   return (
     <main className="bg-black text-white min-h-screen">
       <Hero />
-      <HowItWorks />
+      {/* <HowItWorks /> */}
       <Features />
-      {/* <WhoItsFor /> */}
+      <WhoItsFor />
       {/* <Industries /> */}
       {/* <Comparison /> */}
       {/* <Pricing /> */}

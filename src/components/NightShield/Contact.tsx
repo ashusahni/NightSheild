@@ -107,7 +107,7 @@ const Contact = () => {
                   </div>
                   <h4 className="text-xl font-bold text-white mb-2">Thank You!</h4>
                   <p className="text-gray-300 mb-6">
-                    We've received your message and will get back to you within 24 hours.
+                    We&apos;ve received your message and will get back to you within 24 hours.
                   </p>
                   <button
                     onClick={() => setSubmitSuccess(false)}

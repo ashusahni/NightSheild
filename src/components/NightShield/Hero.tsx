@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import DarkVeil from './DarkVeil'
@@ -11,25 +11,7 @@ import { useCounter } from '../../hooks/useCounter'
 
 
 const Hero = () => {
-  const [timestamp, setTimestamp] = useState('')
 
-  useEffect(() => {
-    const updateTimestamp = () => {
-      const now = new Date()
-      const timeString = now.toLocaleTimeString('en-US', {
-        hour12: false,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      })
-      setTimestamp(timeString)
-    }
-
-    updateTimestamp()
-    const interval = setInterval(updateTimestamp, 1000)
-
-    return () => clearInterval(interval)
-  }, [])
 
   const scrollToContact = () => {
     const element = document.querySelector('#contact')
@@ -38,21 +20,9 @@ const Hero = () => {
     }
   }
 
- const seeInAction = () => {
-  const element = document.querySelector('#how-it-works')
- 
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
-  }
-  
- }
 
-  const scrollToDemo = () => {
-    const element = document.querySelector('#demo')
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+
+
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden aurora-bg">
@@ -142,7 +112,7 @@ const Hero = () => {
                   animationType="slideUp"
                   className="text-red-500"
                 >
-                  Before It's Too Late
+                  Before It&apos;s Too Late
                 </SplitText>
               </div>
             </h1>
@@ -172,7 +142,7 @@ const Hero = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={seeInAction}
+                onClick={scrollToContact}
                 className="btn-secondary text-lg px-8 py-4"
               >
                 See It In Action

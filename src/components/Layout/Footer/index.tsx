@@ -24,7 +24,7 @@ const Footer: FC = () => {
             </div>
             <p className='text-white/60'>Real-Time AI Surveillance
 That Protects Venues
-Before It's Too Late</p>
+            Before It&apos;s Too Late</p>
             <div className='flex gap-6 items-center relative z-1'>
               <Link href='https://www.facebook.com/' className='group'>
                 <Icon
