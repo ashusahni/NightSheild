@@ -129,7 +129,7 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        <div ref={containerRef} className="grid lg:grid-cols-5 gap-8 items-start">
+        <div ref={containerRef} className="grid lg:grid-cols-5 gap-6 items-start">
           {/* Sticky Target-Lock Visual */}
           <div className="lg:col-span-3">
             <div
@@ -185,7 +185,7 @@ const HowItWorks = () => {
           </div>
 
           {/* Feature List */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-4">
             {features.map((f, idx) => (
               <div
                 key={f.id}
@@ -199,18 +199,21 @@ const HowItWorks = () => {
                 onMouseLeave={() => {
                   if (lockedIndex === null) setCursorFollowing(true)
                 }}
-                className={`group relative rounded-xl border p-5 transition-all cursor-pointer bg-card-bg/70 backdrop-blur-sm ${
-                  lockedIndex === idx ? 'border-red-500/60 shadow-[0_0_0_2px_rgba(229,18,47,0.2)]' : 'border-red-500/20'
+                className={`group relative rounded-lg border p-4 transition-all duration-300 cursor-pointer bg-card-bg/70 backdrop-blur-sm will-change-transform ${
+                  lockedIndex === idx
+                    ? 'border-red-500/60 shadow-[0_0_0_2px_rgba(229,18,47,0.25)] translate-y-[-2px]'
+                    : 'border-red-500/20 hover:border-red-500/40 hover:translate-y-[-2px]'
                 }`}
               >
-                <div className="flex items-start gap-4">
-                  <div className="relative w-14 h-14 shrink-0 rounded-lg overflow-hidden border border-red-500/30 bg-black/60">
-                    <Image src={f.thumb} alt={f.title} fill className="object-contain p-3" />
-                    <div className="absolute inset-0 ring-1 ring-inset ring-red-500/20 rounded-lg" />
+                <div className="flex items-start gap-3">
+                  <div className="relative w-12 h-12 shrink-0 rounded-md overflow-hidden border border-red-500/30 bg-black/60 group-hover:rotate-3 group-hover:scale-[1.03] transition-transform duration-300">
+                    <Image src={f.thumb} alt={f.title} fill className="object-contain p-2" />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-red-500/20 rounded-md" />
+                    <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'radial-gradient(60px 60px at 50% 50%, rgba(229,18,47,0.15), transparent 60%)' }} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold mb-1 group-hover:text-red-400 transition-colors">{f.title}</h3>
-                    <p className="text-gray-300 leading-relaxed text-sm md:text-base">{f.description}</p>
+                    <h3 className="text-lg font-semibold mb-0.5 group-hover:text-red-400 transition-colors">{f.title}</h3>
+                    <p className="text-gray-300 leading-relaxed text-sm">{f.description}</p>
                   </div>
                 </div>
               </div>
@@ -235,29 +238,7 @@ const HowItWorks = () => {
           </div>
         </div>
 
-        {/* Secondary gallery below for mobile/scan browsing */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {features.map((f, idx) => (
-            <button
-              key={`thumb-${f.id}`}
-              onMouseEnter={() => {
-                setLockedIndex(idx)
-                setTargetPoint(f.hotspot)
-                setCursorFollowing(false)
-              }}
-              onFocus={() => {
-                setLockedIndex(idx)
-                setTargetPoint(f.hotspot)
-                setCursorFollowing(false)
-              }}
-              className={`relative aspect-square rounded-xl overflow-hidden border ${lockedIndex === idx ? 'border-red-500/60' : 'border-red-500/20'} bg-card-bg`}
-            >
-              <Image src={f.thumb} alt={f.title} fill className="object-contain p-6 opacity-90" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 hover:opacity-100 transition-opacity" />
-              <span className="absolute bottom-2 left-2 right-2 text-xs text-gray-200 truncate text-left">{f.title}</span>
-            </button>
-          ))}
-        </div>
+        {/* Secondary gallery removed to match requested compact layout */}
       </div>
     </section>
   )
