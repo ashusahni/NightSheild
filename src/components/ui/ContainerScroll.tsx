@@ -21,7 +21,6 @@ export const ContainerScroll = ({
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-
   return (
     <div
       ref={containerRef}

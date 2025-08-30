@@ -54,9 +54,13 @@ const HowItWorks = () => {
   const [cursorFollowing, setCursorFollowing] = useState<boolean>(true)
   const [lockedIndex, setLockedIndex] = useState<number | null>(null)
   const [targetPoint, setTargetPoint] = useState<TargetPoint>({ x: 50, y: 50 })
+  
+  // Disable auto-selection of feature cards on scroll
+  const enableAutoSelectOnScroll = false
 
   // Update target lock from scroll position using IntersectionObserver
   useEffect(() => {
+    if (!enableAutoSelectOnScroll) return
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -76,7 +80,7 @@ const HowItWorks = () => {
 
     cardRefs.current.forEach((el) => el && observer.observe(el))
     return () => observer.disconnect()
-  }, [features])
+  }, [features, enableAutoSelectOnScroll])
 
   // Mouse tracking within the big image container
   useEffect(() => {
