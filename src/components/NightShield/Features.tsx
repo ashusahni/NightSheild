@@ -358,59 +358,8 @@ const Features = () => {
           </div>
         </div>
 
-        {/* Feature Comparison - Enhanced with 3D Cards */}
-        <div className="bg-[#0B0B0F] border border-red-500/20 rounded-3xl p-12 mb-20 relative overflow-hidden">
-          {/* Animated Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-red-500/5"></div>
-          
-          <div className="grid md:grid-cols-3 gap-12 relative z-10">
-            {[
-              {
-                title: "Available Now",
-                description: "Core features ready for immediate deployment with proven reliability",
-                icon: (
-                  <svg className="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
-                  </svg>
-                ),
-                color: "red"
-              },
-              {
-                title: "Coming Soon",
-                description: "Advanced features in active development with clear roadmap",
-                icon: (
-                  <svg className="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.11 3.89 23 5 23H19C20.11 23 21 22.11 21 21V9M19 9H14V4H5V21H19V9Z"/>
-                  </svg>
-                ),
-                color: "gray"
-              },
-              {
-                title: "Future Updates",
-                description: "Continuous improvements and new capabilities based on user feedback",
-                icon: (
-                  <svg className="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2M12 4A8 8 0 0 1 20 12A8 8 0 0 1 12 20A8 8 0 0 1 4 12A8 8 0 0 1 12 4M12 6A6 6 0 0 0 6 12A6 6 0 0 0 12 18A6 6 0 0 0 18 12A6 6 0 0 0 12 6M12 8A4 4 0 0 1 16 12A4 4 0 0 1 12 16A4 4 0 0 1 8 12A4 4 0 0 1 12 8Z"/>
-                  </svg>
-                ),
-                color: "red"
-              }
-            ].map((item, index) => (
-              <div key={index} className="text-center group">
-                <div className={`w-16 h-16 ${item.color === 'red' ? 'bg-red-500/20' : 'bg-gray-600/20'} rounded-2xl flex items-center justify-center mx-auto mb-6 
-                                group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-red-500/20 transition-all duration-500 ease-out`}>
-                  {item.icon}
-                </div>
-                <h3 className={`text-2xl font-bold ${item.color === 'red' ? 'text-red-500' : 'text-gray-400'} mb-3 group-hover:text-white transition-colors duration-500`}>
-                  {item.title}
-                </h3>
-                <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-500">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+
+       
       </div>
     </section>
   )

@@ -24,13 +24,13 @@ const HowItWorks = () => {
       hotspot: { x: 28, y: 58 } as TargetPoint,
       thumb: '/images/icons/icon-consulting.svg',
     },
-    {
-      id: 3,
-      title: 'Threat Scoring',
-      description: 'Behavioral scoring ranks risk level and filters out false positives intelligently.',
-      hotspot: { x: 58, y: 68 } as TargetPoint,
-      thumb: '/images/icons/icon-star.svg',
-    },
+    // {
+    //   id: 3,
+    //   title: 'Threat Scoring',
+    //   description: 'Behavioral scoring ranks risk level and filters out false positives intelligently.',
+    //   hotspot: { x: 58, y: 68 } as TargetPoint,
+    //   thumb: '/images/icons/icon-star.svg',
+    // },
     {
       id: 4,
       title: 'Instant Alerts',
@@ -137,7 +137,7 @@ const HowItWorks = () => {
               className="aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm sticky top-24"
             >
               <Image
-                src="/images/ezgif-46cf96e654a1ca.gif"
+                src="/images/ezgif-46cf96e654a1ca.jpg"
                 alt="NightShield Target View"
                 fill
                 className="object-cover opacity-80"
