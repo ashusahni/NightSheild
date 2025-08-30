@@ -1,228 +1,258 @@
 'use client'
 
-import React from 'react'
-
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
+type TargetPoint = { x: number; y: number }
 
 const HowItWorks = () => {
-  const { isMobile, isClient } = useIsMobile()
-  const surveillanceScenes = [
+  const { isMobile } = useIsMobile()
+
+  const features = useMemo(() => ([
     {
       id: 1,
-      title: "Camera Detection",
-      description: "High-resolution cameras capture real-time footage with advanced night vision capabilities.",
-      videoUrl: "/images/videos/WhatsApp Video 2025-08-28 at 23.05.22_6b90b8d6.mp4",
-      targetPosition: { x: 70, y: 30 },
-      threatLevel: "HIGH",
-      timestamp: "23:45:32"
+      title: 'Capture & Enhance',
+      description: 'Multi-camera intake with noise reduction and night-vision enhancement for crystal clear frames.',
+      hotspot: { x: 72, y: 32 } as TargetPoint,
+      thumb: '/images/icons/icon-services.svg',
     },
     {
       id: 2,
-      title: "AI Brain Analysis",
-      description: "Our advanced AI algorithms analyze behavior patterns and detect potential threats in milliseconds.",
-      videoUrl: "/images/videos/WhatsApp Video 2025-08-28 at 23.05.22_6b90b8d6.mp4",
-      targetPosition: { x: 25, y: 60 },
-      threatLevel: "MEDIUM",
-      timestamp: "23:45:35"
+      title: 'AI Target Lock',
+      description: 'Real-time object tracking identifies anomalies and locks onto suspicious motion patterns.',
+      hotspot: { x: 28, y: 58 } as TargetPoint,
+      thumb: '/images/icons/icon-consulting.svg',
     },
     {
       id: 3,
-      title: "Instant Alert",
-      description: "Security personnel receive immediate notifications via phone, tablet, or control room displays.",
-      videoUrl: "/images/videos/WhatsApp Video 2025-08-28 at 23.05.22_6b90b8d6.mp4",
-      targetPosition: { x: 80, y: 70 },
-      threatLevel: "CRITICAL",
-      timestamp: "23:45:38"
+      title: 'Threat Scoring',
+      description: 'Behavioral scoring ranks risk level and filters out false positives intelligently.',
+      hotspot: { x: 58, y: 68 } as TargetPoint,
+      thumb: '/images/icons/icon-star.svg',
     },
     {
       id: 4,
-      title: "Evidence Recording",
-      description: "All incidents are automatically recorded and stored for legal proceedings and training purposes.",
-      videoUrl: "/images/videos/WhatsApp Video 2025-08-28 at 23.05.22_6b90b8d6.mp4",
-      targetPosition: { x: 45, y: 45 },
-      threatLevel: "LOW",
-      timestamp: "23:45:41"
+      title: 'Instant Alerts',
+      description: 'Push notifications with snapshots and map pins reach security staff in under a second.',
+      hotspot: { x: 82, y: 54 } as TargetPoint,
+      thumb: '/images/icons/icon-bitcoin-circle.svg',
+    },
+    {
+      id: 5,
+      title: 'Evidence Vault',
+      description: 'Tamper-proof recording archives incidents and audit trails for legal use.',
+      hotspot: { x: 42, y: 38 } as TargetPoint,
+      thumb: '/images/icons/icon-blockchain.svg',
+    },
+  ]), [])
+
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const stickyRef = useRef<HTMLDivElement | null>(null)
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  const [cursorFollowing, setCursorFollowing] = useState<boolean>(true)
+  const [lockedIndex, setLockedIndex] = useState<number | null>(null)
+  const [targetPoint, setTargetPoint] = useState<TargetPoint>({ x: 50, y: 50 })
+
+  // Update target lock from scroll position using IntersectionObserver
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => (b.intersectionRatio - a.intersectionRatio))
+        if (visible[0]) {
+          const idx = Number(visible[0].target.getAttribute('data-index'))
+          if (!Number.isNaN(idx)) {
+            setLockedIndex(idx)
+            setTargetPoint(features[idx].hotspot)
+            setCursorFollowing(false)
+          }
+        }
+      },
+      { root: null, threshold: [0.3, 0.5, 0.7] }
+    )
+
+    cardRefs.current.forEach((el) => el && observer.observe(el))
+    return () => observer.disconnect()
+  }, [features])
+
+  // Mouse tracking within the big image container
+  useEffect(() => {
+    const el = stickyRef.current
+    if (!el || isMobile) return
+
+    const onMove = (e: MouseEvent) => {
+      if (!cursorFollowing) return
+      const rect = el.getBoundingClientRect()
+      const relX = ((e.clientX - rect.left) / rect.width) * 100
+      const relY = ((e.clientY - rect.top) / rect.height) * 100
+      setTargetPoint({ x: Math.max(2, Math.min(98, relX)), y: Math.max(2, Math.min(98, relY)) })
     }
-  ]
+
+    const onEnter = () => setCursorFollowing(true)
+    const onLeave = () => {
+      if (lockedIndex !== null) {
+        setCursorFollowing(false)
+        setTargetPoint(features[lockedIndex].hotspot)
+      }
+    }
+
+    el.addEventListener('mousemove', onMove)
+    el.addEventListener('mouseenter', onEnter)
+    el.addEventListener('mouseleave', onLeave)
+    return () => {
+      el.removeEventListener('mousemove', onMove)
+      el.removeEventListener('mouseenter', onEnter)
+      el.removeEventListener('mouseleave', onLeave)
+    }
+  }, [cursorFollowing, lockedIndex, isMobile, features])
 
   return (
     <section id="how-it-works" className="py-24 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black"></div>
-      <div className="absolute inset-0 grid-texture opacity-10"></div>
-      
-      {/* Ripple Grid Effect */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-500/3 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-red-500/2 rounded-full blur-2xl animate-ping"></div>
-      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black" />
+      <div className="absolute inset-0 grid-texture opacity-10" />
 
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Header */}
-                <div className="text-center mb-20">
-
-          <div className="flex justify-center items-center space-x-4 mb-8">
-            <Image 
-              src="/images/logo/LOGO TRANSPARENT.png" 
-              alt="NightShield Logo" 
-              width={56} 
-              height={56}
-              className="w-14 h-14"
-            />
-            <h2 className="text-4xl md:text-5xl font-bold">
-              How <span className="text-red-500">NightShield</span> Works
-            </h2>
+      <div className="container relative z-10">
+        <div className="text-center mb-16">
+          <div className="flex justify-center items-center space-x-4 mb-5">
+            <Image src="/images/logo/LOGO TRANSPARENT.png" alt="NightShield Logo" width={56} height={56} className="w-12 h-12" />
+            <h2 className="text-4xl md:text-5xl font-bold">How <span className="text-red-500">NightShield</span> Works</h2>
           </div>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Our AI-powered surveillance system works in four simple steps to keep your venue safe 24/7
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+            Scroll to see the AI target-lock engage while features light up in real-time.
           </p>
-          
-
         </div>
 
-        {/* Surveillance Scenes */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {surveillanceScenes.map((scene, index) => (
+        <div ref={containerRef} className="grid lg:grid-cols-5 gap-8 items-start">
+          {/* Sticky Target-Lock Visual */}
+          <div className="lg:col-span-3">
             <div
-              key={scene.id}
-              className="relative"
+              ref={stickyRef}
+              className="aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm sticky top-24"
             >
-              {/* Step Number */}
-              <div className="absolute -top-5 -left-5 w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-base z-20 shadow-lg">
-                {scene.id}
+              <Image
+                src="/images/logo/COVER IMAGE.jpeg"
+                alt="NightShield Target View"
+                fill
+                className="object-cover opacity-80"
+                priority
+              />
+
+              {/* Dim vignette */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
+
+              {/* Radar pulse */}
+              <div
+                className="pointer-events-none absolute"
+                style={{
+                  left: `${targetPoint.x}%`,
+                  top: `${targetPoint.y}%`,
+                  transform: 'translate(-50%, -50%)',
+                }}
+              >
+                <div className="relative">
+                  <div className="w-24 h-24 rounded-full border border-red-500/50 animate-ping" />
+                  <div className="w-16 h-16 rounded-full border border-red-500/60 absolute inset-0 m-auto" />
+                  <div className="w-10 h-10 rounded-full bg-red-500/10 border border-red-500/80" />
+
+                  {/* Crosshair */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-px h-16 bg-red-500" />
+                    <div className="absolute w-16 h-px bg-red-500" />
+                  </div>
+
+                  {/* Corner brackets */}
+                  <div className="absolute -top-3 -left-3 w-4 h-4 border-l-2 border-t-2 border-red-500" />
+                  <div className="absolute -top-3 -right-3 w-4 h-4 border-r-2 border-t-2 border-red-500" />
+                  <div className="absolute -bottom-3 -left-3 w-4 h-4 border-l-2 border-b-2 border-red-500" />
+                  <div className="absolute -bottom-3 -right-3 w-4 h-4 border-r-2 border-b-2 border-red-500" />
+                </div>
               </div>
 
-              {/* Surveillance Image Container */}
-              <div className="bg-card-bg border border-red-500/20 rounded-2xl overflow-hidden relative group hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-500">
-                {/* Video/Image */}
-                <div className="relative aspect-square bg-black">
-                  {!isClient ? (
-                    // Server-side render fallback - always show image initially
-                    <Image 
-                      src="/images/logo/COVER IMAGE.jpeg"
-                      alt={scene.title}
-                      fill
-                      className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                    />
-                  ) : isMobile ? (
-                    <Image 
-                      src="/images/logo/COVER IMAGE.jpeg"
-                      alt={scene.title}
-                      fill
-                      className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                    />
-                  ) : (
-                    <video 
-                      src={scene.videoUrl} 
-                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                      muted
-                      loop
-                      autoPlay
-                      playsInline
-                      preload="metadata"
-                    />
-                  )}
-                  
-                  {/* CCTV Overlay */}
-                  <div className="absolute inset-0 pointer-events-none">
-                    {/* Top Bar */}
-                    <div className="absolute top-0 left-0 right-0 h-6 bg-black/80 backdrop-blur-sm flex items-center justify-between px-3 text-white text-xs font-mono">
-                      <span className="text-red-500 font-bold">CAM {scene.id.toString().padStart(2, '0')}</span>
-                      <span className="text-gray-300">{scene.timestamp}</span>
-                    </div>
-                    
-                    {/* Threat Level Indicator */}
-                    <div className={`absolute top-2 right-2 px-2 py-1 rounded text-white text-xs font-bold ${
-                      scene.threatLevel === 'CRITICAL' ? 'bg-red-600' :
-                      scene.threatLevel === 'HIGH' ? 'bg-orange-600' :
-                      scene.threatLevel === 'MEDIUM' ? 'bg-yellow-600' :
-                      'bg-green-600'
-                    }`}>
-                      {scene.threatLevel}
-                    </div>
-                    
-                    {/* Target Lock Box */}
-                    <div 
-                      className="absolute border-2 border-red-500 border-dashed animate-pulse"
-                      style={{
-                        left: `${scene.targetPosition.x}%`,
-                        top: `${scene.targetPosition.y}%`,
-                        width: '40px',
-                        height: '40px',
-                        transform: 'translate(-50%, -50%)'
-                      }}
-                    >
-                      {/* Crosshair */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-1 h-full bg-red-500"></div>
-                        <div className="absolute w-full h-1 bg-red-500"></div>
-                      </div>
-                      
-                      {/* Corner Brackets */}
-                      <div className="absolute top-0 left-0 w-2 h-2 border-l-2 border-t-2 border-red-500"></div>
-                      <div className="absolute top-0 right-0 w-2 h-2 border-r-2 border-t-2 border-red-500"></div>
-                      <div className="absolute bottom-0 left-0 w-2 h-2 border-l-2 border-b-2 border-red-500"></div>
-                      <div className="absolute bottom-0 right-0 w-2 h-2 border-r-2 border-b-2 border-red-500"></div>
-                    </div>
-                    
-                    {/* Scan Lines */}
-                    <div className="absolute inset-0 opacity-20">
-                      <div className="h-px bg-white/30 animate-pulse"></div>
-                      <div className="h-px bg-white/20 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                    </div>
-                    
-                    {/* Corner Brackets */}
-                    <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-red-500/50"></div>
-                    <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-red-500/50"></div>
-                    <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-red-500/50"></div>
-                    <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-red-500/50"></div>
+              {/* HUD overlay */}
+              <div className="absolute top-0 left-0 right-0 h-8 bg-black/70 backdrop-blur-sm px-4 flex items-center justify-between text-xs font-mono">
+                <span className="text-red-500 font-bold">NS CAM 01</span>
+                <span className="text-gray-300">TARGET LOCK {lockedIndex !== null ? `#${features[lockedIndex].id}` : 'IDLE'}</span>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black/60 to-transparent" />
+            </div>
+          </div>
+
+          {/* Feature List */}
+          <div className="lg:col-span-2 space-y-6">
+            {features.map((f, idx) => (
+              <div
+                key={f.id}
+                ref={(el) => { cardRefs.current[idx] = el }}
+                data-index={idx}
+                onMouseEnter={() => {
+                  setLockedIndex(idx)
+                  setTargetPoint(f.hotspot)
+                  setCursorFollowing(false)
+                }}
+                onMouseLeave={() => {
+                  if (lockedIndex === null) setCursorFollowing(true)
+                }}
+                className={`group relative rounded-xl border p-5 transition-all cursor-pointer bg-card-bg/70 backdrop-blur-sm ${
+                  lockedIndex === idx ? 'border-red-500/60 shadow-[0_0_0_2px_rgba(229,18,47,0.2)]' : 'border-red-500/20'
+                }`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="relative w-14 h-14 shrink-0 rounded-lg overflow-hidden border border-red-500/30 bg-black/60">
+                    <Image src={f.thumb} alt={f.title} fill className="object-contain p-3" />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-red-500/20 rounded-lg" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-1 group-hover:text-red-400 transition-colors">{f.title}</h3>
+                    <p className="text-gray-300 leading-relaxed text-sm md:text-base">{f.description}</p>
                   </div>
                 </div>
-                
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-red-400 transition-colors duration-300">
-                    {scene.title}
-                  </h3>
-                  <p className="text-base text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
-                    {scene.description}
-                  </p>
-                </div>
-                
-                {/* Hover Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               </div>
+            ))}
 
-              {/* Connection Line */}
-              {index < surveillanceScenes.length - 1 && (
-                <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-red-500/50 to-transparent"></div>
-              )}
+            {/* CTA */}
+            <div className="mt-10">
+              <div className="bg-card-bg border border-red-500/20 rounded-2xl p-6">
+                <h3 className="text-2xl font-bold mb-3">See Target Lock Live</h3>
+                <p className="text-gray-300 mb-5">Get a personalized walkthrough for your venue layout and risk profile.</p>
+                <button
+                  onClick={() => {
+                    const element = document.querySelector('#contact')
+                    if (element) element.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                  className="btn-primary px-6 py-3"
+                >
+                  Schedule Live Demo
+                </button>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-20">
-          <div className="bg-card-bg border border-red-500/20 rounded-2xl p-10 max-w-3xl mx-auto">
-            <h3 className="text-3xl font-bold mb-6">
-              Ready to Protect Your Venue?
-            </h3>
-            <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-              See NightShield in action with a live demonstration tailored to your venue type.
-            </p>
+        {/* Secondary gallery below for mobile/scan browsing */}
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {features.map((f, idx) => (
             <button
-              onClick={() => {
-                const element = document.querySelector('#contact')
-                if (element) element.scrollIntoView({ behavior: 'smooth' })
+              key={`thumb-${f.id}`}
+              onMouseEnter={() => {
+                setLockedIndex(idx)
+                setTargetPoint(f.hotspot)
+                setCursorFollowing(false)
               }}
-              className="btn-primary text-lg px-8 py-4 hover:scale-105 active:scale-95"
+              onFocus={() => {
+                setLockedIndex(idx)
+                setTargetPoint(f.hotspot)
+                setCursorFollowing(false)
+              }}
+              className={`relative aspect-square rounded-xl overflow-hidden border ${lockedIndex === idx ? 'border-red-500/60' : 'border-red-500/20'} bg-card-bg`}
             >
-              Schedule Live Demo
+              <Image src={f.thumb} alt={f.title} fill className="object-contain p-6 opacity-90" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 hover:opacity-100 transition-opacity" />
+              <span className="absolute bottom-2 left-2 right-2 text-xs text-gray-200 truncate text-left">{f.title}</span>
             </button>
-          </div>
+          ))}
         </div>
       </div>
     </section>

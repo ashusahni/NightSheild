@@ -7,7 +7,7 @@ import Industries from '@/components/NightShield/Industries'
 import Pricing from '@/components/NightShield/Pricing'
 import Contact from '@/components/NightShield/Contact'
 import CookieConsent from '@/components/NightShield/CookieConsent'
-
+import HowItWorks from '@/components/NightShield/HowItWorks'
 
 
 
@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <main className="bg-black text-white min-h-screen">
       <Hero />
-      {/* <HowItWorks /> */}
+      <HowItWorks />
       <Features />
       <WhoItsFor />
       <Industries />
