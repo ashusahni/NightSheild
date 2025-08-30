@@ -133,7 +133,7 @@ const HowItWorks = () => {
               className="aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm sticky top-24"
             >
               <Image
-                src="/images/logo/COVER IMAGE.jpeg"
+                src="/images/ezgif-46cf96e654a1ca.gif"
                 alt="NightShield Target View"
                 fill
                 className="object-cover opacity-80"
