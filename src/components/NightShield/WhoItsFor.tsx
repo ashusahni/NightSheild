@@ -207,54 +207,99 @@ const WhoItsFor = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {industries.map((industry, index) => (
-              <div key={index} className="bg-card-bg border border-red-500/20 p-6 h-full rounded-xl hover:border-red-500/40 transition-all duration-300">
-                <div className="h-full flex flex-col">
-                  {/* Icon */}
-                  <div className="text-3xl mb-4">{industry.icon}</div>
-                  
-                  {/* Title */}
-                  <h3 className="text-xl font-bold mb-4 text-white">
+              <div key={index} className="group relative">
+                {/* Background Glow Effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 via-purple-500/20 to-blue-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                
+                {/* Main Card */}
+                <div className="relative bg-gradient-to-br from-gray-900/80 via-gray-800/80 to-gray-900/80 backdrop-blur-sm border border-gray-700/50 p-8 h-full rounded-2xl shadow-2xl hover:shadow-red-500/10 transition-all duration-500 hover:scale-[1.02]">
+                  {/* Top Section with Icon and Badge */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="relative">
+                      <div className="w-16 h-16 bg-gradient-to-br from-red-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center border border-red-500/30 group-hover:border-red-500/50 transition-colors duration-300">
+                        <div className="text-3xl group-hover:scale-110 transition-transform duration-300">{industry.icon}</div>
+                      </div>
+                      {/* Floating accent dot */}
+                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                    </div>
+                    
+                    {/* Industry Type Badge */}
+                    <div className="px-3 py-1 bg-gradient-to-r from-red-500/20 to-red-600/20 border border-red-500/30 rounded-full">
+                      <span className="text-xs font-medium text-red-400 uppercase tracking-wider">
+                        {industry.name === "Nightclubs" ? "Entertainment" : 
+                         industry.name === "Casinos" ? "Gaming" :
+                         industry.name === "Event Venues" ? "Events" :
+                         industry.name === "Pubs & Bars" ? "Hospitality" :
+                         industry.name === "Hospitality" ? "Luxury" : "Security"}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Title with Gradient Text */}
+                  <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-white via-red-100 to-white bg-clip-text text-transparent">
                     {industry.name}
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-gray-300 mb-6 leading-relaxed flex-grow">
+                  <p className="text-gray-300 mb-8 leading-relaxed flex-grow text-sm">
                     {industry.description}
                   </p>
 
-                  {/* Challenges */}
-                  <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-red-500 mb-2 uppercase tracking-wide">
-                      Key Challenges
-                    </h4>
-                    <ul className="space-y-1">
+                  {/* Challenges Section */}
+                  <div className="mb-6">
+                    <div className="flex items-center mb-3">
+                      <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
+                      <h4 className="text-sm font-semibold text-red-400 uppercase tracking-wider">
+                        Key Challenges
+                      </h4>
+                    </div>
+                    <div className="space-y-2 ml-5">
                       {industry.challenges.map((challenge, idx) => (
-                        <li key={idx} className="text-xs text-gray-400 flex items-center">
-                          <span className="w-1 h-1 bg-red-500 rounded-full mr-2"></span>
-                          {challenge}
-                        </li>
+                        <div key={idx} className="flex items-center group/challenge">
+                          <div className="w-1.5 h-1.5 bg-red-500/60 rounded-full mr-3 group-hover/challenge:bg-red-400 transition-colors duration-200"></div>
+                          <span className="text-xs text-gray-400 group-hover/challenge:text-gray-300 transition-colors duration-200">
+                            {challenge}
+                          </span>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
 
-                  {/* Benefits */}
-                  <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-green-500 mb-2 uppercase tracking-wide">
-                      NightShield Benefits
-                    </h4>
-                    <ul className="space-y-1">
+                  {/* Benefits Section */}
+                  <div className="mb-6">
+                    <div className="flex items-center mb-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                      <h4 className="text-sm font-semibold text-green-400 uppercase tracking-wider">
+                        NightShield Benefits
+                      </h4>
+                    </div>
+                    <div className="space-y-2 ml-5">
                       {industry.benefits.map((benefit, idx) => (
-                        <li key={idx} className="text-xs text-gray-300 flex items-center">
-                          <svg className="w-3 h-3 text-green-500 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                          </svg>
-                          {benefit}
-                        </li>
+                        <div key={idx} className="flex items-center group/benefit">
+                          <div className="w-1.5 h-1.5 bg-green-500/60 rounded-full mr-3 group-hover/benefit:bg-green-400 transition-colors duration-200"></div>
+                          <span className="text-xs text-gray-300 group-hover/benefit:text-white transition-colors duration-200">
+                            {benefit}
+                          </span>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
+
+                  {/* Bottom Action Indicator */}
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-700/50">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-xs text-gray-500">Active Protection</span>
+                    </div>
+                    <div className="text-xs text-gray-500 group-hover:text-red-400 transition-colors duration-300">
+                      Learn More →
+                    </div>
+                  </div>
+
+                  {/* Hover Overlay Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
                 </div>
               </div>
             ))}
