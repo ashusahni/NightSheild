@@ -207,22 +207,17 @@ const WhoItsFor = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {industries.map((industry, index) => (
-              <div key={index} className="group relative">
-                {/* Background Glow Effect */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 via-purple-500/20 to-blue-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-                
+              <div key={index} className="relative">
                 {/* Main Card */}
-                <div className="relative bg-gradient-to-br from-gray-900/80 via-gray-800/80 to-gray-900/80 backdrop-blur-sm border border-gray-700/50 p-8 h-full rounded-2xl shadow-2xl hover:shadow-red-500/10 transition-all duration-500 hover:scale-[1.02]">
+                <div className="relative bg-card-bg border border-gray-700/40 p-5 h-full rounded-xl shadow-md transition-colors duration-200 hover:border-red-500/40">
                   {/* Top Section with Icon and Badge */}
-                  <div className="flex items-start justify-between mb-6">
+                  <div className="flex items-start justify-between mb-3">
                     <div className="relative">
-                      <div className="w-16 h-16 bg-gradient-to-br from-red-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center border border-red-500/30 group-hover:border-red-500/50 transition-colors duration-300">
-                        <div className="text-3xl group-hover:scale-110 transition-transform duration-300">{industry.icon}</div>
+                      <div className="w-12 h-12 bg-gradient-to-br from-red-500/20 to-purple-500/20 rounded-xl flex items-center justify-center border border-red-500/30">
+                        <div className="text-2xl">{industry.icon}</div>
                       </div>
-                      {/* Floating accent dot */}
-                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
                     </div>
                     
                     {/* Industry Type Badge */}
@@ -238,28 +233,28 @@ const WhoItsFor = () => {
                   </div>
 
                   {/* Title with Gradient Text */}
-                  <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-white via-red-100 to-white bg-clip-text text-transparent">
+                  <h3 className="text-lg font-semibold mb-2 text-white">
                     {industry.name}
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-gray-300 mb-8 leading-relaxed flex-grow text-sm">
+                  <p className="text-gray-200 mb-4 leading-relaxed flex-grow text-sm">
                     {industry.description}
                   </p>
 
                   {/* Challenges Section */}
-                  <div className="mb-6">
+                  <div className="mb-3">
                     <div className="flex items-center mb-3">
                       <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
                       <h4 className="text-sm font-semibold text-red-400 uppercase tracking-wider">
                         Key Challenges
                       </h4>
                     </div>
-                    <div className="space-y-2 ml-5">
+                    <div className="space-y-2 ml-4">
                       {industry.challenges.map((challenge, idx) => (
-                        <div key={idx} className="flex items-center group/challenge">
-                          <div className="w-1.5 h-1.5 bg-red-500/60 rounded-full mr-3 group-hover/challenge:bg-red-400 transition-colors duration-200"></div>
-                          <span className="text-xs text-gray-400 group-hover/challenge:text-gray-300 transition-colors duration-200">
+                        <div key={idx} className="flex items-center">
+                          <div className="w-2 h-2 bg-red-500/60 rounded-full mr-3"></div>
+                          <span className="text-sm text-gray-200">
                             {challenge}
                           </span>
                         </div>
@@ -268,18 +263,18 @@ const WhoItsFor = () => {
                   </div>
 
                   {/* Benefits Section */}
-                  <div className="mb-6">
+                  <div className="mb-3">
                     <div className="flex items-center mb-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
                       <h4 className="text-sm font-semibold text-green-400 uppercase tracking-wider">
                         NightShield Benefits
                       </h4>
                     </div>
-                    <div className="space-y-2 ml-5">
+                    <div className="space-y-2 ml-4">
                       {industry.benefits.map((benefit, idx) => (
-                        <div key={idx} className="flex items-center group/benefit">
-                          <div className="w-1.5 h-1.5 bg-green-500/60 rounded-full mr-3 group-hover/benefit:bg-green-400 transition-colors duration-200"></div>
-                          <span className="text-xs text-gray-300 group-hover/benefit:text-white transition-colors duration-200">
+                        <div key={idx} className="flex items-center">
+                          <div className="w-2 h-2 bg-green-500/60 rounded-full mr-3"></div>
+                          <span className="text-sm text-gray-200">
                             {benefit}
                           </span>
                         </div>
@@ -288,18 +283,15 @@ const WhoItsFor = () => {
                   </div>
 
                   {/* Bottom Action Indicator */}
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-700/50">
+                  <div className="flex items-center justify-between pt-3 border-t border-gray-700/50">
                     <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-xs text-gray-500">Active Protection</span>
                     </div>
-                    <div className="text-xs text-gray-500 group-hover:text-red-400 transition-colors duration-300">
+                    <div className="text-xs text-gray-500">
                       Learn More →
                     </div>
                   </div>
-
-                  {/* Hover Overlay Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
                 </div>
               </div>
             ))}
