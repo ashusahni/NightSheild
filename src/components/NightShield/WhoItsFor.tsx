@@ -1,10 +1,11 @@
 'use client'
 
-import React from 'react'
+import React, { useMemo } from 'react'
 import Image from 'next/image'
 
 const WhoItsFor = () => {
-  const industries = [
+  // Memoize the industries data to prevent unnecessary re-renders
+  const industries = useMemo(() => [
     {
       name: "Nightclubs",
       description: "Protect your patrons and staff from violence, theft, and unauthorized access in high-energy environments.",
@@ -47,13 +48,13 @@ const WhoItsFor = () => {
       challenges: ["Threat assessment", "Response coordination", "Evidence collection"],
       benefits: ["Enhanced detection", "Better coordination", "Digital evidence"]
     }
-  ]
+  ], [])
 
   return (
     <section className="py-16 relative overflow-hidden">
-      {/* Background */}
+      {/* Background - Simplified for better performance */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black"></div>
-      <div className="absolute inset-0 grid-texture opacity-10"></div>
+      <div className="absolute inset-0 grid-texture opacity-5"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
@@ -65,6 +66,7 @@ const WhoItsFor = () => {
               width={40} 
               height={40}
               className="w-10 h-10"
+              priority
             />
             <h2 className="text-3xl md:text-4xl font-bold">
               Who <span className="text-red-500">It&apos;s For</span>
@@ -196,7 +198,7 @@ const WhoItsFor = () => {
           </div>
         </div>
 
-        {/* Industries Grid */}
+        {/* Industries Grid - Optimized for performance */}
         <div className="mb-16">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-white mb-2">
@@ -210,8 +212,8 @@ const WhoItsFor = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {industries.map((industry, index) => (
               <div key={index} className="relative">
-                {/* Main Card */}
-                <div className="relative bg-card-bg border border-gray-700/40 p-5 h-full rounded-xl shadow-md transition-colors duration-200 hover:border-red-500/40">
+                {/* Main Card - Simplified hover effects for better performance */}
+                <div className="relative bg-card-bg border border-gray-700/40 p-5 h-full rounded-xl shadow-md hover:border-red-500/40 transition-colors duration-150">
                   {/* Top Section with Icon and Badge */}
                   <div className="flex items-start justify-between mb-3">
                     <div className="relative">
@@ -313,7 +315,7 @@ const WhoItsFor = () => {
                   const element = document.querySelector('#contact')
                   if (element) element.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="py-3 px-8 rounded-lg font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-300"
+                className="py-3 px-8 rounded-lg font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200"
               >
                 Schedule Consultation
               </button>
@@ -322,7 +324,7 @@ const WhoItsFor = () => {
                   const element = document.querySelector('#pricing')
                   if (element) element.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="py-3 px-8 rounded-lg font-medium text-white bg-gray-600 hover:bg-gray-700 transition-colors duration-300"
+                className="py-3 px-8 rounded-lg font-medium text-white bg-gray-600 hover:bg-gray-700 transition-colors duration-200"
               >
                 View Pricing
               </button>

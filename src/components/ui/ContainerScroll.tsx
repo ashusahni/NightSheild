@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 
 export const ContainerScroll = ({
   titleComponent,
@@ -13,18 +13,38 @@ export const ContainerScroll = ({
   const containerRef = useRef<any>(null);
   const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+  // Optimized resize handler with debouncing
+  const checkMobile = useCallback(() => {
+    setIsMobile(window.innerWidth <= 768);
   }, []);
+
+  useEffect(() => {
+    let resizeTimeout: NodeJS.Timeout;
+    
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(checkMobile, 100);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", handleResize);
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(resizeTimeout);
+    };
+  }, [checkMobile]);
+
   return (
     <div
       ref={containerRef}
       className="min-h-screen flex items-center justify-center sticky top-0"
+      style={{
+        // Performance optimizations
+        willChange: 'transform',
+        transform: 'translateZ(0)', // Force hardware acceleration
+        backfaceVisibility: 'hidden',
+      }}
     >
       <div
         className={cn(
@@ -66,6 +86,12 @@ export const ScrollCard = ({
         "rounded-2xl border border-slate-700/50 bg-slate-900/50 backdrop-blur-sm",
         className
       )}
+      style={{
+        // Performance optimizations
+        willChange: 'auto',
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
+      }}
     >
       {children}
     </div>

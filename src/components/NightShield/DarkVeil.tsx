@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Renderer, Program, Mesh, Triangle, Vec2 } from "ogl";
 
 const vertex = `
@@ -98,6 +98,9 @@ type Props = {
   scanlineFrequency?: number;
   warpAmount?: number;
   resolutionScale?: number;
+  // Performance options
+  reducedMotion?: boolean;
+  pauseWhenHidden?: boolean;
 };
 
 export default function DarkVeil({
@@ -108,15 +111,47 @@ export default function DarkVeil({
   scanlineFrequency = 0,
   warpAmount = 0,
   resolutionScale = 1,
+  reducedMotion = false,
+  pauseWhenHidden = true,
 }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
   useEffect(() => {
     const canvas = ref.current as HTMLCanvasElement;
+    if (!canvas) return;
+
     const parent = canvas.parentElement as HTMLElement;
+    if (!parent) return;
+
+    // Performance optimization: Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion || prefersReducedMotion) {
+      return; // Don't render WebGL if reduced motion is preferred
+    }
+
+    // Intersection Observer for performance optimization
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            if (pauseWhenHidden) setIsPaused(false);
+          } else {
+            if (pauseWhenHidden) setIsPaused(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(canvas);
 
     const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio, 2),
+      dpr: Math.min(window.devicePixelRatio, 1.5), // Reduced DPR for better performance
       canvas,
+      antialias: false, // Disable antialiasing for performance
     });
 
     const gl = renderer.gl;
@@ -150,23 +185,46 @@ export default function DarkVeil({
 
     const start = performance.now();
     let frame = 0;
+    let lastFrameTime = 0;
 
     const loop = () => {
+      if (isPaused) {
+        frame = requestAnimationFrame(loop);
+        return;
+      }
+
+      const currentTime = performance.now();
+      const deltaTime = currentTime - lastFrameTime;
+      
+      // Limit frame rate to 30fps for better performance
+      if (deltaTime < 33.33) {
+        frame = requestAnimationFrame(loop);
+        return;
+      }
+
+      lastFrameTime = currentTime;
+
       program.uniforms.uTime.value =
-        ((performance.now() - start) / 1000) * speed;
+        ((currentTime - start) / 1000) * speed;
       program.uniforms.uHueShift.value = hueShift;
       program.uniforms.uNoise.value = noiseIntensity;
       program.uniforms.uScan.value = scanlineIntensity;
       program.uniforms.uScanFreq.value = scanlineFrequency;
       program.uniforms.uWarp.value = warpAmount;
+      
       renderer.render({ scene: mesh });
       frame = requestAnimationFrame(loop);
     };
 
-    loop();
+    if (isVisible && !isPaused) {
+      loop();
+    }
 
     return () => {
-      cancelAnimationFrame(frame);
+      if (frame) {
+        cancelAnimationFrame(frame);
+      }
+      observer.disconnect();
       window.removeEventListener("resize", resize);
     };
   }, [
@@ -177,7 +235,28 @@ export default function DarkVeil({
     scanlineFrequency,
     warpAmount,
     resolutionScale,
+    reducedMotion,
+    pauseWhenHidden,
+    isVisible,
+    isPaused,
   ]);
+
+  // Fallback for reduced motion or when WebGL is not supported
+  if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return (
+      <div className="relative w-full h-full">
+        <div className="w-full h-full bg-gradient-to-br from-black via-red-900/20 to-black" />
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle at 50% 50%, rgba(229, 18, 47, 0.05) 0%, transparent 70%)',
+            mixBlendMode: 'overlay'
+          }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="relative w-full h-full">
       <canvas
