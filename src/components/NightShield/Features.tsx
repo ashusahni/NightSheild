@@ -152,9 +152,9 @@ const Features = () => {
             <p className="text-gray-400 text-lg">Core features ready for immediate deployment</p>
           </div>
           
-          <div className="relative max-w-5xl mx-auto h-[400px]">
+          <div className="relative w-full h-[700px] md:h-[900px]">
             <ScrollStack
-              className="h-full"
+              className="h-full scrollbar-hide"
               itemDistance={40}
               itemScale={0.02}
               itemStackDistance={15}

@@ -1,5 +1,4 @@
 import React, { ReactNode, useLayoutEffect, useRef, useCallback } from "react";
-import Lenis from "lenis";
 
 export interface ScrollStackItemProps {
   itemClassName?: string;
@@ -53,7 +52,6 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const scrollerRef = useRef<HTMLDivElement>(null);
   const stackCompletedRef = useRef(false);
   const animationFrameRef = useRef<number | null>(null);
-  const lenisRef = useRef<Lenis | null>(null);
   const cardsRef = useRef<HTMLElement[]>([]);
   const lastTransformsRef = useRef(new Map<number, { translateY: number; scale: number; rotation: number; blur: number }>());
   const isUpdatingRef = useRef(false);
@@ -77,7 +75,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
     isUpdatingRef.current = true;
 
-    const scrollTop = scroller.scrollTop;
+    // Use window scroll position relative to the component
+    const rect = scroller.getBoundingClientRect();
+    const scrollTop = -rect.top;
     const containerHeight = scroller.clientHeight;
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
@@ -177,36 +177,16 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     updateCardTransforms();
   }, [updateCardTransforms]);
 
-  const setupLenis = useCallback(() => {
-    const scroller = scrollerRef.current;
-    if (!scroller) return;
-
-    const lenis = new Lenis({
-      wrapper: scroller,
-      content: scroller.querySelector('.scroll-stack-inner') as HTMLElement,
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 2,
-      infinite: false,
-      gestureOrientation: 'vertical',
-      wheelMultiplier: 1,
-      lerp: 0.1,
-      syncTouch: true,
-      syncTouchLerp: 0.075,
-    });
-
-    lenis.on('scroll', handleScroll);
-
-    const raf = (time: number) => {
-      lenis.raf(time);
-      animationFrameRef.current = requestAnimationFrame(raf);
+  const setupWindowListeners = useCallback(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', updateCardTransforms);
+    // Trigger once on setup
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateCardTransforms);
     };
-    animationFrameRef.current = requestAnimationFrame(raf);
-
-    lenisRef.current = lenis;
-    return lenis;
-  }, [handleScroll]);
+  }, [handleScroll, updateCardTransforms]);
 
   useLayoutEffect(() => {
     const scroller = scrollerRef.current;
@@ -229,17 +209,14 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       card.style.webkitPerspective = '1000px';
     });
 
-    setupLenis();
-
+    const cleanup = setupWindowListeners();
     updateCardTransforms();
 
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
-      if (lenisRef.current) {
-        lenisRef.current.destroy();
-      }
+      cleanup && cleanup();
       stackCompletedRef.current = false;
       cardsRef.current = [];
       transformsCache.clear();
@@ -256,27 +233,25 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     rotationAmount,
     blurAmount,
     onStackComplete,
-    setupLenis,
+    setupWindowListeners,
     updateCardTransforms,
   ]);
 
   return (
     <div
-      className={`relative w-full h-full overflow-y-auto overflow-x-visible ${className}`.trim()}
+      className={`relative w-full h-full overflow-x-visible ${className}`.trim()}
       ref={scrollerRef}
       style={{
-        overscrollBehavior: "contain",
-        WebkitOverflowScrolling: 'touch',
-        scrollBehavior: 'smooth',
+        overscrollBehavior: "auto",
         WebkitTransform: 'translateZ(0)',
         transform: 'translateZ(0)',
         willChange: 'scroll-position'
       }}
     >
-      <div className="scroll-stack-inner pt-8 px-4 pb-8">
+      <div className="scroll-stack-inner pt-8 px-4 pb-40">
         {children}
         {/* Spacer so the last pin can release cleanly */}
-        <div className="scroll-stack-end w-full h-px" />
+        <div className="scroll-stack-end w-full h-64 md:h-96" />
       </div>
     </div>
   );

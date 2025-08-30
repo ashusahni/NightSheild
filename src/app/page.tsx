@@ -8,7 +8,7 @@ import Pricing from '@/components/NightShield/Pricing'
 import Contact from '@/components/NightShield/Contact'
 import CookieConsent from '@/components/NightShield/CookieConsent'
 import HowItWorks from '@/components/NightShield/HowItWorks'
-
+import Comparison from '@/components/NightShield/Comparison'
 
 
 export const metadata: Metadata = {
@@ -31,9 +31,9 @@ export default function Home() {
       <HowItWorks />
       <Features />
       <WhoItsFor />
-      <Industries />
-      {/* <Comparison /> */}
-      <Pricing />
+      {/* <Industries /> */}
+      <Comparison />
+      {/* <Pricing /> */}
       {/* <Testimonials /> */}
       {/* <About /> */}
       <Contact />
