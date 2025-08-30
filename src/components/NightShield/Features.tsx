@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
+
 import Image from 'next/image'
 import ScrollStack, { ScrollStackItem } from './ScrollStack'
 
@@ -177,115 +178,183 @@ const Features = () => {
                     </div>
                   )}
 
-                  <div className="flex items-center space-x-8">
-                    {/* Icon */}
-                    <div className={`w-20 h-20 rounded-2xl flex items-center justify-center ${
-                      feature.highlight 
-                        ? 'bg-red-500/20 text-red-500 shadow-lg shadow-red-500/20' 
-                        : 'bg-red-500/10 text-red-500'
-                    }`}>
-                      <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                        {feature.icon.props.children}
-                      </svg>
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="flex-1">
-                      <h3 className="text-3xl font-bold text-white mb-4">
-                        {feature.title}
-                      </h3>
-                      <p className="text-gray-300 leading-relaxed mb-6 text-lg">
-                        {feature.description}
-                      </p>
-                      
-                      {/* Stats */}
-                      <div className="flex items-center justify-between">
-                        <div className="text-red-500 font-bold text-xl">
-                          {feature.stats}
-                        </div>
-                        <div className="text-gray-500 text-lg font-mono">
-                          {String(index + 1).padStart(2, '0')}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                                     <div className="flex items-center space-x-8">
+                     {/* Feature Image */}
+                     <div className="relative w-32 h-32 rounded-2xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-red-500/20">
+                       {/* Background Pattern */}
+                       <div className="absolute inset-0 opacity-20">
+                         <div className="w-full h-full" style={{
+                           backgroundImage: `linear-gradient(rgba(229, 18, 47, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(229, 18, 47, 0.1) 1px, transparent 1px)`,
+                           backgroundSize: '16px 16px'
+                         }}></div>
+                       </div>
+                       
+                       {/* Feature Icon */}
+                       <div className={`absolute inset-0 flex items-center justify-center ${
+                         feature.highlight 
+                           ? 'bg-red-500/20' 
+                           : 'bg-red-500/10'
+                       }`}>
+                         <svg className="w-16 h-16 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                           {feature.icon.props.children}
+                         </svg>
+                       </div>
+                       
+                       {/* Animated Elements */}
+                       <div className="absolute inset-0">
+                         {/* Corner Brackets */}
+                         <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-red-500/60"></div>
+                         <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-red-500/60"></div>
+                         <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-red-500/60"></div>
+                         <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-red-500/60"></div>
+                         
+                         {/* Scan Line */}
+                         <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 animate-pulse"></div>
+                       </div>
+                       
+                       {/* Highlight Badge */}
+                       {feature.highlight && (
+                         <div className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
+                           <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                             <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                           </svg>
+                         </div>
+                       )}
+                     </div>
+                     
+                     {/* Content */}
+                     <div className="flex-1">
+                       <h3 className="text-3xl font-bold text-white mb-4">
+                         {feature.title}
+                       </h3>
+                       <p className="text-gray-300 leading-relaxed mb-6 text-lg">
+                         {feature.description}
+                       </p>
+                       
+                       {/* Stats with Visual Enhancement */}
+                       <div className="flex items-center justify-between">
+                         <div className="flex items-center space-x-3">
+                           <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                           <div className="text-red-500 font-bold text-xl">
+                             {feature.stats}
+                           </div>
+                         </div>
+                         <div className="text-gray-500 text-lg font-mono bg-gray-800/50 px-3 py-1 rounded-lg">
+                           {String(index + 1).padStart(2, '0')}
+                         </div>
+                       </div>
+                     </div>
+                   </div>
                 </ScrollStackItem>
               ))}
             </ScrollStack>
           </div>
         </div>
 
-        {/* Upcoming Features - Enhanced with Cool Effects */}
+        {/* Upcoming Features - Moving Bulletin Cards */}
         <div className="mb-20">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-gray-400 mb-4">Coming Soon</h3>
             <p className="text-gray-500 text-lg">Advanced features in development</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {upcomingFeatures.map((feature, index) => {
-              const cardOffset = index * 100
-              const scrollProgress = Math.max(0, Math.min(1, (scrollY - cardOffset) / 300))
-              const translateY = scrollProgress * 30
-              const opacity = Math.min(1, scrollProgress * 1.5)
-              
-              return (
-                <div
-                  key={index}
-                  className="group relative"
-                  style={{
-                    transform: `translateY(${translateY}px)`,
-                    opacity: opacity,
-                    transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
-                  }}
-                >
-                  {/* Gradient Border Effect */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-red-500/20 via-transparent to-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></div>
-                  
-                  {/* Magnetic Card */}
-                  <div 
-                    className="relative bg-[#0B0B0F]/50 border border-gray-600/30 rounded-xl p-6 h-full backdrop-blur-sm
-                             group-hover:border-red-500/50 group-hover:bg-[#0B0B0F]/80 
-                             transition-all duration-500 ease-out transform group-hover:scale-105 group-hover:-translate-y-2
-                             hover:shadow-2xl hover:shadow-red-500/10"
-                    style={{
-                      transform: `perspective(1000px) rotateX(${(mousePosition.y - window.innerHeight / 2) * 0.01}deg) rotateY(${(mousePosition.x - window.innerWidth / 2) * 0.01}deg)`,
-                    }}
+          <div className="relative max-w-6xl mx-auto">
+            {/* Moving Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-red-500/10 rounded-full blur-xl animate-bulletin-float-1"></div>
+              <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-red-500/10 rounded-full blur-xl animate-bulletin-float-2"></div>
+              <div className="absolute top-1/2 left-1/2 w-16 h-16 bg-red-500/5 rounded-full blur-lg animate-bulletin-float-3"></div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+              {upcomingFeatures.map((feature, index) => {
+                const baseDelay = index * 0.3
+                const moveDelay = index * 0.8
+                
+                return (
+                  <div
+                    key={index}
+                    className="group relative"
                   >
-                    {/* Animated Background */}
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-red-500/5 via-transparent to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    {/* Moving Bulletin Trail */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-500/30 via-transparent to-red-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></div>
                     
-                    {/* Icon with Glow Effect */}
-                    <div className="relative w-12 h-12 rounded-lg bg-gray-600/20 text-gray-400 flex items-center justify-center mb-4 
-                                  group-hover:bg-red-500/20 group-hover:text-red-500 group-hover:shadow-lg group-hover:shadow-red-500/20
-                                  transition-all duration-500 ease-out transform group-hover:scale-110">
-                      {feature.icon}
-                    </div>
-
-                    {/* Content with Staggered Animation */}
-                    <div className="relative">
-                      <h3 className="text-lg font-bold text-gray-400 mb-3 group-hover:text-white transition-colors duration-500">
-                        {feature.title}
-                      </h3>
-                      <p className="text-gray-500 text-sm leading-relaxed mb-4 group-hover:text-gray-300 transition-colors duration-500">
-                        {feature.description}
-                      </p>
-
-                      {/* ETA with Pulse Effect */}
-                      <div className="flex items-center justify-between">
-                        <div className="text-gray-600 text-xs font-medium group-hover:text-red-500 transition-colors duration-500 relative">
-                          {feature.eta}
-                          <div className="absolute inset-0 bg-red-500/20 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    {/* Main Card */}
+                    <div 
+                      className="relative bg-[#0B0B0F]/70 border border-gray-600/50 rounded-2xl p-6 h-full backdrop-blur-md
+                               group-hover:border-red-500/70 group-hover:bg-[#0B0B0F]/95 
+                               transition-all duration-500 ease-out transform group-hover:scale-105 group-hover:-translate-y-2
+                               hover:shadow-2xl hover:shadow-red-500/30 cursor-pointer
+                               overflow-hidden"
+                    >
+                      {/* Animated Background Pattern */}
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-red-500/10 via-transparent to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      {/* Moving Bulletin Particles */}
+                      <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                        <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-red-500/40 rounded-full animate-bulletin-particle-1"></div>
+                        <div className="absolute top-1/3 right-2 w-1 h-1 bg-red-500/30 rounded-full animate-bulletin-particle-2"></div>
+                        <div className="absolute bottom-1/3 left-2 w-1.5 h-1.5 bg-red-500/35 rounded-full animate-bulletin-particle-3"></div>
+                      </div>
+                      
+                      {/* Feature Preview Image */}
+                      <div className="relative w-20 h-20 rounded-xl bg-gradient-to-br from-gray-700 to-gray-800 text-gray-200 flex items-center justify-center mb-5 
+                                    group-hover:bg-red-500/20 group-hover:text-red-400 group-hover:shadow-xl group-hover:shadow-red-500/40
+                                    transition-all duration-500 ease-out transform group-hover:scale-110 group-hover:rotate-2
+                                    animate-bulletin-pulse overflow-hidden">
+                        {/* Background Pattern */}
+                        <div className="absolute inset-0 opacity-20">
+                          <div className="w-full h-full" style={{
+                            backgroundImage: `linear-gradient(rgba(229, 18, 47, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(229, 18, 47, 0.1) 1px, transparent 1px)`,
+                            backgroundSize: '12px 12px'
+                          }}></div>
                         </div>
-                        <div className="text-gray-700 text-xs group-hover:text-gray-500 transition-colors duration-500">
-                          {String(index + 1).padStart(2, '0')}
+                        
+                        {/* Feature Icon */}
+                        <div className="relative z-10">
+                          {feature.icon}
+                        </div>
+                        
+                        {/* Icon Glow Ring */}
+                        <div className="absolute inset-0 rounded-xl bg-red-500/30 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        {/* Coming Soon Badge */}
+                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+                          <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.11 3.89 23 5 23H19C20.11 23 21 22.11 21 21V9M19 9H14V4H5V21H19V9Z"/>
+                          </svg>
                         </div>
                       </div>
+
+                      {/* Content */}
+                      <div className="relative">
+                        <h3 className="text-xl font-bold text-gray-200 mb-3 group-hover:text-white transition-colors duration-500">
+                          {feature.title}
+                        </h3>
+                        <p className="text-gray-400 text-sm leading-relaxed mb-5 group-hover:text-gray-200 transition-colors duration-500">
+                          {feature.description}
+                        </p>
+
+                        {/* ETA and Number with Bulletin Effects */}
+                        <div className="flex items-center justify-between">
+                          <div className="text-gray-500 text-xs font-medium group-hover:text-red-300 transition-colors duration-500 relative">
+                            <span className="relative z-10">{feature.eta}</span>
+                            <div className="absolute inset-0 bg-red-500/20 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                          </div>
+                          <div className="text-gray-600 text-lg font-bold group-hover:text-red-300 transition-colors duration-500 relative">
+                            <span className="relative z-10">{String(index + 1).padStart(2, '0')}</span>
+                            <div className="absolute inset-0 bg-red-500/15 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Hover Border Animation */}
+                      <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-red-500/50 transition-all duration-500 ease-out"></div>
                     </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
         </div>
 

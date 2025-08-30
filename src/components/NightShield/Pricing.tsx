@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+
 import Image from 'next/image'
 
 const Pricing = () => {
@@ -63,13 +63,7 @@ const Pricing = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <div className="flex justify-center items-center space-x-3 mb-6">
             <Image 
               src="/images/logo/LOGO TRANSPARENT.png" 
@@ -95,26 +89,21 @@ const Pricing = () => {
               onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
               className="relative w-16 h-8 bg-red-500/20 rounded-full p-1 transition-colors duration-200"
             >
-              <motion.div
-                animate={{ x: billingCycle === 'yearly' ? 32 : 0 }}
-                className="w-6 h-6 bg-red-500 rounded-full"
+              <div
+                className={`w-6 h-6 bg-red-500 rounded-full transition-transform duration-200 ${billingCycle === 'yearly' ? 'translate-x-8' : 'translate-x-0'}`}
               />
             </button>
             <span className={`text-sm ${billingCycle === 'yearly' ? 'text-white' : 'text-gray-400'}`}>
               Yearly <span className="text-red-500">(Save 20%)</span>
             </span>
           </div>
-        </motion.div>
+        </div>
 
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
               className={`relative ${plan.popular ? 'lg:scale-105' : ''}`}
             >
               {/* Popular Badge */}
@@ -145,21 +134,19 @@ const Pricing = () => {
                   </div>
 
                   {/* CTA Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button
                     onClick={() => {
                       const element = document.querySelector('#contact')
                       if (element) element.scrollIntoView({ behavior: 'smooth' })
                     }}
-                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-200 ${
+                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
                       plan.popular
                         ? 'bg-red-500 text-white hover:bg-red-600'
                         : 'bg-transparent border border-red-500 text-red-500 hover:bg-red-500 hover:text-white'
                     }`}
                   >
                     Get Started
-                  </motion.button>
+                  </button>
                 </div>
 
                 {/* Features */}
@@ -177,18 +164,12 @@ const Pricing = () => {
                   </ul>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Additional Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
+        <div className="mt-16 text-center">
           <div className="bg-card-bg border border-red-500/20 rounded-2xl p-8 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold mb-4">
               Need a Custom Solution?
@@ -212,7 +193,7 @@ const Pricing = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

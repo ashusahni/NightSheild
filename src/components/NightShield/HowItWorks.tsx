@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+
 import Image from 'next/image'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
@@ -62,13 +62,7 @@ const HowItWorks = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-                <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
+                <div className="text-center mb-20">
 
           <div className="flex justify-center items-center space-x-4 mb-8">
             <Image 
@@ -87,17 +81,13 @@ const HowItWorks = () => {
           </p>
           
 
-        </motion.div>
+        </div>
 
         {/* Surveillance Scenes */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {surveillanceScenes.map((scene, index) => (
-            <motion.div
+            <div
               key={scene.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
               className="relative"
             >
               {/* Step Number */}
@@ -210,18 +200,12 @@ const HowItWorks = () => {
               {index < surveillanceScenes.length - 1 && (
                 <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-red-500/50 to-transparent"></div>
               )}
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mt-20"
-        >
+        <div className="text-center mt-20">
           <div className="bg-card-bg border border-red-500/20 rounded-2xl p-10 max-w-3xl mx-auto">
             <h3 className="text-3xl font-bold mb-6">
               Ready to Protect Your Venue?
@@ -229,19 +213,17 @@ const HowItWorks = () => {
             <p className="text-lg text-gray-300 mb-8 leading-relaxed">
               See NightShield in action with a live demonstration tailored to your venue type.
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <button
               onClick={() => {
                 const element = document.querySelector('#contact')
                 if (element) element.scrollIntoView({ behavior: 'smooth' })
               }}
-              className="btn-primary text-lg px-8 py-4"
+              className="btn-primary text-lg px-8 py-4 hover:scale-105 active:scale-95"
             >
               Schedule Live Demo
-            </motion.button>
+            </button>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

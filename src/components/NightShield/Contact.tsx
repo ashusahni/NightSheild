@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+
 import Image from 'next/image'
 
 const Contact = () => {
@@ -63,13 +63,7 @@ const Contact = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <div className="flex justify-center items-center space-x-3 mb-6">
             <Image 
               src="/images/logo/LOGO TRANSPARENT.png" 
@@ -85,16 +79,11 @@ const Contact = () => {
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Ready to protect your venue? Contact us for a personalized consultation and live demo.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          <div>
             <div className="bg-card-bg border border-red-500/20 rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-6 text-white">Contact Us</h3>
               
@@ -218,27 +207,20 @@ const Contact = () => {
                     </label>
                   </div>
 
-                  <motion.button
+                  <button
                     type="submit"
                     disabled={isSubmitting}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full btn-primary py-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full btn-primary py-4 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 active:scale-95"
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </motion.button>
+                  </button>
                 </form>
               )}
             </div>
-          </motion.div>
+          </div>
 
           {/* Calendly Integration */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
+          <div>
             <div className="bg-card-bg border border-red-500/20 rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-6 text-white">Schedule a Demo</h3>
               <p className="text-gray-300 mb-6">
@@ -256,13 +238,11 @@ const Contact = () => {
                 <p className="text-gray-300 mb-4">
                   Click below to schedule your personalized demo
                 </p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-primary"
+                <button
+                  className="btn-primary hover:scale-105 active:scale-95"
                 >
                   Book Demo Now
-                </motion.button>
+                </button>
               </div>
 
               {/* Contact Info */}
@@ -304,7 +284,7 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

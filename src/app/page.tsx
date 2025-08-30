@@ -1,14 +1,10 @@
 import React from 'react'
 import { Metadata } from 'next'
 import Hero from '@/components/NightShield/Hero'
-
 import Features from '@/components/NightShield/Features'
 import WhoItsFor from '@/components/NightShield/WhoItsFor'
-
-
-
-
-
+import Industries from '@/components/NightShield/Industries'
+import Pricing from '@/components/NightShield/Pricing'
 import Contact from '@/components/NightShield/Contact'
 import CookieConsent from '@/components/NightShield/CookieConsent'
 
@@ -35,9 +31,9 @@ export default function Home() {
       {/* <HowItWorks /> */}
       <Features />
       <WhoItsFor />
-      {/* <Industries /> */}
+      <Industries />
       {/* <Comparison /> */}
-      {/* <Pricing /> */}
+      <Pricing />
       {/* <Testimonials /> */}
       {/* <About /> */}
       <Contact />

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+
 
 const CookieConsent = () => {
   const [showConsent, setShowConsent] = useState(false)
@@ -49,14 +49,9 @@ const CookieConsent = () => {
   ]
 
   return (
-    <AnimatePresence>
+    <>
       {showConsent && (
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 100 }}
-          className="cookie-consent"
-        >
+        <div className="cookie-consent">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
             <div className="flex-1">
               <h3 className="text-lg font-bold text-white mb-2">
@@ -70,11 +65,7 @@ const CookieConsent = () => {
               </p>
               
               {showDetails && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  className="mt-4 space-y-3"
-                >
+                <div className="mt-4 space-y-3">
                   {cookieTypes.map((cookie, index) => (
                     <div key={index} className="bg-black/20 rounded-lg p-3">
                       <div className="flex items-center justify-between mb-1">
@@ -88,7 +79,7 @@ const CookieConsent = () => {
                       <p className="text-gray-400 text-xs">{cookie.description}</p>
                     </div>
                   ))}
-                </motion.div>
+                </div>
               )}
               
               <button
@@ -114,9 +105,9 @@ const CookieConsent = () => {
               </button>
             </div>
           </div>
-        </motion.div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   )
 }
 

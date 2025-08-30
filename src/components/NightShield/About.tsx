@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+
 import Image from 'next/image'
 
 const About = () => {
@@ -48,13 +48,7 @@ const About = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <div className="flex justify-center items-center space-x-3 mb-6">
             <Image 
               src="/images/logo/LOGO TRANSPARENT.png" 
@@ -70,16 +64,10 @@ const About = () => {
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                          We&apos;re on a mission to make every venue safer through cutting-edge AI technology
           </p>
-        </motion.div>
+        </div>
 
         {/* Mission Statement */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
+        <div className="mb-16">
           <div className="bg-card-bg border border-red-500/20 rounded-2xl p-8 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold mb-6 text-center">
               Our <span className="text-red-500">Mission</span>
@@ -94,27 +82,17 @@ const About = () => {
               together to deliver solutions that protect people, assets, and reputations.
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Timeline */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
+        <div className="mb-16">
           <h3 className="text-3xl font-bold text-center mb-12">
             Our <span className="text-red-500">Journey</span>
           </h3>
           <div className="grid md:grid-cols-5 gap-8">
             {milestones.map((milestone, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="text-center"
               >
                 <div className="bg-card-bg border border-red-500/20 rounded-xl p-6 card-hover">
@@ -122,48 +100,33 @@ const About = () => {
                   <h4 className="font-semibold text-white mb-2">{milestone.title}</h4>
                   <p className="text-sm text-gray-300">{milestone.description}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Team */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <div>
           <h3 className="text-3xl font-bold text-center mb-12">
             Meet Our <span className="text-red-500">Team</span>
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="bg-card-bg border border-red-500/20 rounded-xl p-6 text-center card-hover"
               >
                 <div className="text-4xl mb-4">{member.avatar}</div>
                 <h4 className="text-xl font-bold text-white mb-2">{member.name}</h4>
                 <div className="text-red-500 font-semibold mb-4">{member.role}</div>
                 <p className="text-gray-300 text-sm leading-relaxed">{member.bio}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Values */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-16"
-        >
+        <div className="mt-16">
           <div className="bg-card-bg border border-red-500/20 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-center mb-8">
               Our <span className="text-red-500">Values</span>
@@ -204,7 +167,7 @@ const About = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

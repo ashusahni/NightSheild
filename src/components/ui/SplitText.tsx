@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useRef } from 'react'
-import { motion } from 'framer-motion'
+
 
 interface SplitTextProps {
   children: string
@@ -68,15 +68,8 @@ const SplitText: React.FC<SplitTextProps> = ({
   return (
     <span ref={textRef} className={`split-text-container ${className}`}>
       {elements.map((element, index) => (
-        <motion.span
+        <span
           key={index}
-          initial={animationVariants.initial}
-          animate={animationVariants.animate}
-          transition={{
-            duration,
-            delay: delay + (index * staggerDelay),
-            ease: [0.25, 0.46, 0.45, 0.94] // Custom easing for smooth animation
-          }}
           className={`inline-block ${element.isSpace ? 'w-[0.25em]' : ''}`}
           style={{ 
             overflow: 'visible',
@@ -86,7 +79,7 @@ const SplitText: React.FC<SplitTextProps> = ({
         >
           {element.content === ' ' ? '\u00A0' : element.content}
           {splitBy === 'words' && index < elements.length - 1 && '\u00A0'}
-        </motion.span>
+        </span>
       ))}
     </span>
   )
