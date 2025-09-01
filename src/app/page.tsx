@@ -10,7 +10,7 @@ import CookieConsent from '@/components/NightShield/CookieConsent'
 import HowItWorks from '@/components/NightShield/HowItWorks'
 import Comparison from '@/components/NightShield/Comparison'
 import Navbar from '@/components/Layout/Navbar'
-
+import Testimonials from '@/components/NightShield/Testimonials'
 
 export const metadata: Metadata = {
   title: 'NightShield - AI Surveillance That Protects Venues Before It\'s Too Late',
@@ -36,8 +36,7 @@ export default function Home() {
       {/* <Industries /> */}
       <Comparison />
       {/* <Pricing /> */}
-      {/* <Testimonials /> */}
-      {/* <About /> */}
+      <Testimonials />
       <Contact />
       <CookieConsent />
     </main>

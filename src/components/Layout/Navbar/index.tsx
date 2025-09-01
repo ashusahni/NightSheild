@@ -34,10 +34,11 @@ const Navbar = () => {
     { name: 'Home', href: '/' },
     { name: 'How It Works', href: '/#how-it-works' },
     { name: 'Features', href: '/#features' },
-    { name: 'Who It\'s For', href: '/#who-its-for' },
-    { name: 'Comparison', href: '/#comparison' },
+    { name: 'About Us', href: '/about' },
+    // { name: 'Who It\'s For', href: '/#who-its-for' },
+    // { name: 'Comparison', href: '/#comparison' },
     { name: 'Pricing', href: '/pricing' },
-    { name: 'Contact', href: '/#contact' },
+   
   ];
 
   const linkVariants = {
@@ -108,8 +109,8 @@ const Navbar = () => {
               </motion.div>
             ))}
             <motion.a
-              href="https://app.nightsheild.com"
-              target="_blank"
+              href="#contact"
+              target="_self"
               rel="noopener noreferrer"
               className="btn-primary"
               whileHover={{ scale: 1.05 }}
