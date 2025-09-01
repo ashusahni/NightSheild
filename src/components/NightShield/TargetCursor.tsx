@@ -67,7 +67,8 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       xPercent: -50,
       yPercent: -50,
       x: window.innerWidth / 2,
-      y: window.innerHeight / 2
+      y: window.innerHeight / 2,
+      autoAlpha: 0
     });
 
     const createSpinTimeline = () => {
@@ -153,6 +154,8 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       }
 
       activeTarget = target;
+      // Show custom cursor only while over a target
+      gsap.to(cursorRef.current, { autoAlpha: 1, duration: 0.15 });
       const corners = Array.from(cornersRef.current);
       corners.forEach(corner => {
         gsap.killTweensOf(corner);
@@ -270,6 +273,11 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
               0
             );
           });
+        }
+
+        // Hide custom cursor when leaving the target
+        if (cursorRef.current) {
+          gsap.to(cursorRef.current, { autoAlpha: 0, duration: 0.15 });
         }
 
         resumeTimeout = setTimeout(() => {

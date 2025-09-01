@@ -26,13 +26,7 @@ const HowItWorks = () => {
       hotspot: { x: 28, y: 58 } as TargetPoint,
       thumb: '/images/icons/icon-consulting.svg',
     },
-    // {
-    //   id: 3,
-    //   title: 'Threat Scoring',
-    //   description: 'Behavioral scoring ranks risk level and filters out false positives intelligently.',
-    //   hotspot: { x: 58, y: 68 } as TargetPoint,
-    //   thumb: '/images/icons/icon-star.svg',
-    // },
+  
     {
       id: 4,
       title: 'Instant Alerts',
@@ -136,16 +130,17 @@ const HowItWorks = () => {
           <div className="lg:col-span-3">
             <div
               ref={stickyRef}
-              className="aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm sticky top-24"
+              className="howitworks-cursor-target md:cursor-none aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm sticky top-24"
             >
+             
               <Image
-                src="/images/ezgif-46cf96e654a1ca.jpg"
+                src="/images/Gemini_Generated_Image_vrl1twvrl1twvrl1.png"
                 alt="NightShield Target View"
                 fill
                 className="object-cover opacity-80"
                 priority
               />
-
+    
               {/* Dim vignette */}
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
 
@@ -239,6 +234,11 @@ const HowItWorks = () => {
             </div>
           </div>
         </div>
+
+        {/* Mount scoped target cursor; only active over .howitworks-cursor-target (desktop only) */}
+        {!isMobile && (
+          <TargetCursor targetSelector=".howitworks-cursor-target" hideDefaultCursor={false} />
+        )}
 
         {/* Secondary gallery removed to match requested compact layout */}
       </div>
