@@ -4,11 +4,12 @@ import Hero from '@/components/NightShield/Hero'
 import Features from '@/components/NightShield/Features'
 import WhoItsFor from '@/components/NightShield/WhoItsFor'
 import Industries from '@/components/NightShield/Industries'
-import Pricing from '@/components/NightShield/Pricing'
+// import Pricing from '@/components/NightShield/Pricing' - This is not needed anymore
 import Contact from '@/components/NightShield/Contact'
 import CookieConsent from '@/components/NightShield/CookieConsent'
 import HowItWorks from '@/components/NightShield/HowItWorks'
 import Comparison from '@/components/NightShield/Comparison'
+import Navbar from '@/components/Layout/Navbar'
 
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="bg-black text-white min-h-screen">
+      <Navbar />
       <Hero />
       <HowItWorks />
       <Features />

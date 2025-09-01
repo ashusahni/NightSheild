@@ -48,7 +48,7 @@ export const useDebounce = <T extends (...args: any[]) => any>(
   callback: T,
   delay: number
 ) => {
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   return useCallback((...args: Parameters<T>) => {
     if (timeoutRef.current) {
@@ -136,15 +136,12 @@ export const optimizeScrollContainer = (element: HTMLElement) => {
   element.style.transform = 'translateZ(0)';
   element.style.willChange = 'auto';
   element.style.backfaceVisibility = 'hidden';
-  
-  // Optimize for scrolling
-  element.style.overflowScrolling = 'touch';
-  element.style.webkitOverflowScrolling = 'touch';
-};
-
-// Utility to batch DOM updates for better performance
+  // Optimize for scrolling (for iOS momentum scrolling)
+  // Note: 'overflowScrolling' is not a standard CSS property and has been removed.
+  // 'webkitOverflowScrolling' is a vendor-prefixed property for iOS to enable momentum scrolling.
+  (element.style as any).webkitOverflowScrolling = 'touch';
 export const batchDOMUpdates = (updates: (() => void)[]) => {
-  if (typeof window !== 'undefined' && window.requestAnimationFrame) {
+  if (typeof window !== 'undefined') {
     requestAnimationFrame(() => {
       updates.forEach(update => update());
     });

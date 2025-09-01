@@ -19,6 +19,12 @@ const Hero = () => {
       element.scrollIntoView({ behavior: 'smooth' })
     }
   }
+  const scrollToAction = () => {
+    const element = document.querySelector('#how-it-works')
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
 
 
@@ -50,13 +56,13 @@ const Hero = () => {
       <div className="hidden md:block absolute top-1/2 left-1/4 w-16 h-16 bg-red-500/15 rounded-full blur-lg animate-pulse delay-500"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-5 gap-12 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left"
+            className="text-center lg:text-left lg:col-span-2"
           >
             {/* Logo */}
             <motion.div
@@ -83,8 +89,8 @@ const Hero = () => {
                 <SplitText 
                   delay={0.2}
                   duration={0.6}
-                  staggerDelay={0.02}
-                  splitBy="chars"
+                  staggerDelay={0.08}
+                  splitBy="words"
                   animationType="slideUp"
                   className=""
                 >
@@ -95,8 +101,8 @@ const Hero = () => {
                 <SplitText 
                   delay={0.6}
                   duration={0.6}
-                  staggerDelay={0.02}
-                  splitBy="chars"
+                  staggerDelay={0.08}
+                  splitBy="words"
                   animationType="slideUp"
                   className="gradient-text"
                 >
@@ -107,8 +113,8 @@ const Hero = () => {
                 <SplitText 
                   delay={1.0}
                   duration={0.6}
-                  staggerDelay={0.02}
-                  splitBy="chars"
+                  staggerDelay={0.08}
+                  splitBy="words"
                   animationType="slideUp"
                   className="text-red-500"
                 >
@@ -142,7 +148,7 @@ const Hero = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={scrollToContact}
+                onClick={scrollToAction}
                 className="btn-secondary text-lg px-8 py-4"
               >
                 See It In Action
@@ -182,18 +188,19 @@ const Hero = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
+            className="relative lg:col-span-3"
           >
             <div className="spotlight-card bg-card-bg rounded-2xl p-6 border border-red-500/20">
               <div className="relative aspect-video bg-black rounded-xl overflow-hidden">
-                {/* Video Placeholder */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 bg-red-500/20 rounded-full flex items-center justify-center">
-                    <svg className="w-10 h-10 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </div>
-                </div>
+              <iframe
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=OF-II5a54d2t5-zY"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
                 
                 {/* Simplified CCTV Frame Overlay */}
                 <div className="absolute inset-0 pointer-events-none">
@@ -210,11 +217,11 @@ const Hero = () => {
                   <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-red-500"></div>
                   
                   {/* Simple Motion Detection Box */}
-                  <div className="absolute top-1/3 left-1/4 w-24 h-16 border border-red-500 border-dashed">
+                  {/* <div className="absolute top-1/3 left-1/4 w-24 h-16 border border-red-500 border-dashed">
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-2 py-1 rounded">
                       DETECTED
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               
