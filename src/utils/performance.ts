@@ -140,6 +140,8 @@ export const optimizeScrollContainer = (element: HTMLElement) => {
   // Note: 'overflowScrolling' is not a standard CSS property and has been removed.
   // 'webkitOverflowScrolling' is a vendor-prefixed property for iOS to enable momentum scrolling.
   (element.style as any).webkitOverflowScrolling = 'touch';
+};
+
 export const batchDOMUpdates = (updates: (() => void)[]) => {
   if (typeof window !== 'undefined') {
     requestAnimationFrame(() => {
