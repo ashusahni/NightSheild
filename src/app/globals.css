@@ -564,6 +564,17 @@ section {
   50% { transform: scale(1.02) rotate(0.5deg); } /* Reduced scale and rotation */
 }
 
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-bulletin-float-1 {
   animation: bulletin-float-1 4s ease-in-out infinite; /* Reduced from 6s */
 }
@@ -590,6 +601,10 @@ section {
 
 .animate-bulletin-pulse {
   animation: bulletin-pulse 1.5s ease-in-out infinite; /* Reduced from 2s */
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
 }
 
 /* Responsive adjustments */

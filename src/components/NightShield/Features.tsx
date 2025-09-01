@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 import Image from 'next/image'
-import ScrollStack, { ScrollStackItem } from './ScrollStack'
+import { ContainerScroll } from '../ui/ContainerScroll'
 
 const Features = () => {
   const [scrollY, setScrollY] = useState(0)
@@ -145,111 +145,123 @@ const Features = () => {
           </p>
         </div>
 
-        {/* Available Features - Scroll Stack Layout */}
-        <div className="mb-20">
-          <div className="text-center mb-8">
-            <h3 className="text-3xl font-bold text-white mb-4">Available Now</h3>
-            <p className="text-gray-400 text-lg">Core features ready for immediate deployment</p>
-          </div>
-          
-          <div className="relative w-full h-[700px] md:h-[900px]">
-            <ScrollStack
-              className="h-full scrollbar-hide"
-              itemDistance={40}
-              itemScale={0.02}
-              itemStackDistance={15}
-              stackPosition="15%"
-              scaleEndPosition="5%"
-              baseScale={0.98}
-              rotationAmount={0}
-              blurAmount={0.2}
-            >
+        {/* Available Features - Container Scroll Layout */}
+        <ContainerScroll
+          titleComponent={
+            <div className="text-center mb-8">
+              <div className="flex justify-center items-center space-x-4 mb-6">
+                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                <h3 className="text-4xl md:text-5xl font-bold text-white">Available Now</h3>
+                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+              </div>
+              <p className="text-gray-400 text-xl max-w-2xl mx-auto leading-relaxed">
+                Core features ready for immediate deployment with cutting-edge AI surveillance technology
+              </p>
+              <div className="flex justify-center mt-6">
+                <div className="bg-red-500/10 border border-red-500/30 rounded-full px-6 py-2">
+                  <span className="text-red-400 font-semibold text-sm">Scroll down to see features in action</span>
+                </div>
+              </div>
+            </div>
+          }
+        >
+          <div className="w-full h-full bg-gradient-to-br from-[#0B0B0F] to-[#1A1A1F] rounded-2xl p-3 md:p-4">
+            <div className="space-y-4 md:space-y-6">
               {availableFeatures.map((feature, index) => (
-                <ScrollStackItem
+                <div
                   key={index}
-                  itemClassName="bg-[#0B0B0F] border border-red-500/20 rounded-2xl p-8 shadow-2xl backdrop-blur-sm"
+                  className="relative group bg-[#0B0B0F]/80 border border-red-500/20 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm
+                           hover:border-red-500/40 hover:bg-[#0B0B0F]/95 transition-all duration-500 hover:scale-[1.01]
+                           animate-fade-in-up opacity-0"
+                  style={{
+                    animationDelay: `${index * 0.1}s`,
+                    animationFillMode: 'forwards'
+                  }}
                 >
                   {/* Highlight Badge */}
                   {feature.highlight && (
-                    <div className="absolute -top-3 left-8 z-10">
-                      <div className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                    <div className="absolute -top-2 left-4 z-10">
+                      <div className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg animate-pulse">
                         MVP Feature
                       </div>
                     </div>
                   )}
 
-                                     <div className="flex items-center space-x-8">
-                     {/* Feature Image */}
-                     <div className="relative w-32 h-32 rounded-2xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-red-500/20">
-                       {/* Background Pattern */}
-                       <div className="absolute inset-0 opacity-20">
-                         <div className="w-full h-full" style={{
-                           backgroundImage: `linear-gradient(rgba(229, 18, 47, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(229, 18, 47, 0.1) 1px, transparent 1px)`,
-                           backgroundSize: '16px 16px'
-                         }}></div>
-                       </div>
-                       
-                       {/* Feature Icon */}
-                       <div className={`absolute inset-0 flex items-center justify-center ${
-                         feature.highlight 
-                           ? 'bg-red-500/20' 
-                           : 'bg-red-500/10'
-                       }`}>
-                         <svg className="w-16 h-16 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                           {feature.icon.props.children}
-                         </svg>
-                       </div>
-                       
-                       {/* Animated Elements */}
-                       <div className="absolute inset-0">
-                         {/* Corner Brackets */}
-                         <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-red-500/60"></div>
-                         <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-red-500/60"></div>
-                         <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-red-500/60"></div>
-                         <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-red-500/60"></div>
-                         
-                         {/* Scan Line */}
-                         <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 animate-pulse"></div>
-                       </div>
-                       
-                       {/* Highlight Badge */}
-                       {feature.highlight && (
-                         <div className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
-                           <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                             <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
-                           </svg>
-                         </div>
-                       )}
-                     </div>
-                     
-                     {/* Content */}
-                     <div className="flex-1">
-                       <h3 className="text-3xl font-bold text-white mb-4">
-                         {feature.title}
-                       </h3>
-                       <p className="text-gray-300 leading-relaxed mb-6 text-lg">
-                         {feature.description}
-                       </p>
-                       
-                       {/* Stats with Visual Enhancement */}
-                       <div className="flex items-center justify-between">
-                         <div className="flex items-center space-x-3">
-                           <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                           <div className="text-red-500 font-bold text-xl">
-                             {feature.stats}
-                           </div>
-                         </div>
-                         <div className="text-gray-500 text-lg font-mono bg-gray-800/50 px-3 py-1 rounded-lg">
-                           {String(index + 1).padStart(2, '0')}
-                         </div>
-                       </div>
-                     </div>
-                   </div>
-                </ScrollStackItem>
+                  <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-8">
+                    {/* Feature Image */}
+                    <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-red-500/20 flex-shrink-0 group-hover:scale-105 transition-transform duration-500">
+                      {/* Background Pattern */}
+                      <div className="absolute inset-0 opacity-20">
+                        <div className="w-full h-full" style={{
+                          backgroundImage: `linear-gradient(rgba(229, 18, 47, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(229, 18, 47, 0.1) 1px, transparent 1px)`,
+                          backgroundSize: '16px 16px'
+                        }}></div>
+                      </div>
+                      
+                      {/* Feature Icon */}
+                      <div className={`absolute inset-0 flex items-center justify-center ${
+                        feature.highlight 
+                          ? 'bg-red-500/20' 
+                          : 'bg-red-500/10'
+                      } group-hover:bg-red-500/30 transition-colors duration-500`}>
+                        <svg className="w-10 h-10 md:w-12 md:h-12 text-red-500 group-hover:text-red-400 transition-colors duration-500" fill="currentColor" viewBox="0 0 24 24">
+                          {feature.icon.props.children}
+                        </svg>
+                      </div>
+                      
+                      {/* Animated Elements */}
+                      <div className="absolute inset-0">
+                        {/* Corner Brackets */}
+                        <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-red-500/60 group-hover:border-red-400 transition-colors duration-500"></div>
+                        <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-red-500/60 group-hover:border-red-400 transition-colors duration-500"></div>
+                        <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-red-500/60 group-hover:border-red-400 transition-colors duration-500"></div>
+                        <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-red-500/60 group-hover:border-red-400 transition-colors duration-500"></div>
+                        
+                        {/* Scan Line */}
+                        <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60 animate-pulse"></div>
+                      </div>
+                      
+                      {/* Highlight Badge */}
+                      {feature.highlight && (
+                        <div className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="flex-1">
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-red-100 transition-colors duration-500">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-300 leading-relaxed mb-4 text-sm md:text-base group-hover:text-gray-200 transition-colors duration-500">
+                        {feature.description}
+                      </p>
+                      
+                      {/* Stats with Visual Enhancement */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse group-hover:bg-red-400"></div>
+                          <div className="text-red-500 font-bold text-base md:text-lg group-hover:text-red-400 transition-colors duration-500">
+                            {feature.stats}
+                          </div>
+                        </div>
+                        <div className="text-gray-500 text-sm md:text-base font-mono bg-gray-800/50 px-2 py-1 rounded-lg group-hover:bg-red-500/20 group-hover:text-red-300 transition-all duration-500">
+                          {String(index + 1).padStart(2, '0')}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 rounded-2xl bg-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                </div>
               ))}
-            </ScrollStack>
+            </div>
           </div>
-        </div>
+        </ContainerScroll>
 
         {/* Upcoming Features - Moving Bulletin Cards */}
         <div className="mb-20">

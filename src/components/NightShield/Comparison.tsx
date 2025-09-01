@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { MacbookScroll } from "@/components/ui/macbook-scroll";
 
@@ -15,9 +16,11 @@ export function MacbookScrollDemo() {
             <Badge className="h-10 w-10 -rotate-12 transform" />
           </a>
         }
-        src={`/images/Gemini_Generated_Image_vrl1twvrl1twvrl1-5480x3104.png`}
+        src={`/images/linear.webp`}
         showGradient={false}
       />
+      {/* CTA under the simulated Macbook demo */}
+    
     </div>
   );
 }
