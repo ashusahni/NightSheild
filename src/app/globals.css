@@ -257,6 +257,45 @@ section {
   100% { background-position: 0% 50%; }
 }
 
+/* Wave-style animated background — subtle, brand-correct red without banding */
+.wave-layer {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1400px 700px at 20% 60%, rgba(229, 18, 47, 0.35) 0%, rgba(122, 11, 25, 0.22) 36%, rgba(0, 0, 0, 0) 62%),
+    radial-gradient(1100px 600px at 80% 40%, rgba(229, 18, 47, 0.28) 0%, rgba(122, 11, 25, 0.18) 42%, rgba(0, 0, 0, 0) 66%),
+    radial-gradient(900px 500px at 50% 80%, rgba(229, 18, 47, 0.24) 0%, rgba(122, 11, 25, 0.14) 46%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(18px) saturate(1.05);
+  opacity: 0.42;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.wave-1 { animation: waveMove1 18s ease-in-out infinite; }
+.wave-2 { animation: waveMove2 24s ease-in-out infinite; opacity: 0.28; }
+.wave-3 { animation: waveMove3 30s ease-in-out infinite; opacity: 0.22; }
+
+@keyframes waveMove1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-5%, -3%, 0) scale(1.035); }
+}
+@keyframes waveMove2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(5%, 2%, 0) scale(1.03) rotate(0.6deg); }
+}
+@keyframes waveMove3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(0, -5%, 0) scale(1.045) rotate(-0.6deg); }
+}
+
+@media (max-width: 768px) {
+  .wave-layer {
+    opacity: 0.22;
+    filter: blur(28px) saturate(1);
+    animation-duration: 0s !important; /* disable heavy animation on mobile */
+  }
+}
+
 /* Grid texture - Optimized */
 .grid-texture {
   background-image: 

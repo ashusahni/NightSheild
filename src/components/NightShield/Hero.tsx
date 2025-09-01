@@ -37,17 +37,16 @@ const Hero = () => {
 
       <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
   <DarkVeil 
-    hueShift={0} // Red hue (0 degrees is red)
-    noiseIntensity={0.02} // Subtle noise for texture
-    scanlineIntensity={0.1} // Subtle scanlines
-    speed={0.3} // Slower animation for subtlety
-    scanlineFrequency={2.0} // Scanline frequency
-    warpAmount={0.02} // Subtle warping
+    hueShift={0}
+    noiseIntensity={0.01}
+    scanlineIntensity={0}
+    speed={0.3}
+    scanlineFrequency={0}
+    warpAmount={0.02}
     resolutionScale={1}
   />
 </div>
       {/* Background Effects */}
-      <div className="absolute inset-0 grid-texture opacity-10 md:opacity-20"></div>
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-black/50 to-black"></div>
       
       {/* Floating Elements - Hidden on mobile for performance */}

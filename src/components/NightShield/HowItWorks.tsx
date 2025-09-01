@@ -3,6 +3,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import TargetCursor from './TargetCursor';
+
 
 type TargetPoint = { x: number; y: number }
 

@@ -8,7 +8,7 @@ import Industries from '@/components/NightShield/Industries'
 import Contact from '@/components/NightShield/Contact'
 import CookieConsent from '@/components/NightShield/CookieConsent'
 import HowItWorks from '@/components/NightShield/HowItWorks'
-import Comparison from '@/components/NightShield/Comparison'
+import { MacbookScrollDemo } from '@/components/NightShield/Comparison'
 import Navbar from '@/components/Layout/Navbar'
 import Testimonials from '@/components/NightShield/Testimonials'
 
@@ -28,15 +28,20 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="bg-black text-white min-h-screen">
+      <div className="fixed inset-0 -z-10">
+        <div className="wave-layer wave-1"></div>
+        <div className="wave-layer wave-2"></div>
+        <div className="wave-layer wave-3"></div>
+      </div>
       <Navbar />
       <Hero />
       <HowItWorks />
       <Features />
       <WhoItsFor />
       {/* <Industries /> */}
-      <Comparison />
+      <MacbookScrollDemo />
       {/* <Pricing /> */}
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Contact />
       <CookieConsent />
     </main>
