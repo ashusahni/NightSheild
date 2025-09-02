@@ -564,6 +564,78 @@ section {
   50% { transform: scale(1.02) rotate(0.5deg); } /* Reduced scale and rotation */
 }
 
+/* Enhanced Glowing Effects for Coming Soon Cards */
+@keyframes coming-soon-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(229, 18, 47, 0.2),
+                0 0 40px rgba(229, 18, 47, 0.1),
+                0 0 60px rgba(229, 18, 47, 0.05);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(229, 18, 47, 0.4),
+                0 0 60px rgba(229, 18, 47, 0.2),
+                0 0 90px rgba(229, 18, 47, 0.1);
+  }
+}
+
+@keyframes neon-border-pulse {
+  0%, 100% { 
+    border-color: rgba(229, 18, 47, 0.4);
+    box-shadow: 0 0 10px rgba(229, 18, 47, 0.2);
+  }
+  50% { 
+    border-color: rgba(229, 18, 47, 0.8);
+    box-shadow: 0 0 20px rgba(229, 18, 47, 0.4);
+  }
+}
+
+@keyframes icon-glow {
+  0%, 100% { 
+    filter: drop-shadow(0 0 5px rgba(229, 18, 47, 0.3));
+  }
+  50% { 
+    filter: drop-shadow(0 0 15px rgba(229, 18, 47, 0.6));
+  }
+}
+
+/* Enhanced Coming Soon Card Styles */
+.coming-soon-card {
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow, border-color;
+}
+
+.coming-soon-card:hover {
+  animation: coming-soon-glow 2s ease-in-out infinite;
+}
+
+.coming-soon-card:hover .coming-soon-icon {
+  animation: icon-glow 1.5s ease-in-out infinite;
+}
+
+.coming-soon-card:hover .coming-soon-border {
+  animation: neon-border-pulse 2s ease-in-out infinite;
+}
+
+/* Enhanced particle effects */
+.bulletin-particle-enhanced {
+  filter: drop-shadow(0 0 8px rgba(229, 18, 47, 0.6));
+  will-change: transform, opacity;
+}
+
+/* Glow trail effect */
+.glow-trail {
+  background: radial-gradient(ellipse at center, rgba(229, 18, 47, 0.4) 0%, transparent 70%);
+  filter: blur(20px);
+  will-change: opacity, transform;
+}
+
+/* Corner glow effect */
+.corner-glow {
+  background: linear-gradient(45deg, transparent 30%, rgba(229, 18, 47, 0.6) 50%, transparent 70%);
+  will-change: opacity;
+}
+
 @keyframes fade-in-up {
   from {
     opacity: 0;
