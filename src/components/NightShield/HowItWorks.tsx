@@ -84,18 +84,30 @@ const HowItWorks = () => {
     if (!el || isMobile) return
 
     const onMove = (e: MouseEvent) => {
-      if (!cursorFollowing) return
+      // Only update target point if cursor following is enabled AND no feature is locked
+      if (!cursorFollowing || lockedIndex !== null) return
       const rect = el.getBoundingClientRect()
       const relX = ((e.clientX - rect.left) / rect.width) * 100
       const relY = ((e.clientY - rect.top) / rect.height) * 100
       setTargetPoint({ x: Math.max(2, Math.min(98, relX)), y: Math.max(2, Math.min(98, relY)) })
     }
 
-    const onEnter = () => setCursorFollowing(true)
+    const onEnter = () => {
+      // Only enable cursor following if no feature is currently locked
+      if (lockedIndex === null) {
+        setCursorFollowing(true)
+      }
+    }
+    
     const onLeave = () => {
+      // When leaving the image, if we have a locked feature, keep it locked
+      // If no feature is locked, reset to center
       if (lockedIndex !== null) {
         setCursorFollowing(false)
         setTargetPoint(features[lockedIndex].hotspot)
+      } else {
+        setCursorFollowing(false)
+        setTargetPoint({ x: 50, y: 50 })
       }
     }
 
@@ -146,7 +158,7 @@ const HowItWorks = () => {
 
               {/* Radar pulse */}
               <div
-                className="pointer-events-none absolute"
+                className="pointer-events-none absolute transition-all duration-300 ease-out"
                 style={{
                   left: `${targetPoint.x}%`,
                   top: `${targetPoint.y}%`,
@@ -154,28 +166,69 @@ const HowItWorks = () => {
                 }}
               >
                 <div className="relative">
-                  <div className="w-24 h-24 rounded-full border border-red-500/50 animate-ping" />
-                  <div className="w-16 h-16 rounded-full border border-red-500/60 absolute inset-0 m-auto" />
-                  <div className="w-10 h-10 rounded-full bg-red-500/10 border border-red-500/80" />
+                  <div className={`w-24 h-24 rounded-full border ${
+                    lockedIndex !== null 
+                      ? 'border-red-500 animate-pulse' 
+                      : 'border-red-500/50 animate-ping'
+                  }`} />
+                  <div className={`w-16 h-16 rounded-full border ${
+                    lockedIndex !== null 
+                      ? 'border-red-500/80' 
+                      : 'border-red-500/60'
+                  } absolute inset-0 m-auto`} />
+                  <div className={`w-10 h-10 rounded-full border ${
+                    lockedIndex !== null 
+                      ? 'bg-red-500/20 border-red-500' 
+                      : 'bg-red-500/10 border-red-500/80'
+                  }`} />
 
                   {/* Crosshair */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-px h-16 bg-red-500" />
-                    <div className="absolute w-16 h-px bg-red-500" />
+                    <div className={`w-px h-16 ${
+                      lockedIndex !== null ? 'bg-red-400' : 'bg-red-500'
+                    }`} />
+                    <div className={`absolute w-16 h-px ${
+                      lockedIndex !== null ? 'bg-red-400' : 'bg-red-500'
+                    }`} />
                   </div>
 
                   {/* Corner brackets */}
-                  <div className="absolute -top-3 -left-3 w-4 h-4 border-l-2 border-t-2 border-red-500" />
-                  <div className="absolute -top-3 -right-3 w-4 h-4 border-r-2 border-t-2 border-red-500" />
-                  <div className="absolute -bottom-3 -left-3 w-4 h-4 border-l-2 border-b-2 border-red-500" />
-                  <div className="absolute -bottom-3 -right-3 w-4 h-4 border-r-2 border-b-2 border-red-500" />
+                  <div className={`absolute -top-3 -left-3 w-4 h-4 border-l-2 border-t-2 ${
+                    lockedIndex !== null ? 'border-red-400' : 'border-red-500'
+                  }`} />
+                  <div className={`absolute -top-3 -right-3 w-4 h-4 border-r-2 border-t-2 ${
+                    lockedIndex !== null ? 'border-red-400' : 'border-red-500'
+                  }`} />
+                  <div className={`absolute -bottom-3 -left-3 w-4 h-4 border-l-2 border-b-2 ${
+                    lockedIndex !== null ? 'border-red-400' : 'border-red-500'
+                  }`} />
+                  <div className={`absolute -bottom-3 -right-3 w-4 h-4 border-r-2 border-b-2 ${
+                    lockedIndex !== null ? 'border-red-400' : 'border-red-500'
+                  }`} />
+                  
+                  {/* Status indicator */}
+                  <div className={`absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-2 h-2 rounded-full ${
+                    lockedIndex !== null 
+                      ? 'bg-red-400 animate-pulse' 
+                      : cursorFollowing 
+                        ? 'bg-yellow-400 animate-bounce' 
+                        : 'bg-gray-400'
+                  }`} />
                 </div>
               </div>
 
               {/* HUD overlay */}
               <div className="absolute top-0 left-0 right-0 h-8 bg-black/70 backdrop-blur-sm px-4 flex items-center justify-between text-xs font-mono">
                 <span className="text-red-500 font-bold">NS CAM 01</span>
-                <span className="text-gray-300">TARGET LOCK {lockedIndex !== null ? `#${features[lockedIndex].id}` : 'IDLE'}</span>
+                <span className="text-gray-300">
+                  {lockedIndex !== null ? (
+                    <span className="text-red-400">LOCKED #{features[lockedIndex].id}</span>
+                  ) : cursorFollowing ? (
+                    <span className="text-yellow-400">TRACKING</span>
+                  ) : (
+                    <span className="text-gray-400">IDLE</span>
+                  )}
+                </span>
               </div>
               <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
@@ -194,7 +247,10 @@ const HowItWorks = () => {
                   setCursorFollowing(false)
                 }}
                 onMouseLeave={() => {
-                  if (lockedIndex === null) setCursorFollowing(true)
+                  // Only re-enable cursor following if we're not currently locked to any feature
+                  if (lockedIndex === null) {
+                    setCursorFollowing(true)
+                  }
                 }}
                 className={`group relative rounded-lg border p-4 transition-all duration-300 cursor-pointer bg-card-bg/70 backdrop-blur-sm will-change-transform ${
                   lockedIndex === idx

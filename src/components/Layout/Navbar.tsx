@@ -4,16 +4,13 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useTheme } from 'next-themes'
-import { IconMenu2, IconX, IconSun, IconMoon, IconChevronDown } from '@tabler/icons-react'
+import { IconMenu2, IconX, IconChevronDown } from '@tabler/icons-react'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
-  const [scrollProgress, setScrollProgress] = useState(0)
-  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     setIsMounted(true)
@@ -22,11 +19,6 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
-      
-      // Calculate scroll progress
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight
-      const progress = (window.scrollY / totalHeight) * 100
-      setScrollProgress(Math.min(progress, 100))
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -52,8 +44,8 @@ const Navbar = () => {
     { name: 'About', href: '/about' },
     { name: 'Features', href: '#features' },
     { name: 'Pricing', href: '/pricing' },
-    { name: 'Venues', href: '/venues' },
-    { name: 'Contact', href: '#contact' },
+    // { name: 'Venues', href: '/venues' },
+    // { name: 'Contact', href: '#contact' },
   ]
 
   const featuresDropdown = [
@@ -76,9 +68,7 @@ const Navbar = () => {
             : 'bg-black/20 backdrop-blur-sm'
         }`}
       >
-        {/* Scroll Progress Bar */}
-        <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-red-500 to-red-400 transition-all duration-300" 
-             style={{ width: `${scrollProgress}%` }} />
+
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
@@ -176,20 +166,6 @@ const Navbar = () => {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="hidden lg:flex items-center space-x-4"
             >
-              {/* Theme Toggle */}
-              {isMounted && (
-                <button
-                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-200 group"
-                >
-                  {theme === 'dark' ? (
-                    <IconSun size={20} className="text-white group-hover:text-red-500 transition-colors duration-200" />
-                  ) : (
-                    <IconMoon size={20} className="text-white group-hover:text-red-500 transition-colors duration-200" />
-                  )}
-                </button>
-              )}
-
               {/* CTA Button */}
               <Link
                 href="#contact"
@@ -323,20 +299,6 @@ const Navbar = () => {
               <div className="p-6 border-t border-white/10">
                 <div className="flex items-center justify-between">
                   <span className="text-white/60 text-sm">© 2024 NightShield</span>
-                  
-                  {/* Mobile Theme Toggle */}
-                  {isMounted && (
-                    <button
-                      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                      className="p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10"
-                    >
-                      {theme === 'dark' ? (
-                        <IconSun size={20} className="text-white" />
-                      ) : (
-                        <IconMoon size={20} className="text-white" />
-                      )}
-                    </button>
-                  )}
                 </div>
               </div>
             </div>
