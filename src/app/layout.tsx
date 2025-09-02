@@ -1,6 +1,6 @@
 import './globals.css'
-import Footer from '@/components/Layout/Footer'
-import Navbar from '@/components/Layout/Navbar'
+import { Footer, Navbar } from '@/components/Layout'
+
 import { ThemeProvider } from 'next-themes'
 import Aoscompo from '@/utils/aos'
 
