@@ -1,16 +1,16 @@
 import React from 'react'
 import { Metadata } from 'next'
 import Hero from '@/components/NightShield/Hero'
-import Features from '@/components/NightShield/Features'
+import Featuress from '@/components/NightShield/Features'
 import WhoItsFor from '@/components/NightShield/WhoItsFor'
 import Industries from '@/components/NightShield/Industries'
 // import Pricing from '@/components/NightShield/Pricing' - This is not needed anymore
 import Contact from '@/components/NightShield/Contact'
 import CookieConsent from '@/components/NightShield/CookieConsent'
 import HowItWorks from '@/components/NightShield/HowItWorks'
-import { MacbookScrollDemo } from '@/components/NightShield/Comparison'
-
+import MacbookScrollDemo from '@/components/NightShield/Comparison'
 import Testimonials from '@/components/NightShield/Testimonials'
+import Features from '@/components/NightShield/Features'
 
 export const metadata: Metadata = {
   title: 'NightShield - AI Surveillance That Protects Venues Before It\'s Too Late',
@@ -34,16 +34,18 @@ export default function Home() {
         <div className="wave-layer wave-3"></div>
       </div>
       
-      <Hero />
-      <HowItWorks />
-      <Features />
-      <WhoItsFor />
-      {/* <Industries /> */}
-      <MacbookScrollDemo />
-      {/* <Pricing /> */}
-      {/* <Testimonials /> */}
-      <Contact />
-      <CookieConsent />
+      <div className="pt-20">
+        <Hero />
+        <HowItWorks />
+        <Featuress />
+        <WhoItsFor />
+        <MacbookScrollDemo />
+        {/* <Industries /> */}
+        {/* <Pricing /> */}
+        {/* <Testimonials /> */}
+        <Contact />
+        <CookieConsent />
+      </div>
     </main>
   )
 }

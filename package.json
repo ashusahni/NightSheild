@@ -15,11 +15,14 @@
     "@tabler/icons-react": "^3.34.1",
     "aos": "^2.3.4",
     "axios": "^1.8.4",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "framer-motion": "^12.23.12",
     "gray-matter": "^4.0.3",
     "gsap": "^3.13.0",
     "lenis": "^1.3.10",
+    "lucide-react": "^0.542.0",
     "motion": "^12.23.12",
     "next": "15.2.4",
     "next-auth": "^4.24.11",
@@ -48,6 +51,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
     "tailwindcss": "^4",
+    "tw-animate-css": "^1.3.8",
     "typescript": "^5.9.2"
   }
 }

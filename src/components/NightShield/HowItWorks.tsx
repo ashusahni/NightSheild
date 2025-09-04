@@ -43,6 +43,28 @@ const HowItWorks = () => {
     },
   ]), [])
 
+  // Add image gallery data
+  const galleryImages = useMemo(() => [
+    {
+      id: 1,
+      src: '/images/Gemini_Generated_Image_vrl1twvrl1twvrl1.png',
+      alt: 'NightShield Target View',
+      title: 'Main Security View'
+    },
+    {
+      id: 2,
+      src: '/images/linear.webp',
+      alt: 'NightShield Linear View',
+      title: 'Linear Detection'
+    },
+    {
+      id: 3,
+      src: '/images/logo/COVER IMAGE.jpeg',
+      alt: 'NightShield Cover',
+      title: 'System Overview'
+    }
+  ], [])
+
   const containerRef = useRef<HTMLDivElement | null>(null)
   const stickyRef = useRef<HTMLDivElement | null>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -50,6 +72,7 @@ const HowItWorks = () => {
   const [cursorFollowing, setCursorFollowing] = useState<boolean>(true)
   const [lockedIndex, setLockedIndex] = useState<number | null>(null)
   const [targetPoint, setTargetPoint] = useState<TargetPoint>({ x: 50, y: 50 })
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0)
   
   // Disable auto-selection of feature cards on scroll
   const enableAutoSelectOnScroll = false
@@ -137,152 +160,152 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        <div ref={containerRef} className="grid lg:grid-cols-5 gap-6 items-start">
+        <div ref={containerRef} className="grid lg:grid-cols-12 gap-6 items-start">
           {/* Sticky Target-Lock Visual */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-7">
             <div
               ref={stickyRef}
               className="howitworks-cursor-target md:cursor-none aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm sticky top-24"
             >
              
               <Image
-                src="/images/Gemini_Generated_Image_vrl1twvrl1twvrl1.png"
-                alt="NightShield Target View"
+                src={galleryImages[selectedImageIndex].src}
+                alt={galleryImages[selectedImageIndex].alt}
                 fill
-                className="object-cover opacity-80"
+                className="object-cover opacity-90"
                 priority
               />
     
               {/* Dim vignette */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20" />
+            </div>
 
-              {/* Radar pulse */}
-              <div
-                className="pointer-events-none absolute transition-all duration-300 ease-out"
-                style={{
-                  left: `${targetPoint.x}%`,
-                  top: `${targetPoint.y}%`,
-                  transform: 'translate(-50%, -50%)',
-                }}
-              >
-                <div className="relative">
-                  <div className={`w-24 h-24 rounded-full border ${
-                    lockedIndex !== null 
-                      ? 'border-red-500 animate-pulse' 
-                      : 'border-red-500/50 animate-ping'
-                  }`} />
-                  <div className={`w-16 h-16 rounded-full border ${
-                    lockedIndex !== null 
-                      ? 'border-red-500/80' 
-                      : 'border-red-500/60'
-                  } absolute inset-0 m-auto`} />
-                  <div className={`w-10 h-10 rounded-full border ${
-                    lockedIndex !== null 
-                      ? 'bg-red-500/20 border-red-500' 
-                      : 'bg-red-500/10 border-red-500/80'
-                  }`} />
-
-                  {/* Crosshair */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className={`w-px h-16 ${
-                      lockedIndex !== null ? 'bg-red-400' : 'bg-red-500'
-                    }`} />
-                    <div className={`absolute w-16 h-px ${
-                      lockedIndex !== null ? 'bg-red-400' : 'bg-red-500'
-                    }`} />
+            {/* Thumbnail Gallery */}
+            <div className="mt-4">
+              <div className="flex gap-4 justify-between">
+                {galleryImages.map((image, idx) => (
+                  <div
+                    key={image.id}
+                    onClick={() => setSelectedImageIndex(idx)}
+                    className={`relative cursor-pointer transition-all duration-300 group flex-1 ${
+                      selectedImageIndex === idx 
+                        ? 'scale-[1.02]' 
+                        : 'hover:scale-[1.02]'
+                    }`}
+                  >
+                    <div className={`w-full h-24 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                      selectedImageIndex === idx
+                        ? 'border-red-500'
+                        : 'border-red-500/30 hover:border-red-500/50'
+                    }`}>
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        className="object-cover"
+                      />
+                      {/* Overlay */}
+                      <div className={`absolute inset-0 transition-all duration-300 ${
+                        selectedImageIndex === idx
+                          ? 'bg-red-500/20'
+                          : 'bg-black/40 group-hover:bg-black/20'
+                      }`} />
+                    </div>
+                    {/* Image title */}
+                    <div className="mt-2 text-center">
+                      <p className={`text-xs font-medium transition-colors duration-300 ${
+                        selectedImageIndex === idx
+                          ? 'text-red-400'
+                          : 'text-gray-300 group-hover:text-white'
+                      }`}>
+                        {image.title}
+                      </p>
+                    </div>
                   </div>
-
-                  {/* Corner brackets */}
-                  <div className={`absolute -top-3 -left-3 w-4 h-4 border-l-2 border-t-2 ${
-                    lockedIndex !== null ? 'border-red-400' : 'border-red-500'
-                  }`} />
-                  <div className={`absolute -top-3 -right-3 w-4 h-4 border-r-2 border-t-2 ${
-                    lockedIndex !== null ? 'border-red-400' : 'border-red-500'
-                  }`} />
-                  <div className={`absolute -bottom-3 -left-3 w-4 h-4 border-l-2 border-b-2 ${
-                    lockedIndex !== null ? 'border-red-400' : 'border-red-500'
-                  }`} />
-                  <div className={`absolute -bottom-3 -right-3 w-4 h-4 border-r-2 border-b-2 ${
-                    lockedIndex !== null ? 'border-red-400' : 'border-red-500'
-                  }`} />
-                  
-                  {/* Status indicator */}
-                  <div className={`absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-2 h-2 rounded-full ${
-                    lockedIndex !== null 
-                      ? 'bg-red-400 animate-pulse' 
-                      : cursorFollowing 
-                        ? 'bg-yellow-400 animate-bounce' 
-                        : 'bg-gray-400'
-                  }`} />
-                </div>
+                ))}
               </div>
-
-              {/* HUD overlay */}
-              <div className="absolute top-0 left-0 right-0 h-8 bg-black/70 backdrop-blur-sm px-4 flex items-center justify-between text-xs font-mono">
-                <span className="text-red-500 font-bold">NS CAM 01</span>
-                <span className="text-gray-300">
-                  {lockedIndex !== null ? (
-                    <span className="text-red-400">LOCKED #{features[lockedIndex].id}</span>
-                  ) : cursorFollowing ? (
-                    <span className="text-yellow-400">TRACKING</span>
-                  ) : (
-                    <span className="text-gray-400">IDLE</span>
-                  )}
-                </span>
-              </div>
-              <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
           </div>
 
           {/* Feature List */}
-          <div className="lg:col-span-2 space-y-4">
-            {features.map((f, idx) => (
-              <div
-                key={f.id}
-                ref={(el) => { cardRefs.current[idx] = el }}
-                data-index={idx}
-                onMouseEnter={() => {
-                  setLockedIndex(idx)
-                  setTargetPoint(f.hotspot)
-                  setCursorFollowing(false)
-                }}
-                onMouseLeave={() => {
-                  // Only re-enable cursor following if we're not currently locked to any feature
-                  if (lockedIndex === null) {
-                    setCursorFollowing(true)
-                  }
-                }}
-                className={`group relative rounded-lg border p-4 transition-all duration-300 cursor-pointer bg-card-bg/70 backdrop-blur-sm will-change-transform ${
-                  lockedIndex === idx
-                    ? 'border-red-500/60 shadow-[0_0_0_2px_rgba(229,18,47,0.25)] translate-y-[-2px]'
-                    : 'border-red-500/20 hover:border-red-500/40 hover:translate-y-[-2px]'
-                }`}
-              >
-                <div className="flex items-start gap-3">
-                  <div className="relative w-12 h-12 shrink-0 rounded-md overflow-hidden border border-red-500/30 bg-black/60 group-hover:rotate-3 group-hover:scale-[1.03] transition-transform duration-300">
-                    <Image src={f.thumb} alt={f.title} fill className="object-contain p-2" />
-                    <div className="absolute inset-0 ring-1 ring-inset ring-red-500/20 rounded-md" />
-                    <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'radial-gradient(60px 60px at 50% 50%, rgba(229,18,47,0.15), transparent 60%)' }} />
+          <div className="lg:col-span-5">
+            <div className="relative">
+              {/* Vertical timeline line */}
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-500/60 via-red-500/40 to-red-500/20" />
+              
+              {/* Workflow steps */}
+              <div className="space-y-6">
+                {features.map((f, idx) => (
+                  <div
+                    key={f.id}
+                    ref={(el) => { cardRefs.current[idx] = el }}
+                    data-index={idx}
+                    onMouseEnter={() => {
+                      setLockedIndex(idx)
+                      setTargetPoint(f.hotspot)
+                      setCursorFollowing(false)
+                    }}
+                    onMouseLeave={() => {
+                      if (lockedIndex === null) {
+                        setCursorFollowing(true)
+                      }
+                    }}
+                    className={`group relative transition-all duration-300 cursor-pointer will-change-transform ${
+                      lockedIndex === idx
+                        ? 'scale-[1.02]'
+                        : 'hover:scale-[1.01]'
+                    }`}
+                  >
+                    {/* Step number circle */}
+                    <div className={`absolute left-0 top-0 w-14 h-14 rounded-full border-2 flex items-center justify-center text-base font-bold transition-all duration-300 ${
+                      lockedIndex === idx
+                        ? 'border-red-500 bg-red-500/20 text-red-400'
+                        : 'border-red-500/40 bg-black/80 text-red-500/80 group-hover:border-red-500/60 group-hover:text-red-400'
+                    }`}>
+                      {idx + 1}
+                    </div>
+
+                    {/* Connecting arrow (except for last item) */}
+                    {idx < features.length - 1 && (
+                      <div className={`absolute left-7 top-14 w-0.5 h-6 transition-all duration-300 ${
+                        lockedIndex === idx ? 'bg-red-400' : 'bg-red-500/40'
+                      }`}>
+                        <div className={`absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[5px] border-l-transparent border-r-transparent transition-all duration-300 ${
+                          lockedIndex === idx ? 'border-t-red-400' : 'border-t-red-500/40'
+                        }`} />
+                      </div>
+                    )}
+
+                    {/* Feature card */}
+                    <div className={`ml-20 rounded-lg border p-5 transition-all duration-300 bg-card-bg/95 ${
+                      lockedIndex === idx
+                        ? 'border-red-500/60'
+                        : 'border-red-500/20 hover:border-red-500/40'
+                    }`}>
+                      <div className="flex items-start gap-4">
+                        <div className="relative w-12 h-12 shrink-0 rounded-md overflow-hidden border border-red-500/30 bg-black/90 group-hover:rotate-3 group-hover:scale-[1.03] transition-transform duration-300">
+                          <Image src={f.thumb} alt={f.title} fill className="object-contain p-2" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-red-400 transition-colors">{f.title}</h3>
+                          <p className="text-gray-100 leading-relaxed text-sm">{f.description}</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-0.5 group-hover:text-red-400 transition-colors">{f.title}</h3>
-                    <p className="text-gray-300 leading-relaxed text-sm">{f.description}</p>
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
 
             {/* CTA */}
             <div className="mt-10">
-              <div className="bg-card-bg border border-red-500/20 rounded-2xl p-6">
-                <h3 className="text-2xl font-bold mb-3">See Target Lock Live</h3>
-                <p className="text-gray-300 mb-5">Get a personalized walkthrough for your venue layout and risk profile.</p>
+              <div className="bg-card-bg/95 border border-red-500/20 rounded-2xl p-6 text-center">
                 <button
                   onClick={() => {
                     const element = document.querySelector('#contact')
                     if (element) element.scrollIntoView({ behavior: 'smooth' })
                   }}
-                  className="btn-primary px-6 py-3"
+                  className="btn-primary px-8 py-4 text-lg font-semibold"
                 >
                   Schedule Live Demo
                 </button>

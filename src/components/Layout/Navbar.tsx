@@ -4,12 +4,11 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { IconMenu2, IconX, IconChevronDown } from '@tabler/icons-react'
+import { IconMenu2, IconX } from '@tabler/icons-react'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -35,24 +34,16 @@ const Navbar = () => {
 
   const closeMenu = () => {
     setIsOpen(false)
-    setIsDropdownOpen(false)
     document.body.style.overflow = 'unset'
   }
 
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Features', href: '#features' },
+    { name: 'Features', href: '/features' },
     { name: 'Pricing', href: '/pricing' },
     // { name: 'Venues', href: '/venues' },
     // { name: 'Contact', href: '#contact' },
-  ]
-
-  const featuresDropdown = [
-    { name: 'AI Surveillance', href: '#ai-surveillance' },
-    { name: 'Real-time Monitoring', href: '#real-time' },
-    { name: 'Analytics', href: '#analytics' },
-    { name: 'Integration', href: '#integration' },
   ]
 
   return (
@@ -108,53 +99,13 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
                 >
-                  {item.name === 'Features' ? (
-                    <div className="relative">
-                      <button
-                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        className="flex items-center space-x-1 text-white/80 hover:text-white transition-colors duration-200 group"
-                      >
-                        <span>{item.name}</span>
-                        <IconChevronDown 
-                          size={16} 
-                          className={`transition-transform duration-200 ${
-                            isDropdownOpen ? 'rotate-180' : ''
-                          }`}
-                        />
-                      </button>
-                      
-                      <AnimatePresence>
-                        {isDropdownOpen && (
-                          <motion.div
-                            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                            transition={{ duration: 0.2 }}
-                            className="absolute top-full left-0 mt-2 w-48 bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden"
-                          >
-                            {featuresDropdown.map((feature) => (
-                              <Link
-                                key={feature.name}
-                                href={feature.href}
-                                className="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-all duration-200 border-b border-white/5 last:border-b-0"
-                                onClick={() => setIsDropdownOpen(false)}
-                              >
-                                {feature.name}
-                              </Link>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className="text-white/80 hover:text-white transition-all duration-200 relative group"
-                    >
-                      {item.name}
-                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-red-400 transition-all duration-300 group-hover:w-full rounded-full"></span>
-                    </Link>
-                  )}
+                  <Link
+                    href={item.href}
+                    className="text-white/80 hover:text-white transition-all duration-200 relative group"
+                  >
+                    {item.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-red-400 transition-all duration-300 group-hover:w-full rounded-full"></span>
+                  </Link>
                 </motion.div>
               ))}
             </motion.div>
@@ -231,55 +182,14 @@ const Navbar = () => {
               <div className="flex-1 px-6 py-8">
                 <div className="space-y-6">
                   {navItems.map((item) => (
-                    <div key={item.name}>
-                      {item.name === 'Features' ? (
-                        <div>
-                          <button
-                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                            className="flex items-center justify-between w-full text-left text-lg text-white/80 hover:text-white transition-colors duration-200"
-                          >
-                            <span>{item.name}</span>
-                            <IconChevronDown 
-                              size={20} 
-                              className={`transition-transform duration-200 ${
-                                isDropdownOpen ? 'rotate-180' : ''
-                              }`}
-                            />
-                          </button>
-                          
-                          <AnimatePresence>
-                            {isDropdownOpen && (
-                              <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: 'auto' }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.3 }}
-                                className="mt-4 ml-4 space-y-3 overflow-hidden"
-                              >
-                                {featuresDropdown.map((feature) => (
-                                  <Link
-                                    key={feature.name}
-                                    href={feature.href}
-                                    className="block text-white/60 hover:text-white transition-colors duration-200"
-                                    onClick={closeMenu}
-                                  >
-                                    {feature.name}
-                                  </Link>
-                                ))}
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </div>
-                      ) : (
-                        <Link
-                          href={item.href}
-                          className="block text-lg text-white/80 hover:text-white transition-colors duration-200"
-                          onClick={closeMenu}
-                        >
-                          {item.name}
-                        </Link>
-                      )}
-                    </div>
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="block text-lg text-white/80 hover:text-white transition-colors duration-200"
+                      onClick={closeMenu}
+                    >
+                      {item.name}
+                    </Link>
                   ))}
                 </div>
 

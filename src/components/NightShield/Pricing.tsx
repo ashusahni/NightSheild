@@ -6,6 +6,7 @@ import Image from 'next/image'
 
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = useState('monthly')
+  const [activeFAQ, setActiveFAQ] = useState<number | null>(null)
 
   const plans = [
     {
@@ -19,7 +20,10 @@ const Pricing = () => {
         "7-day cloud storage",
         "Email support"
       ],
-      popular: false
+      popular: false,
+      bestFor: "Small bars, cafes, and intimate venues",
+      setupTime: "1-2 days",
+      uptime: "99.5%"
     },
     {
       name: "Professional",
@@ -34,7 +38,10 @@ const Pricing = () => {
         "Custom integrations",
         "Analytics dashboard"
       ],
-      popular: true
+      popular: true,
+      bestFor: "Medium clubs, restaurants, and event spaces",
+      setupTime: "2-3 days",
+      uptime: "99.8%"
     },
     {
       name: "Enterprise",
@@ -51,7 +58,84 @@ const Pricing = () => {
         "Multi-venue management",
         "Dedicated account manager"
       ],
-      popular: false
+      popular: false,
+      bestFor: "Large venues, chains, and multi-location businesses",
+      setupTime: "3-5 days",
+      uptime: "99.9%"
+    }
+  ]
+
+  const faqs = [
+    {
+      question: "Can I upgrade or downgrade my plan at any time?",
+      answer: "Yes, you can change your plan at any time. Upgrades take effect immediately, while downgrades take effect at the next billing cycle. No setup fees apply."
+    },
+    {
+      question: "What happens if I exceed my camera limit?",
+      answer: "We'll notify you when you're approaching your limit. You can either upgrade your plan or purchase additional camera licenses for $50/month per camera."
+    },
+    {
+      question: "Is there a long-term contract required?",
+      answer: "No long-term contracts required. All plans are month-to-month or yearly with a 20% discount. You can cancel anytime with 30 days notice."
+    },
+    {
+      question: "What's included in the setup service?",
+      answer: "Our professional setup includes camera installation, system configuration, staff training, and a 30-day follow-up support period. All hardware is included."
+    },
+    {
+      question: "Do you offer volume discounts for multiple venues?",
+      answer: "Yes! We offer significant discounts for businesses with 3+ locations. Contact our sales team for custom enterprise pricing and volume discounts."
+    },
+    {
+      question: "What if I'm not satisfied with the service?",
+      answer: "We offer a 30-day money-back guarantee. If you're not completely satisfied, we'll refund your payment and help you transition to another solution."
+    }
+  ]
+
+  const testimonials = [
+    {
+      name: "Sarah Chen",
+      role: "Owner, The Blue Room",
+      venue: "Nightclub",
+      plan: "Professional",
+      quote: "NightShield's Professional plan was perfect for our venue. The advanced AI detection caught several incidents we would have missed, and the 30-day storage gives us peace of mind."
+    },
+    {
+      name: "Marcus Rodriguez",
+      role: "Security Manager",
+      venue: "Multi-venue Entertainment Group",
+      plan: "Enterprise",
+      quote: "Managing security across 5 venues used to be a nightmare. NightShield's Enterprise plan with multi-venue management has streamlined everything. ROI was achieved in just 3 months."
+    },
+    {
+      name: "Emma Thompson",
+      role: "Manager",
+      venue: "The Corner Pub",
+      plan: "Starter",
+      quote: "Perfect for our small pub. Easy to use, reliable, and the mobile alerts keep us informed even when we're not on site. Great value for the price."
+    }
+  ]
+
+  const additionalBenefits = [
+    {
+      icon: "🛡️",
+      title: "Zero False Alarms",
+      description: "Our AI is trained on millions of real incidents, reducing false alarms by 95% compared to traditional systems."
+    },
+    {
+      icon: "⚡",
+      title: "Instant Response",
+      description: "Get notified within 3 seconds of any incident, allowing for immediate response and damage control."
+    },
+    {
+      icon: "📱",
+      title: "Mobile-First Design",
+      description: "Manage your security from anywhere with our intuitive mobile app available on iOS and Android."
+    },
+    {
+      icon: "🔒",
+      title: "Bank-Level Security",
+      description: "All data is encrypted with AES-256 encryption and stored in SOC 2 Type II certified data centers."
     }
   ]
 
@@ -77,7 +161,7 @@ const Pricing = () => {
             </h2>
           </div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Choose the perfect plan for your venue size and security needs
+            Choose the perfect plan for your venue size and security needs. All plans include professional installation, 24/7 support, and our industry-leading AI technology.
           </p>
 
           {/* Billing Toggle */}
@@ -100,7 +184,7 @@ const Pricing = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
           {plans.map((plan, index) => (
             <div
               key={index}
@@ -123,7 +207,8 @@ const Pricing = () => {
                 {/* Plan Header */}
                 <div className="text-center mb-8">
                   <h3 className="text-2xl font-bold mb-2 text-white">{plan.name}</h3>
-                  <p className="text-gray-300 mb-6">{plan.description}</p>
+                  <p className="text-gray-300 mb-4">{plan.description}</p>
+                  <p className="text-sm text-gray-400 mb-6">{plan.bestFor}</p>
                   
                   {/* Price */}
                   <div className="mb-6">
@@ -131,6 +216,18 @@ const Pricing = () => {
                       ${plan.price[billingCycle as keyof typeof plan.price]}
                     </span>
                     <span className="text-gray-400">/month</span>
+                  </div>
+
+                  {/* Plan Details */}
+                  <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
+                    <div className="text-center">
+                      <div className="text-red-500 font-semibold">Setup</div>
+                      <div className="text-gray-400">{plan.setupTime}</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-red-500 font-semibold">Uptime</div>
+                      <div className="text-gray-400">{plan.uptime}</div>
+                    </div>
                   </div>
 
                   {/* CTA Button */}
@@ -168,17 +265,89 @@ const Pricing = () => {
           ))}
         </div>
 
+        {/* Additional Benefits */}
+        <div className="mb-20">
+          <h3 className="text-3xl font-bold text-center mb-12 text-white">
+            Why Choose <span className="text-red-500">NightShield</span>?
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {additionalBenefits.map((benefit, index) => (
+              <div key={index} className="text-center">
+                <div className="text-4xl mb-4">{benefit.icon}</div>
+                <h4 className="text-xl font-semibold mb-3 text-white">{benefit.title}</h4>
+                <p className="text-gray-300 text-sm">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Customer Testimonials */}
+        <div className="mb-20">
+          <h3 className="text-3xl font-bold text-center mb-12 text-white">
+            What Our <span className="text-red-500">Customers</span> Say
+          </h3>
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="bg-card-bg border border-red-500/20 rounded-xl p-6">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center text-red-500 font-bold text-lg mr-4">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-white">{testimonial.name}</div>
+                    <div className="text-sm text-gray-400">{testimonial.role}</div>
+                    <div className="text-xs text-red-500">{testimonial.venue} • {testimonial.plan}</div>
+                  </div>
+                </div>
+                <p className="text-gray-300 text-sm italic">"{testimonial.quote}"</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mb-20">
+          <h3 className="text-3xl font-bold text-center mb-12 text-white">
+            Frequently Asked <span className="text-red-500">Questions</span>
+          </h3>
+          <div className="max-w-4xl mx-auto space-y-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className="bg-card-bg border border-red-500/20 rounded-xl overflow-hidden">
+                <button
+                  onClick={() => setActiveFAQ(activeFAQ === index ? null : index)}
+                  className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-red-500/5 transition-colors"
+                >
+                  <span className="font-semibold text-white">{faq.question}</span>
+                  <svg
+                    className={`w-5 h-5 text-red-500 transition-transform ${activeFAQ === index ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {activeFAQ === index && (
+                  <div className="px-6 pb-4">
+                    <p className="text-gray-300">{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Additional Info */}
-        <div className="mt-16 text-center">
+        <div className="text-center">
           <div className="bg-card-bg border border-red-500/20 rounded-2xl p-8 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold mb-4">
               Need a Custom Solution?
             </h3>
             <p className="text-gray-300 mb-6">
               We offer custom pricing for enterprise clients and special requirements. 
-              Contact us for a personalized quote.
+              Contact us for a personalized quote and dedicated support.
             </p>
-            <div className="grid md:grid-cols-3 gap-6 text-sm">
+            <div className="grid md:grid-cols-4 gap-6 text-sm mb-8">
               <div className="text-center">
                 <div className="text-red-500 font-semibold mb-2">Free Setup</div>
                 <div className="text-gray-400">Professional installation included</div>
@@ -191,7 +360,20 @@ const Pricing = () => {
                 <div className="text-red-500 font-semibold mb-2">24/7 Support</div>
                 <div className="text-gray-400">Always here when you need us</div>
               </div>
+              <div className="text-center">
+                <div className="text-red-500 font-semibold mb-2">Money-Back Guarantee</div>
+                <div className="text-gray-400">30-day satisfaction guarantee</div>
+              </div>
             </div>
+            <button
+              onClick={() => {
+                const element = document.querySelector('#contact')
+                if (element) element.scrollIntoView({ behavior: 'smooth' })
+              }}
+              className="bg-red-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-600 transition-colors"
+            >
+              Get Custom Quote
+            </button>
           </div>
         </div>
       </div>

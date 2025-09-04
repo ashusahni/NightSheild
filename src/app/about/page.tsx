@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { IconShieldLock, IconTrendingUp, IconUsers, IconEye, IconRocket, IconBuildingArch } from '@tabler/icons-react';
+import { IconShieldLock, IconTrendingUp, IconUsers, IconEye, IconRocket, IconBuildingArch, IconBrain, IconAward, IconHeart, IconTarget, IconCheck, IconStar, IconGlobe, IconShieldCheck } from '@tabler/icons-react';
 import CountUp from 'react-countup';
 
 const AboutPage = () => {
@@ -45,6 +45,78 @@ const AboutPage = () => {
     { value: 99.9, label: 'Detection Accuracy', suffix: '%', decimals: 1 },
   ];
 
+  const values = [
+    {
+      icon: <IconShieldCheck size={48} className="text-red-500" />,
+      title: 'Uncompromising Security',
+      description: 'We believe that safety is not a luxury but a fundamental right. Every decision we make is guided by the principle of protecting what matters most.'
+    },
+    {
+      icon: <IconBrain size={48} className="text-red-500" />,
+      title: 'Innovation First',
+      description: 'We continuously push the boundaries of what\'s possible, leveraging cutting-edge AI to stay ahead of evolving threats.'
+    },
+    {
+      icon: <IconHeart size={48} className="text-red-500" />,
+      title: 'Human-Centric Design',
+      description: 'Technology serves people, not the other way around. We design solutions that empower security personnel and venue operators.'
+    },
+    {
+      icon: <IconGlobe size={48} className="text-red-500" />,
+      title: 'Global Impact',
+      description: 'We\'re committed to making the world safer, one venue at a time, regardless of size or location.'
+    }
+  ];
+
+  const technologies = [
+    {
+      name: 'Advanced AI Detection',
+      description: 'Our proprietary algorithms can identify potential threats in real-time with 99.9% accuracy, even in challenging lighting conditions.',
+      features: ['Behavioral Analysis', 'Pattern Recognition', 'Predictive Modeling']
+    },
+    {
+      name: 'Edge Computing',
+      description: 'Processing happens locally for instant response times, ensuring no delay between threat detection and alert generation.',
+      features: ['Real-time Processing', 'Low Latency', 'Offline Capability']
+    },
+    {
+      name: 'Cloud Integration',
+      description: 'Seamless cloud connectivity for remote monitoring, analytics, and system updates without compromising security.',
+      features: ['Remote Access', 'Data Analytics', 'Over-the-air Updates']
+    }
+  ];
+
+  const customerStories = [
+    {
+      venue: 'The Grand Plaza Hotel',
+      industry: 'Hospitality',
+      challenge: 'Managing security across 500+ rooms and multiple event spaces',
+      solution: 'Implemented NightShield across all areas with centralized monitoring',
+      result: 'Reduced security incidents by 85% and improved guest satisfaction scores'
+    },
+    {
+      venue: 'Metro Convention Center',
+      industry: 'Events & Conferences',
+      challenge: 'Crowd control and threat detection during large-scale events',
+      solution: 'Deployed AI-powered crowd analysis and threat detection systems',
+      result: 'Successfully managed events with 50,000+ attendees with zero security breaches'
+    },
+    {
+      venue: 'Downtown Shopping Mall',
+      industry: 'Retail',
+      challenge: 'Preventing theft and ensuring customer safety in a high-traffic environment',
+      solution: 'Integrated NightShield with existing security infrastructure',
+      result: 'Decreased theft incidents by 70% and improved emergency response times'
+    }
+  ];
+
+  const awards = [
+    { year: '2024', title: 'Best AI Security Solution', organization: 'Security Innovation Awards' },
+    { year: '2024', title: 'Startup of the Year', organization: 'TechCrunch Disrupt' },
+    { year: '2023', title: 'Excellence in Computer Vision', organization: 'AI Research Institute' },
+    { year: '2023', title: 'Most Innovative Security Product', organization: 'International Security Expo' }
+  ];
+
   return (
     <div className="bg-black text-white min-h-screen">
       <div className="pt-24 md:pt-32">
@@ -65,9 +137,30 @@ const AboutPage = () => {
           </div>
         </section>
 
+        {/* Mission & Vision Section */}
+       
+
+        {/* Values Section */}
+        <section className="py-20 bg-card-bg px-4">
+          <div className="container mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              Our <span className="text-red-500">Core Values</span>
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {values.map((value, index) => (
+                <div key={index} className="text-center">
+                  <div className="mb-4">{value.icon}</div>
+                  <h3 className="text-xl font-bold mb-3">{value.title}</h3>
+                  <p className="text-gray-400">{value.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Impact Section */}
-        <section className="py-20 bg-card-bg">
-          <div className="container mx-auto px-4">
+        <section className="py-20 px-4">
+          <div className="container mx-auto">
             <div className="grid md:grid-cols-3 gap-8 text-center">
               {stats.map((stat) => (
                 <div key={stat.label}>
@@ -81,6 +174,35 @@ const AboutPage = () => {
             </div>
           </div>
         </section>
+
+        {/* Technology Section */}
+        <section className="py-20 bg-card-bg px-4">
+          <div className="container mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              Cutting-Edge <span className="text-red-500">Technology</span>
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {technologies.map((tech, index) => (
+                <div key={index} className="bg-black p-6 rounded-lg">
+                  <h3 className="text-xl font-bold mb-3 text-red-500">{tech.name}</h3>
+                  <p className="text-gray-300 mb-4">{tech.description}</p>
+                  <ul className="space-y-2">
+                    {tech.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center space-x-2">
+                        <IconStar size={16} className="text-red-500" />
+                        <span className="text-sm text-gray-400">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        
+
+        
 
         {/* Timeline Section */}
         <section className="py-20 px-4">
@@ -124,6 +246,27 @@ const AboutPage = () => {
                   <p className="text-gray-400 text-sm">{member.bio}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Call to Action Section */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Ready to <span className="text-red-500">Transform</span> Your Security?
+            </h2>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
+              Join hundreds of venues worldwide that have already upgraded their security with NightShield. 
+              Let's discuss how we can protect what matters most to you.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300">
+                Get Started Today
+              </button>
+              <button className="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300">
+                Schedule Demo
+              </button>
             </div>
           </div>
         </section>

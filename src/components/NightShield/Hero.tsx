@@ -10,6 +10,7 @@ import { useCounter } from '../../hooks/useCounter'
 
 
 
+
 const Hero = () => {
 
 
@@ -31,7 +32,9 @@ const Hero = () => {
 
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden aurora-bg">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden aurora-bg" style={{
+      boxShadow: 'inset 0 0 100px rgba(139, 0, 0, 0.1)'
+    }}>
 
 
 
@@ -46,13 +49,14 @@ const Hero = () => {
     resolutionScale={1}
   />
 </div>
-      {/* Background Effects */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-black/50 to-black"></div>
+      {/* Background Effects - Enhanced Red Theme */}
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-red-900/20 to-black"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-red-900/10 via-transparent to-red-900/10"></div>
       
-      {/* Floating Elements - Hidden on mobile for performance */}
-      <div className="hidden md:block absolute top-20 left-10 w-20 h-20 bg-red-500/10 rounded-full blur-xl animate-pulse"></div>
-      <div className="hidden md:block absolute bottom-20 right-10 w-32 h-32 bg-red-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
-      <div className="hidden md:block absolute top-1/2 left-1/4 w-16 h-16 bg-red-500/15 rounded-full blur-lg animate-pulse delay-500"></div>
+      {/* Floating Elements - Enhanced Red Theme */}
+      <div className="hidden md:block absolute top-20 left-10 w-20 h-20 bg-red-600/20 rounded-full blur-xl animate-pulse"></div>
+      <div className="hidden md:block absolute bottom-20 right-10 w-32 h-32 bg-red-700/15 rounded-full blur-2xl animate-pulse delay-1000"></div>
+      <div className="hidden md:block absolute top-1/2 left-1/4 w-16 h-16 bg-red-600/25 rounded-full blur-lg animate-pulse delay-500"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-5 gap-12 items-center">
@@ -70,18 +74,13 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="flex justify-center lg:justify-start mb-8"
             >
-              <div className="flex items-center space-x-3">
-                <Image 
-                  src="/images/logo/LOGO TRANSPARENT.png" 
-                  alt="NightShield Logo" 
-                  width={64} 
-                  height={64}
-                  className="w-16 h-16"
-                />
-                <span className="text-2xl lg:text-3xl font-bold">
-                  Night<span className="text-red-500">Shield</span>
-                </span>
-              </div>
+              <Image 
+                src="/images/logo/LOGO BLACK NO TEXT.png" 
+                alt="NightShield Logo" 
+                width={80} 
+                height={80}
+                className="w-20 h-20"
+              />
             </motion.div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
               <div className="mb-2">
