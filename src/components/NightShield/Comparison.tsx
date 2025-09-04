@@ -55,16 +55,11 @@ const Comparison = () => {
   ]
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-10 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black"></div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        
-        
       
-        
-
-
         {/* Macbook Scroll Demo */}
         <div className="mb-16">
           <MacbookScroll
@@ -78,8 +73,6 @@ const Comparison = () => {
             showGradient={false}
           />
         </div>
-
-        
       </div>
     </section>
   )

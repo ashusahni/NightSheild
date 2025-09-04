@@ -75,7 +75,8 @@ const Hero = () => {
               className="flex justify-center lg:justify-start mb-8"
             >
               <Image 
-                src="/images/logo/LOGO BLACK NO TEXT.png" 
+                src="/images/logo/TRANSPARENT LOGO WITH CIRCLE.png" 
+             
                 alt="NightShield Logo" 
                 width={80} 
                 height={80}

@@ -16,29 +16,35 @@ const HowItWorks = () => {
       id: 1,
       title: 'Capture & Enhance',
       description: 'Multi-camera intake with noise reduction and night-vision enhancement for crystal clear frames.',
-      hotspot: { x: 72, y: 32 } as TargetPoint,
+      hotspot: { x: 75, y: 25 } as TargetPoint,
       thumb: '/images/icons/icon-services.svg',
     },
     {
       id: 2,
-      title: 'AI Target Lock',
-      description: 'Real-time object tracking identifies anomalies and locks onto suspicious motion patterns.',
-      hotspot: { x: 28, y: 58 } as TargetPoint,
+      title: 'Fight Detection',
+      description: 'AI instantly identifies physical altercations and aggressive behavior patterns in real-time.',
+      hotspot: { x: 45, y: 55 } as TargetPoint, // Center of the fight scene
       thumb: '/images/icons/icon-consulting.svg',
     },
-  
+    {
+      id: 3,
+      title: 'AI Target Lock',
+      description: 'Precision targeting system locks onto multiple subjects involved in incidents simultaneously.',
+      hotspot: { x: 35, y: 50 } as TargetPoint, // Left figure in the fight
+      thumb: '/images/icons/icon-star.svg',
+    },
     {
       id: 4,
       title: 'Instant Alerts',
       description: 'Push notifications with snapshots and map pins reach security staff in under a second.',
-      hotspot: { x: 82, y: 54 } as TargetPoint,
+      hotspot: { x: 85, y: 30 } as TargetPoint,
       thumb: '/images/icons/icon-bitcoin-circle.svg',
     },
     {
       id: 5,
       title: 'Evidence Vault',
       description: 'Tamper-proof recording archives incidents and audit trails for legal use.',
-      hotspot: { x: 42, y: 38 } as TargetPoint,
+      hotspot: { x: 60, y: 65 } as TargetPoint,
       thumb: '/images/icons/icon-blockchain.svg',
     },
   ]), [])
@@ -47,19 +53,20 @@ const HowItWorks = () => {
   const galleryImages = useMemo(() => [
     {
       id: 1,
-      src: '/images/Gemini_Generated_Image_vrl1twvrl1twvrl1.png',
+      src: '/images/ezgif-46cf96e654a1ca.jpg',
+    
       alt: 'NightShield Target View',
       title: 'Main Security View'
     },
     {
       id: 2,
-      src: '/images/linear.webp',
+      src: '/images/ezgif-46cf96e654a1ca.jpg',
       alt: 'NightShield Linear View',
       title: 'Linear Detection'
     },
     {
       id: 3,
-      src: '/images/logo/COVER IMAGE.jpeg',
+      src: '/images/ezgif-46cf96e654a1ca.jpg',
       alt: 'NightShield Cover',
       title: 'System Overview'
     }
@@ -71,7 +78,7 @@ const HowItWorks = () => {
 
   const [cursorFollowing, setCursorFollowing] = useState<boolean>(true)
   const [lockedIndex, setLockedIndex] = useState<number | null>(null)
-  const [targetPoint, setTargetPoint] = useState<TargetPoint>({ x: 50, y: 50 })
+  const [targetPoint, setTargetPoint] = useState<TargetPoint>({ x: 45, y: 55 })
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0)
   
   // Disable auto-selection of feature cards on scroll
@@ -130,7 +137,7 @@ const HowItWorks = () => {
         setTargetPoint(features[lockedIndex].hotspot)
       } else {
         setCursorFollowing(false)
-        setTargetPoint({ x: 50, y: 50 })
+        setTargetPoint({ x: 45, y: 55 }) // Return to fight center
       }
     }
 
@@ -156,7 +163,7 @@ const HowItWorks = () => {
             <h2 className="text-4xl md:text-5xl font-bold">How <span className="text-red-500">NightShield</span> Works</h2>
           </div>
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-            Scroll to see the AI target-lock engage while features light up in real-time.
+            Watch the AI target-lock automatically detect and focus on conflict zones. Hover over features to see precision targeting in action.
           </p>
         </div>
 
@@ -175,6 +182,32 @@ const HowItWorks = () => {
                 className="object-cover opacity-90"
                 priority
               />
+    
+              {/* Target Lock Overlay */}
+              <div 
+                className="absolute w-16 h-16 border-2 border-red-500 bg-red-500/10 transition-all duration-500 ease-out pointer-events-none"
+                style={{
+                  left: `${targetPoint.x}%`,
+                  top: `${targetPoint.y}%`,
+                  transform: 'translate(-50%, -50%)',
+                  boxShadow: '0 0 20px rgba(239, 68, 68, 0.6), inset 0 0 10px rgba(239, 68, 68, 0.2)'
+                }}
+              >
+                {/* Crosshairs */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-full h-0.5 bg-red-500 opacity-80"></div>
+                  <div className="absolute w-0.5 h-full bg-red-500 opacity-80"></div>
+                </div>
+                
+                {/* Corner brackets */}
+                <div className="absolute -top-1 -left-1 w-4 h-4 border-l-2 border-t-2 border-red-400"></div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 border-r-2 border-t-2 border-red-400"></div>
+                <div className="absolute -bottom-1 -left-1 w-4 h-4 border-l-2 border-b-2 border-red-400"></div>
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 border-r-2 border-b-2 border-red-400"></div>
+                
+                {/* Pulsing center dot */}
+                <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-red-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+              </div>
     
               {/* Dim vignette */}
               <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20" />
@@ -326,3 +359,4 @@ const HowItWorks = () => {
 }
 
 export default HowItWorks
+
