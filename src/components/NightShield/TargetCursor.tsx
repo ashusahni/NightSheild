@@ -67,8 +67,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       xPercent: -50,
       yPercent: -50,
       x: window.innerWidth / 2,
-      y: window.innerHeight / 2,
-      autoAlpha: 0
+      y: window.innerHeight / 2
     });
 
     const createSpinTimeline = () => {
@@ -104,18 +103,14 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     };
 
     window.addEventListener('scroll', scrollHandler, { passive: true });
-
-    //---------------------------------------------------------------
-    // This code for onclick animation
-
     window.addEventListener('mousemove', moveHandler);
+
     const mouseDownHandler = (): void => {
       if (!dotRef.current) return;
       gsap.to(dotRef.current, { scale: 0.7, duration: 0.3 });
       gsap.to(cursorRef.current, { scale: 0.9, duration: 0.2 });
     };
 
-    // Animate it back to its original size
     const mouseUpHandler = (): void => {
       if (!dotRef.current) return;
       gsap.to(dotRef.current, { scale: 1, duration: 0.3 });
@@ -124,8 +119,6 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
 
     window.addEventListener('mousedown', mouseDownHandler);
     window.addEventListener('mouseup', mouseUpHandler);
-
-    //----------------------------------------------------------------
 
     const enterHandler = (e: MouseEvent) => {
       const directTarget = e.target as Element;
@@ -154,8 +147,6 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       }
 
       activeTarget = target;
-      // Show custom cursor only while over a target
-      gsap.to(cursorRef.current, { autoAlpha: 1, duration: 0.15 });
       const corners = Array.from(cornersRef.current);
       corners.forEach(corner => {
         gsap.killTweensOf(corner);
@@ -275,11 +266,6 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
           });
         }
 
-        // Hide custom cursor when leaving the target
-        if (cursorRef.current) {
-          gsap.to(cursorRef.current, { autoAlpha: 0, duration: 0.15 });
-        }
-
         resumeTimeout = setTimeout(() => {
           if (!activeTarget && cursorRef.current && spinTl.current) {
             const currentRotation = gsap.getProperty(cursorRef.current, 'rotation') as number;
@@ -347,23 +333,23 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     >
       <div
         ref={dotRef}
-        className="absolute left-1/2 top-1/2 w-1 h-1 bg-red-500 rounded-full transform -translate-x-1/2 -translate-y-1/2"
+        className="absolute left-1/2 top-1/2 w-1 h-1 bg-white rounded-full transform -translate-x-1/2 -translate-y-1/2"
         style={{ willChange: 'transform' }}
       />
       <div
-        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-red-500 transform -translate-x-[150%] -translate-y-[150%] border-r-0 border-b-0"
+        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-white transform -translate-x-[150%] -translate-y-[150%] border-r-0 border-b-0"
         style={{ willChange: 'transform' }}
       />
       <div
-        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-red-500 transform translate-x-1/2 -translate-y-[150%] border-l-0 border-b-0"
+        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-white transform translate-x-1/2 -translate-y-[150%] border-l-0 border-b-0"
         style={{ willChange: 'transform' }}
       />
       <div
-        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-red-500 transform translate-x-1/2 translate-y-1/2 border-l-0 border-t-0"
+        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-white transform translate-x-1/2 translate-y-1/2 border-l-0 border-t-0"
         style={{ willChange: 'transform' }}
       />
       <div
-        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-red-500 transform -translate-x-[150%] translate-y-1/2 border-r-0 border-t-0"
+        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-white transform -translate-x-[150%] translate-y-1/2 border-r-0 border-t-0"
         style={{ willChange: 'transform' }}
       />
     </div>

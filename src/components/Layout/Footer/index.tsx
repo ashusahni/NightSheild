@@ -8,8 +8,8 @@ const Footer: FC = () => {
   return (
     <footer className='pt-16 bg-black'>
       <div className='container px-4'>
-        <div className='grid grid-cols-1 sm:grid-cols-11 lg:gap-20 md:gap-6 sm:gap-12 gap-6  pb-16'>
-          <div className='lg:col-span-4 md:col-span-6 col-span-6 flex flex-col gap-6'>
+        <div className='grid grid-cols-1 md:grid-cols-3 lg:gap-16 md:gap-8 gap-6 pb-16'>
+          <div className='flex flex-col gap-6'>
             <div className="flex items-center space-x-3">
               <Image 
                 src="/images/logo/LOGO TRANSPARENT.png" 
@@ -22,81 +22,110 @@ const Footer: FC = () => {
                 Night<span className="text-red-500">Shield</span>
               </span>
             </div>
-            <p className='text-white/60'>Real-Time AI Surveillance
-That Protects Venues
-            Before It&apos;s Too Late</p>
-            <div className='flex gap-6 items-center relative z-1'>
+            <p className='text-white/60 text-sm leading-relaxed'>Real-Time AI Surveillance That Protects Venues Before It&apos;s Too Late</p>
+            <div className='flex gap-4 items-center'>
               <Link href='https://www.facebook.com/' className='group'>
                 <Icon
                   icon='fa6-brands:facebook-f'
-                  width='24'
-                  height='24'
-                  className='text-white group-hover:text-red-500'
+                  width='20'
+                  height='20'
+                  className='text-white group-hover:text-red-500 transition-colors'
                 />
               </Link>
               <Link href='https://www.instagram.com/' className='group'>
                 <Icon
                   icon='fa6-brands:instagram'
-                  width='24'
-                  height='24'
-                  className='text-white group-hover:text-red-500'
+                  width='20'
+                  height='20'
+                  className='text-white group-hover:text-red-500 transition-colors'
                 />
               </Link>
               <Link href='https://www.twitter.com/' className='group'>
                 <Icon
                   icon='fa6-brands:x-twitter'
-                  width='24'
-                  height='24'
-                  className='text-white group-hover:text-red-500'
+                  width='20'
+                  height='20'
+                  className='text-white group-hover:text-red-500 transition-colors'
                 />
               </Link>
             </div>
           </div>
-          <div className='lg:col-span-2 md:col-span-3 col-span-6'>
-            <h4 className='text-white mb-4 font-medium text-24'>Links</h4>
-            <ul>
-              <li className='pb-4'>
-                <Link href="#how-it-works" className='text-white/60 hover:text-red-500 text-17'>
-                  How It Works
+          
+          <div>
+            <h4 className='text-red-500 mb-4 font-semibold text-lg uppercase tracking-wider'>LEGALITY & COMPLIANCE</h4>
+            <ul className='space-y-3'>
+              <li>
+                <Link href="#" className='flex items-center gap-2 text-white hover:text-red-500 text-sm transition-colors'>
+                  <span className='text-red-500 text-sm font-bold'>!!</span>
+                  <span className='underline'>GUIDE (IMPORTANT)</span>
                 </Link>
               </li>
-              <li className='pb-4'>
-                <Link href="#features" className='text-white/60 hover:text-red-500 text-17'>
-                  Features
+              <li>
+                <Link href="#" className='flex items-center gap-2 text-white hover:text-red-500 text-sm transition-colors'>
+                  <Icon 
+                    icon='mdi:briefcase' 
+                    width='14' 
+                    height='14' 
+                    className='text-amber-500'
+                  />
+                  <span className='underline'>Contract Library</span>
                 </Link>
               </li>
-              <li className='pb-4'>
-                <Link href="#pricing" className='text-white/60 hover:text-red-500 text-17'>
-                  Pricing
-                </Link>
-              </li>
-              <li className='pb-4'>
-                <Link href="#contact" className='text-white/60 hover:text-red-500 text-17'>
-                  Contact
+              <li>
+                <Link href="#" className='flex items-center gap-2 text-white hover:text-red-500 text-sm transition-colors'>
+                  <Icon 
+                    icon='mdi:bank' 
+                    width='14' 
+                    height='14' 
+                    className='text-white'
+                  />
+                  <span className='underline'>Legal Checklist</span>
                 </Link>
               </li>
             </ul>
           </div>
-          <div className='lg:col-span-2 md:col-span-3 col-span-6'>
-            <h4 className='text-white mb-4 font-medium text-24'>Other Pages</h4>
-            <ul>
-              {footerlabels.map((item, index) => (
-                <li key={index} className='pb-4'>
-                  <Link
-                    href={item.herf}
-                    className='text-white/60 hover:text-red-500 text-17'>
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+          
+          <div>
+            <h4 className='text-white mb-4 font-semibold text-lg uppercase tracking-wider'>Compliance & Legal</h4>
+            <ul className='space-y-3'>
+              <li>
+                <Link href="#" className='flex items-center gap-2 text-white hover:text-red-500 text-sm transition-colors'>
+                  <Icon 
+                    icon='mdi:check-circle' 
+                    width='14' 
+                    height='14' 
+                    className='text-blue-500'
+                  />
+                  <span className='underline'>GDPR Program</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className='flex items-center gap-2 text-white hover:text-red-500 text-sm transition-colors'>
+                  <Icon 
+                    icon='mdi:cctv' 
+                    width='14' 
+                    height='14' 
+                    className='text-blue-500'
+                  />
+                  <span className='underline'>CCTV Signage SOP</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className='text-white hover:text-red-500 text-sm transition-colors underline'>
+                  Terms
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className='text-white hover:text-red-500 text-sm transition-colors underline'>
+                  Disclosures
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className='text-white hover:text-red-500 text-sm transition-colors underline'>
+                  Latest News
+                </Link>
+              </li>
             </ul>
-          </div>
-          <div className='lg:col-span-3 md:col-span-4 col-span-6'>
-            <h3 className='text-white text-24 font-medium mb-4'>Download App</h3>
-            <div className='flex flex-col gap-4'>
-              <Link href={"https://www.google.com/"}><Image src={"/images/footer/app-store-bedge.svg"} alt='play-store-bedge' width={126} height={23} /></Link>
-              <Link href={"https://www.apple.com/"}><Image src={"/images/footer/app-store.svg"} alt='play-store-bedge' width={126} height={23} /></Link>
-            </div>
           </div>
         </div>
         <p className='text-white/40 text-center py-8 border-t border-white/20'>Design & Develop by Ananay Goyal | 2025</p>
