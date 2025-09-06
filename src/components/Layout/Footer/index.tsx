@@ -1,10 +1,13 @@
-import React, { FC } from 'react'
+'use client'
+import React, { FC, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
+import CookieSettingsModal from '../../NightShield/CookieSettings'
 
 const Footer: FC = () => {
   const currentYear = new Date().getFullYear()
+  const [isCookieSettingsOpen, setIsCookieSettingsOpen] = useState(false)
 
   return (
     <footer className='pt-16 bg-black relative overflow-hidden'>
@@ -75,14 +78,15 @@ const Footer: FC = () => {
                   About
                 </Link>
               </li>
-              <li>
-                <Link href="/contact" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
-                  Contact
-                </Link>
-              </li>
+             
               <li>
                 <Link href="/accessibility" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
                   Accessibility
+                </Link>
+              </li>
+              <li>
+                <Link href="/support" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Support & SLA
                 </Link>
               </li>
             </ul>
@@ -131,19 +135,34 @@ const Footer: FC = () => {
             </h4>
             <ul className='space-y-3'>
               <li>
-                <Link href="/msa" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                <a 
+                  href="https://file.notion.so/f/f/b4c677c7-5b9d-405a-8285-324910430d51/0e6ca4af-28b2-4f4e-b9e5-8575947ea8bd/MSA-Website.pdf?table=block&id=26358b3a-1cac-80e8-be6c-c9655d84e2ec&spaceId=b4c677c7-5b9d-405a-8285-324910430d51&expirationTimestamp=1757181600000&signature=AjgZlfWJQ77tCW9SfaFoNOvRqbDZ_QNCFQkvvg7j37w&downloadName=%2FMSA+Page.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'
+                >
                   Master Service Agreement (MSA)
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/dpa" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                <a 
+                  href="https://file.notion.so/f/f/b4c677c7-5b9d-405a-8285-324910430d51/ed49c5a4-eab9-4731-9d36-8efda6d35684/DPA-Website.pdf?table=block&id=26358b3a-1cac-8045-ac20-e6094e6fa2fe&spaceId=b4c677c7-5b9d-405a-8285-324910430d51&expirationTimestamp=1757181600000&signature=BF9ktoVD1CEuabhcE39b1M4MYtKRBV9R7sTgXEbqbSI&downloadName=%2FDPA+Page.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'
+                >
                   Data Processing Addendum (DPA)
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/subprocessors" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                <a 
+                  href="https://file.notion.so/f/f/b4c677c7-5b9d-405a-8285-324910430d51/2af7b1aa-d8b8-45a2-bff1-1b89bea5cce0/SUBPROCESSORS_-_Website.pdf?table=block&id=26358b3a-1cac-80bc-b843-f5d31372e753&spaceId=b4c677c7-5b9d-405a-8285-324910430d51&expirationTimestamp=1757181600000&signature=4N09g9mnhFOBA0oQPuoaiFcP4YEKEGle_2sIrLPdLjE&downloadName=%2FSubprocessors-Page.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'
+                >
                   Sub-processors
-                </Link>
+                </a>
               </li>
               <li>
                 <Link href="/vulnerability-disclosure" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
@@ -201,13 +220,24 @@ const Footer: FC = () => {
               </a>
             </div>
             
-            {/* Right: Region/Language (placeholder for future) */}
+            {/* Right: Cookie Settings */}
             <div className='text-white/40 text-sm'>
-              {/* Future: Region toggle · Language selector */}
+              <button
+                onClick={() => setIsCookieSettingsOpen(true)}
+                className="text-white/60 hover:text-red-500 transition-all duration-300 text-sm font-medium hover:underline"
+              >
+                Manage Cookie Settings
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Cookie Settings Modal */}
+      <CookieSettingsModal
+        isOpen={isCookieSettingsOpen}
+        onClose={() => setIsCookieSettingsOpen(false)}
+      />
     </footer>
   )
 }
