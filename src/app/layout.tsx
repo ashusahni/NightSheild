@@ -1,5 +1,5 @@
 import './globals.css'
-import { Footer, ResizableNavbar } from '@/components/Layout'
+import { Footer, ResizableNavbar, MobileDockNavbar } from '@/components/Layout'
 
 import { ThemeProvider } from 'next-themes'
 import Aoscompo from '@/utils/aos'
@@ -47,7 +47,8 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           <Aoscompo>
-            <ResizableNavbar />
+            <ResizableNavbar disableMobile />
+            <MobileDockNavbar />
             {children}
             <Footer />
           </Aoscompo>

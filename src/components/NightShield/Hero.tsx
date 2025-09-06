@@ -59,7 +59,7 @@ const Hero = () => {
       <div className="hidden md:block absolute top-1/2 left-1/4 w-16 h-16 bg-red-600/25 rounded-full blur-lg animate-pulse delay-500"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-5 gap-12 items-center">
+        <div className="grid lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -72,7 +72,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="flex justify-center lg:justify-start mb-8"
+              className="flex justify-center lg:justify-start mb-4 sm:mb-6 lg:mb-8"
             >
               <Image 
                 src="/images/logo/TRANSPARENT LOGO WITH CIRCLE.png" 
@@ -80,10 +80,10 @@ const Hero = () => {
                 alt="NightShield Logo" 
                 width={80} 
                 height={80}
-                className="w-20 h-20"
+                className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20"
               />
             </motion.div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
               <div className="mb-2">
                 <SplitText 
                   delay={0.2}
@@ -126,7 +126,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.8 }}
-              className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0"
+              className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0"
             >
             </motion.p>
 
@@ -134,13 +134,13 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 2.2 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
             >
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={scrollToContact}
-                className="btn-primary text-lg px-8 py-4"
+                className="btn-primary text-sm sm:text-base md:text-lg px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4"
               >
                 Book Live Demo
               </motion.button>
@@ -148,7 +148,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={scrollToAction}
-                className="btn-secondary text-lg px-8 py-4"
+                className="btn-secondary text-sm sm:text-base md:text-lg px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4"
               >
                 See It In Action
               </motion.button>
@@ -159,25 +159,25 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 2.6 }}
-              className="grid grid-cols-3 gap-6 mt-12 max-w-md mx-auto lg:mx-0"
+              className="grid grid-cols-3 gap-3 sm:gap-6 mt-8 sm:mt-12 max-w-md mx-auto lg:mx-0"
             >
               <div className="text-center">
-                <div className="text-2xl font-bold text-red-500">
+                <div className="text-lg sm:text-xl lg:text-2xl font-bold text-red-500">
                   {useCounter({ end: 99.9, delay: 2600, duration: 1500, decimals: 1 })}%
                 </div>
-                <div className="text-sm text-gray-400">Detection Rate</div>
+                <div className="text-xs sm:text-sm text-gray-400">Detection Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-red-500">
+                <div className="text-lg sm:text-xl lg:text-2xl font-bold text-red-500">
                   &lt;{useCounter({ end: 2, delay: 2600, duration: 1500, decimals: 0 })}s
                 </div>
-                <div className="text-sm text-gray-400">Response Time</div>
+                <div className="text-xs sm:text-sm text-gray-400">Response Time</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-red-500">
+                <div className="text-lg sm:text-xl lg:text-2xl font-bold text-red-500">
                   {useCounter({ end: 24, delay: 2600, duration: 1500, decimals: 0 })}/7
                 </div>
-                <div className="text-sm text-gray-400">Monitoring</div>
+                <div className="text-xs sm:text-sm text-gray-400">Monitoring</div>
               </div>
             </motion.div>
           </motion.div>
@@ -187,9 +187,9 @@ const Hero = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative lg:col-span-3"
+            className="relative lg:col-span-3 mt-8 lg:mt-0"
           >
-            <div className="spotlight-card bg-card-bg rounded-2xl p-6 border border-red-500/20">
+            <div className="spotlight-card bg-card-bg rounded-2xl p-3 sm:p-4 lg:p-6 border border-red-500/20">
               <div className="relative aspect-video bg-black rounded-xl overflow-hidden">
               <iframe
                   className="absolute top-0 left-0 w-full h-full"
@@ -224,8 +224,8 @@ const Hero = () => {
                 </div>
               </div>
               
-              <div className="mt-4 text-center">
-                <p className="text-gray-300 text-sm">
+              <div className="mt-3 sm:mt-4 text-center">
+                <p className="text-gray-300 text-xs sm:text-sm">
                   Watch how NightShield prevents incidents in real-time
                 </p>
               </div>
@@ -240,10 +240,10 @@ const Hero = () => {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2"
       >
-        <div className="w-6 h-10 border-2 border-red-500 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-red-500 rounded-full mt-2 animate-bounce"></div>
+        <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-red-500 rounded-full flex justify-center">
+          <div className="w-1 h-2 sm:h-3 bg-red-500 rounded-full mt-1 sm:mt-2 animate-bounce"></div>
         </div>
       </motion.div>
     </section>
