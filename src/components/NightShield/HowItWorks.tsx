@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useIsMobile } from '@/hooks/useIsMobile'
-
+import TargetCursor from './TargetCursor'
 
 
 const HowItWorks = () => {
@@ -73,8 +73,6 @@ const HowItWorks = () => {
 
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0)
   const [showTargetLock, setShowTargetLock] = useState<boolean>(false)
-  const [isCursorLocked, setIsCursorLocked] = useState<boolean>(false)
-  const [cursorPosition, setCursorPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
 
   // Simple scroll detection
   useEffect(() => {
@@ -85,7 +83,6 @@ const HowItWorks = () => {
             setShowTargetLock(true)
           } else {
             setShowTargetLock(false)
-            setIsCursorLocked(false) // Unlock cursor when leaving section
           }
         })
       },
@@ -102,45 +99,6 @@ const HowItWorks = () => {
       }
     }
   }, [])
-
-  // Cursor lock functionality
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (isCursorLocked && stickyRef.current) {
-        const rect = stickyRef.current.getBoundingClientRect()
-        const x = ((e.clientX - rect.left) / rect.width) * 100
-        const y = ((e.clientY - rect.top) / rect.height) * 100
-        setCursorPosition({ x, y })
-      }
-    }
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isCursorLocked) {
-        setIsCursorLocked(false)
-      }
-    }
-
-    if (isCursorLocked) {
-      document.addEventListener('mousemove', handleMouseMove)
-      document.addEventListener('keydown', handleKeyDown)
-      document.body.style.cursor = 'none'
-    } else {
-      document.body.style.cursor = 'default'
-    }
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove)
-      document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.cursor = 'default'
-    }
-  }, [isCursorLocked])
-
-  // Handle cursor lock on image click
-  const handleImageClick = () => {
-    if (showTargetLock) {
-      setIsCursorLocked(!isCursorLocked)
-    }
-  }
 
   // Simple target lock component
   const TargetLockOverlay = () => {
@@ -180,29 +138,6 @@ const HowItWorks = () => {
             </div>
           </div>
         ))}
-
-        {/* Custom cursor crosshair when locked */}
-        {isCursorLocked && (
-          <div
-            className="absolute transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-50"
-            style={{ 
-              left: `${cursorPosition.x}%`, 
-              top: `${cursorPosition.y}%`
-            }}
-          >
-            <div className="relative w-8 h-8">
-              {/* Crosshair lines */}
-              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-red-500 transform -translate-y-1/2 shadow-lg shadow-red-500/50" />
-              <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-red-500 transform -translate-x-1/2 shadow-lg shadow-red-500/50" />
-              
-              {/* Center dot */}
-              <div className="absolute top-1/2 left-1/2 w-1.5 h-1.5 bg-red-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 shadow-lg shadow-red-500/50" />
-              
-              {/* Outer ring */}
-              <div className="absolute inset-0 rounded-full border border-red-500/60 animate-pulse" />
-            </div>
-          </div>
-        )}
       </div>
     )
   }
@@ -216,6 +151,13 @@ const HowItWorks = () => {
     <section id="how-it-works" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black" />
       <div className="absolute inset-0 grid-texture opacity-10" />
+      
+      {/* Red Target Cursor */}
+      <TargetCursor 
+        targetSelector=".cursor-target"
+        spinDuration={2}
+        hideDefaultCursor={true}
+      />
 
       <div className="container relative z-10">
         <div className="text-center mb-16">
@@ -233,15 +175,14 @@ const HowItWorks = () => {
           <div className="lg:col-span-7">
             <div
               ref={stickyRef}
-              className="aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 sticky top-24 cursor-pointer"
-              onClick={handleImageClick}
+              className="cursor-target aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm sticky top-24"
             >
              
               <Image
                 src={galleryImages[selectedImageIndex].src}
                 alt={galleryImages[selectedImageIndex].alt}
                 fill
-                className="object-cover"
+                className="object-cover opacity-90"
                 priority
               />
     
@@ -256,7 +197,7 @@ const HowItWorks = () => {
                 <div className="absolute bottom-4 left-4 bg-black/80 text-white text-sm px-3 py-2 rounded-lg border border-red-500/30 backdrop-blur-sm">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                    <span>{isCursorLocked ? 'Cursor Locked - Press ESC to unlock' : 'Click to lock cursor'}</span>
+                    <span>Target Lock Active</span>
                   </div>
                 </div>
               )}
@@ -295,6 +236,7 @@ const HowItWorks = () => {
                     </div>
                     {/* Image title */}
                     <div className="mt-2 text-center">
+                    
                       <p className={`text-xs font-medium transition-colors duration-300 ${
                         selectedImageIndex === idx
                           ? 'text-red-400'
@@ -302,6 +244,7 @@ const HowItWorks = () => {
                       }`}>
                         {image.title}
                       </p>
+                   
                     </div>
                   </div>
                 ))}
@@ -322,7 +265,7 @@ const HowItWorks = () => {
                     key={f.id}
                     ref={(el) => { cardRefs.current[idx] = el }}
                     data-index={idx}
-                    className="group relative transition-all duration-300 cursor-pointer hover:scale-[1.01]"
+                    className="group relative transition-all duration-300 cursor-pointer will-change-transform hover:scale-[1.01]"
                   >
                     {/* Step number circle */}
                     <div className="absolute left-0 top-0 w-14 h-14 rounded-full border-2 flex items-center justify-center text-base font-bold transition-all duration-300 border-red-500/40 bg-black/80 text-red-500/80 group-hover:border-red-500/60 group-hover:text-red-400">
@@ -337,14 +280,14 @@ const HowItWorks = () => {
                     )}
 
                     {/* Feature card */}
-                    <div className="ml-20 rounded-lg border p-5 transition-all duration-300 bg-card-bg/95 border-red-500/20 hover:border-red-500/40" style={{ textRendering: 'optimizeLegibility' }}>
+                    <div className="ml-20 rounded-lg border p-5 transition-all duration-300 bg-card-bg/95 border-red-500/20 hover:border-red-500/40">
                       <div className="flex items-start gap-4">
                         <div className="relative w-12 h-12 shrink-0 rounded-md overflow-hidden border border-red-500/30 bg-black/90 group-hover:rotate-3 group-hover:scale-[1.03] transition-transform duration-300">
                           <Image src={f.thumb} alt={f.title} fill className="object-contain p-2" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-red-400 transition-colors" style={{ textRendering: 'optimizeLegibility' }}>{f.title}</h3>
-                          <p className="text-gray-100 leading-relaxed text-sm" style={{ textRendering: 'optimizeLegibility' }}>{f.description}</p>
+                          <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-red-400 transition-colors">{f.title}</h3>
+                          <p className="text-gray-100 leading-relaxed text-sm">{f.description}</p>
                         </div>
                       </div>
                     </div>

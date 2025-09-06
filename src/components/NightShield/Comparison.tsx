@@ -63,7 +63,7 @@ const Comparison = () => {
         {/* Macbook Scroll Demo */}
         <div className="mb-16">
           <MacbookScroll
-            src="/images/linear.webp"
+            src="/images/Gemini_.png"
             title={
               <span className="text-white">
                 Experience NightShield&apos;s AI in Action <br />

@@ -1,134 +1,212 @@
 import React, { FC } from 'react'
 import Link from 'next/link'
-import { footerlabels } from '@/app/api/data'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 
 const Footer: FC = () => {
+  const currentYear = new Date().getFullYear()
+
   return (
-    <footer className='pt-16 bg-black'>
-      <div className='container px-4'>
-        <div className='grid grid-cols-1 md:grid-cols-3 lg:gap-16 md:gap-8 gap-6 pb-16'>
-          <div className='flex flex-col gap-6'>
-            <div className="flex items-center space-x-3">
+    <footer className='pt-16 bg-black relative overflow-hidden'>
+      {/* Background Effects - Matching Website Theme */}
+      <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-red-900/5 to-black'></div>
+      <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-r from-red-900/3 via-transparent to-red-900/3'></div>
+      
+      {/* Subtle Grid Texture */}
+      <div className='absolute inset-0 grid-texture opacity-20'></div>
+      
+      <div className='container px-4 relative z-10'>
+        {/* Logo Section */}
+        <div className='flex justify-center lg:justify-start mb-12'>
+          <div className="flex items-center space-x-3 group">
+            <div className="relative">
               <Image 
-                src="/images/logo/LOGO TRANSPARENT.png" 
+                src="/images/logo/TRANSPARENT LOGO WITH CIRCLE.png" 
                 alt="NightShield Logo" 
                 width={48} 
                 height={48}
-                className="w-12 h-12"
+                className="w-12 h-12 group-hover:scale-110 transition-transform duration-300"
               />
-              <span className="text-xl lg:text-2xl font-bold">
-                Night<span className="text-red-500">Shield</span>
-              </span>
+              <div className="absolute inset-0 bg-red-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <p className='text-white/60 text-sm leading-relaxed'>Real-Time AI Surveillance That Protects Venues Before It&apos;s Too Late</p>
-            <div className='flex gap-4 items-center'>
-              <Link href='https://www.facebook.com/' className='group'>
-                <Icon
-                  icon='fa6-brands:facebook-f'
-                  width='20'
-                  height='20'
-                  className='text-white group-hover:text-red-500 transition-colors'
-                />
-              </Link>
-              <Link href='https://www.instagram.com/' className='group'>
-                <Icon
-                  icon='fa6-brands:instagram'
-                  width='20'
-                  height='20'
-                  className='text-white group-hover:text-red-500 transition-colors'
-                />
-              </Link>
-              <Link href='https://www.twitter.com/' className='group'>
-                <Icon
-                  icon='fa6-brands:x-twitter'
-                  width='20'
-                  height='20'
-                  className='text-white group-hover:text-red-500 transition-colors'
-                />
-              </Link>
-            </div>
+            <span className="text-xl lg:text-2xl font-bold">
+              Night<span className="text-red-500">Shield</span>
+            </span>
           </div>
+        </div>
+
+        {/* Four Column Layout */}
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-16'>
           
-          <div>
-            <h4 className='text-red-500 mb-4 font-semibold text-lg uppercase tracking-wider'>LEGALITY & COMPLIANCE</h4>
+          {/* Column A — Product */}
+          <div className='group'>
+            <h4 className='text-white mb-6 font-semibold text-lg relative'>
+              Product
+              <div className='absolute -bottom-1 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300'></div>
+            </h4>
             <ul className='space-y-3'>
               <li>
-                <Link href="#" className='flex items-center gap-2 text-white hover:text-red-500 text-sm transition-colors'>
-                  <span className='text-red-500 text-sm font-bold'>!!</span>
-                  <span className='underline'>GUIDE (IMPORTANT)</span>
+                <Link href="/#how-it-works" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  How it Works
                 </Link>
               </li>
               <li>
-                <Link href="#" className='flex items-center gap-2 text-white hover:text-red-500 text-sm transition-colors'>
-                  <Icon 
-                    icon='mdi:briefcase' 
-                    width='14' 
-                    height='14' 
-                    className='text-amber-500'
-                  />
-                  <span className='underline'>Contract Library</span>
+                <Link href="/pricing" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Pricing
                 </Link>
               </li>
               <li>
-                <Link href="#" className='flex items-center gap-2 text-white hover:text-red-500 text-sm transition-colors'>
-                  <Icon 
-                    icon='mdi:bank' 
-                    width='14' 
-                    height='14' 
-                    className='text-white'
-                  />
-                  <span className='underline'>Legal Checklist</span>
+                <Link href="/security" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Security
                 </Link>
               </li>
             </ul>
           </div>
-          
-          <div>
-            <h4 className='text-white mb-4 font-semibold text-lg uppercase tracking-wider'>Compliance & Legal</h4>
+
+          {/* Column B — Company */}
+          <div className='group'>
+            <h4 className='text-white mb-6 font-semibold text-lg relative'>
+              Company
+              <div className='absolute -bottom-1 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300'></div>
+            </h4>
             <ul className='space-y-3'>
               <li>
-                <Link href="#" className='flex items-center gap-2 text-white hover:text-red-500 text-sm transition-colors'>
-                  <Icon 
-                    icon='mdi:check-circle' 
-                    width='14' 
-                    height='14' 
-                    className='text-blue-500'
-                  />
-                  <span className='underline'>GDPR Program</span>
+                <Link href="/about" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  About
                 </Link>
               </li>
               <li>
-                <Link href="#" className='flex items-center gap-2 text-white hover:text-red-500 text-sm transition-colors'>
-                  <Icon 
-                    icon='mdi:cctv' 
-                    width='14' 
-                    height='14' 
-                    className='text-blue-500'
-                  />
-                  <span className='underline'>CCTV Signage SOP</span>
+                <Link href="/contact" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Contact
                 </Link>
               </li>
               <li>
-                <Link href="#" className='text-white hover:text-red-500 text-sm transition-colors underline'>
-                  Terms
+                <Link href="/accessibility" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Accessibility
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column C — Trust & Privacy */}
+          <div className='group'>
+            <h4 className='text-white mb-6 font-semibold text-lg relative'>
+              Trust & Privacy
+              <div className='absolute -bottom-1 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300'></div>
+            </h4>
+            <ul className='space-y-3'>
+              <li>
+                <Link href="/privacy" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="#" className='text-white hover:text-red-500 text-sm transition-colors underline'>
-                  Disclosures
+                <Link href="/cookies" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Cookie Policy
                 </Link>
               </li>
               <li>
-                <Link href="#" className='text-white hover:text-red-500 text-sm transition-colors underline'>
-                  Latest News
+                <Link href="/aup" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Acceptable Use
+                </Link>
+              </li>
+              <li>
+                <Link href="/data-retention" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Data Retention
+                </Link>
+              </li>
+              <li>
+                <Link href="/dsar" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  DSAR (Data Request)
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column D — Legal & Compliance */}
+          <div className='group'>
+            <h4 className='text-white mb-6 font-semibold text-lg relative'>
+              Legal & Compliance
+              <div className='absolute -bottom-1 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300'></div>
+            </h4>
+            <ul className='space-y-3'>
+              <li>
+                <Link href="/msa" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Master Service Agreement (MSA)
+                </Link>
+              </li>
+              <li>
+                <Link href="/dpa" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Data Processing Addendum (DPA)
+                </Link>
+              </li>
+              <li>
+                <Link href="/subprocessors" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Sub-processors
+                </Link>
+              </li>
+              <li>
+                <Link href="/vulnerability-disclosure" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Vulnerability Disclosure
+                </Link>
+              </li>
+              <li>
+                <Link href="/alerts-terms" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block'>
+                  Operational Alerts Terms
                 </Link>
               </li>
             </ul>
           </div>
         </div>
-        <p className='text-white/40 text-center py-8 border-t border-white/20'>Design & Develop by Ananay Goyal | 2025</p>
+
+        {/* Utility Strip */}
+        <div className='border-t border-red-500/20 pt-8 pb-8 relative'>
+          {/* Subtle glow effect on border */}
+          <div className='absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent'></div>
+          
+          <div className='flex flex-col lg:flex-row items-center justify-between gap-6'>
+            {/* Left: Copyright */}
+            <div className='text-white/60 text-sm'>
+              © <strong className='text-white'>NightShield AI Ltd</strong> · {currentYear}. All rights reserved.
+            </div>
+            
+            {/* Center: Social Icons & Contact */}
+            <div className='flex items-center gap-6'>
+              <div className='flex gap-4'>
+                <Link href='https://www.linkedin.com/' className='group relative'>
+                  <div className='absolute inset-0 bg-red-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
+                  <Icon
+                    icon='fa6-brands:linkedin'
+                    width='20'
+                    height='20'
+                    className='text-white/60 group-hover:text-red-500 transition-all duration-300 relative z-10 group-hover:scale-110'
+                  />
+                </Link>
+                <Link href='https://www.twitter.com/' className='group relative'>
+                  <div className='absolute inset-0 bg-red-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
+                  <Icon
+                    icon='fa6-brands:x-twitter'
+                    width='20'
+                    height='20'
+                    className='text-white/60 group-hover:text-red-500 transition-all duration-300 relative z-10 group-hover:scale-110'
+                  />
+                </Link>
+              </div>
+              <span className='text-white/60 text-sm'>·</span>
+              <a 
+                href='mailto:security@nightshield.ai' 
+                className='text-white/60 hover:text-red-500 transition-all duration-300 text-sm font-medium hover:underline'
+              >
+                security@nightshield.ai
+              </a>
+            </div>
+            
+            {/* Right: Region/Language (placeholder for future) */}
+            <div className='text-white/40 text-sm'>
+              {/* Future: Region toggle · Language selector */}
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   )

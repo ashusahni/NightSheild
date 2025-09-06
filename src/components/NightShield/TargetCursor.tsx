@@ -39,9 +39,8 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     if (!cursorRef.current) return;
 
     const originalCursor = document.body.style.cursor;
-    if (hideDefaultCursor) {
-      document.body.style.cursor = 'none';
-    }
+    // Always keep the default cursor visible
+    document.body.style.cursor = originalCursor;
 
     const cursor = cursorRef.current;
     cornersRef.current = cursor.querySelectorAll<HTMLDivElement>('.target-cursor-corner');
@@ -67,7 +66,8 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       xPercent: -50,
       yPercent: -50,
       x: window.innerWidth / 2,
-      y: window.innerHeight / 2
+      y: window.innerHeight / 2,
+      opacity: 0
     });
 
     const createSpinTimeline = () => {
@@ -154,6 +154,8 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       gsap.killTweensOf(cursorRef.current, 'rotation');
       spinTl.current?.pause();
 
+      // Show the target cursor
+      gsap.to(cursorRef.current, { opacity: 1, duration: 0.2 });
       gsap.set(cursorRef.current, { rotation: 0 });
 
       const updateCorners = (mouseX?: number, mouseY?: number) => {
@@ -239,6 +241,9 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
         activeTarget = null;
         isAnimatingToTarget = false;
 
+        // Hide the target cursor
+        gsap.to(cursorRef.current, { opacity: 0, duration: 0.2 });
+
         if (cornersRef.current) {
           const corners = Array.from(cornersRef.current);
           gsap.killTweensOf(corners);
@@ -310,6 +315,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       }
 
       spinTl.current?.kill();
+      // Restore original cursor
       document.body.style.cursor = originalCursor;
     };
   }, [targetSelector, spinDuration, moveCursor, constants, hideDefaultCursor]);
@@ -328,28 +334,28 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 w-0 h-0 pointer-events-none z-[9999] mix-blend-difference transform -translate-x-1/2 -translate-y-1/2"
+      className="fixed top-0 left-0 w-0 h-0 pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2"
       style={{ willChange: 'transform' }}
     >
       <div
         ref={dotRef}
-        className="absolute left-1/2 top-1/2 w-1 h-1 bg-white rounded-full transform -translate-x-1/2 -translate-y-1/2"
+        className="absolute left-1/2 top-1/2 w-1 h-1 bg-red-500 rounded-full transform -translate-x-1/2 -translate-y-1/2"
         style={{ willChange: 'transform' }}
       />
       <div
-        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-white transform -translate-x-[150%] -translate-y-[150%] border-r-0 border-b-0"
+        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-red-500 transform -translate-x-[150%] -translate-y-[150%] border-r-0 border-b-0"
         style={{ willChange: 'transform' }}
       />
       <div
-        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-white transform translate-x-1/2 -translate-y-[150%] border-l-0 border-b-0"
+        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-red-500 transform translate-x-1/2 -translate-y-[150%] border-l-0 border-b-0"
         style={{ willChange: 'transform' }}
       />
       <div
-        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-white transform translate-x-1/2 translate-y-1/2 border-l-0 border-t-0"
+        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-red-500 transform translate-x-1/2 translate-y-1/2 border-l-0 border-t-0"
         style={{ willChange: 'transform' }}
       />
       <div
-        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-white transform -translate-x-[150%] translate-y-1/2 border-r-0 border-t-0"
+        className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-red-500 transform -translate-x-[150%] translate-y-1/2 border-r-0 border-t-0"
         style={{ willChange: 'transform' }}
       />
     </div>
