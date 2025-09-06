@@ -73,6 +73,7 @@ const HowItWorks = () => {
 
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0)
   const [showTargetLock, setShowTargetLock] = useState<boolean>(false)
+  const [targetAnimationKey, setTargetAnimationKey] = useState<number>(0)
 
   // Simple scroll detection
   useEffect(() => {
@@ -100,6 +101,18 @@ const HowItWorks = () => {
     }
   }, [])
 
+  // Reset target lock when image changes to ensure proper detection
+  useEffect(() => {
+    if (showTargetLock) {
+      // Briefly hide and show target lock to reset animations
+      setShowTargetLock(false)
+      const timer = setTimeout(() => {
+        setShowTargetLock(true)
+      }, 100)
+      return () => clearTimeout(timer)
+    }
+  }, [selectedImageIndex])
+
   // Simple target lock component
   const TargetLockOverlay = () => {
     if (!showTargetLock) return null
@@ -112,15 +125,15 @@ const HowItWorks = () => {
         {/* Show target locks on fighting parts */}
         {targets.map((target, index) => (
           <div
-            key={index}
-            className="absolute transform -translate-x-1/2 -translate-y-1/2 animate-pulse"
+            key={`${selectedImageIndex}-${index}-${targetAnimationKey}`}
+            className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-out"
             style={{ 
               left: `${target.x}%`, 
               top: `${target.y}%`
             }}
           >
             {/* Simple target lock crosshair */}
-            <div className="relative w-16 h-16">
+            <div className="relative w-16 h-16 animate-pulse">
               {/* Outer ring */}
               <div className="absolute inset-0 rounded-full border-2 border-red-500 animate-spin" 
                    style={{ animationDuration: '2s' }} />
@@ -135,6 +148,11 @@ const HowItWorks = () => {
                 {/* Center dot */}
                 <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-red-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-ping" />
               </div>
+              
+              {/* Target label */}
+              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/80 text-red-400 text-xs px-2 py-1 rounded border border-red-500/30 whitespace-nowrap">
+                {target.label}
+              </div>
             </div>
           </div>
         ))}
@@ -145,6 +163,8 @@ const HowItWorks = () => {
   // Simple image switch handler
   const handleImageSwitch = (idx: number) => {
     setSelectedImageIndex(idx)
+    // Force re-render of target overlays with new animation key
+    setTargetAnimationKey(prev => prev + 1)
   }
 
   return (
@@ -179,10 +199,11 @@ const HowItWorks = () => {
             >
              
               <Image
+                key={selectedImageIndex}
                 src={galleryImages[selectedImageIndex].src}
                 alt={galleryImages[selectedImageIndex].alt}
                 fill
-                className="object-cover opacity-90"
+                className="object-cover opacity-90 transition-opacity duration-300"
                 priority
               />
     

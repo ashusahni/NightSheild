@@ -2,14 +2,14 @@ import React from 'react';
 
 const DataRetentionPage = () => {
   return (
-    <div className="max-w-4xl mx-auto px-4 pt-32 pb-12">
-      <h1 className="text-4xl font-bold mb-8">Data Retention Policy</h1>
+    <div className="max-w-4xl mx-auto px-4 pt-32 pb-12 bg-black min-h-screen">
+      <h1 className="text-4xl font-bold mb-8 text-white">Data Retention Policy</h1>
       
       <div className="prose prose-lg max-w-none">
-        <p className="text-gray-600 mb-8">
+        <p className="text-white/80 mb-8">
           This Policy explains how long we keep different categories of data and how deletion works. 
-          It complements our <a href="/security" className="text-blue-600 hover:text-blue-800">Security</a> page 
-          and <a href="/dpa" className="text-blue-600 hover:text-blue-800">DPA</a>.
+          It complements our <a href="/security" className="text-red-500 hover:text-red-400 hover:underline">Security</a> page 
+          and <a href="/dpa" className="text-red-500 hover:text-red-400 hover:underline">DPA</a>.
         </p>
 
         <section className="mb-8">
