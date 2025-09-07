@@ -162,34 +162,20 @@ const Footer: FC = () => {
           <FooterSection title="Compliance" sectionKey="compliance">
             <ul className='space-y-3'>
               <li>
-                <a
-                  href="https://file.notion.so/f/f/b4c677c7-5b9d-405a-8285-324910430d51/0e6ca4af-28b2-4f4e-b9e5-8575947ea8bd/MSA-Website.pdf?table=block&id=26358b3a-1cac-80e8-be6c-c9655d84e2ec&spaceId=b4c677c7-5b9d-405a-8285-324910430d51&expirationTimestamp=1757181600000&signature=AjgZlfWJQ77tCW9SfaFoNOvRqbDZ_QNCFQkvvg7j37w&downloadName=%2FMSA+Page.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block py-1'
-                >
+                <Link href="/msa" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block py-1'>
                   Master Service Agreement (MSA)
-                </a>
+                </Link>
+                
               </li>
               <li>
-                <a
-                  href="https://file.notion.so/f/f/b4c677c7-5b9d-405a-8285-324910430d51/ed49c5a4-eab9-4731-9d36-8efda6d35684/DPA-Website.pdf?table=block&id=26358b3a-1cac-8045-ac20-e6094e6fa2fe&spaceId=b4c677c7-5b9d-405a-8285-324910430d51&expirationTimestamp=1757181600000&signature=BF9ktoVD1CEuabhcE39b1M4MYtKRBV9R7sTgXEbqbSI&downloadName=%2FDPA+Page.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block py-1'
-                >
+              <Link href="/dpa" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block py-1'>
                   Data Processing Addendum (DPA)
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="https://file.notion.so/f/f/b4c677c7-5b9d-405a-8285-324910430d51/2af7b1aa-d8b8-45a2-bff1-1b89bea5cce0/SUBPROCESSORS_-_Website.pdf?table=block&id=26358b3a-1cac-80bc-b843-f5d31372e753&spaceId=b4c677c7-5b9d-405a-8285-324910430d51&expirationTimestamp=1757181600000&signature=4N09g9mnhFOBA0oQPuoaiFcP4YEKEGle_2sIrLPdLjE&downloadName=%2FSubprocessors-Page.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block py-1'
-                >
+               <Link href="/subprocessors" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block py-1'>
                   Sub-processors
-                </a>
+                </Link>
               </li>
               <li>
                 <Link href="/vulnerability-disclosure" className='text-white/60 hover:text-red-500 transition-all duration-200 hover:translate-x-1 block py-1'>
