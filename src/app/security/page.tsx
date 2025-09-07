@@ -23,7 +23,7 @@ flowchart LR
   `;
 
   return (
-    <div className="min-h-screen bg-black text-white/90">
+    <div className="min-h-screen px-7 py-20 bg-black text-white/90">
       <div className="container mx-auto px-4 py-16 relative">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-b from-red-900/5 via-transparent to-black"></div>

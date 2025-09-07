@@ -182,16 +182,16 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const lenis = new Lenis({
       wrapper: scroller,
       content: scroller.querySelector('.scroll-stack-inner') as HTMLElement,
-      duration: 1.2,
+      duration: 0.8,
       easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 2,
+      touchMultiplier: 3,
       infinite: false,
       gestureOrientation: 'vertical',
-      wheelMultiplier: 1,
-      lerp: 0.1,
+      wheelMultiplier: 1.5,
+      lerp: 0.15,
       syncTouch: true,
-      syncTouchLerp: 0.075
+      syncTouchLerp: 0.1
     });
 
     lenis.on('scroll', handleScroll);

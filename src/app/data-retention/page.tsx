@@ -13,8 +13,8 @@ const DataRetentionPage = () => {
         </p>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">1) Product data (core service)</h2>
-          <ul className="list-disc pl-6 space-y-3">
+          <h2 className="text-2xl font-semibold mb-4 text-white">1) Product data (core service)</h2>
+          <ul className="list-disc pl-6 space-y-3 text-white/80">
             <li>
               <strong>Incident clips:</strong> Short clips (typically <strong>10–15s</strong> with 5–7s pre/post) 
               created on event detection. <strong>Default auto-delete</strong> after <strong>24–72 hours</strong> 
@@ -42,8 +42,8 @@ const DataRetentionPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">2) Website data (forms & marketing)</h2>
-          <ul className="list-disc pl-6 space-y-2">
+          <h2 className="text-2xl font-semibold mb-4 text-white">2) Website data (forms & marketing)</h2>
+          <ul className="list-disc pl-6 space-y-2 text-white/80">
             <li><strong>Enquiry/demo forms:</strong> up to <strong>12 months</strong> from last interaction.</li>
             <li><strong>Marketing list:</strong> until you unsubscribe or <strong>12 months</strong> inactivity.</li>
             <li><strong>Analytics cookies:</strong> typically up to <strong>12 months</strong>.</li>
@@ -51,8 +51,8 @@ const DataRetentionPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">3) Support & communications</h2>
-          <ul className="list-disc pl-6">
+          <h2 className="text-2xl font-semibold mb-4 text-white">3) Support & communications</h2>
+          <ul className="list-disc pl-6 text-white/80">
             <li>
               <strong>Email/ticket threads:</strong> retained while open + <strong>24 months</strong> for history, 
               unless deletion is requested and legally permissible.
@@ -61,8 +61,8 @@ const DataRetentionPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">4) Billing & contracts</h2>
-          <ul className="list-disc pl-6">
+          <h2 className="text-2xl font-semibold mb-4 text-white">4) Billing & contracts</h2>
+          <ul className="list-disc pl-6 text-white/80">
             <li>
               <strong>Invoices, payments, contracts (including MSA/Order Forms):</strong> retained up to 
               <strong>6 years</strong> to satisfy accounting and legal requirements.
@@ -71,22 +71,22 @@ const DataRetentionPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">5) Deletion & export</h2>
-          <p className="text-gray-700">
+          <h2 className="text-2xl font-semibold mb-4 text-white">5) Deletion & export</h2>
+          <p className="text-white/80">
             Admins can request export or early deletion via support. We&apos;ll honour Controller instructions 
             under the DPA. Deletion cascades through active stores and scheduled snapshots as quickly as practicable.
           </p>
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">6) Exceptions</h2>
-          <p className="text-gray-700">
+          <h2 className="text-2xl font-semibold mb-4 text-white">6) Exceptions</h2>
+          <p className="text-white/80">
             Where required by law, investigation, or litigation hold, we may preserve limited data for longer.
           </p>
         </section>
 
-        <div className="mt-12 pt-6 border-t border-gray-200">
-          <h3 className="text-lg font-medium mb-3">Linked pages:</h3>
+        <div className="mt-12 pt-6 border-t border-red-500/20">
+          <h3 className="text-lg font-medium mb-3 text-white">Linked pages:</h3>
           <div className="flex flex-wrap gap-3">
             {[
               { href: '/security', text: 'Security' },
@@ -99,7 +99,7 @@ const DataRetentionPage = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-blue-600 hover:text-blue-800 hover:underline"
+                className="text-red-500 hover:text-red-400 hover:underline"
               >
                 {link.text}
               </a>

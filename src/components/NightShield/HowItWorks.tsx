@@ -14,25 +14,25 @@ const HowItWorks = () => {
       id: 1,
       title: 'Capture & Enhance',
       description: 'Multi-camera intake with noise reduction and night-vision enhancement for crystal clear frames.',
-      thumb: '/images/icons/icon-services.svg',
+      thumb: '/images/icons/icon-camera-lens.svg',
     },
     {
       id: 2,
       title: 'Fight Detection',
       description: 'AI instantly identifies physical altercations and aggressive behavior patterns in real-time.',
-      thumb: '/images/icons/icon-consulting.svg',
+      thumb: '/images/icons/icon-shield-detection.svg',
     },
     {
       id: 3,
       title: 'Instant Alerts',
       description: 'Push notifications with snapshots and map pins reach security staff in under a second.',
-      thumb: '/images/icons/icon-bitcoin-circle.svg',
+      thumb: '/images/icons/icon-alert-bell.svg',
     },
     {
       id: 4,
       title: 'Evidence Vault',
       description: 'Tamper-proof recording archives incidents and audit trails for legal use.',
-      thumb: '/images/icons/icon-blockchain.svg',
+      thumb: '/images/icons/icon-vault-secure.svg',
     },
   ]), [])
 
@@ -74,6 +74,7 @@ const HowItWorks = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0)
   const [showTargetLock, setShowTargetLock] = useState<boolean>(false)
   const [targetAnimationKey, setTargetAnimationKey] = useState<number>(0)
+  const [isHoveringImage, setIsHoveringImage] = useState<boolean>(false)
 
   // Simple scroll detection
   useEffect(() => {
@@ -113,7 +114,18 @@ const HowItWorks = () => {
     }
   }, [selectedImageIndex])
 
-  // Simple target lock component
+  // Handle mouse events on the image container
+  const handleImageMouseEnter = () => {
+    setIsHoveringImage(true)
+    setShowTargetLock(true)
+  }
+
+  const handleImageMouseLeave = () => {
+    setIsHoveringImage(false)
+    setShowTargetLock(false)
+  }
+
+  // Enhanced target lock component with cursor targeting
   const TargetLockOverlay = () => {
     if (!showTargetLock) return null
 
@@ -122,35 +134,34 @@ const HowItWorks = () => {
 
     return (
       <div className="absolute inset-0 pointer-events-none">
-        {/* Show target locks on fighting parts */}
+        {/* Show target locks on fighting parts with cursor targeting */}
         {targets.map((target, index) => (
           <div
             key={`${selectedImageIndex}-${index}-${targetAnimationKey}`}
-            className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-out"
+            className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-out pointer-events-none"
             style={{ 
               left: `${target.x}%`, 
-              top: `${target.y}%`
+              top: `${target.y}%`,
+              width: '60px',
+              height: '60px',
+              zIndex: 10
             }}
           >
-            {/* Simple target lock crosshair */}
-            <div className="relative w-16 h-16 animate-pulse">
-              {/* Outer ring */}
-              <div className="absolute inset-0 rounded-full border-2 border-red-500 animate-spin" 
-                   style={{ animationDuration: '2s' }} />
-              
-              {/* Inner crosshair */}
-              <div className="absolute inset-2 rounded-full border border-red-500">
-                {/* Horizontal line */}
+            {/* Smaller target crosshair */}
+            <div className="relative w-12 h-12">
+              {/* Perfect circle with crosshair */}
+              <div className="absolute inset-0 rounded-full border border-red-500">
+                {/* Horizontal line extending to edges */}
                 <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-red-500 transform -translate-y-1/2" />
-                {/* Vertical line */}
+                {/* Vertical line extending to edges */}
                 <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-red-500 transform -translate-x-1/2" />
                 
                 {/* Center dot */}
-                <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-red-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-ping" />
+                <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-red-500 rounded-full transform -translate-x-1/2 -translate-y-1/2" />
               </div>
               
               {/* Target label */}
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/80 text-red-400 text-xs px-2 py-1 rounded border border-red-500/30 whitespace-nowrap">
+              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-black/80 text-red-400 text-xs px-2 py-1 rounded border border-red-500/30 whitespace-nowrap">
                 {target.label}
               </div>
             </div>
@@ -196,6 +207,8 @@ const HowItWorks = () => {
             <div
               ref={stickyRef}
               className="cursor-target aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm sticky top-24"
+              onMouseEnter={handleImageMouseEnter}
+              onMouseLeave={handleImageMouseLeave}
             >
              
               <Image
@@ -303,8 +316,8 @@ const HowItWorks = () => {
                     {/* Feature card */}
                     <div className="ml-20 rounded-lg border p-5 transition-all duration-300 bg-card-bg/95 border-red-500/20 hover:border-red-500/40">
                       <div className="flex items-start gap-4">
-                        <div className="relative w-12 h-12 shrink-0 rounded-md overflow-hidden border border-red-500/30 bg-black/90 group-hover:rotate-3 group-hover:scale-[1.03] transition-transform duration-300">
-                          <Image src={f.thumb} alt={f.title} fill className="object-contain p-2" />
+                        <div className="relative w-12 h-12 shrink-0 rounded-md overflow-hidden border border-red-500/30 bg-black/90 group-hover:rotate-3 group-hover:scale-[1.03] transition-transform duration-300 flex items-center justify-center">
+                          <img src={f.thumb} alt={f.title} className="w-6 h-6 text-red-500" />
                         </div>
                         <div className="flex-1">
                           <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-red-400 transition-colors">{f.title}</h3>

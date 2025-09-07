@@ -56,9 +56,9 @@ vec4 cppn_fn(vec2 coordinate,float in0,float in1,float in2){
     
     // Enhanced red dominance - More red, less pink
     vec3 color = vec3(buf[0].x, buf[0].y, buf[0].z);
-    color.r = color.r * 1.6; // Boost red more
-    color.g = color.g * 0.5; // Reduce green more
-    color.b = color.b * 0.3; // Reduce blue more
+    color.r = color.r * 1.4; // Boost red (increased to maintain red dominance)
+    color.g = color.g * 0.4; // Reduce green (decreased to prevent pink)
+    color.b = color.b * 0.2; // Reduce blue (decreased to prevent pink)
     
     return vec4(color, 1.);
 }
@@ -75,16 +75,16 @@ void main(){
     col.rgb=hueShiftRGB(col.rgb,uHueShift);
     
     // Enhanced red channel - More red, less pink
-    col.r = col.r * 1.5; // Boost red channel more
-    col.g = col.g * 0.6; // Reduce green channel more
-    col.b = col.b * 0.4; // Reduce blue channel more
+    col.r = col.r * 1.3; // Boost red channel (increased to maintain red)
+    col.g = col.g * 0.5; // Reduce green channel (decreased to prevent pink)
+    col.b = col.b * 0.3; // Reduce blue channel (decreased to prevent pink)
     
     float scanline_val=sin(gl_FragCoord.y*uScanFreq)*0.5+0.5;
     col.rgb*=1.-(scanline_val*scanline_val)*uScan;
     col.rgb+=(rand(gl_FragCoord.xy+uTime)-0.5)*uNoise;
     
     // Add enhanced red tint - More red, less pink
-    col.rgb = mix(col.rgb, vec3(0.9, 0.05, 0.05), 0.15);
+    col.rgb = mix(col.rgb, vec3(0.9, 0.02, 0.02), 0.1);
     
     gl_FragColor=vec4(clamp(col.rgb,0.0,1.0),1.0);
 }
@@ -249,7 +249,7 @@ export default function DarkVeil({
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.08) 0%, transparent 70%)',
             mixBlendMode: 'overlay'
           }}
         />
@@ -267,7 +267,7 @@ export default function DarkVeil({
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.15) 0%, transparent 70%)',
+          background: 'radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.08) 0%, transparent 70%)',
           mixBlendMode: 'overlay'
         }}
       />

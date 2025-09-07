@@ -24,9 +24,9 @@ const SupportPage = () => {
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">Severity & Targets</h2>
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
+            <table className="min-w-full divide-y  divide-gray-200 border border-gray-200">
               <thead className="bg-gray-50">
-                <tr>
+                <tr className="text-gray-800">
                   <th className="px-4 py-3 text-left text-sm font-semibold">Sev</th>
                   <th className="px-4 py-3 text-left text-sm font-semibold">Description</th>
                   <th className="px-4 py-3 text-left text-sm font-semibold">Examples</th>
@@ -37,36 +37,36 @@ const SupportPage = () => {
               </thead>
               <tbody className="divide-y divide-gray-200">
                 <tr className="bg-red-50">
-                  <td className="px-4 py-3 text-sm font-semibold text-red-800">P1 – Critical</td>
-                  <td className="px-4 py-3 text-sm">Platform-reason outage or alerting not delivering across venue(s)</td>
-                  <td className="px-4 py-3 text-sm">Dashboard down; clip delivery halted</td>
-                  <td className="px-4 py-3 text-sm">1 hour (24×7)</td>
-                  <td className="px-4 py-3 text-sm">Every 4 hours</td>
-                  <td className="px-4 py-3 text-sm">Workaround ≤ 24h; full fix ASAP</td>
+                  <td className="px-4 py-3 text-sm font-semibold text-red-800">P1 Critical</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Platform-reason outage or alerting not delivering across venue(s)</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Dashboard down; clip delivery halted</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">1 hour (24×7)</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Every 4 hours</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Workaround ≤ 24h; full fix ASAP</td>
                 </tr>
                 <tr className="bg-orange-50">
                   <td className="px-4 py-3 text-sm font-semibold text-orange-800">P2 – Major</td>
-                  <td className="px-4 py-3 text-sm">Material degradation with viable workaround</td>
-                  <td className="px-4 py-3 text-sm">Elevated latency; partial clip gaps</td>
-                  <td className="px-4 py-3 text-sm">4 business hours</td>
-                  <td className="px-4 py-3 text-sm">Daily</td>
-                  <td className="px-4 py-3 text-sm">Fix in next maintenance or hotfix</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Material degradation with viable workaround</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Elevated latency; partial clip gaps</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">4 business hours</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Daily</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Fix in next maintenance or hotfix</td>
                 </tr>
                 <tr className="bg-yellow-50">
                   <td className="px-4 py-3 text-sm font-semibold text-yellow-800">P3 – Minor</td>
-                  <td className="px-4 py-3 text-sm">Non-critical bug or UX issue</td>
-                  <td className="px-4 py-3 text-sm">UI glitch; non-blocking configuration issue</td>
-                  <td className="px-4 py-3 text-sm">Next business day</td>
-                  <td className="px-4 py-3 text-sm">Every 3 business days</td>
-                  <td className="px-4 py-3 text-sm">Planned release</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Non-critical bug or UX issue</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">UI glitch; non-blocking configuration issue</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Next business day</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Every 3 business days</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Planned release</td>
                 </tr>
                 <tr className="bg-green-50">
                   <td className="px-4 py-3 text-sm font-semibold text-green-800">P4 – Request</td>
-                  <td className="px-4 py-3 text-sm">Questions, feature requests, advice</td>
-                  <td className="px-4 py-3 text-sm">Setup, best practices</td>
-                  <td className="px-4 py-3 text-sm">2 business days</td>
-                  <td className="px-4 py-3 text-sm">Weekly</td>
-                  <td className="px-4 py-3 text-sm">N/A</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Questions, feature requests, advice</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Setup, best practices</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">2 business days</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">Weekly</td>
+                  <td className="px-4 py-3 text-sm text-gray-800">N/A</td>
                 </tr>
               </tbody>
             </table>
