@@ -3,6 +3,8 @@
 import React from 'react';
 import { IconShieldLock, IconTrendingUp, IconUsers, IconEye, IconRocket, IconBuildingArch, IconBrain, IconAward, IconHeart, IconTarget, IconCheck, IconStar, IconGlobe, IconShieldCheck } from '@tabler/icons-react';
 import CountUp from 'react-countup';
+import Contact from '@/components/NightShield/Contact'
+
 
 const AboutPage = () => {
   const team = [
@@ -205,7 +207,7 @@ const AboutPage = () => {
         
 
         {/* Timeline Section */}
-        <section className="py-20 px-4">
+        {/* <section className="py-20 px-4">
           <div className="container mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
               Our Journey to <span className="text-red-500">Redefining Security</span>
@@ -229,7 +231,7 @@ const AboutPage = () => {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
         
         {/* Team Section */}
         <section className="py-20 bg-card-bg px-4">
@@ -261,14 +263,21 @@ const AboutPage = () => {
               Let's discuss how we can protect what matters most to you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300">
+              <button onClick={() => {
+                const element = document.querySelector('#contact')
+                if (element) element.scrollIntoView({ behavior: 'smooth' })
+              }} className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300">
                 Get Started Today
               </button>
-              <button className="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300">
+              <button onClick={() => {
+                const element = document.querySelector('#contact')
+                if (element) element.scrollIntoView({ behavior: 'smooth' })
+              }} className="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300">
                 Schedule Demo
               </button>
             </div>
           </div>
+          <Contact />
         </section>
       </div>
     </div>

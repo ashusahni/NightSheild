@@ -3,6 +3,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import Contact from '@/components/NightShield/Contact'
+
 
 interface Feature {
   title: string
@@ -994,6 +996,7 @@ const Features = () => {
           </div>
         </motion.div>
       </div>
+      <Contact />
     </section>
   )
 }

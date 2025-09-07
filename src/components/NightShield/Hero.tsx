@@ -6,13 +6,14 @@ import Image from 'next/image'
 import DarkVeil from './DarkVeil'
 import SplitText from '../ui/SplitText'
 import { useCounter } from '../../hooks/useCounter'
+import { useIsMobile } from '../../hooks/useIsMobile'
 
 
 
 
 
 const Hero = () => {
-
+  const { isMobile } = useIsMobile()
 
   const scrollToContact = () => {
     const element = document.querySelector('#contact')
@@ -58,8 +59,8 @@ const Hero = () => {
       <div className="hidden md:block absolute bottom-20 right-10 w-32 h-32 bg-red-700/15 rounded-full blur-2xl animate-pulse delay-1000"></div>
       <div className="hidden md:block absolute top-1/2 left-1/4 w-16 h-16 bg-red-600/25 rounded-full blur-lg animate-pulse delay-500"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12 items-center">
+      <div className="w-full px-4 relative z-10">
+        <div className="grid lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -163,19 +164,19 @@ const Hero = () => {
             >
               <div className="text-center">
                 <div className="text-lg sm:text-xl lg:text-2xl font-bold text-red-500">
-                  {useCounter({ end: 99.9, delay: 2600, duration: 1500, decimals: 1 })}%
+                  {useCounter({ end: 99.9, delay: isMobile ? 1300 : 2600, duration: isMobile ? 750 : 1500, decimals: 1 })}%
                 </div>
                 <div className="text-xs sm:text-sm text-gray-400">Detection Rate</div>
               </div>
               <div className="text-center">
                 <div className="text-lg sm:text-xl lg:text-2xl font-bold text-red-500">
-                  &lt;{useCounter({ end: 2, delay: 2600, duration: 1500, decimals: 0 })}s
+                  &lt;{useCounter({ end: 2, delay: isMobile ? 1300 : 2600, duration: isMobile ? 750 : 1500, decimals: 0 })}s
                 </div>
                 <div className="text-xs sm:text-sm text-gray-400">Response Time</div>
               </div>
               <div className="text-center">
                 <div className="text-lg sm:text-xl lg:text-2xl font-bold text-red-500">
-                  {useCounter({ end: 24, delay: 2600, duration: 1500, decimals: 0 })}/7
+                  {useCounter({ end: 24, delay: isMobile ? 1300 : 2600, duration: isMobile ? 750 : 1500, decimals: 0 })}/7
                 </div>
                 <div className="text-xs sm:text-sm text-gray-400">Monitoring</div>
               </div>
@@ -184,53 +185,63 @@ const Hero = () => {
 
           {/* Right Content - VSL */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: isMobile ? 20 : 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: isMobile ? 0.4 : 0.8, delay: isMobile ? 0.15 : 0.3 }}
             className="relative lg:col-span-3 mt-8 lg:mt-0"
           >
-            <div className="spotlight-card bg-card-bg rounded-2xl p-3 sm:p-4 lg:p-6 border border-red-500/20">
-              <div className="relative aspect-video bg-black rounded-xl overflow-hidden">
-              <iframe
-                  className="absolute top-0 left-0 w-full h-full"
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=OF-II5a54d2t5-zY"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                ></iframe>
-                
-                {/* Simplified CCTV Frame Overlay */}
-                <div className="absolute inset-0 pointer-events-none">
-                  {/* Simple Top Bar */}
-                  <div className="absolute top-0 left-0 right-0 h-6 bg-black/60 backdrop-blur-sm flex items-center justify-between px-3 text-white text-xs">
-                    <span className="text-red-500 font-bold">NightShield AI</span>
-                    <span className="text-green-400">● LIVE</span>
-                  </div>
+            {/* VSL Border Container with Red Theme */}
+            <div className="relative p-3 sm:p-4 lg:p-5 bg-gradient-to-br from-red-900/30 via-red-800/20 to-red-900/30 rounded-3xl border-2 border-red-200/40 shadow-2xl shadow-red-100/40">
+              {/* Inner Glow Effect */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-red-500/10 via-transparent to-red-600/10 pointer-events-none"></div>
+              
+              {/* VSL Video Container */}
+              <div className="relative bg-black rounded-2xl overflow-hidden shadow-xl border border-red-500/30">
+                <div className="relative aspect-[16/10]">
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src="https://drive.google.com/file/d/1qbR8VUeAJcKvePFYIC_gur8ySI9X2EDw/preview"
+                    title="NightShield VSL Video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; allowfullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
                   
-                  {/* Simple Corner Brackets */}
-                  <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-red-500"></div>
-                  <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-red-500"></div>
-                  <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-red-500"></div>
-                  <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-red-500"></div>
-                  
-                  {/* Simple Motion Detection Box */}
-                  {/* <div className="absolute top-1/3 left-1/4 w-24 h-16 border border-red-500 border-dashed">
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-2 py-1 rounded">
-                      DETECTED
+                  {/* Enhanced CCTV Frame Overlay */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    {/* Top Bar with Enhanced Styling */}
+                    <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-r from-black/80 via-black/60 to-black/80 backdrop-blur-sm flex items-center justify-between px-4 text-white text-sm">
+                      <span className="text-red-400 font-bold flex items-center gap-2">
+                        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                        NightShield AI
+                      </span>
+                      <span className="text-green-400 flex items-center gap-1">
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                        LIVE
+                      </span>
                     </div>
-                  </div> */}
+                    
+                    {/* Enhanced Corner Brackets */}
+                    <div className="absolute top-0 left-0 w-6 h-6 border-l-3 border-t-3 border-red-500"></div>
+                    <div className="absolute top-0 right-0 w-6 h-6 border-r-3 border-t-3 border-red-500"></div>
+                    <div className="absolute bottom-0 left-0 w-6 h-6 border-l-3 border-b-3 border-red-500"></div>
+                    <div className="absolute bottom-0 right-0 w-6 h-6 border-r-3 border-b-3 border-red-500"></div>
+                    
+                    {/* Subtle Scan Line Effect */}
+                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red-500/50 to-transparent animate-pulse"></div>
+                  </div>
                 </div>
               </div>
               
-              <div className="mt-3 sm:mt-4 text-center">
-                <p className="text-gray-300 text-xs sm:text-sm">
+              {/* VSL Caption with Enhanced Styling */}
+              <div className="mt-4 text-center">
+                <p className="text-gray-200 text-sm sm:text-base font-medium">
                   Watch how NightShield prevents incidents in real-time
                 </p>
+                <div className="mt-2 w-16 h-0.5 bg-gradient-to-r from-red-500 to-red-600 mx-auto rounded-full"></div>
               </div>
             </div>
-
 
           </motion.div>
         </div>
@@ -238,8 +249,8 @@ const Hero = () => {
 
       {/* Scroll Indicator */}
       <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ y: isMobile ? [0, 5, 0] : [0, 10, 0] }}
+        transition={{ duration: isMobile ? 1.5 : 2, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-red-500 rounded-full flex justify-center">

@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 
 import Image from 'next/image'
+import Contact from '@/components/NightShield/Contact'
 
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = useState('monthly')
@@ -377,6 +378,7 @@ const Pricing = () => {
           </div>
         </div>
       </div>
+      <Contact />
     </section>
   )
 }
