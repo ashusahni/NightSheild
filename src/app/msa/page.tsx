@@ -1,3 +1,4 @@
+/** @jsxImportSource react */
 import React from 'react';
 
 const MSAPage = () => {
@@ -51,7 +52,7 @@ const MSAPage = () => {
             <h2 className="text-2xl font-semibold mb-4 text-white">4) Fees & Payment</h2>
             <div className="space-y-4 text-white/80">
               <p><strong>4.1</strong> Fees are set out in the Order Form; billed monthly in advance, NET 14 days; prices exclude VAT.</p>
-              <p><strong>4.2</strong> <strong>Overages & Plan Changes:</strong> If sustained overage > 5 consecutive days, NightShield may (i) throttle, (ii) charge overages, or (iii) move Customer to a higher plan on notice (see Order Form rate card).</p>
+              <p><strong>4.2</strong> <strong>Overages & Plan Changes:</strong> If sustained overage &gt; 5 consecutive days, NightShield may (i) throttle, (ii) charge overages, or (iii) move Customer to a higher plan on notice (see Order Form rate card).</p>
               <p><strong>4.3</strong> Late amounts may accrue interest at 4% above BoE base rate; NightShield may suspend for non-payment after notice.</p>
               <p><strong>4.4</strong> <strong>Auto-renew & price changes:</strong> Annual auto-renew. Price changes effective on renewal with 30 days' notice, capped at CPI + 5% unless Customer changes plan.</p>
             </div>
