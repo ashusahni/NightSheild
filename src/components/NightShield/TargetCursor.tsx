@@ -46,19 +46,14 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     cornersRef.current = cursor.querySelectorAll<HTMLDivElement>('.target-cursor-corner');
 
     let activeTarget: Element | null = null;
-    let currentTargetMove: ((ev: Event) => void) | null = null;
     let currentLeaveHandler: (() => void) | null = null;
     let isAnimatingToTarget = false;
     let resumeTimeout: ReturnType<typeof setTimeout> | null = null;
 
     const cleanupTarget = (target: Element) => {
-      if (currentTargetMove) {
-        target.removeEventListener('mousemove', currentTargetMove);
-      }
       if (currentLeaveHandler) {
         target.removeEventListener('mouseleave', currentLeaveHandler);
       }
-      currentTargetMove = null;
       currentLeaveHandler = null;
     };
 
@@ -154,11 +149,23 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       gsap.killTweensOf(cursorRef.current, 'rotation');
       spinTl.current?.pause();
 
-      // Show the target cursor
+      // Show the target cursor and snap to center of fight area
       gsap.to(cursorRef.current, { opacity: 1, duration: 0.2 });
       gsap.set(cursorRef.current, { rotation: 0 });
+      
+      // Snap cursor to center of the fight target area
+      const rect = target.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      gsap.to(cursorRef.current, {
+        x: centerX,
+        y: centerY,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
 
-      const updateCorners = (mouseX?: number, mouseY?: number) => {
+      const updateCorners = () => {
         const rect = target.getBoundingClientRect();
         const cursorRect = cursorRef.current!.getBoundingClientRect();
 
@@ -167,40 +174,25 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
 
         const [tlc, trc, brc, blc] = Array.from(cornersRef.current!);
 
-        const { borderWidth, cornerSize, parallaxStrength } = constants;
+        const { borderWidth, cornerSize } = constants;
 
-        let tlOffset = {
+        // Frame the fight target area
+        const tlOffset = {
           x: rect.left - cursorCenterX - borderWidth,
           y: rect.top - cursorCenterY - borderWidth
         };
-        let trOffset = {
+        const trOffset = {
           x: rect.right - cursorCenterX + borderWidth - cornerSize,
           y: rect.top - cursorCenterY - borderWidth
         };
-        let brOffset = {
+        const brOffset = {
           x: rect.right - cursorCenterX + borderWidth - cornerSize,
           y: rect.bottom - cursorCenterY + borderWidth - cornerSize
         };
-        let blOffset = {
+        const blOffset = {
           x: rect.left - cursorCenterX - borderWidth,
           y: rect.bottom - cursorCenterY + borderWidth - cornerSize
         };
-
-        if (mouseX !== undefined && mouseY !== undefined) {
-          const targetCenterX = rect.left + rect.width / 2;
-          const targetCenterY = rect.top + rect.height / 2;
-          const mouseOffsetX = (mouseX - targetCenterX) * parallaxStrength;
-          const mouseOffsetY = (mouseY - targetCenterY) * parallaxStrength;
-
-          tlOffset.x += mouseOffsetX;
-          tlOffset.y += mouseOffsetY;
-          trOffset.x += mouseOffsetX;
-          trOffset.y += mouseOffsetY;
-          brOffset.x += mouseOffsetX;
-          brOffset.y += mouseOffsetY;
-          blOffset.x += mouseOffsetX;
-          blOffset.y += mouseOffsetY;
-        }
 
         const tl = gsap.timeline();
         const corners = [tlc, trc, brc, blc];
@@ -227,15 +219,6 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
         isAnimatingToTarget = false;
       }, 1);
 
-      let moveThrottle: number | null = null;
-      const targetMove = (ev: Event) => {
-        if (moveThrottle || isAnimatingToTarget) return;
-        moveThrottle = requestAnimationFrame(() => {
-          const mouseEvent = ev as MouseEvent;
-          updateCorners(mouseEvent.clientX, mouseEvent.clientY);
-          moveThrottle = null;
-        });
-      };
 
       const leaveHandler = () => {
         activeTarget = null;
@@ -296,10 +279,8 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
         cleanupTarget(target);
       };
 
-      currentTargetMove = targetMove;
       currentLeaveHandler = leaveHandler;
 
-      target.addEventListener('mousemove', targetMove);
       target.addEventListener('mouseleave', leaveHandler);
     };
 

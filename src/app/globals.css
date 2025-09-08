@@ -48,6 +48,10 @@
   --color-warning: #f7931a;
   --color-error: #cf3127;
 
+  /* Navbar responsive improvements */
+  --navbar-min-width: 700px;
+  --navbar-breakpoint: 1280px;
+
   --text-14: 0.875rem;
   --text-14--line-height: 1.225rem;
   --text-16: 1rem;
@@ -851,4 +855,34 @@ section {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Navbar responsive fixes */
+@media (max-width: 1279px) {
+  .navbar-desktop {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .navbar-mobile {
+    display: none !important;
+  }
+}
+
+/* Prevent text overflow and overlapping */
+.navbar-logo {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.navbar-items {
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+}
+
+.navbar-cta {
+  flex-shrink: 0;
+  white-space: nowrap;
 }

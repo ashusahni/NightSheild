@@ -40,21 +40,36 @@ const Hero = () => {
 
 
       <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
-  <DarkVeil 
-    hueShift={0}
-    noiseIntensity={0.01}
-    scanlineIntensity={0}
-    speed={0.3}
-    scanlineFrequency={0}
-    warpAmount={0.02}
-    resolutionScale={1}
-  />
-</div>
+        {isMobile ? (
+          // Mobile-optimized static background matching website theme
+          <div className="w-full h-full bg-gradient-to-br from-black via-red-900/20 to-black">
+            <div className="absolute inset-0 bg-gradient-to-r from-red-900/10 via-transparent to-red-900/10"></div>
+            <div 
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: 'radial-gradient(circle at 30% 40%, rgba(229, 18, 47, 0.08) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(139, 0, 0, 0.06) 0%, transparent 50%)',
+                mixBlendMode: 'overlay'
+              }}
+            />
+          </div>
+        ) : (
+          // Desktop WebGL background
+          <DarkVeil 
+            hueShift={0}
+            noiseIntensity={0.01}
+            scanlineIntensity={0}
+            speed={0.3}
+            scanlineFrequency={0}
+            warpAmount={0.02}
+            resolutionScale={1}
+          />
+        )}
+      </div>
       {/* Background Effects - Enhanced Red Theme */}
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-red-900/20 to-black"></div>
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-red-900/10 via-transparent to-red-900/10"></div>
       
-      {/* Floating Elements - Enhanced Red Theme */}
+      {/* Floating Elements - Enhanced Red Theme (Desktop only for performance) */}
       <div className="hidden md:block absolute top-20 left-10 w-20 h-20 bg-red-600/20 rounded-full blur-xl animate-pulse"></div>
       <div className="hidden md:block absolute bottom-20 right-10 w-32 h-32 bg-red-700/15 rounded-full blur-2xl animate-pulse delay-1000"></div>
       <div className="hidden md:block absolute top-1/2 left-1/4 w-16 h-16 bg-red-600/25 rounded-full blur-lg animate-pulse delay-500"></div>
@@ -76,7 +91,7 @@ const Hero = () => {
               className="flex justify-center lg:justify-start mb-4 sm:mb-6 lg:mb-8"
             >
               <Image 
-                src="/images/logo/LOGO BLACK BACKGROUND.png" 
+                src="/images/logo/NIGHTSHIELD copy 3.png" 
              
                 alt="NightShield Logo" 
                 width={80} 

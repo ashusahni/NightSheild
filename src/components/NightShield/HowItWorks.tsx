@@ -72,110 +72,11 @@ const HowItWorks = () => {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
 
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0)
-  const [showTargetLock, setShowTargetLock] = useState<boolean>(false)
-  const [targetAnimationKey, setTargetAnimationKey] = useState<number>(0)
-  const [isHoveringImage, setIsHoveringImage] = useState<boolean>(false)
 
-  // Simple scroll detection
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShowTargetLock(true)
-          } else {
-            setShowTargetLock(false)
-          }
-        })
-      },
-      { threshold: 0.3 }
-    )
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
-    }
-
-    return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current)
-      }
-    }
-  }, [])
-
-  // Reset target lock when image changes to ensure proper detection
-  useEffect(() => {
-    if (showTargetLock) {
-      // Briefly hide and show target lock to reset animations
-      setShowTargetLock(false)
-      const timer = setTimeout(() => {
-        setShowTargetLock(true)
-      }, 100)
-      return () => clearTimeout(timer)
-    }
-  }, [selectedImageIndex])
-
-  // Handle mouse events on the image container
-  const handleImageMouseEnter = () => {
-    setIsHoveringImage(true)
-    setShowTargetLock(true)
-  }
-
-  const handleImageMouseLeave = () => {
-    setIsHoveringImage(false)
-    setShowTargetLock(false)
-  }
-
-  // Enhanced target lock component with cursor targeting
-  const TargetLockOverlay = () => {
-    if (!showTargetLock) return null
-
-    const currentImage = galleryImages[selectedImageIndex]
-    const targets = currentImage.fightingTargets
-
-    return (
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Show target locks on fighting parts with cursor targeting */}
-        {targets.map((target, index) => (
-          <div
-            key={`${selectedImageIndex}-${index}-${targetAnimationKey}`}
-            className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-out pointer-events-none"
-            style={{ 
-              left: `${target.x}%`, 
-              top: `${target.y}%`,
-              width: '60px',
-              height: '60px',
-              zIndex: 10
-            }}
-          >
-            {/* Smaller target crosshair */}
-            <div className="relative w-12 h-12">
-              {/* Perfect circle with crosshair */}
-              <div className="absolute inset-0 rounded-full border border-red-500">
-                {/* Horizontal line extending to edges */}
-                <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-red-500 transform -translate-y-1/2" />
-                {/* Vertical line extending to edges */}
-                <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-red-500 transform -translate-x-1/2" />
-                
-                {/* Center dot */}
-                <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-red-500 rounded-full transform -translate-x-1/2 -translate-y-1/2" />
-              </div>
-              
-              {/* Target label */}
-              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-black/80 text-red-400 text-xs px-2 py-1 rounded border border-red-500/30 whitespace-nowrap">
-                {target.label}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    )
-  }
 
   // Simple image switch handler
   const handleImageSwitch = (idx: number) => {
     setSelectedImageIndex(idx)
-    // Force re-render of target overlays with new animation key
-    setTargetAnimationKey(prev => prev + 1)
   }
 
   return (
@@ -183,7 +84,7 @@ const HowItWorks = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black" />
       <div className="absolute inset-0 grid-texture opacity-10" />
       
-      {/* Red Target Cursor */}
+      {/* Target Cursor for Fight Scene */}
       <TargetCursor 
         targetSelector=".cursor-target"
         spinDuration={2}
@@ -206,9 +107,7 @@ const HowItWorks = () => {
           <div className="lg:col-span-7">
             <div
               ref={stickyRef}
-              className="cursor-target aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm sticky top-24"
-              onMouseEnter={handleImageMouseEnter}
-              onMouseLeave={handleImageMouseLeave}
+              className="aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm sticky top-24"
             >
              
               <Image
@@ -220,21 +119,15 @@ const HowItWorks = () => {
                 priority
               />
     
-              {/* Target Lock Overlay */}
-              <TargetLockOverlay />
+              {/* Fight Target Area - positioned over the fight scene */}
+              <div className="cursor-target absolute inset-0 pointer-events-auto">
+                {/* Invisible target area that covers the fight scene */}
+                <div className="absolute top-1/4 left-1/3 w-1/3 h-1/2 pointer-events-auto"></div>
+              </div>
     
               {/* Dim vignette */}
               <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20" />
               
-              {/* Status indicator */}
-              {showTargetLock && (
-                <div className="absolute bottom-4 left-4 bg-black/80 text-white text-sm px-3 py-2 rounded-lg border border-red-500/30 backdrop-blur-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                    <span>Target Lock Active</span>
-                  </div>
-                </div>
-              )}
             </div>
 
             {/* Thumbnail Gallery */}

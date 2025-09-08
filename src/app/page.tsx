@@ -11,6 +11,7 @@ import HowItWorks from '@/components/NightShield/HowItWorks'
 import MacbookScrollDemo from '@/components/NightShield/Comparison'
 import Testimonials from '@/components/NightShield/Testimonials'
 import Features from '@/components/NightShield/Features'
+import Comparison from '@/components/NightShield/Comparison'
 
 export const metadata: Metadata = {
   title: 'NightShield - AI Surveillance That Protects Venues Before It\'s Too Late',
@@ -39,7 +40,7 @@ export default function Home() {
         <HowItWorks />
         <Featuress />
         <WhoItsFor />
-        <MacbookScrollDemo />
+        <Comparison />
         {/* <Industries /> */}
         {/* <Pricing /> */}
         {/* <Testimonials /> */}

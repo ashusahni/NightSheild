@@ -9,6 +9,7 @@
   - Limited frame rate to 30fps for better performance
   - Added reduced motion support
   - Reduced device pixel ratio and disabled antialiasing
+  - **NEW**: Mobile devices now use static theme-matching background instead of WebGL
 
 ### 2. **Expensive CountUp Animations**
 - **Problem**: Industries component used `requestAnimationFrame` for number counting
@@ -61,6 +62,7 @@
 - ✅ Limited frame rate to 30fps
 - ✅ Added reduced motion support
 - ✅ Reduced device pixel ratio
+- ✅ **NEW**: Mobile-specific static background replacement (Hero.tsx)
 
 #### ContainerScroll.tsx
 - ✅ Added hardware acceleration
@@ -99,6 +101,7 @@
 - Simplified animations
 - Reduced shadow and blur effects
 - Optimized scroll performance
+- **NEW**: Replaced WebGL DarkVeil with static CSS gradients matching website theme
 
 ### Reduced Motion Preference
 - Respects user's motion preferences

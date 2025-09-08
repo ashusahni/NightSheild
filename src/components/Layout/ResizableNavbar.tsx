@@ -40,9 +40,9 @@ const ResizableNavbar = ({ disableMobile = false }: ResizableNavbarProps) => {
   return (
     <Navbar>
       {/* Desktop Navigation */}
-      <NavBody>
+      <NavBody className="navbar-desktop">
         {/* Logo */}
-        <Link href="/" className="relative z-20 mr-6 flex items-center space-x-3 group">
+        <Link href="/" className="navbar-logo relative z-20 mr-8 flex items-center space-x-3 group">
           <div className="relative">
             <Image 
               src="/images/logo/LOGO TRANSPARENT.png" 
@@ -53,7 +53,7 @@ const ResizableNavbar = ({ disableMobile = false }: ResizableNavbarProps) => {
             />
             <div className="absolute inset-0 bg-red-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-125"></div>
           </div>
-          <span className="text-lg font-bold text-white group-hover:text-red-500 transition-colors duration-300">
+          <span className="text-lg font-bold text-white group-hover:text-red-500 transition-colors duration-300 whitespace-nowrap">
             Night<span className="text-red-500 group-hover:text-red-400">Shield</span>
           </span>
         </Link>
@@ -62,14 +62,14 @@ const ResizableNavbar = ({ disableMobile = false }: ResizableNavbarProps) => {
         <NavItems 
           items={navItems} 
           onItemClick={closeMobileMenu}
-          className="text-black dark:text-white"
+          className="navbar-items text-black dark:text-white"
         />
 
         {/* CTA Button */}
         <NavbarButton
           href="#contact"
           variant="gradient"
-          className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white border-0 shadow-lg hover:shadow-red-500/25 px-5 py-2 text-sm"
+          className="navbar-cta bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white border-0 shadow-lg hover:shadow-red-500/25 px-5 py-2 text-sm"
         >
           Get Started
         </NavbarButton>
@@ -77,7 +77,7 @@ const ResizableNavbar = ({ disableMobile = false }: ResizableNavbarProps) => {
 
       {/* Mobile Navigation */}
       {!disableMobile && (
-        <MobileNav>
+        <MobileNav className="navbar-mobile">
           <MobileNavHeader>
             {/* Mobile Logo */}
             <Link href="/" className="flex items-center space-x-2 group" onClick={closeMobileMenu}>

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { MacbookScroll } from "@/components/ui/macbook-scroll";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import FuturisticComparison from "./FuturisticComparison";
 
 const Comparison = () => {
   const { isMobile, isClient } = useIsMobile();
@@ -50,118 +50,8 @@ const Comparison = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black"></div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        {/* Desktop Layout with Macbook Scroll */}
-        {!isMobile && (
-          <div className="mb-16">
-            <MacbookScroll
-              src="/images/image.png"
-              title={
-                <span className="text-white">
-                  Experience NightShield&apos;s AI in Action <br />
-                  <span className="text-red-500">Real-time Security Monitoring</span>
-                </span>
-              }
-              showGradient={false}
-            />
-          </div>
-        )}
-
-        {/* Mobile Layout - Competitor Comparison */}
-        {isMobile && (
-          <div className="space-y-8">
-            {/* Mobile Header */}
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-white mb-2">
-                Why NightShield is Better for Venues
-              </h2>
-              <p className="text-gray-300 text-sm">
-                See how we compare to traditional security solutions
-              </p>
-            </div>
-
-            {/* Mobile Competitor Comparison Table */}
-            <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 overflow-hidden">
-              {/* Table Header */}
-              <div className="bg-gray-800/70 p-4 border-b border-gray-700/50">
-                <div className="grid grid-cols-1 gap-2 text-xs font-semibold text-gray-300 uppercase tracking-wide">
-                  <div>Company Comparison</div>
-                </div>
-              </div>
-
-              {/* Competitor Rows */}
-              <div className="divide-y divide-gray-700/30">
-                {competitorData.map((competitor, index) => (
-                  <div key={index} className="p-4 space-y-4">
-                    {/* Company Name */}
-                    <div className="text-center">
-                      <h3 className="text-lg font-bold text-white mb-3">
-                        {competitor.company}
-                      </h3>
-                    </div>
-
-                    {/* What they're great at */}
-                    <div className="space-y-2">
-                      <div className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
-                        What they're great at
-                      </div>
-                      <div className="text-sm text-gray-300 bg-gray-800/30 p-3 rounded-lg">
-                        {competitor.strength}
-                      </div>
-                    </div>
-
-                    {/* Where this falls short */}
-                    <div className="space-y-2">
-                      <div className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
-                        Where this falls short for nightlife venues
-                      </div>
-                      <div className="text-sm text-red-300 bg-red-900/20 p-3 rounded-lg border border-red-500/20">
-                        {competitor.weakness}
-                      </div>
-                    </div>
-
-                    {/* Why NightShield is better */}
-                    <div className="space-y-2">
-                      <div className="text-xs font-semibold text-red-300 uppercase tracking-wide">
-                        Why NightShield is better for venues
-                      </div>
-                      <div className="text-sm text-white bg-gradient-to-r from-red-900/30 to-red-800/30 p-3 rounded-lg border border-red-500/30">
-                        {competitor.advantage}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Key Points */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-white text-center mb-6">
-                Why Choose NightShield?
-              </h3>
-              <div className="space-y-3">
-                {keyPoints.map((point, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <div className="flex-shrink-0 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center mt-0.5">
-                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <p className="text-sm text-gray-300 leading-relaxed">
-                      {point}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Disclaimer */}
-            {/* <div className="text-center">
-              <p className="text-xs text-gray-500 italic">
-                Comparisons based on publicly available positioning; features and pricing may vary by SKU/region.
-              </p>
-            </div> */}
-          </div>
-        )}
+        {/* Futuristic Comparison for All Devices */}
+        <FuturisticComparison />
       </div>
     </section>
   )

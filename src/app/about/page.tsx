@@ -1,38 +1,23 @@
 'use client';
 
 import React from 'react';
-import { IconShieldLock, IconTrendingUp, IconUsers, IconEye, IconRocket, IconBuildingArch, IconBrain, IconAward, IconHeart, IconTarget, IconCheck, IconStar, IconGlobe, IconShieldCheck } from '@tabler/icons-react';
+import { IconShieldLock, IconTrendingUp, IconUsers, IconEye, IconRocket, IconBuildingArch, IconBrain, IconAward, IconHeart, IconTarget, IconCheck, IconStar, IconGlobe, IconShieldCheck, IconSparkles, IconBolt, IconShield } from '@tabler/icons-react';
 import CountUp from 'react-countup';
 import Contact from '@/components/NightShield/Contact'
 
 
 const AboutPage = () => {
-  const team = [
-    {
-      name: 'Alex Thompson',
-      role: 'CEO & Founder',
-      bio: 'Security veteran with 15+ years in venue protection and AI research.',
-      avatar: '👨‍💼',
-    },
-    {
-      name: 'Dr. Sarah Kim',
-      role: 'CTO',
-      bio: 'PhD in Computer Vision from MIT, formerly at Google AI.',
-      avatar: '👩‍💼',
-    },
-    {
-      name: 'Marcus Rodriguez',
-      role: 'Head of Security',
-      bio: '20+ years in law enforcement, specializing in crowd control and threat assessment.',
-      avatar: '👨‍💼',
-    },
-    {
-      name: 'Emily Chen',
-      role: 'VP of Operations',
-      bio: 'Hospitality industry expert with a deep understanding of venue security challenges.',
-      avatar: '👩‍💼',
-    },
-  ];
+  const founder = {
+    name: 'Stilyan Delgyanski',
+    role: 'Founder',
+    bio: `I didn't grow up with a safety net. I learned to sell on the phone, take rejection on the chin, and keep going. Seven years of kickboxing gave me routine and patience. The SIA badge put me on the door and in CCTV rooms where decisions actually matter. That's where my bar was set: be useful, be calm, act fast.
+
+What I care about:
+• Show up every day, not just when it's exciting.
+• Keep things simple and honest—no fluff.
+• Let results do the talking.`,
+    image: '/images/founder.jpg'
+  };
 
   const milestones = [
     { year: '2023', event: 'NightShield is Born', icon: <IconRocket size={32} /> },
@@ -123,19 +108,53 @@ const AboutPage = () => {
     <div className="bg-black text-white min-h-screen">
       <div className="pt-24 md:pt-32">
         {/* Hero Section */}
-        <section className="text-center py-20 px-4">
-          <div className="container mx-auto">
-            <IconShieldLock size={64} className="mx-auto text-red-500 mb-4" />
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              Beyond Surveillance.
-              <br />
-              We Are Your <span className="text-red-500">Night Shield</span>.
-            </h1>
-            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-              In an unpredictable world, venue safety is non-negotiable. NightShield was founded by security veterans
-              and AI pioneers to shift from reactive recording to proactive protection. We don&apos;t just watch. We
-              anticipate, alert, and empower you to act before threats escalate.
-            </p>
+        <section className="relative overflow-hidden py-16 px-4">
+          {/* Background Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/10"></div>
+          
+          {/* Animated Background Elements */}
+          <div className="absolute top-10 left-10 w-48 h-48 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-64 h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          
+          <div className="container mx-auto relative z-10">
+            <div className="text-center max-w-4xl mx-auto">
+              {/* Icon with glow effect */}
+              <div className="relative inline-block mb-6">
+                <div className="absolute inset-0 bg-red-500/20 rounded-full blur-xl scale-150"></div>
+                <div className="relative bg-gradient-to-r from-red-500 to-red-600 p-3 rounded-xl shadow-2xl">
+                  <IconShield size={32} className="text-white" />
+                </div>
+              </div>
+              
+              {/* Main heading with gradient text */}
+              <h1 className="text-3xl md:text-5xl font-black mb-6 leading-tight">
+                <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                  Beyond Surveillance.
+                </span>
+                <br />
+                <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">
+                  We Are Your Night Shield.
+                </span>
+              </h1>
+              
+              {/* Subtitle with modern styling */}
+              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light mb-8">
+                In an unpredictable world, venue safety is non-negotiable. NightShield was founded by security veterans
+                and AI pioneers to shift from reactive recording to proactive protection.
+              </p>
+              
+              {/* Call to action with modern button */}
+              <div>
+                <button className="group relative px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25">
+                  <span className="relative z-10 flex items-center gap-2">
+                    <IconBolt size={18} />
+                    Discover Our Story
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </button>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -143,17 +162,46 @@ const AboutPage = () => {
        
 
         {/* Values Section */}
-        <section className="py-20 bg-card-bg px-4">
-          <div className="container mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Our <span className="text-red-500">Core Values</span>
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <section className="relative py-16 px-4 overflow-hidden">
+          {/* Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 via-transparent to-red-500/5"></div>
+          
+          <div className="container mx-auto relative z-10">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-black mb-4">
+                Our <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">Core Values</span>
+              </h2>
+              <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                The principles that drive everything we do
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {values.map((value, index) => (
-                <div key={index} className="text-center">
-                  <div className="mb-4">{value.icon}</div>
-                  <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                  <p className="text-gray-400">{value.description}</p>
+                <div key={index} className="group relative">
+                  {/* Glassmorphism card */}
+                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 h-full transition-all duration-500 hover:bg-white/10 hover:border-red-500/30 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/10">
+                    {/* Gradient border effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="relative z-10 text-center">
+                      {/* Icon with glow */}
+                      <div className="relative inline-block mb-4">
+                        <div className="absolute inset-0 bg-red-500/20 rounded-full blur-lg scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div className="relative bg-gradient-to-r from-red-500/20 to-red-600/20 p-3 rounded-lg border border-red-500/20 group-hover:border-red-500/40 transition-all duration-500">
+                          {value.icon}
+                        </div>
+                      </div>
+                      
+                      <h3 className="text-lg font-bold mb-3 text-white group-hover:text-red-400 transition-colors duration-300">
+                        {value.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                        {value.description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -161,16 +209,50 @@ const AboutPage = () => {
         </section>
 
         {/* Impact Section */}
-        <section className="py-20 px-4">
-          <div className="container mx-auto">
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <h2 className="text-5xl font-bold text-red-500">
-                    <CountUp end={stat.value} duration={3} separator="," decimals={stat.decimals || 0} />
-                    {stat.suffix}
-                  </h2>
-                  <p className="text-gray-300 mt-2">{stat.label}</p>
+        <section className="relative py-16 px-4 overflow-hidden">
+          {/* Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/10"></div>
+          
+          {/* Animated background elements */}
+          <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          
+          <div className="container mx-auto relative z-10">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-black mb-4">
+                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                  Our Impact
+                </span>
+              </h2>
+              <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                Numbers that speak to our commitment to security excellence
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {stats.map((stat, index) => (
+                <div key={stat.label} className="group relative">
+                  {/* Glassmorphism card */}
+                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 text-center transition-all duration-500 hover:bg-white/10 hover:border-red-500/30 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/10">
+                    {/* Gradient border effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="relative z-10">
+                      {/* Animated counter with glow */}
+                      <div className="relative mb-3">
+                        <div className="absolute inset-0 bg-red-500/20 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <h2 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+                          <CountUp end={stat.value} duration={3} separator="," decimals={stat.decimals || 0} />
+                          {stat.suffix}
+                        </h2>
+                      </div>
+                      
+                      <p className="text-gray-300 font-medium group-hover:text-white transition-colors duration-300">
+                        {stat.label}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -233,50 +315,134 @@ const AboutPage = () => {
           </div>
         </section> */}
         
-        {/* Team Section */}
-        <section className="py-20 bg-card-bg px-4">
-          <div className="container mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              The Minds Behind <span className="text-red-500">the Shield</span>
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {team.map((member) => (
-                <div key={member.name} className="bg-black p-6 rounded-lg text-center transform hover:scale-105 transition-transform duration-300">
-                  <div className="text-5xl mb-4">{member.avatar}</div>
-                  <h3 className="text-xl font-bold">{member.name}</h3>
-                  <p className="text-red-500 mb-2">{member.role}</p>
-                  <p className="text-gray-400 text-sm">{member.bio}</p>
+        {/* Founder Section */}
+        <section className="relative py-16 px-4 overflow-hidden">
+          {/* Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/10"></div>
+          
+          {/* Animated background elements */}
+          <div className="absolute top-10 right-10 w-64 h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 left-10 w-48 h-48 bg-red-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          
+          <div className="container mx-auto relative z-10">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-black mb-4">
+                The Mind Behind <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">the Shield</span>
+              </h2>
+              <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                Meet the visionary who built NightShield from the ground up
+              </p>
+            </div>
+            
+            <div className="max-w-5xl mx-auto">
+              <div className="relative group">
+                {/* Main glassmorphism card */}
+                <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 overflow-hidden">
+                  {/* Gradient border effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-transparent to-red-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex flex-col lg:flex-row items-center gap-8">
+                      {/* Image section */}
+                      <div className="flex-shrink-0 relative">
+                        {/* Image glow effect */}
+                        <div className="absolute inset-0 bg-red-500/20 rounded-xl blur-2xl scale-110 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                        
+                        {/* Image container */}
+                        <div className="relative bg-gradient-to-br from-red-500/20 to-red-600/20 p-2 rounded-xl border border-red-500/30">
+                          <img 
+                            src={founder.image} 
+                            alt={founder.name}
+                            className="w-64 h-64 object-cover rounded-lg shadow-2xl"
+                          />
+                        </div>
+                        
+                        {/* Floating elements */}
+                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-300"></div>
+                        <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-red-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-500"></div>
+                      </div>
+                      
+                      {/* Content section */}
+                      <div className="flex-1 space-y-6">
+                        {/* Name and role */}
+                        <div>
+                          <h3 className="text-3xl md:text-4xl font-black mb-3 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+                            {founder.name}
+                          </h3>
+                          <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-red-500/20 to-red-600/20 border border-red-500/30 rounded-full">
+                            <IconSparkles size={16} className="text-red-400" />
+                            <span className="text-red-400 font-semibold">{founder.role}</span>
+                          </div>
+                        </div>
+                        
+                        {/* Bio content */}
+                        <div className="space-y-4">
+                          <div className="text-gray-300 leading-relaxed whitespace-pre-line">
+                            {founder.bio}
+                          </div>
+                          
+                          {/* Signature line */}
+                          <div className="pt-3 border-t border-white/10">
+                            <p className="text-gray-400 italic text-sm">
+                              "Building security solutions that actually work, not just look good."
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Call to Action Section */}
-        <section className="py-20 px-4">
-          <div className="container mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to <span className="text-red-500">Transform</span> Your Security?
-            </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-              Join hundreds of venues worldwide that have already upgraded their security with NightShield. 
-              Let's discuss how we can protect what matters most to you.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button onClick={() => {
-                const element = document.querySelector('#contact')
-                if (element) element.scrollIntoView({ behavior: 'smooth' })
-              }} className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300">
-                Get Started Today
-              </button>
-              <button onClick={() => {
-                const element = document.querySelector('#contact')
-                if (element) element.scrollIntoView({ behavior: 'smooth' })
-              }} className="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300">
-                Schedule Demo
-              </button>
+        <section className="relative py-16 px-4 overflow-hidden">
+          {/* Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-transparent to-red-500/20"></div>
+          
+          {/* Animated background elements */}
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-red-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-red-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          
+          <div className="container mx-auto relative z-10">
+            <div className="text-center max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-black mb-6">
+                Ready to <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">Transform</span> Your Security?
+              </h2>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+                Join hundreds of venues worldwide that have already upgraded their security with NightShield. 
+                Let's discuss how we can protect what matters most to you.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <button onClick={() => {
+                  const element = document.querySelector('#contact')
+                  if (element) element.scrollIntoView({ behavior: 'smooth' })
+                }} className="group relative px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25">
+                  <span className="relative z-10 flex items-center gap-2">
+                    <IconBolt size={18} />
+                    Get Started Today
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </button>
+                
+                <button onClick={() => {
+                  const element = document.querySelector('#contact')
+                  if (element) element.scrollIntoView({ behavior: 'smooth' })
+                }} className="group relative px-6 py-3 bg-transparent border-2 border-red-500 text-red-500 font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:bg-red-500 hover:text-white hover:shadow-2xl hover:shadow-red-500/25">
+                  <span className="relative z-10 flex items-center gap-2">
+                    <IconShield size={18} />
+                    Schedule Demo
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
+          
           <Contact />
         </section>
       </div>
