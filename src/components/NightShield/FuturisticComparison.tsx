@@ -37,70 +37,70 @@ const FuturisticComparison = () => {
       id: 0,
       name: "Verkada",
       type: "Cloud Platform",
-      score: 6,
+      score: 7,
       color: "#3B82F6",
       position: { x: 20, y: 30 },
       data: {
-        nightlife: 18,
-        ease: 42,
-        alerts: 58,
-        mobile: 38,
-        venue: 12
+        nightlife: 25,
+        ease: 78,
+        alerts: 82,
+        mobile: 85,
+        venue: 15
       }
     },
     {
       id: 1,
       name: "Genetec",
       type: "Enterprise Suite",
-      score: 5,
+      score: 8,
       color: "#8B5CF6",
       position: { x: 60, y: 20 },
       data: {
-        nightlife: 14,
-        ease: 38,
-        alerts: 52,
-        mobile: 32,
-        venue: 8
+        nightlife: 20,
+        ease: 45,
+        alerts: 88,
+        mobile: 65,
+        venue: 12
       }
     },
     {
       id: 2,
       name: "Milestone",
       type: "Open VMS",
-      score: 4,
+      score: 6,
       color: "#10B981",
       position: { x: 40, y: 60 },
       data: {
-        nightlife: 22,
-        ease: 35,
-        alerts: 48,
-        mobile: 28,
-        venue: 16
+        nightlife: 18,
+        ease: 40,
+        alerts: 75,
+        mobile: 55,
+        venue: 10
       }
     },
     {
       id: 3,
       name: "Avigilon",
       type: "HD Analytics",
-      score: 5,
+      score: 7,
       color: "#F59E0B",
       position: { x: 80, y: 50 },
       data: {
-        nightlife: 8,
-        ease: 46,
-        alerts: 65,
-        mobile: 42,
-        venue: 6
+        nightlife: 12,
+        ease: 65,
+        alerts: 90,
+        mobile: 70,
+        venue: 8
       }
     }
   ]
 
   const nightShieldData = {
-    nightlife: 94,
-    ease: 88,
-    alerts: 96,
-    mobile: 91,
-    venue: 97
+    nightlife: 95,
+    ease: 85,
+    alerts: 92,
+    mobile: 90,
+    venue: 88
   }
 
   const metrics = [

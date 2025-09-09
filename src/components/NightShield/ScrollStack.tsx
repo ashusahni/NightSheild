@@ -80,6 +80,10 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
     const endElement = scroller.querySelector('.scroll-stack-end') as HTMLElement;
     const endElementTop = endElement ? endElement.offsetTop : 0;
+    
+    // Mobile performance optimization: reduce update frequency
+    const isMobile = window.innerWidth < 768;
+    const updateThreshold = isMobile ? 5 : 1; // Only update every 5px on mobile
 
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
@@ -133,9 +137,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       const lastTransform = lastTransformsRef.current.get(i);
       const hasChanged =
         !lastTransform ||
-        Math.abs(lastTransform.translateY - newTransform.translateY) > 0.1 ||
-        Math.abs(lastTransform.scale - newTransform.scale) > 0.001 ||
-        Math.abs(lastTransform.blur - newTransform.blur) > 0.1;
+        Math.abs(lastTransform.translateY - newTransform.translateY) > (isMobile ? 0.5 : 0.1) ||
+        Math.abs(lastTransform.scale - newTransform.scale) > (isMobile ? 0.01 : 0.001) ||
+        Math.abs(lastTransform.blur - newTransform.blur) > (isMobile ? 0.5 : 0.1);
 
       if (hasChanged) {
         const transform = `translate3d(0, ${newTransform.translateY}px, 0) scale(${newTransform.scale})`;
@@ -179,19 +183,22 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const scroller = scrollerRef.current;
     if (!scroller) return;
 
+    // Check if mobile device
+    const isMobile = window.innerWidth < 768;
+    
     const lenis = new Lenis({
       wrapper: scroller,
       content: scroller.querySelector('.scroll-stack-inner') as HTMLElement,
-      duration: 0.8,
+      duration: isMobile ? 0.3 : 0.8, // Faster on mobile
       easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 3,
+      smoothWheel: !isMobile, // Disable smooth wheel on mobile
+      touchMultiplier: isMobile ? 1.5 : 3, // Reduce touch sensitivity on mobile
       infinite: false,
       gestureOrientation: 'vertical',
-      wheelMultiplier: 1.5,
-      lerp: 0.15,
+      wheelMultiplier: isMobile ? 1 : 1.5, // Reduce wheel sensitivity on mobile
+      lerp: isMobile ? 0.3 : 0.15, // Faster lerp on mobile
       syncTouch: true,
-      syncTouchLerp: 0.1
+      syncTouchLerp: isMobile ? 0.3 : 0.1 // Faster touch sync on mobile
     });
 
     lenis.on('scroll', handleScroll);

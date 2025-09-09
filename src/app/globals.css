@@ -116,20 +116,67 @@
     display: none;
   }
 
-  /* Mobile Performance Optimizations */
-  @media (max-width: 768px) {
-    * {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    video {
-      will-change: auto;
-    }
-
-    .animate-pulse {
-      animation-duration: 2s;
-    }
+/* Mobile Performance Optimizations */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
   }
+
+  video {
+    will-change: auto;
+  }
+
+  .animate-pulse {
+    animation-duration: 2s;
+  }
+
+  /* Disable heavy animations on mobile */
+  .animate-bulletin-float-1,
+  .animate-bulletin-float-2,
+  .animate-bulletin-float-3,
+  .animate-bulletin-particle-1,
+  .animate-bulletin-particle-2,
+  .animate-bulletin-particle-3,
+  .animate-bulletin-pulse {
+    animation: none !important;
+  }
+
+  /* Optimize scroll performance */
+  .scroll-stack-card {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Reduce blur effects on mobile */
+  .blur-3xl {
+    filter: blur(20px) !important;
+  }
+
+  .blur-2xl {
+    filter: blur(15px) !important;
+  }
+
+  .blur-xl {
+    filter: blur(10px) !important;
+  }
+
+  /* Optimize text rendering */
+  body {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Reduce shadow complexity */
+  .shadow-2xl {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .shadow-xl {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+  }
+}
 
   /* Performance optimizations for animations */
   @media (prefers-reduced-motion: reduce) {
@@ -738,6 +785,55 @@ section {
   .spotlight-card::before,
   .profile-card::after {
     display: none !important; /* Remove complex pseudo-elements */
+  }
+
+  /* Further reduce animations on very small screens */
+  .card-hover:hover {
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* Simplify gradients */
+  .bg-gradient-to-br,
+  .bg-gradient-to-r,
+  .bg-gradient-to-t {
+    background: var(--color-card-bg) !important;
+  }
+
+  /* Reduce border radius for better performance */
+  .rounded-3xl {
+    border-radius: 1rem !important;
+  }
+
+  .rounded-2xl {
+    border-radius: 0.75rem !important;
+  }
+}
+
+/* Additional mobile optimizations for medium screens */
+@media (max-width: 640px) {
+  /* Reduce complex shadows */
+  .shadow-lg {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Simplify backdrop blur */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px) !important;
+  }
+
+  .backdrop-blur-md {
+    backdrop-filter: blur(8px) !important;
+  }
+
+  /* Optimize image loading */
+  img {
+    loading: lazy;
+  }
+
+  /* Reduce transform complexity */
+  .transform {
+    will-change: auto;
   }
 }
 

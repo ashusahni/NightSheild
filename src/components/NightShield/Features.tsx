@@ -157,7 +157,7 @@ const Features = () => {
           </p>
         </div>
 
-        {/* Available Features - ScrollStack Layout */}
+        {/* Available Features - Mobile Optimized Layout */}
         <div className="mb-16">
           <div className="text-center mb-10">
             <div className="flex justify-center items-center space-x-4 mb-4">
@@ -168,109 +168,190 @@ const Features = () => {
             <p className="text-gray-400 text-xl max-w-2xl mx-auto leading-relaxed">
               Core features ready for immediate deployment with cutting-edge AI surveillance technology
             </p>
-            <div className="flex justify-center mt-4">
-              <div className="bg-red-500/10 border border-red-500/30 rounded-full px-6 py-2">
-                <span className="text-red-400 font-semibold text-sm">Scroll down to see features in action</span>
+            {!isMobile && (
+              <div className="flex justify-center mt-4">
+                <div className="bg-red-500/10 border border-red-500/30 rounded-full px-6 py-2">
+                  <span className="text-red-400 font-semibold text-sm">Scroll down to see features in action</span>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
-          {/* ScrollStack Container - Centered and Optimized */}
-          <div className="w-full max-w-5xl mx-auto h-[480px] bg-gradient-to-br from-[#0B0B0F] via-[#1A1A1F] to-[#0B0B0F] rounded-2xl p-4 overflow-hidden border border-red-500/20 shadow-2xl">
-            <ScrollStack
-              className="w-full h-full"
-              itemDistance={isMobile ? 20 : 40}
-              itemScale={isMobile ? 0.01 : 0.02}
-              itemStackDistance={isMobile ? 2 : 4}
-              stackPosition={isMobile ? "15%" : "10%"}
-              scaleEndPosition={isMobile ? "10%" : "5%"}
-              baseScale={isMobile ? 0.98 : 0.95}
-              rotationAmount={0}
-              blurAmount={0}
-              onStackComplete={() => console.log('Stack animation completed')}
-            >
+          {/* Mobile: Simple Grid Layout, Desktop: ScrollStack */}
+          {isMobile ? (
+            <div className="space-y-6 max-w-4xl mx-auto">
               {availableFeatures.map((feature, index) => (
-                <ScrollStackItem key={index} itemClassName="bg-[#1A1A1F] border border-red-500/30 p-6">
-                  <div className="relative group h-full">
-                    {/* Highlight Badge */}
-                    {feature.highlight && (
-                      <div className="absolute -top-2 left-4 z-10">
-                        <div className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-                          MVP Feature
-                        </div>
+                <div key={index} className="bg-[#1A1A1F] border border-red-500/30 rounded-2xl p-6 relative group">
+                  {/* Highlight Badge */}
+                  {feature.highlight && (
+                    <div className="absolute -top-2 left-4 z-10">
+                      <div className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                        MVP Feature
                       </div>
-                    )}
+                    </div>
+                  )}
 
-                    <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-8 h-full">
-                      {/* Feature Image */}
-                      <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-red-500/30 flex-shrink-0">
-                        {/* Background Pattern */}
-                        <div className="absolute inset-0 opacity-20">
-                          <div className="w-full h-full" style={{
-                            backgroundImage: `linear-gradient(rgba(229, 18, 47, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(229, 18, 47, 0.1) 1px, transparent 1px)`,
-                            backgroundSize: '16px 16px'
-                          }}></div>
-                        </div>
-                        
-                        {/* Feature Icon */}
-                        <div className={`absolute inset-0 flex items-center justify-center ${
-                          feature.highlight 
-                            ? 'bg-red-500/25' 
-                            : 'bg-red-500/15'
-                        }`}>
-                          <svg className="w-10 h-10 md:w-12 md:h-12 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                            {feature.icon.props.children}
-                          </svg>
-                        </div>
-                        
-                        {/* Static Elements */}
-                        <div className="absolute inset-0">
-                          {/* Corner Brackets */}
-                          <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-red-500/60"></div>
-                          <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-red-500/60"></div>
-                          <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-red-500/60"></div>
-                          <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-red-500/60"></div>
-                        </div>
-                        
-                        {/* Highlight Badge */}
-                        {feature.highlight && (
-                          <div className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
-                            <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
-                            </svg>
-                          </div>
-                        )}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    {/* Feature Icon */}
+                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-red-500/30 flex-shrink-0">
+                      {/* Background Pattern */}
+                      <div className="absolute inset-0 opacity-20">
+                        <div className="w-full h-full" style={{
+                          backgroundImage: `linear-gradient(rgba(229, 18, 47, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(229, 18, 47, 0.1) 1px, transparent 1px)`,
+                          backgroundSize: '12px 12px'
+                        }}></div>
                       </div>
                       
-                      {/* Content */}
-                      <div className="flex-1">
-                        <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
-                          {feature.title}
-                        </h3>
-                        <p className="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">
-                          {feature.description}
-                        </p>
-                        
-                        {/* Stats with Visual Enhancement */}
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                            <div className="text-red-500 font-bold text-base md:text-lg">
-                              {feature.stats}
-                            </div>
+                      {/* Feature Icon */}
+                      <div className={`absolute inset-0 flex items-center justify-center ${
+                        feature.highlight 
+                          ? 'bg-red-500/25' 
+                          : 'bg-red-500/15'
+                      }`}>
+                        <svg className="w-8 h-8 sm:w-10 sm:h-10 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                          {feature.icon.props.children}
+                        </svg>
+                      </div>
+                      
+                      {/* Corner Brackets */}
+                      <div className="absolute top-1 left-1 w-3 h-3 border-l-2 border-t-2 border-red-500/60"></div>
+                      <div className="absolute top-1 right-1 w-3 h-3 border-r-2 border-t-2 border-red-500/60"></div>
+                      <div className="absolute bottom-1 left-1 w-3 h-3 border-l-2 border-b-2 border-red-500/60"></div>
+                      <div className="absolute bottom-1 right-1 w-3 h-3 border-r-2 border-b-2 border-red-500/60"></div>
+                      
+                      {/* Highlight Badge */}
+                      {feature.highlight && (
+                        <div className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
+                          <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="flex-1">
+                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-300 leading-relaxed mb-3 text-sm sm:text-base">
+                        {feature.description}
+                      </p>
+                      
+                      {/* Stats */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                          <div className="text-red-500 font-bold text-sm sm:text-base">
+                            {feature.stats}
                           </div>
-                          <div className="text-gray-500 text-sm md:text-base font-mono bg-gray-800/50 px-2 py-1 rounded-lg">
-                            {String(index + 1).padStart(2, '0')}
+                        </div>
+                        <div className="text-gray-500 text-xs sm:text-sm font-mono bg-gray-800/50 px-2 py-1 rounded-lg">
+                          {String(index + 1).padStart(2, '0')}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            /* Desktop: ScrollStack Container */
+            <div className="w-full max-w-5xl mx-auto h-[480px] bg-gradient-to-br from-[#0B0B0F] via-[#1A1A1F] to-[#0B0B0F] rounded-2xl p-4 overflow-hidden border border-red-500/20 shadow-2xl">
+              <ScrollStack
+                className="w-full h-full"
+                itemDistance={40}
+                itemScale={0.02}
+                itemStackDistance={4}
+                stackPosition="10%"
+                scaleEndPosition="5%"
+                baseScale={0.95}
+                rotationAmount={0}
+                blurAmount={0}
+                onStackComplete={() => console.log('Stack animation completed')}
+              >
+                {availableFeatures.map((feature, index) => (
+                  <ScrollStackItem key={index} itemClassName="bg-[#1A1A1F] border border-red-500/30 p-6">
+                    <div className="relative group h-full">
+                      {/* Highlight Badge */}
+                      {feature.highlight && (
+                        <div className="absolute -top-2 left-4 z-10">
+                          <div className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                            MVP Feature
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-8 h-full">
+                        {/* Feature Image */}
+                        <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-red-500/30 flex-shrink-0">
+                          {/* Background Pattern */}
+                          <div className="absolute inset-0 opacity-20">
+                            <div className="w-full h-full" style={{
+                              backgroundImage: `linear-gradient(rgba(229, 18, 47, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(229, 18, 47, 0.1) 1px, transparent 1px)`,
+                              backgroundSize: '16px 16px'
+                            }}></div>
+                          </div>
+                          
+                          {/* Feature Icon */}
+                          <div className={`absolute inset-0 flex items-center justify-center ${
+                            feature.highlight 
+                              ? 'bg-red-500/25' 
+                              : 'bg-red-500/15'
+                          }`}>
+                            <svg className="w-10 h-10 md:w-12 md:h-12 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                              {feature.icon.props.children}
+                            </svg>
+                          </div>
+                          
+                          {/* Static Elements */}
+                          <div className="absolute inset-0">
+                            {/* Corner Brackets */}
+                            <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-red-500/60"></div>
+                            <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-red-500/60"></div>
+                            <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-red-500/60"></div>
+                            <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-red-500/60"></div>
+                          </div>
+                          
+                          {/* Highlight Badge */}
+                          {feature.highlight && (
+                            <div className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
+                              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+                        
+                        {/* Content */}
+                        <div className="flex-1">
+                          <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                            {feature.title}
+                          </h3>
+                          <p className="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">
+                            {feature.description}
+                          </p>
+                          
+                          {/* Stats with Visual Enhancement */}
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                              <div className="text-red-500 font-bold text-base md:text-lg">
+                                {feature.stats}
+                              </div>
+                            </div>
+                            <div className="text-gray-500 text-sm md:text-base font-mono bg-gray-800/50 px-2 py-1 rounded-lg">
+                              {String(index + 1).padStart(2, '0')}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-
-                  </div>
-                </ScrollStackItem>
-              ))}
-            </ScrollStack>
-          </div>
+                  </ScrollStackItem>
+                ))}
+              </ScrollStack>
+            </div>
+          )}
         </div>
 
         {/* Upcoming Features - Moving Bulletin Cards */}

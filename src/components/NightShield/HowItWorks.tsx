@@ -301,7 +301,9 @@ const HowItWorks = () => {
           <div className="lg:col-span-7 order-2 lg:order-1">
             <div
               ref={stickyRef}
-              className="aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm lg:sticky lg:top-24 group hover:border-red-500/40 transition-all duration-300"
+              className={`aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm group hover:border-red-500/40 transition-all duration-300 ${
+                isMobile ? 'mb-6' : 'lg:sticky lg:top-24'
+              }`}
             >
              
               <Image
@@ -427,10 +429,10 @@ const HowItWorks = () => {
               
             </div>
 
-            {/* Enhanced Thumbnail Gallery with Controls */}
+              {/* Enhanced Thumbnail Gallery with Controls */}
             <div className="mt-6">
               {/* Gallery Controls - Mobile Optimized */}
-              <div className="flex items-center justify-between mb-4">
+              <div className={`flex items-center justify-between mb-4 ${isMobile ? 'flex-col gap-3' : ''}`}>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setIsAutoPlaying(!isAutoPlaying)}
@@ -465,7 +467,7 @@ const HowItWorks = () => {
               </div>
 
               {/* Thumbnail Gallery - Mobile Responsive */}
-              <div className="flex gap-2 sm:gap-4 justify-between overflow-x-auto pb-2">
+              <div className={`flex gap-2 sm:gap-4 justify-between overflow-x-auto pb-2 ${isMobile ? 'snap-x snap-mandatory' : ''}`}>
                 {galleryImages.map((image, idx) => (
                   <div
                     key={image.id}
@@ -474,7 +476,7 @@ const HowItWorks = () => {
                       selectedImageIndex === idx 
                         ? 'scale-[1.05]' 
                         : 'hover:scale-[1.02] active:scale-[1.03]'
-                    }`}
+                    } ${isMobile ? 'snap-center min-w-[120px]' : ''}`}
                   >
                     <div className={`w-full h-20 sm:h-24 rounded-lg overflow-hidden border-2 transition-all duration-300 relative ${
                       selectedImageIndex === idx
