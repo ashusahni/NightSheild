@@ -8,26 +8,13 @@ export const useIsMobile = () => {
     setIsClient(true)
     
     const checkMobile = () => {
-      const width = window.innerWidth
-      // Use a more conservative mobile breakpoint
-      setIsMobile(width < 768)
+      setIsMobile(window.innerWidth < 768)
     }
     
     checkMobile()
+    window.addEventListener('resize', checkMobile)
     
-    // Throttle resize events for better performance
-    let timeoutId: NodeJS.Timeout
-    const throttledCheckMobile = () => {
-      clearTimeout(timeoutId)
-      timeoutId = setTimeout(checkMobile, 100)
-    }
-    
-    window.addEventListener('resize', throttledCheckMobile)
-    
-    return () => {
-      window.removeEventListener('resize', throttledCheckMobile)
-      clearTimeout(timeoutId)
-    }
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   return { isMobile, isClient }

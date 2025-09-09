@@ -337,6 +337,20 @@ const Features = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10" ref={containerRef}>
+        {/* Mobile Logo */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+          transition={{ duration: 0.6 }}
+          className="flex justify-center mb-8 md:hidden"
+        >
+          <img 
+            src="/images/logo/TRANSPARENT LOGO + TEXT.png" 
+            alt="NightShield Logo" 
+            className="h-16 w-auto"
+          />
+        </motion.div>
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -129,26 +129,31 @@ const Industries = () => {
   return (
     <section className="py-32 bg-black" ref={containerRef}>
       <div className="container mx-auto px-4 max-w-6xl">
-        {/* Minimal Header */}
+        {/* Header with Logo */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-24"
         >
-          <div className="flex justify-center items-center space-x-3 mb-6">
+          {/* Logo positioned at the top */}
+          <div className="flex justify-center mb-8">
             <Image 
               src="/images/logo/LOGO TRANSPARENT.png" 
               alt="NightShield Logo" 
-              width={32} 
-              height={32}
-              className="w-8 h-8"
+              width={80} 
+              height={80}
+              className="w-16 h-16 md:w-20 md:h-20"
               priority
             />
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold text-white tracking-tight">
-              Trusted Across Industries
-            </h1>
           </div>
+          
+          {/* Main Title */}
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold text-white tracking-tight mb-6">
+            Trusted Across Industries
+          </h1>
+          
+          {/* Subtitle */}
           <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Protecting venues and businesses worldwide with AI-powered surveillance technology
           </p>

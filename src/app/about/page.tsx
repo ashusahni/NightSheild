@@ -2,9 +2,77 @@
 
 import React from 'react';
 import { IconShieldLock, IconTrendingUp, IconUsers, IconEye, IconRocket, IconBuildingArch, IconBrain, IconAward, IconHeart, IconTarget, IconCheck, IconStar, IconGlobe, IconShieldCheck, IconSparkles, IconBolt, IconShield } from '@tabler/icons-react';
-import CountUp from 'react-countup';
+import { useState, useEffect } from 'react';
 import Contact from '@/components/NightShield/Contact'
 
+
+// Custom CountUp component
+const CountUp = ({ end, duration = 2000, suffix = "", decimals = 0 }: { 
+  end: number; 
+  duration?: number; 
+  suffix?: string; 
+  decimals?: number;
+}) => {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById('stats-section');
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      let startTime: number;
+      let animationFrame: number;
+
+      const animate = (currentTime: number) => {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const currentCount = Math.floor(easeOutQuart * end);
+        
+        setCount(currentCount);
+
+        if (progress < 1) {
+          animationFrame = requestAnimationFrame(animate);
+        }
+      };
+
+      animationFrame = requestAnimationFrame(animate);
+
+      return () => {
+        if (animationFrame) {
+          cancelAnimationFrame(animationFrame);
+        }
+      };
+    }
+  }, [isVisible, end, duration]);
+
+  return (
+    <span>
+      {count.toFixed(decimals)}{suffix}
+    </span>
+  );
+};
 
 const AboutPage = () => {
   const founder = {
@@ -27,8 +95,8 @@ What I care about:
   ];
 
   const stats = [
-    { value: 10, label: 'Venues Protected', suffix: '+' },
-    { value: 1000, label: 'Threats Detected', suffix: '+' },
+    { value: 500, label: 'Venues Protected', suffix: '+' },
+    { value: 25000, label: 'Threats Detected', suffix: '+' },
     { value: 99.9, label: 'Detection Accuracy', suffix: '%', decimals: 1 },
   ];
 
@@ -106,29 +174,30 @@ What I care about:
 
   return (
     <div className="bg-black text-white min-h-screen">
-      <div className="pt-24 md:pt-32">
+      <div className="pt-4 md:pt-8">
         {/* Hero Section */}
-        <section className="relative overflow-hidden py-16 px-4">
+        <section className="relative overflow-hidden py-12 md:py-16 px-4">
           {/* Background Gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/10"></div>
           
           {/* Animated Background Elements */}
-          <div className="absolute top-10 left-10 w-48 h-48 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-64 h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-10 left-10 w-32 h-32 md:w-48 md:h-48 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 md:w-64 md:h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
           
           <div className="container mx-auto relative z-10">
             <div className="text-center max-w-4xl mx-auto">
               {/* Icon with glow effect */}
-              <div className="relative inline-block mb-6">
+              <div className="relative inline-block mb-4 md:mb-6">
                 <div className="absolute inset-0 bg-red-500/20 rounded-full blur-xl scale-150"></div>
-                <div className="relative bg-gradient-to-r from-red-500 to-red-600 p-3 rounded-xl shadow-2xl">
-                  <IconShield size={32} className="text-white" />
+                <div className="relative bg-gradient-to-r from-red-500 to-red-600 p-2 md:p-3 rounded-xl shadow-2xl">
+                  <IconShield size={24} className="md:hidden text-white" />
+                  <IconShield size={32} className="hidden md:block text-white" />
                 </div>
               </div>
               
               {/* Main heading with gradient text */}
-              <h1 className="text-3xl md:text-5xl font-black mb-6 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-black mb-4 md:mb-6 leading-tight px-2">
                 <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
                   Beyond Surveillance.
                 </span>
@@ -139,16 +208,17 @@ What I care about:
               </h1>
               
               {/* Subtitle with modern styling */}
-              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light mb-8">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light mb-6 md:mb-8 px-2">
                 In an unpredictable world, venue safety is non-negotiable. NightShield was founded by security veterans
                 and AI pioneers to shift from reactive recording to proactive protection.
               </p>
               
               {/* Call to action with modern button */}
-              <div>
-                <button className="group relative px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25">
-                  <span className="relative z-10 flex items-center gap-2">
-                    <IconBolt size={18} />
+              <div className="px-2">
+                <button className="group relative px-4 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25 w-full sm:w-auto">
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <IconBolt size={16} className="md:hidden" />
+                    <IconBolt size={18} className="hidden md:block" />
                     Discover Our Story
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -162,42 +232,44 @@ What I care about:
        
 
         {/* Values Section */}
-        <section className="relative py-16 px-4 overflow-hidden">
+        <section className="relative py-12 md:py-16 px-4 overflow-hidden">
           {/* Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 via-transparent to-red-500/5"></div>
           
           <div className="container mx-auto relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-black mb-4">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3 md:mb-4 px-2">
                 Our <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">Core Values</span>
               </h2>
-              <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto px-2">
                 The principles that drive everything we do
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {values.map((value, index) => (
                 <div key={index} className="group relative">
                   {/* Glassmorphism card */}
-                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 h-full transition-all duration-500 hover:bg-white/10 hover:border-red-500/30 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/10">
+                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-4 md:p-6 h-full transition-all duration-500 hover:bg-white/10 hover:border-red-500/30 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/10">
                     {/* Gradient border effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     
                     <div className="relative z-10 text-center">
                       {/* Icon with glow */}
-                      <div className="relative inline-block mb-4">
+                      <div className="relative inline-block mb-3 md:mb-4">
                         <div className="absolute inset-0 bg-red-500/20 rounded-full blur-lg scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div className="relative bg-gradient-to-r from-red-500/20 to-red-600/20 p-3 rounded-lg border border-red-500/20 group-hover:border-red-500/40 transition-all duration-500">
-                          {value.icon}
+                        <div className="relative bg-gradient-to-r from-red-500/20 to-red-600/20 p-2 md:p-3 rounded-lg border border-red-500/20 group-hover:border-red-500/40 transition-all duration-500">
+                          <div className="scale-75 md:scale-100">
+                            {value.icon}
+                          </div>
                         </div>
                       </div>
                       
-                      <h3 className="text-lg font-bold mb-3 text-white group-hover:text-red-400 transition-colors duration-300">
+                      <h3 className="text-base md:text-lg font-bold mb-2 md:mb-3 text-white group-hover:text-red-400 transition-colors duration-300">
                         {value.title}
                       </h3>
-                      <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                      <p className="text-gray-400 text-xs md:text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
                         {value.description}
                       </p>
                     </div>
@@ -209,46 +281,50 @@ What I care about:
         </section>
 
         {/* Impact Section */}
-        <section className="relative py-16 px-4 overflow-hidden">
+        <section id="stats-section" className="relative py-12 md:py-16 px-4 overflow-hidden">
           {/* Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/10"></div>
           
           {/* Animated background elements */}
-          <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/4 w-32 h-32 md:w-48 md:h-48 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-40 h-40 md:w-64 md:h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
           
           <div className="container mx-auto relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-black mb-4">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3 md:mb-4 px-2">
                 <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   Our Impact
                 </span>
               </h2>
-              <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto px-2">
                 Numbers that speak to our commitment to security excellence
               </p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
               {stats.map((stat, index) => (
                 <div key={stat.label} className="group relative">
                   {/* Glassmorphism card */}
-                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 text-center transition-all duration-500 hover:bg-white/10 hover:border-red-500/30 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/10">
+                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-4 md:p-6 text-center transition-all duration-500 hover:bg-white/10 hover:border-red-500/30 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/10">
                     {/* Gradient border effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     
                     <div className="relative z-10">
                       {/* Animated counter with glow */}
-                      <div className="relative mb-3">
+                      <div className="relative mb-2 md:mb-3">
                         <div className="absolute inset-0 bg-red-500/20 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <h2 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
-                          <CountUp end={stat.value} duration={3} separator="," decimals={stat.decimals || 0} />
-                          {stat.suffix}
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+                          <CountUp 
+                            end={stat.value} 
+                            duration={2000} 
+                            suffix={stat.suffix} 
+                            decimals={stat.decimals || 0} 
+                          />
                         </h2>
                       </div>
                       
-                      <p className="text-gray-300 font-medium group-hover:text-white transition-colors duration-300">
+                      <p className="text-sm md:text-base text-gray-300 font-medium group-hover:text-white transition-colors duration-300">
                         {stat.label}
                       </p>
                     </div>
@@ -316,21 +392,21 @@ What I care about:
         </section> */}
         
         {/* Founder Section */}
-        <section className="relative py-16 px-4 overflow-hidden">
+        <section className="relative py-12 md:py-16 px-4 overflow-hidden">
           {/* Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/10"></div>
           
           {/* Animated background elements */}
-          <div className="absolute top-10 right-10 w-64 h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 left-10 w-48 h-48 bg-red-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-10 right-10 w-40 h-40 md:w-64 md:h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 left-10 w-32 h-32 md:w-48 md:h-48 bg-red-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
           
           <div className="container mx-auto relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-black mb-4">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3 md:mb-4 px-2">
                 The Mind Behind <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">the Shield</span>
               </h2>
-              <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto px-2">
                 Meet the visionary who built NightShield from the ground up
               </p>
             </div>
@@ -338,12 +414,12 @@ What I care about:
             <div className="max-w-5xl mx-auto">
               <div className="relative group">
                 {/* Main glassmorphism card */}
-                <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 overflow-hidden">
+                <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4 md:p-8 overflow-hidden">
                   {/* Gradient border effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-transparent to-red-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
                   
                   <div className="relative z-10">
-                    <div className="flex flex-col lg:flex-row items-center gap-8">
+                    <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8">
                       {/* Image section */}
                       <div className="flex-shrink-0 relative">
                         {/* Image glow effect */}
@@ -354,37 +430,38 @@ What I care about:
                           <img 
                             src={founder.image} 
                             alt={founder.name}
-                            className="w-64 h-64 object-cover rounded-lg shadow-2xl"
+                            className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 object-cover rounded-lg shadow-2xl"
                           />
                         </div>
                         
                         {/* Floating elements */}
-                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-300"></div>
-                        <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-red-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-500"></div>
+                        <div className="absolute -top-2 -right-2 w-4 h-4 md:w-6 md:h-6 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-300"></div>
+                        <div className="absolute -bottom-2 -left-2 w-3 h-3 md:w-4 md:h-4 bg-red-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-500"></div>
                       </div>
                       
                       {/* Content section */}
-                      <div className="flex-1 space-y-6">
+                      <div className="flex-1 space-y-4 md:space-y-6">
                         {/* Name and role */}
-                        <div>
-                          <h3 className="text-3xl md:text-4xl font-black mb-3 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+                        <div className="text-center lg:text-left">
+                          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black mb-2 md:mb-3 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
                             {founder.name}
                           </h3>
                           <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-red-500/20 to-red-600/20 border border-red-500/30 rounded-full">
-                            <IconSparkles size={16} className="text-red-400" />
-                            <span className="text-red-400 font-semibold">{founder.role}</span>
+                            <IconSparkles size={14} className="md:hidden text-red-400" />
+                            <IconSparkles size={16} className="hidden md:block text-red-400" />
+                            <span className="text-red-400 font-semibold text-sm md:text-base">{founder.role}</span>
                           </div>
                         </div>
                         
                         {/* Bio content */}
-                        <div className="space-y-4">
-                          <div className="text-gray-300 leading-relaxed whitespace-pre-line">
+                        <div className="space-y-3 md:space-y-4">
+                          <div className="text-gray-300 leading-relaxed whitespace-pre-line text-sm md:text-base">
                             {founder.bio}
                           </div>
                           
                           {/* Signature line */}
                           <div className="pt-3 border-t border-white/10">
-                            <p className="text-gray-400 italic text-sm">
+                            <p className="text-gray-400 italic text-xs md:text-sm text-center lg:text-left">
                               "Building security solutions that actually work, not just look good."
                             </p>
                           </div>
@@ -399,32 +476,33 @@ What I care about:
         </section>
 
         {/* Call to Action Section */}
-        <section className="relative py-16 px-4 overflow-hidden">
+        <section className="relative py-12 md:py-16 px-4 overflow-hidden">
           {/* Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-transparent to-red-500/20"></div>
           
           {/* Animated background elements */}
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-red-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-red-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/4 left-1/4 w-40 h-40 md:w-64 md:h-64 bg-red-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-32 h-32 md:w-48 md:h-48 bg-red-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
           
           <div className="container mx-auto relative z-10">
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-black mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 md:mb-6 px-2">
                 Ready to <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">Transform</span> Your Security?
               </h2>
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8 leading-relaxed px-2">
                 Join hundreds of venues worldwide that have already upgraded their security with NightShield. 
                 Let's discuss how we can protect what matters most to you.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8 md:mb-12 px-2">
                 <button onClick={() => {
                   const element = document.querySelector('#contact')
                   if (element) element.scrollIntoView({ behavior: 'smooth' })
-                }} className="group relative px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25">
-                  <span className="relative z-10 flex items-center gap-2">
-                    <IconBolt size={18} />
+                }} className="group relative px-4 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25 w-full sm:w-auto">
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <IconBolt size={16} className="md:hidden" />
+                    <IconBolt size={18} className="hidden md:block" />
                     Get Started Today
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -433,9 +511,10 @@ What I care about:
                 <button onClick={() => {
                   const element = document.querySelector('#contact')
                   if (element) element.scrollIntoView({ behavior: 'smooth' })
-                }} className="group relative px-6 py-3 bg-transparent border-2 border-red-500 text-red-500 font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:bg-red-500 hover:text-white hover:shadow-2xl hover:shadow-red-500/25">
-                  <span className="relative z-10 flex items-center gap-2">
-                    <IconShield size={18} />
+                }} className="group relative px-4 py-2.5 md:px-6 md:py-3 bg-transparent border-2 border-red-500 text-red-500 font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:bg-red-500 hover:text-white hover:shadow-2xl hover:shadow-red-500/25 w-full sm:w-auto">
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <IconShield size={16} className="md:hidden" />
+                    <IconShield size={18} className="hidden md:block" />
                     Schedule Demo
                   </span>
                 </button>

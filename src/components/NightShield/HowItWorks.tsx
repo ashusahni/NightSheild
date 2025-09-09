@@ -138,6 +138,30 @@ const HowItWorks = () => {
     }, 100)
   }, [])
 
+  // Mobile touch handlers for better mobile experience
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    e.preventDefault()
+    handleCursorEnter()
+  }, [handleCursorEnter])
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    e.preventDefault()
+    // Add delay for mobile to show the full detection sequence
+    setTimeout(() => {
+      handleCursorLeave()
+    }, 3000) // Show for 3 seconds on mobile
+  }, [handleCursorLeave])
+
+  // Click handler for both mouse and touch
+  const handleClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault()
+    if (isCursorActive) {
+      handleCursorLeave()
+    } else {
+      handleCursorEnter()
+    }
+  }, [isCursorActive, handleCursorEnter, handleCursorLeave])
+
   // Start guided demo
   const startDemo = useCallback(() => {
     setShowDemoGuide(true)
@@ -301,9 +325,7 @@ const HowItWorks = () => {
           <div className="lg:col-span-7 order-2 lg:order-1">
             <div
               ref={stickyRef}
-              className={`aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm group hover:border-red-500/40 transition-all duration-300 ${
-                isMobile ? 'mb-6' : 'lg:sticky lg:top-24'
-              }`}
+              className="aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm lg:sticky lg:top-24 group hover:border-red-500/40 transition-all duration-300"
             >
              
               <Image
@@ -317,9 +339,12 @@ const HowItWorks = () => {
     
               {/* Enhanced Fight Target Areas with instant lock */}
               <div 
-                className="cursor-target absolute inset-0 pointer-events-auto cursor-crosshair"
+                className="cursor-target absolute inset-0 pointer-events-auto cursor-crosshair touch-manipulation"
                 onMouseEnter={handleCursorEnter}
                 onMouseLeave={handleCursorLeave}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                onClick={handleClick}
               >
                 {/* Primary fighting scene target - larger area for easier targeting */}
                 <div className="absolute top-1/4 left-1/3 w-1/3 h-1/2 pointer-events-none">
@@ -388,7 +413,9 @@ const HowItWorks = () => {
                 <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm border border-gray-500/30 rounded-lg p-2 opacity-70 hover:opacity-100 transition-opacity">
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-pulse" />
-                    <span className="text-gray-300 text-xs">Hover to activate AI detection</span>
+                    <span className="text-gray-300 text-xs">
+                      {isMobile ? 'Tap to activate AI detection' : 'Hover to activate AI detection'}
+                    </span>
                   </div>
                 </div>
               )}
@@ -398,9 +425,9 @@ const HowItWorks = () => {
                 <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
                   <button
                     onClick={startDemo}
-                    className="bg-red-500/90 hover:bg-red-500 text-white px-6 py-3 rounded-full font-semibold text-sm shadow-lg hover:shadow-red-500/25 transition-all duration-300 transform hover:scale-105 animate-pulse"
+                    className="bg-red-500/90 hover:bg-red-500 text-white px-6 py-3 rounded-full font-semibold text-sm shadow-lg hover:shadow-red-500/25 transition-all duration-300 transform hover:scale-105 animate-pulse touch-manipulation active:scale-95"
                   >
-                    🚀 Try AI Detection Demo
+                    🚀 {isMobile ? 'Tap to Try AI Demo' : 'Try AI Detection Demo'}
                   </button>
                 </div>
               )}
@@ -422,17 +449,19 @@ const HowItWorks = () => {
                 <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm border border-gray-500/30 rounded-lg p-3">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                    <span className="text-gray-300 text-xs">Hover to see AI in action</span>
+                    <span className="text-gray-300 text-xs">
+                      {isMobile ? 'Tap to see AI in action' : 'Hover to see AI in action'}
+                    </span>
                   </div>
                 </div>
               )}
               
             </div>
 
-              {/* Enhanced Thumbnail Gallery with Controls */}
+            {/* Enhanced Thumbnail Gallery with Controls */}
             <div className="mt-6">
               {/* Gallery Controls - Mobile Optimized */}
-              <div className={`flex items-center justify-between mb-4 ${isMobile ? 'flex-col gap-3' : ''}`}>
+              <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setIsAutoPlaying(!isAutoPlaying)}
@@ -467,7 +496,7 @@ const HowItWorks = () => {
               </div>
 
               {/* Thumbnail Gallery - Mobile Responsive */}
-              <div className={`flex gap-2 sm:gap-4 justify-between overflow-x-auto pb-2 ${isMobile ? 'snap-x snap-mandatory' : ''}`}>
+              <div className="flex gap-2 sm:gap-4 justify-between overflow-x-auto pb-2">
                 {galleryImages.map((image, idx) => (
                   <div
                     key={image.id}
@@ -476,7 +505,7 @@ const HowItWorks = () => {
                       selectedImageIndex === idx 
                         ? 'scale-[1.05]' 
                         : 'hover:scale-[1.02] active:scale-[1.03]'
-                    } ${isMobile ? 'snap-center min-w-[120px]' : ''}`}
+                    }`}
                   >
                     <div className={`w-full h-20 sm:h-24 rounded-lg overflow-hidden border-2 transition-all duration-300 relative ${
                       selectedImageIndex === idx
@@ -621,7 +650,7 @@ const HowItWorks = () => {
                                 <div className="mt-2 flex items-center gap-2">
                                   <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
                                   <p className="text-xs text-red-400 font-medium">
-                                    🎯 Hover anywhere on the image for instant AI lock-on detection
+                                    🎯 {isMobile ? 'Tap anywhere on the image for instant AI lock-on detection' : 'Hover anywhere on the image for instant AI lock-on detection'}
                                   </p>
                                 </div>
                               )}
