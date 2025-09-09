@@ -82,6 +82,7 @@ const HowItWorks = () => {
   const [showDetectionOverlay, setShowDetectionOverlay] = useState<boolean>(false)
   const [showDemoGuide, setShowDemoGuide] = useState<boolean>(false)
   const [demoStep, setDemoStep] = useState<number>(0)
+  const [isLowPerformance, setIsLowPerformance] = useState<boolean>(false)
 
 
   // Enhanced image switch handler with animations
@@ -95,14 +96,29 @@ const HowItWorks = () => {
     setDetectionStatus('')
     setShowDetectionOverlay(false)
     
-    // Animate the main image
+    // Animate the main image - lighter animation for mobile
     if (stickyRef.current) {
-      gsap.fromTo(stickyRef.current, 
-        { scale: 0.95, opacity: 0.7 },
-        { scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' }
-      )
+      if (isMobile) {
+        // Use CSS transition for mobile instead of GSAP
+        stickyRef.current.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out'
+        stickyRef.current.style.transform = 'scale(0.95)'
+        stickyRef.current.style.opacity = '0.7'
+        
+        requestAnimationFrame(() => {
+          if (stickyRef.current) {
+            stickyRef.current.style.transform = 'scale(1)'
+            stickyRef.current.style.opacity = '1'
+          }
+        })
+      } else {
+        // Use GSAP for desktop
+        gsap.fromTo(stickyRef.current, 
+          { scale: 0.95, opacity: 0.7 },
+          { scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' }
+        )
+      }
     }
-  }, [selectedImageIndex])
+  }, [selectedImageIndex, isMobile])
 
   // Enhanced cursor interaction handlers for instant fighting scene detection
   const handleCursorEnter = useCallback(() => {
@@ -111,22 +127,22 @@ const HowItWorks = () => {
     setShowDetectionOverlay(true)
     setDetectionStatus('AI Analyzing...')
     
-    // Simulate AI detection process with realistic timing
+    // Simulate AI detection process with very fast timing (1 second total)
     setTimeout(() => {
       setDetectionStatus('Threat Detected!')
-    }, 600)
+    }, 200)
     
     setTimeout(() => {
       setDetectionStatus('Alert Sent!')
-    }, 1200)
+    }, 400)
     
     setTimeout(() => {
       setDetectionStatus('Security Notified!')
-    }, 1800)
+    }, 600)
     
     setTimeout(() => {
       setDetectionStatus('Response Deployed!')
-    }, 2400)
+    }, 800)
   }, [])
 
   const handleCursorLeave = useCallback(() => {
@@ -141,40 +157,49 @@ const HowItWorks = () => {
   // Mobile touch handlers for better mobile experience
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     e.preventDefault()
-    handleCursorEnter()
-  }, [handleCursorEnter])
+    // Only handle touch on mobile
+    if (isMobile) {
+      handleCursorEnter()
+    }
+  }, [handleCursorEnter, isMobile])
 
   const handleTouchEnd = useCallback((e: React.TouchEvent) => {
     e.preventDefault()
-    // Add delay for mobile to show the full detection sequence
-    setTimeout(() => {
-      handleCursorLeave()
-    }, 3000) // Show for 3 seconds on mobile
-  }, [handleCursorLeave])
+    // Only handle touch on mobile
+    if (isMobile) {
+      // Add delay for mobile to show the full detection sequence
+      setTimeout(() => {
+        handleCursorLeave()
+      }, 1000) // Show for 1 second on mobile
+    }
+  }, [handleCursorLeave, isMobile])
 
   // Click handler for both mouse and touch
   const handleClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault()
-    if (isCursorActive) {
-      handleCursorLeave()
-    } else {
-      handleCursorEnter()
+    // Only handle mouse events on desktop
+    if (!isMobile) {
+      if (isCursorActive) {
+        handleCursorLeave()
+      } else {
+        handleCursorEnter()
+      }
     }
-  }, [isCursorActive, handleCursorEnter, handleCursorLeave])
+  }, [isCursorActive, handleCursorEnter, handleCursorLeave, isMobile])
 
   // Start guided demo
   const startDemo = useCallback(() => {
     setShowDemoGuide(true)
     setDemoStep(0)
     
-    // Auto-progress through demo steps
-    setTimeout(() => setDemoStep(1), 1000)
-    setTimeout(() => setDemoStep(2), 2000)
-    setTimeout(() => setDemoStep(3), 3000)
+    // Auto-progress through demo steps - much faster
+    setTimeout(() => setDemoStep(1), 200)
+    setTimeout(() => setDemoStep(2), 400)
+    setTimeout(() => setDemoStep(3), 600)
     setTimeout(() => {
       setShowDemoGuide(false)
       handleCursorEnter()
-    }, 4000)
+    }, 800)
   }, [handleCursorEnter])
 
   // Reset demo
@@ -201,23 +226,48 @@ const HowItWorks = () => {
   const handleStepClick = useCallback((stepIndex: number) => {
     setActiveStep(stepIndex)
     
-    // Animate the clicked step
+    // Animate the clicked step - lighter animation for mobile
     const stepElement = cardRefs.current[stepIndex]
     if (stepElement) {
-      gsap.fromTo(stepElement,
-        { scale: 0.98 },
-        { scale: 1.02, duration: 0.2, yoyo: true, repeat: 1 }
-      )
+      if (isMobile) {
+        // Use CSS transition for mobile
+        stepElement.style.transition = 'transform 0.2s ease-out'
+        stepElement.style.transform = 'scale(0.98)'
+        
+        requestAnimationFrame(() => {
+          if (stepElement) {
+            stepElement.style.transform = 'scale(1.02)'
+            setTimeout(() => {
+              if (stepElement) {
+                stepElement.style.transform = 'scale(1)'
+              }
+            }, 200)
+          }
+        })
+      } else {
+        // Use GSAP for desktop
+        gsap.fromTo(stepElement,
+          { scale: 0.98 },
+          { scale: 1.02, duration: 0.2, yoyo: true, repeat: 1 }
+        )
+      }
     }
 
-    // Update progress indicator
+    // Update progress indicator - lighter animation for mobile
     if (progressRef.current) {
       const progress = ((stepIndex + 1) / features.length) * 100
-      gsap.to(progressRef.current, {
-        width: `${progress}%`,
-        duration: 0.5,
-        ease: 'power2.out'
-      })
+      if (isMobile) {
+        // Use CSS transition for mobile
+        progressRef.current.style.transition = 'width 0.5s ease-out'
+        progressRef.current.style.width = `${progress}%`
+      } else {
+        // Use GSAP for desktop
+        gsap.to(progressRef.current, {
+          width: `${progress}%`,
+          duration: 0.5,
+          ease: 'power2.out'
+        })
+      }
     }
 
     // Trigger cursor interaction for fight detection step
@@ -228,7 +278,7 @@ const HowItWorks = () => {
     } else {
       handleCursorLeave()
     }
-  }, [features.length, handleCursorEnter, handleCursorLeave])
+  }, [features.length, handleCursorEnter, handleCursorLeave, isMobile])
 
   // Intersection Observer for scroll-based animations (without auto-selection)
   useEffect(() => {
@@ -236,11 +286,25 @@ const HowItWorks = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Only animate step appearance, don't change activeStep
-            gsap.fromTo(entry.target,
-              { opacity: 0, y: 30 },
-              { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
-            )
+            // Use lighter animations for mobile
+            if (isMobile) {
+              // Use CSS transition for mobile
+              const element = entry.target as HTMLElement
+              element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out'
+              element.style.opacity = '0'
+              element.style.transform = 'translateY(30px)'
+              
+              requestAnimationFrame(() => {
+                element.style.opacity = '1'
+                element.style.transform = 'translateY(0)'
+              })
+            } else {
+              // Use GSAP for desktop
+              gsap.fromTo(entry.target,
+                { opacity: 0, y: 30 },
+                { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
+              )
+            }
           }
         })
       },
@@ -252,17 +316,61 @@ const HowItWorks = () => {
     })
 
     return () => observer.disconnect()
-  }, [])
+  }, [isMobile])
 
   // Initialize animations on mount
   useEffect(() => {
     if (timelineRef.current) {
-      gsap.fromTo(timelineRef.current,
-        { scaleY: 0 },
-        { scaleY: 1, duration: 1, ease: 'power2.out', delay: 0.5 }
-      )
+      if (isMobile) {
+        // Use CSS transition for mobile
+        timelineRef.current.style.transition = 'transform 1s ease-out'
+        timelineRef.current.style.transform = 'scaleY(0)'
+        
+        setTimeout(() => {
+          if (timelineRef.current) {
+            timelineRef.current.style.transform = 'scaleY(1)'
+          }
+        }, 500)
+      } else {
+        // Use GSAP for desktop
+        gsap.fromTo(timelineRef.current,
+          { scaleY: 0 },
+          { scaleY: 1, duration: 1, ease: 'power2.out', delay: 0.5 }
+        )
+      }
     }
-  }, [])
+  }, [isMobile])
+
+  // Performance monitoring for mobile devices
+  useEffect(() => {
+    if (!isMobile) return
+
+    let frameCount = 0
+    let lastTime = performance.now()
+    let fps = 0
+
+    const measureFPS = () => {
+      frameCount++
+      const currentTime = performance.now()
+      
+      if (currentTime - lastTime >= 1000) {
+        fps = Math.round((frameCount * 1000) / (currentTime - lastTime))
+        frameCount = 0
+        lastTime = currentTime
+        
+        // Mark as low performance if FPS is below 30
+        setIsLowPerformance(fps < 30)
+      }
+      
+      requestAnimationFrame(measureFPS)
+    }
+
+    const timeoutId = setTimeout(() => {
+      requestAnimationFrame(measureFPS)
+    }, 1000)
+
+    return () => clearTimeout(timeoutId)
+  }, [isMobile])
 
   // Auto-trigger cursor interaction based on active step
   useEffect(() => {
@@ -293,12 +401,14 @@ const HowItWorks = () => {
         }
       `}</style>
       
-      {/* Enhanced Target Cursor for Instant Fight Scene Detection */}
-      <TargetCursor 
-        targetSelector=".cursor-target"
-        spinDuration={isCursorActive ? 0.8 : 2}
-        hideDefaultCursor={false}
-      />
+      {/* Enhanced Target Cursor for Instant Fight Scene Detection - Desktop Only */}
+      {!isMobile && (
+        <TargetCursor 
+          targetSelector=".cursor-target"
+          spinDuration={isCursorActive ? 0.8 : 2}
+          hideDefaultCursor={false}
+        />
+      )}
 
       <div className="container relative z-10">
         <div className="text-center mb-16">
@@ -318,6 +428,15 @@ const HowItWorks = () => {
               <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
             </div>
           )}
+
+          {/* Performance Warning for Mobile */}
+          {isMobile && isLowPerformance && (
+            <div className="mt-4 flex items-center justify-center gap-2 animate-fadeIn">
+              <div className="w-3 h-3 bg-yellow-500 rounded-full animate-pulse" />
+              <span className="text-yellow-400 text-sm font-medium">Performance Mode: Simplified animations enabled</span>
+              <div className="w-3 h-3 bg-yellow-500 rounded-full animate-pulse" />
+            </div>
+          )}
         </div>
 
         <div ref={containerRef} className="grid lg:grid-cols-12 gap-6 items-start">
@@ -335,16 +454,18 @@ const HowItWorks = () => {
                 fill
                 className="object-cover opacity-90 transition-opacity duration-300"
                 priority
+                sizes={isMobile ? "100vw" : "50vw"}
+                quality={isMobile ? 75 : 90}
               />
     
               {/* Enhanced Fight Target Areas with instant lock */}
               <div 
                 className="cursor-target absolute inset-0 pointer-events-auto cursor-crosshair touch-manipulation"
-                onMouseEnter={handleCursorEnter}
-                onMouseLeave={handleCursorLeave}
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-                onClick={handleClick}
+                onMouseEnter={!isMobile ? handleCursorEnter : undefined}
+                onMouseLeave={!isMobile ? handleCursorLeave : undefined}
+                onTouchStart={isMobile ? handleTouchStart : undefined}
+                onTouchEnd={isMobile ? handleTouchEnd : undefined}
+                onClick={!isMobile ? handleClick : undefined}
               >
                 {/* Primary fighting scene target - larger area for easier targeting */}
                 <div className="absolute top-1/4 left-1/3 w-1/3 h-1/2 pointer-events-none">
@@ -352,12 +473,16 @@ const HowItWorks = () => {
                   <div className={`absolute inset-0 border-2 border-red-500/50 rounded-lg transition-all duration-500 ${
                     isCursorActive ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
                   }`}>
-                    <div className="absolute inset-0 bg-red-500/10 rounded-lg animate-pulse" />
+                    <div className={`absolute inset-0 bg-red-500/10 rounded-lg ${
+                      isLowPerformance ? '' : 'animate-pulse'
+                    }`} />
                   </div>
                   
                   {/* Detection status indicator */}
                   {isCursorActive && (
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap animate-bounce">
+                    <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+                      isLowPerformance ? '' : 'animate-bounce'
+                    }`}>
                       {detectionStatus}
                     </div>
                   )}
@@ -517,6 +642,9 @@ const HowItWorks = () => {
                         alt={image.alt}
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        sizes={isMobile ? "25vw" : "12vw"}
+                        quality={isMobile ? 60 : 80}
+                        loading="lazy"
                       />
                       {/* Enhanced Overlay */}
                       <div className={`absolute inset-0 transition-all duration-300 ${

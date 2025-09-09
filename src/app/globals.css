@@ -116,20 +116,132 @@
     display: none;
   }
 
-  /* Mobile Performance Optimizations */
-  @media (max-width: 768px) {
-    * {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    video {
-      will-change: auto;
-    }
-
-    .animate-pulse {
-      animation-duration: 2s;
-    }
+/* Mobile Performance Optimizations */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
   }
+
+  video {
+    will-change: auto;
+  }
+
+  .animate-pulse {
+    animation-duration: 2s;
+  }
+
+  /* Disable heavy animations on mobile for better performance */
+  .animate-pulse,
+  .animate-bulletin-float-1,
+  .animate-bulletin-float-2,
+  .animate-bulletin-float-3,
+  .animate-bulletin-particle-1,
+  .animate-bulletin-particle-2,
+  .animate-bulletin-particle-3,
+  .animate-bulletin-pulse {
+    animation: none !important;
+  }
+
+  /* Disable complex hover effects on mobile */
+  .card-hover:hover,
+  .coming-soon-card:hover,
+  .profile-card:hover {
+    transform: none !important;
+    animation: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Simplify background effects on mobile */
+  .wave-layer {
+    opacity: 0.1 !important;
+    filter: blur(40px) saturate(0.5) !important;
+    animation: none !important;
+  }
+
+  /* Disable complex glow effects on mobile */
+  .glow-trail,
+  .corner-glow,
+  .bulletin-particle-enhanced {
+    display: none !important;
+  }
+
+  /* Simplify coming soon card effects */
+  .coming-soon-card {
+    transition: none !important;
+  }
+
+  .coming-soon-card:hover {
+    animation: none !important;
+  }
+
+  .coming-soon-card:hover .coming-soon-icon {
+    animation: none !important;
+  }
+
+  .coming-soon-card:hover .coming-soon-border {
+    animation: none !important;
+  }
+
+  /* Disable complex pseudo-elements on mobile */
+  .spotlight-card::before,
+  .profile-card::after {
+    display: none !important;
+  }
+
+  /* Simplify grid texture on mobile */
+  .grid-texture {
+    background-image: none !important;
+  }
+
+  /* Reduce blur effects on mobile */
+  .blur-3xl,
+  .blur-2xl,
+  .blur-xl {
+    filter: blur(8px) !important;
+  }
+
+  /* Disable complex transforms on mobile */
+  .tilted-card {
+    transform: none !important;
+  }
+
+  .tilted-card:hover {
+    transform: none !important;
+  }
+
+  /* Simplify button hover effects */
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Disable aurora background animation on mobile */
+  .aurora-bg {
+    animation: none !important;
+    background: #000000 !important;
+  }
+
+  /* Optimize scroll performance */
+  .scroll-stack-card {
+    will-change: auto !important;
+    backface-visibility: visible !important;
+    transform-style: flat !important;
+  }
+
+  /* Reduce shadow complexity on mobile */
+  .shadow-2xl,
+  .shadow-xl {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Disable complex gradient animations */
+  .bg-gradient-to-r,
+  .bg-gradient-to-br,
+  .bg-gradient-to-b {
+    background-attachment: scroll !important;
+  }
+}
 
   /* Performance optimizations for animations */
   @media (prefers-reduced-motion: reduce) {

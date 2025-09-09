@@ -4,9 +4,11 @@ import React, { useMemo } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import { useRouter } from 'next/navigation'
 
 const WhoItsFor = () => {
   const { isMobile, isClient } = useIsMobile()
+  const router = useRouter()
 
   // Mobile-optimized content with enhanced descriptions
   const mobileContent = {
@@ -258,10 +260,7 @@ const WhoItsFor = () => {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => {
-                      const element = document.querySelector('#pricing')
-                      if (element) element.scrollIntoView({ behavior: 'smooth' })
-                    }}
+                    onClick={() => router.push('/pricing')}
                     className="w-full bg-transparent border border-orange-500 text-orange-400 text-sm font-medium py-2 px-4 rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300"
                   >
                     View Pricing
@@ -811,13 +810,10 @@ const WhoItsFor = () => {
                    <motion.button
                      whileHover={{ scale: 1.02 }}
                      whileTap={{ scale: 0.98 }}
-                     onClick={() => {
-                       const element = document.querySelector('#pricing')
-                       if (element) element.scrollIntoView({ behavior: 'smooth' })
-                     }}
+                     onClick={() => router.push('/pricing')}
                      className={`text-orange-400 font-medium bg-transparent border border-orange-500 hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl ${isMobile ? 'py-2 px-6 text-sm' : 'py-3 px-8'} rounded-lg`}
                    >
-                     View Intelligence Report
+                     View Pricing
                    </motion.button>
                  </motion.div>
                </div>

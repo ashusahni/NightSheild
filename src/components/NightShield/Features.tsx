@@ -13,17 +13,38 @@ const Features = () => {
   const { isMobile } = useIsMobile()
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
+    // Only add mouse move listener on desktop
+    if (!isMobile) {
+      const handleMouseMove = (e: MouseEvent) => {
+        setMousePosition({ x: e.clientX, y: e.clientY })
+      }
+      window.addEventListener('mousemove', handleMouseMove)
+      
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove)
+      }
+    }
+  }, [isMobile])
+
+  // Throttled scroll handler for better mobile performance
+  useEffect(() => {
+    let ticking = false
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrollY(window.scrollY)
+          ticking = false
+        })
+        ticking = true
+      }
     }
 
-    window.addEventListener('scroll', handleScroll)
-    window.addEventListener('mousemove', handleMouseMove)
+    // Use passive listener for better mobile performance
+    window.addEventListener('scroll', handleScroll, { passive: true })
     
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('mousemove', handleMouseMove)
     }
   }, [])
 
@@ -131,10 +152,17 @@ const Features = () => {
       {/* Background */}
       <div className="absolute inset-0 bg-black"></div>
       
-      {/* Animated Background Elements */}
+      {/* Animated Background Elements - Simplified for mobile */}
       <div className="absolute inset-0">
-        <div className={`absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl ${isMobile ? '' : 'animate-pulse'}`}></div>
-        <div className={`absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl ${isMobile ? '' : 'animate-pulse delay-1000'}`}></div>
+        {!isMobile && (
+          <>
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          </>
+        )}
+        {isMobile && (
+          <div className="absolute inset-0 bg-gradient-to-br from-red-500/3 via-transparent to-red-500/3"></div>
+        )}
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -161,9 +189,9 @@ const Features = () => {
         <div className="mb-16">
           <div className="text-center mb-10">
             <div className="flex justify-center items-center space-x-4 mb-4">
-              <div className={`w-2 h-2 bg-red-500 rounded-full ${isMobile ? '' : 'animate-pulse'}`}></div>
+              <div className={`w-2 h-2 bg-red-500 rounded-full ${!isMobile ? 'animate-pulse' : ''}`}></div>
               <h3 className="text-4xl md:text-5xl font-bold text-white">Available Now</h3>
-              <div className={`w-2 h-2 bg-red-500 rounded-full ${isMobile ? '' : 'animate-pulse'}`}></div>
+              <div className={`w-2 h-2 bg-red-500 rounded-full ${!isMobile ? 'animate-pulse' : ''}`}></div>
             </div>
             <p className="text-gray-400 text-xl max-w-2xl mx-auto leading-relaxed">
               Core features ready for immediate deployment with cutting-edge AI surveillance technology
@@ -176,7 +204,7 @@ const Features = () => {
           </div>
 
           {/* ScrollStack Container - Centered and Optimized */}
-          <div className="w-full max-w-5xl mx-auto h-[480px] bg-gradient-to-br from-[#0B0B0F] via-[#1A1A1F] to-[#0B0B0F] rounded-2xl p-4 overflow-hidden border border-red-500/20 shadow-2xl">
+          <div className={`w-full max-w-5xl mx-auto ${isMobile ? 'h-[400px]' : 'h-[480px]'} bg-gradient-to-br from-[#0B0B0F] via-[#1A1A1F] to-[#0B0B0F] rounded-2xl p-4 overflow-hidden border border-red-500/20 ${isMobile ? 'shadow-lg' : 'shadow-2xl'}`}>
             <ScrollStack
               className="w-full h-full"
               itemDistance={isMobile ? 20 : 40}
@@ -204,13 +232,15 @@ const Features = () => {
                     <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-8 h-full">
                       {/* Feature Image */}
                       <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-red-500/30 flex-shrink-0">
-                        {/* Background Pattern */}
-                        <div className="absolute inset-0 opacity-20">
-                          <div className="w-full h-full" style={{
-                            backgroundImage: `linear-gradient(rgba(229, 18, 47, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(229, 18, 47, 0.1) 1px, transparent 1px)`,
-                            backgroundSize: '16px 16px'
-                          }}></div>
-                        </div>
+                        {/* Background Pattern - Simplified for mobile */}
+                        {!isMobile && (
+                          <div className="absolute inset-0 opacity-20">
+                            <div className="w-full h-full" style={{
+                              backgroundImage: `linear-gradient(rgba(229, 18, 47, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(229, 18, 47, 0.1) 1px, transparent 1px)`,
+                              backgroundSize: '16px 16px'
+                            }}></div>
+                          </div>
+                        )}
                         
                         {/* Feature Icon */}
                         <div className={`absolute inset-0 flex items-center justify-center ${
@@ -281,11 +311,18 @@ const Features = () => {
           </div>
           
           <div className="relative max-w-6xl mx-auto">
-            {/* Moving Background Elements */}
+            {/* Moving Background Elements - Simplified for mobile */}
             <div className="absolute inset-0 overflow-hidden">
-              <div className={`absolute top-1/4 left-1/4 w-32 h-32 bg-red-500/10 rounded-full blur-xl ${isMobile ? '' : 'animate-bulletin-float-1'}`}></div>
-              <div className={`absolute bottom-1/4 right-1/4 w-24 h-24 bg-red-500/10 rounded-full blur-xl ${isMobile ? '' : 'animate-bulletin-float-2'}`}></div>
-              <div className={`absolute top-1/2 left-1/2 w-16 h-16 bg-red-500/5 rounded-full blur-lg ${isMobile ? '' : 'animate-bulletin-float-3'}`}></div>
+              {!isMobile && (
+                <>
+                  <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-red-500/10 rounded-full blur-xl animate-bulletin-float-1"></div>
+                  <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-red-500/10 rounded-full blur-xl animate-bulletin-float-2"></div>
+                  <div className="absolute top-1/2 left-1/2 w-16 h-16 bg-red-500/5 rounded-full blur-lg animate-bulletin-float-3"></div>
+                </>
+              )}
+              {isMobile && (
+                <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-red-500/5"></div>
+              )}
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
@@ -298,11 +335,13 @@ const Features = () => {
                     key={index}
                     className="group relative"
                   >
-                    {/* Enhanced Glowing Trail Effect */}
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-red-500/40 via-red-500/20 to-red-500/40 opacity-0 group-hover:opacity-100 transition-all duration-700 blur-md scale-110 group-hover:scale-125 glow-trail ${isMobile ? 'hidden' : ''}`}></div>
-                    
-                    {/* Secondary Glow Layer */}
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-red-500/30 via-transparent to-red-500/30 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-lg scale-105 group-hover:scale-115 ${isMobile ? 'hidden' : ''}`}></div>
+                    {/* Enhanced Glowing Trail Effect - Disabled on mobile */}
+                    {!isMobile && (
+                      <>
+                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-500/40 via-red-500/20 to-red-500/40 opacity-0 group-hover:opacity-100 transition-all duration-700 blur-md scale-110 group-hover:scale-125 glow-trail"></div>
+                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-red-500/30 via-transparent to-red-500/30 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-lg scale-105 group-hover:scale-115"></div>
+                      </>
+                    )}
                     
                     {/* Main Card */}
                     <div 
@@ -319,36 +358,42 @@ const Features = () => {
                       {/* Animated Background Pattern */}
                       <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-red-500/15 via-transparent to-red-500/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isMobile ? 'hidden' : ''}`}></div>
                       
-                      {/* Enhanced Moving Bulletin Particles */}
-                      <div className={`absolute inset-0 overflow-hidden rounded-2xl ${isMobile ? 'hidden' : ''}`}>
-                        <div className="absolute top-2 left-2 w-2 h-2 bg-red-500/60 rounded-full animate-bulletin-particle-1 shadow-[0_0_8px_rgba(229,18,47,0.6)] bulletin-particle-enhanced"></div>
-                        <div className="absolute top-1/3 right-2 w-1.5 h-1.5 bg-red-500/50 rounded-full animate-bulletin-particle-2 shadow-[0_0_6px_rgba(229,18,47,0.5)] bulletin-particle-enhanced"></div>
-                        <div className="absolute bottom-1/3 left-2 w-2 h-2 bg-red-500/55 rounded-full animate-bulletin-particle-3 shadow-[0_0_7px_rgba(229,18,47,0.55)] bulletin-particle-enhanced"></div>
-                      </div>
+                      {/* Enhanced Moving Bulletin Particles - Disabled on mobile */}
+                      {!isMobile && (
+                        <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                          <div className="absolute top-2 left-2 w-2 h-2 bg-red-500/60 rounded-full animate-bulletin-particle-1 shadow-[0_0_8px_rgba(229,18,47,0.6)] bulletin-particle-enhanced"></div>
+                          <div className="absolute top-1/3 right-2 w-1.5 h-1.5 bg-red-500/50 rounded-full animate-bulletin-particle-2 shadow-[0_0_6px_rgba(229,18,47,0.5)] bulletin-particle-enhanced"></div>
+                          <div className="absolute bottom-1/3 left-2 w-2 h-2 bg-red-500/55 rounded-full animate-bulletin-particle-3 shadow-[0_0_7px_rgba(229,18,47,0.55)] bulletin-particle-enhanced"></div>
+                        </div>
+                      )}
                       
                       {/* Feature Preview Image with Enhanced Glow */}
                       <div className={`relative w-20 h-20 rounded-xl bg-gradient-to-br from-gray-700 to-gray-800 text-gray-200 flex items-center justify-center mb-5 coming-soon-icon
                                     group-hover:bg-red-500/30 group-hover:text-red-400 group-hover:shadow-[0_0_25px_rgba(229,18,47,0.6)] group-hover:shadow-red-500/60
                                     transition-all duration-500 ease-out transform ${isMobile ? '' : 'group-hover:scale-110 group-hover:rotate-2'}
                                     ${isMobile ? '' : 'animate-bulletin-pulse'} overflow-hidden border border-red-500/20 group-hover:border-red-500/50`}>
-                        {/* Background Pattern */}
-                        <div className="absolute inset-0 opacity-20">
-                          <div className="w-full h-full" style={{
-                            backgroundImage: `linear-gradient(rgba(229, 18, 47, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(229, 18, 47, 0.1) 1px, transparent 1px)`,
-                            backgroundSize: '12px 12px'
-                          }}></div>
-                        </div>
+                        {/* Background Pattern - Simplified for mobile */}
+                        {!isMobile && (
+                          <div className="absolute inset-0 opacity-20">
+                            <div className="w-full h-full" style={{
+                              backgroundImage: `linear-gradient(rgba(229, 18, 47, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(229, 18, 47, 0.1) 1px, transparent 1px)`,
+                              backgroundSize: '12px 12px'
+                            }}></div>
+                          </div>
+                        )}
                         
                         {/* Feature Icon */}
                         <div className="relative z-10">
                           {feature.icon}
                         </div>
                         
-                        {/* Enhanced Icon Glow Ring */}
-                        <div className={`absolute inset-0 rounded-xl bg-red-500/40 blur-lg opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125 ${isMobile ? 'hidden' : ''}`}></div>
-                        
-                        {/* Secondary Glow Ring */}
-                        <div className={`absolute inset-0 rounded-xl bg-red-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-all duration-1000 scale-125 group-hover:scale-150 ${isMobile ? 'hidden' : ''}`}></div>
+                        {/* Enhanced Icon Glow Ring - Disabled on mobile */}
+                        {!isMobile && (
+                          <>
+                            <div className="absolute inset-0 rounded-xl bg-red-500/40 blur-lg opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125"></div>
+                            <div className="absolute inset-0 rounded-xl bg-red-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-all duration-1000 scale-125 group-hover:scale-150"></div>
+                          </>
+                        )}
                         
                         {/* Coming Soon Badge with Glow */}
                         <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(255,193,7,0.6)] group-hover:shadow-[0_0_15px_rgba(255,193,7,0.8)] transition-all duration-500">
@@ -367,27 +412,35 @@ const Features = () => {
                           {feature.description}
                         </p>
 
-                        {/* ETA and Number with Enhanced Bulletin Effects */}
+                        {/* ETA and Number with Enhanced Bulletin Effects - Simplified for mobile */}
                         <div className="flex items-center justify-between">
                           <div className="text-gray-500 text-xs font-medium group-hover:text-red-300 transition-colors duration-500 relative">
                             <span className="relative z-10">{feature.eta}</span>
-                            <div className={`absolute inset-0 bg-red-500/30 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125 ${isMobile ? 'hidden' : ''}`}></div>
+                            {!isMobile && (
+                              <div className="absolute inset-0 bg-red-500/30 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125"></div>
+                            )}
                           </div>
                           <div className="text-gray-600 text-lg font-bold group-hover:text-red-300 transition-colors duration-500 relative">
                             <span className="relative z-10">{String(index + 1).padStart(2, '0')}</span>
-                            <div className={`absolute inset-0 bg-red-500/25 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125 ${isMobile ? 'hidden' : ''}`}></div>
+                            {!isMobile && (
+                              <div className="absolute inset-0 bg-red-500/25 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125"></div>
+                            )}
                           </div>
                         </div>
                       </div>
                       
-                      {/* Enhanced Hover Border Animation with Glow */}
-                      <div className={`absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-red-500/60 transition-all duration-500 ease-out shadow-[0_0_20px_rgba(229,18,47,0.3)] group-hover:shadow-[0_0_30px_rgba(229,18,47,0.5)] coming-soon-border ${isMobile ? 'hidden' : ''}`}></div>
-                      
-                      {/* Corner Glow Effects */}
-                      <div className={`absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-red-500/40 group-hover:border-red-500/80 transition-all duration-500 rounded-tl-2xl opacity-0 group-hover:opacity-100 corner-glow ${isMobile ? 'hidden' : ''}`}></div>
-                      <div className={`absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-red-500/40 group-hover:border-red-500/80 transition-all duration-500 rounded-tr-2xl opacity-0 group-hover:opacity-100 corner-glow ${isMobile ? 'hidden' : ''}`}></div>
-                      <div className={`absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-red-500/40 group-hover:border-red-500/80 transition-all duration-500 rounded-bl-2xl opacity-0 group-hover:opacity-100 corner-glow ${isMobile ? 'hidden' : ''}`}></div>
-                      <div className={`absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-red-500/40 group-hover:border-red-500/80 transition-all duration-500 rounded-br-2xl opacity-0 group-hover:opacity-100 corner-glow ${isMobile ? 'hidden' : ''}`}></div>
+                      {/* Enhanced Hover Border Animation with Glow - Disabled on mobile */}
+                      {!isMobile && (
+                        <>
+                          <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-red-500/60 transition-all duration-500 ease-out shadow-[0_0_20px_rgba(229,18,47,0.3)] group-hover:shadow-[0_0_30px_rgba(229,18,47,0.5)] coming-soon-border"></div>
+                          
+                          {/* Corner Glow Effects */}
+                          <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-red-500/40 group-hover:border-red-500/80 transition-all duration-500 rounded-tl-2xl opacity-0 group-hover:opacity-100 corner-glow"></div>
+                          <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-red-500/40 group-hover:border-red-500/80 transition-all duration-500 rounded-tr-2xl opacity-0 group-hover:opacity-100 corner-glow"></div>
+                          <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-red-500/40 group-hover:border-red-500/80 transition-all duration-500 rounded-bl-2xl opacity-0 group-hover:opacity-100 corner-glow"></div>
+                          <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-red-500/40 group-hover:border-red-500/80 transition-all duration-500 rounded-br-2xl opacity-0 group-hover:opacity-100 corner-glow"></div>
+                        </>
+                      )}
                     </div>
                   </div>
                 )
