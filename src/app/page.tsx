@@ -1,6 +1,7 @@
 import React from 'react'
 import { Metadata } from 'next'
 import Hero from '@/components/NightShield/Hero'
+import VSL from '@/components/NightShield/VSL'
 import Featuress from '@/components/NightShield/Features'
 import WhoItsFor from '@/components/NightShield/WhoItsFor'
 import Industries from '@/components/NightShield/Industries'
@@ -37,6 +38,7 @@ export default function Home() {
       
       <div>
         <Hero />
+        <VSL />
         <HowItWorks />
         <Featuress />
         <WhoItsFor />

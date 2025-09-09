@@ -73,7 +73,7 @@ const Pricing = () => {
     },
     {
       question: "What happens if I exceed my camera limit?",
-      answer: "We'll notify you when you're approaching your limit. You can either upgrade your plan or purchase additional camera licenses for $50/month per camera."
+      answer: "We'll notify you when you're approaching your limit. You can either upgrade your plan or purchase additional camera licenses for £50/month per camera."
     },
     {
       question: "Is there a long-term contract required?",
@@ -93,52 +93,6 @@ const Pricing = () => {
     }
   ]
 
-  const testimonials = [
-    {
-      name: "Sarah Chen",
-      role: "Owner, The Blue Room",
-      venue: "Nightclub",
-      plan: "Professional",
-      quote: "NightShield's Professional plan was perfect for our venue. The advanced AI detection caught several incidents we would have missed, and the 30-day storage gives us peace of mind."
-    },
-    {
-      name: "Marcus Rodriguez",
-      role: "Security Manager",
-      venue: "Multi-venue Entertainment Group",
-      plan: "Enterprise",
-      quote: "Managing security across 5 venues used to be a nightmare. NightShield's Enterprise plan with multi-venue management has streamlined everything. ROI was achieved in just 3 months."
-    },
-    {
-      name: "Emma Thompson",
-      role: "Manager",
-      venue: "The Corner Pub",
-      plan: "Starter",
-      quote: "Perfect for our small pub. Easy to use, reliable, and the mobile alerts keep us informed even when we're not on site. Great value for the price."
-    }
-  ]
-
-  const additionalBenefits = [
-    {
-      icon: "🛡️",
-      title: "Zero False Alarms",
-      description: "Our AI is trained on millions of real incidents, reducing false alarms by 95% compared to traditional systems."
-    },
-    {
-      icon: "⚡",
-      title: "Instant Response",
-      description: "Get notified within 3 seconds of any incident, allowing for immediate response and damage control."
-    },
-    {
-      icon: "📱",
-      title: "Mobile-First Design",
-      description: "Manage your security from anywhere with our intuitive mobile app available on iOS and Android."
-    },
-    {
-      icon: "🔒",
-      title: "Bank-Level Security",
-      description: "All data is encrypted with AES-256 encryption and stored in SOC 2 Type II certified data centers."
-    }
-  ]
 
   return (
     <section id="pricing" className="py-20 relative overflow-hidden">
@@ -214,7 +168,7 @@ const Pricing = () => {
                   {/* Price */}
                   <div className="mb-6">
                     <span className="text-4xl font-bold text-red-500">
-                      ${plan.price[billingCycle as keyof typeof plan.price]}
+                      £{plan.price[billingCycle as keyof typeof plan.price]}
                     </span>
                     <span className="text-gray-400">/month</span>
                   </div>
@@ -266,45 +220,7 @@ const Pricing = () => {
           ))}
         </div>
 
-        {/* Additional Benefits */}
-        <div className="mb-20">
-          <h3 className="text-3xl font-bold text-center mb-12 text-white">
-            Why Choose <span className="text-red-500">NightShield</span>?
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {additionalBenefits.map((benefit, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl mb-4">{benefit.icon}</div>
-                <h4 className="text-xl font-semibold mb-3 text-white">{benefit.title}</h4>
-                <p className="text-gray-300 text-sm">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Customer Testimonials */}
-        <div className="mb-20">
-          <h3 className="text-3xl font-bold text-center mb-12 text-white">
-            What Our <span className="text-red-500">Customers</span> Say
-          </h3>
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-card-bg border border-red-500/20 rounded-xl p-6">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center text-red-500 font-bold text-lg mr-4">
-                    {testimonial.name.charAt(0)}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-white">{testimonial.name}</div>
-                    <div className="text-sm text-gray-400">{testimonial.role}</div>
-                    <div className="text-xs text-red-500">{testimonial.venue} • {testimonial.plan}</div>
-                  </div>
-                </div>
-                <p className="text-gray-300 text-sm italic">"{testimonial.quote}"</p>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* FAQ Section */}
         <div className="mb-20">

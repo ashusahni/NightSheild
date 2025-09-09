@@ -70,37 +70,20 @@ const Testimonials = () => {
   }
 
   return (
-    <section className="py-20 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black"></div>
-      <div className="absolute inset-0 grid-texture opacity-10"></div>
-
-      <div className="container mx-auto px-4 relative z-10">
+    <div className="mb-24">
+      <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="flex justify-center items-center space-x-3 mb-6">
-            <Image 
-              src="/images/logo/LOGO TRANSPARENT.png" 
-              alt="NightShield Logo" 
-              width={48} 
-              height={48}
-              className="w-12 h-12"
-            />
-            <h2 className="text-4xl md:text-5xl font-bold">
-              What Our <span className="text-red-500">Clients Say</span>
-            </h2>
-          </div>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Join hundreds of satisfied venues that trust NightShield for their security needs
-          </p>
+          <h2 className="text-4xl md:text-5xl font-semibold text-white mb-6">What Our Clients Say</h2>
+          <p className="text-lg md:text-xl text-gray-400">Join hundreds of satisfied venues that trust NightShield for their security needs</p>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-card-bg border border-red-500/20 rounded-xl p-6 card-hover"
+              className="bg-gray-900/50 border border-gray-800 rounded-lg p-8 hover:bg-gray-900/70 hover:border-gray-700 transition-all group"
             >
               {/* Rating */}
               <div className="flex mb-4">
@@ -108,7 +91,7 @@ const Testimonials = () => {
               </div>
 
               {/* Content */}
-              <p className="text-gray-300 mb-6 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-400 mb-6 leading-relaxed group-hover:text-gray-300 transition-colors">
                 &ldquo;{testimonial.content}&rdquo;
               </p>
 
@@ -116,8 +99,8 @@ const Testimonials = () => {
               <div className="flex items-center">
                 <div className="text-2xl mr-4">{testimonial.avatar}</div>
                 <div>
-                  <div className="font-semibold text-white">{testimonial.name}</div>
-                  <div className="text-sm text-gray-400">
+                  <div className="font-semibold text-white group-hover:text-red-100 transition-colors">{testimonial.name}</div>
+                  <div className="text-sm text-gray-500">
                     {testimonial.role}, {testimonial.company}
                   </div>
                 </div>
@@ -129,30 +112,34 @@ const Testimonials = () => {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           <div className="text-center">
-            <div className="text-3xl font-bold text-red-500 mb-2">500+</div>
-            <div className="text-gray-300">Happy Clients</div>
+            <div className="text-4xl md:text-5xl font-bold text-white mb-3">500+</div>
+            <div className="text-lg md:text-xl font-medium text-gray-300 mb-2">Happy Clients</div>
+            <div className="text-sm md:text-base text-gray-500">Active deployments worldwide</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-red-500 mb-2">4.9/5</div>
-            <div className="text-gray-300">Average Rating</div>
+            <div className="text-4xl md:text-5xl font-bold text-white mb-3">4.9/5</div>
+            <div className="text-lg md:text-xl font-medium text-gray-300 mb-2">Average Rating</div>
+            <div className="text-sm md:text-base text-gray-500">Customer satisfaction score</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-red-500 mb-2">98%</div>
-            <div className="text-gray-300">Satisfaction Rate</div>
+            <div className="text-4xl md:text-5xl font-bold text-white mb-3">98%</div>
+            <div className="text-lg md:text-xl font-medium text-gray-300 mb-2">Satisfaction Rate</div>
+            <div className="text-sm md:text-base text-gray-500">Client retention rate</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-red-500 mb-2">24/7</div>
-            <div className="text-gray-300">Support Available</div>
+            <div className="text-4xl md:text-5xl font-bold text-white mb-3">24/7</div>
+            <div className="text-lg md:text-xl font-medium text-gray-300 mb-2">Support Available</div>
+            <div className="text-sm md:text-base text-gray-500">Round-the-clock assistance</div>
           </div>
         </div>
 
         {/* CTA */}
         <div className="text-center">
-          <div className="bg-gradient-to-r from-red-500/10 to-red-500/5 border border-red-500/20 rounded-2xl p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">
+          <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-10 max-w-4xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
               Ready to Join Our Success Stories?
             </h3>
-            <p className="text-gray-300 mb-6">
+            <p className="text-lg md:text-xl text-gray-400 mb-6">
               Start protecting your venue with the same AI technology trusted by hundreds of businesses worldwide.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -161,7 +148,7 @@ const Testimonials = () => {
                   const element = document.querySelector('#contact')
                   if (element) element.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="btn-primary text-lg px-8 py-4 hover:scale-105 active:scale-95"
+                className="bg-red-600 hover:bg-red-700 text-white font-medium px-8 py-3 rounded-lg transition-colors"
               >
                 Start Free Trial
               </button>
@@ -170,7 +157,7 @@ const Testimonials = () => {
                   const element = document.querySelector('#pricing')
                   if (element) element.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="btn-secondary text-lg px-8 py-4 hover:scale-105 active:scale-95"
+                className="border border-gray-600 hover:border-gray-500 text-white font-medium px-8 py-3 rounded-lg transition-colors"
               >
                 View Pricing
               </button>
@@ -178,7 +165,7 @@ const Testimonials = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 

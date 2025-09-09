@@ -4,6 +4,9 @@ import React, { useState, useEffect, useMemo, useRef } from 'react'
 import Image from 'next/image'
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import Testimonials from '@/components/NightShield/Testimonials'
+import { CONFIG_FILES } from 'next/dist/shared/lib/constants'
+import Contact from '@/components/NightShield/Contact'
 
 // Minimal CountUp Component
 const CountUp = ({ end, duration = 2000, delay = 0, suffix = "" }: { 
@@ -122,32 +125,6 @@ const Industries = () => {
     }
   ], [])
 
-  const globalPresence = useMemo(() => [
-    { 
-      region: "North America", 
-      venues: 200, 
-      delay: 0,
-      cities: ["New York", "Los Angeles", "Toronto"]
-    },
-    { 
-      region: "Europe", 
-      venues: 150, 
-      delay: 200,
-      cities: ["London", "Berlin", "Amsterdam"]
-    },
-    { 
-      region: "Asia Pacific", 
-      venues: 100, 
-      delay: 400,
-      cities: ["Tokyo", "Sydney", "Singapore"]
-    },
-    { 
-      region: "Other Regions", 
-      venues: 50, 
-      delay: 600,
-      cities: ["Dubai", "São Paulo", "Mumbai"]
-    }
-  ], [])
 
   return (
     <section className="py-32 bg-black" ref={containerRef}>
@@ -289,51 +266,16 @@ const Industries = () => {
           </div>
         </motion.div>
 
-        {/* Global Presence */}
+        {/* Testimonials */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 1.4 }}
         >
-          <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-10">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-semibold text-white mb-6">Global Reach</h2>
-              <p className="text-lg md:text-xl text-gray-400">Deployed across major cities worldwide with continuous expansion</p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {globalPresence.map((region, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: 1.6 + index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-3">
-                    <CountUp 
-                      end={region.venues} 
-                      duration={1500} 
-                      delay={1800 + region.delay} 
-                      suffix="+" 
-                    />
-                  </div>
-                  <div className="text-lg md:text-xl font-medium text-gray-300 mb-4">
-                    {region.region}
-                  </div>
-                  <div className="space-y-2">
-                    {region.cities.map((city, cityIndex) => (
-                      <div key={cityIndex} className="text-sm md:text-base text-gray-500">
-                        {city}
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          <Testimonials />
         </motion.div>
       </div>
+      <Contact/>
     </section>
   )
 }

@@ -11,10 +11,42 @@ const WhoItsFor = () => {
   // Mobile-optimized content with reduced complexity
   const mobileContent = {
     features: [
-      { icon: '🛡️', title: 'Real-time Monitoring', desc: '24/7 AI surveillance' },
-      { icon: '⚡', title: 'Fast Response', desc: 'Instant alerts' },
-      { icon: '📊', title: 'Analytics', desc: 'Smart insights' },
-      { icon: '🔒', title: 'Secure', desc: 'Enterprise security' }
+      { 
+        icon: (
+          <svg className="w-6 h-6 text-red-500 drop-shadow-lg shadow-red-500/50" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+          </svg>
+        ), 
+        title: 'Real-time Monitoring', 
+        desc: '24/7 AI surveillance' 
+      },
+      { 
+        icon: (
+          <svg className="w-6 h-6 text-red-500 drop-shadow-lg shadow-red-500/50" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        ), 
+        title: 'Fast Response', 
+        desc: 'Instant alerts' 
+      },
+      { 
+        icon: (
+          <svg className="w-6 h-6 text-red-500 drop-shadow-lg shadow-red-500/50" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+          </svg>
+        ), 
+        title: 'Analytics', 
+        desc: 'Smart insights' 
+      },
+      { 
+        icon: (
+          <svg className="w-6 h-6 text-red-500 drop-shadow-lg shadow-red-500/50" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+          </svg>
+        ), 
+        title: 'Secure', 
+        desc: 'Enterprise security' 
+      }
     ],
     benefits: [
       '85% fewer incidents',
@@ -55,91 +87,120 @@ const WhoItsFor = () => {
       )}
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Enhanced Header with Animations */}
+        {/* Futuristic Header with Holographic Effects */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="flex justify-center items-center space-x-3 mb-6"
-          >
-            <div className="relative">
-              <div className="absolute inset-0 bg-red-500/20 rounded-full blur-lg animate-pulse"></div>
-              <Image 
-                src="/images/logo/LOGO TRANSPARENT.png" 
-                alt="NightShield Logo" 
-                width={48} 
-                height={48}
-                className="w-12 h-12 relative z-10"
-                priority
-              />
+          <div className="relative">
+            {/* Holographic Background */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-96 h-96 bg-gradient-to-r from-red-500/10 via-orange-500/10 to-red-600/10 rounded-full blur-3xl"></div>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
-              Who <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">It&apos;s For</span>
-            </h2>
-          </motion.div>
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
-          >
-            NightShield is designed for venues that prioritize safety and security in high-risk environments
-          </motion.p>
+            
+            <div className="relative z-10">
+              <motion.div
+                className="inline-block mb-6"
+                animate={{ 
+                  textShadow: [
+                    "0 0 20px rgba(239, 68, 68, 0.5)",
+                    "0 0 40px rgba(239, 68, 68, 0.8)",
+                    "0 0 20px rgba(239, 68, 68, 0.5)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <h1 className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-500 to-red-600">
+                  WHO IT&apos;S FOR
+                </h1>
+              </motion.div>
+              
+              <div className="flex items-center justify-center space-x-8 mb-6">
+                <div className="h-px bg-gradient-to-r from-transparent via-red-500 to-transparent flex-1 max-w-24"></div>
+                <span className="text-3xl font-bold text-gray-300">TARGET AUDIENCE</span>
+                <div className="h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent flex-1 max-w-24"></div>
+              </div>
+              
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-300 mb-4">
+                Security Intelligence Matrix
+              </h2>
+              <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                Advanced AI surveillance technology for the future of nightlife security
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         {/* Main Content - Mobile Optimized */}
         {isMobile ? (
           // Mobile Layout - Simplified and Performance Optimized
-          <div className="space-y-12 mb-16">
-            {/* Mobile Header */}
-            <div className="text-center">
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent mb-4">
-                Perfect for High-Risk Venues
-              </h3>
-              <p className="text-gray-300 leading-relaxed">
-                NightShield's AI-powered surveillance system is designed for venues that face unique security challenges.
-              </p>
+          <div className="relative">
+            {/* Cyber Grid Background */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="w-full h-full" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(239, 68, 68, 0.1) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(239, 68, 68, 0.1) 1px, transparent 1px)
+                `,
+                backgroundSize: '40px 40px'
+              }}></div>
             </div>
+            <div className="relative z-10 space-y-12 mb-16">
+              {/* Mobile Header */}
+              <div className="text-center">
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent mb-4">
+                  Perfect for High-Risk Venues
+                </h3>
+                <p className="text-gray-300 leading-relaxed">
+                  NightShield's AI-powered surveillance system is designed for venues that face unique security challenges.
+                </p>
+              </div>
 
-            {/* Mobile Features Grid - Simplified */}
-            <div className="grid grid-cols-2 gap-4">
-              {mobileContent.features.map((item, index) => (
-                <div 
-                  key={index}
-                  className="bg-gradient-to-br from-[#0B0B0F]/80 to-[#1A1A1F]/60 backdrop-blur-xl border border-red-500/20 p-4 rounded-xl"
-                >
-                  <div className="text-2xl mb-2">{item.icon}</div>
-                  <h4 className="font-bold text-white mb-1 text-sm">{item.title}</h4>
-                  <p className="text-xs text-gray-400 leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Mobile Benefits - Simplified */}
-            <div className="bg-gradient-to-r from-red-600/10 via-red-500/5 to-red-800/10 backdrop-blur-xl border border-red-500/30 p-6 rounded-xl">
-              <h4 className="font-bold text-lg mb-4 bg-gradient-to-r from-white to-red-100 bg-clip-text text-transparent">Why Choose NightShield?</h4>
-              <ul className="space-y-2">
-                {mobileContent.benefits.map((item, index) => (
-                  <li key={index} className="flex items-center space-x-3 text-gray-300">
-                    <div className="w-2 h-2 bg-gradient-to-r from-red-400 to-red-600 rounded-full"></div>
-                    <span className="text-sm font-medium">{item}</span>
-                  </li>
+              {/* Mobile Features Grid - Simplified */}
+              <div className="grid grid-cols-2 gap-4">
+                {mobileContent.features.map((item, index) => (
+                  <div 
+                    key={index}
+                    className="bg-gradient-to-br from-[#0B0B0F]/80 to-[#1A1A1F]/60 backdrop-blur-xl border border-red-500/20 p-4 rounded-xl"
+                  >
+                    <div className="mb-2 flex items-center justify-center">{item.icon}</div>
+                    <h4 className="font-bold text-white mb-1 text-sm">{item.title}</h4>
+                    <p className="text-xs text-gray-400 leading-relaxed">{item.desc}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
+
+              {/* Mobile Benefits - Simplified */}
+              <div className="bg-gradient-to-r from-red-600/10 via-red-500/5 to-red-800/10 backdrop-blur-xl border border-red-500/30 p-6 rounded-xl">
+                <h4 className="font-bold text-lg mb-4 bg-gradient-to-r from-white to-red-100 bg-clip-text text-transparent">Why Choose NightShield?</h4>
+                <ul className="space-y-2">
+                  {mobileContent.benefits.map((item, index) => (
+                    <li key={index} className="flex items-center space-x-3 text-gray-300">
+                      <div className="w-2 h-2 bg-gradient-to-r from-red-400 to-red-600 rounded-full"></div>
+                      <span className="text-sm font-medium">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         ) : (
           // Desktop Layout - Full Featured
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="relative">
+            {/* Cyber Grid Background */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="w-full h-full" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(239, 68, 68, 0.1) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(239, 68, 68, 0.1) 1px, transparent 1px)
+                `,
+                backgroundSize: '40px 40px'
+              }}></div>
+            </div>
+            <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center mb-16">
             {/* Left Side - Enhanced Dashboard Preview */}
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
@@ -152,27 +213,79 @@ const WhoItsFor = () => {
                 {/* Glow Effect */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 via-red-500/10 to-red-500/20 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
                 
-                <div className="relative bg-[#0B0B0F]/90 backdrop-blur-xl border border-red-500/30 rounded-2xl p-8 shadow-2xl">
+                <div className="relative bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-xl border border-red-500/30 rounded-2xl p-8 shadow-2xl">
                   <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-3">
+                    <motion.h3 
+                      className="text-2xl font-bold bg-gradient-to-r from-red-500 via-orange-500 to-red-600 bg-clip-text text-transparent mb-3"
+                      animate={{ 
+                        textShadow: [
+                          "0 0 10px rgba(239, 68, 68, 0.3)",
+                          "0 0 20px rgba(239, 68, 68, 0.6)",
+                          "0 0 10px rgba(239, 68, 68, 0.3)"
+                        ]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
                       NightShield Security Dashboard
-                    </h3>
-                    <div className="inline-flex items-center space-x-2 bg-red-500/10 border border-red-500/30 rounded-full px-4 py-2">
-                      <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                    </motion.h3>
+                    <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/50 rounded-full px-4 py-2 backdrop-blur-sm">
+                      <motion.div 
+                        className="w-2 h-2 bg-red-500 rounded-full"
+                        animate={{ 
+                          scale: [1, 1.2, 1],
+                          opacity: [0.5, 1, 0.5]
+                        }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      ></motion.div>
                       <p className="text-red-400 text-sm font-medium">AI-Powered Surveillance</p>
                     </div>
                   </div>
                 
                   {/* Enhanced Dashboard Mockup */}
-                  <div className="bg-gradient-to-br from-[#0A0A0A] to-[#1A1A1A] rounded-xl p-6 border border-gray-700/50 shadow-inner">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex space-x-2">
-                        <div className="w-3 h-3 bg-red-500 rounded-full shadow-lg shadow-red-500/50"></div>
-                        <div className="w-3 h-3 bg-yellow-500 rounded-full shadow-lg shadow-yellow-500/50"></div>
-                        <div className="w-3 h-3 bg-green-500 rounded-full shadow-lg shadow-green-500/50"></div>
-                      </div>
-                      <div className="text-xs text-gray-400 bg-gray-800/50 px-2 py-1 rounded">NightShield v2.1</div>
+                  <div className="bg-gradient-to-br from-[#0A0A0A] to-[#1A1A1A] rounded-xl p-6 border border-gray-700/50 shadow-inner relative overflow-hidden">
+                    {/* Animated background pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="w-full h-full" style={{
+                        backgroundImage: `
+                          linear-gradient(rgba(239, 68, 68, 0.1) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(239, 68, 68, 0.1) 1px, transparent 1px)
+                        `,
+                        backgroundSize: '20px 20px'
+                      }}></div>
                     </div>
+                    
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex space-x-2">
+                          <motion.div 
+                            className="w-3 h-3 bg-red-500 rounded-full shadow-lg shadow-red-500/50"
+                            animate={{ 
+                              scale: [1, 1.1, 1],
+                              opacity: [0.7, 1, 0.7]
+                            }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                          ></motion.div>
+                          <motion.div 
+                            className="w-3 h-3 bg-yellow-500 rounded-full shadow-lg shadow-yellow-500/50"
+                            animate={{ 
+                              scale: [1, 1.1, 1],
+                              opacity: [0.7, 1, 0.7]
+                            }}
+                            transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                          ></motion.div>
+                          <motion.div 
+                            className="w-3 h-3 bg-green-500 rounded-full shadow-lg shadow-green-500/50"
+                            animate={{ 
+                              scale: [1, 1.1, 1],
+                              opacity: [0.7, 1, 0.7]
+                            }}
+                            transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                          ></motion.div>
+                        </div>
+                        <div className="text-xs text-gray-400 bg-gradient-to-r from-gray-800/50 to-gray-700/50 px-2 py-1 rounded border border-gray-600/30">
+                          <span className="text-red-400 font-bold">NightShield</span> v2.1
+                        </div>
+                      </div>
                   
                     {/* Enhanced Dashboard Content */}
                     <div className="space-y-4">
@@ -187,14 +300,20 @@ const WhoItsFor = () => {
                           <span className="text-white text-sm font-medium">Active Cameras</span>
                           <span className="text-green-400 text-sm font-bold bg-green-400/10 px-2 py-1 rounded">24/24</span>
                         </div>
-                        <div className="w-full bg-gray-700/50 rounded-full h-2 mt-3 overflow-hidden">
+                        <div className="w-full bg-gray-700/50 rounded-full h-2 mt-3 overflow-hidden relative">
                           <motion.div 
                             initial={{ width: 0 }}
                             whileInView={{ width: '100%' }}
                             transition={{ duration: 1, delay: 0.5 }}
                             viewport={{ once: true }}
-                            className="bg-gradient-to-r from-green-500 to-green-400 h-2 rounded-full shadow-lg shadow-green-500/50"
-                          ></motion.div>
+                            className="bg-gradient-to-r from-green-500 to-green-400 h-2 rounded-full shadow-lg shadow-green-500/50 relative"
+                          >
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                              animate={{ x: ['-100%', '100%'] }}
+                              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                            />
+                          </motion.div>
                         </div>
                       </motion.div>
                     
@@ -204,10 +323,21 @@ const WhoItsFor = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 0.2 }}
                           viewport={{ once: true }}
-                          className="bg-gradient-to-br from-gray-800/80 to-gray-700/80 backdrop-blur-sm rounded-lg p-4 border border-gray-600/30"
+                          className="bg-gradient-to-br from-gray-800/80 to-gray-700/80 backdrop-blur-sm rounded-lg p-4 border border-gray-600/30 relative overflow-hidden group"
                         >
-                          <div className="text-center">
-                            <div className="text-3xl font-bold bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent mb-1">0</div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          <div className="relative z-10 text-center">
+                            <motion.div 
+                              className="text-3xl font-bold bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent mb-1"
+                              animate={{ 
+                                textShadow: [
+                                  "0 0 10px rgba(239, 68, 68, 0.3)",
+                                  "0 0 20px rgba(239, 68, 68, 0.6)",
+                                  "0 0 10px rgba(239, 68, 68, 0.3)"
+                                ]
+                              }}
+                              transition={{ duration: 2, repeat: Infinity }}
+                            >0</motion.div>
                             <div className="text-xs text-gray-400">Active Threats</div>
                           </div>
                         </motion.div>
@@ -216,10 +346,21 @@ const WhoItsFor = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 0.3 }}
                           viewport={{ once: true }}
-                          className="bg-gradient-to-br from-gray-800/80 to-gray-700/80 backdrop-blur-sm rounded-lg p-4 border border-gray-600/30"
+                          className="bg-gradient-to-br from-gray-800/80 to-gray-700/80 backdrop-blur-sm rounded-lg p-4 border border-gray-600/30 relative overflow-hidden group"
                         >
-                          <div className="text-center">
-                            <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mb-1">98.7%</div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          <div className="relative z-10 text-center">
+                            <motion.div 
+                              className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mb-1"
+                              animate={{ 
+                                textShadow: [
+                                  "0 0 10px rgba(59, 130, 246, 0.3)",
+                                  "0 0 20px rgba(59, 130, 246, 0.6)",
+                                  "0 0 10px rgba(59, 130, 246, 0.3)"
+                                ]
+                              }}
+                              transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                            >98.7%</motion.div>
                             <div className="text-xs text-gray-400">System Health</div>
                           </div>
                         </motion.div>
@@ -239,33 +380,70 @@ const WhoItsFor = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.3, delay: 0.5 }}
                             viewport={{ once: true }}
-                            className="flex items-center space-x-3 p-2 rounded-md bg-green-500/5 border-l-2 border-green-500/50"
+                            className="flex items-center space-x-3 p-2 rounded-md bg-green-500/5 border-l-2 border-green-500/50 relative overflow-hidden group"
                           >
-                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
-                            <span className="text-white text-xs">Camera 12: Motion detected</span>
+                            <motion.div 
+                              className="w-2 h-2 bg-green-500 rounded-full shadow-lg shadow-green-500/50"
+                              animate={{ 
+                                scale: [1, 1.2, 1],
+                                opacity: [0.5, 1, 0.5]
+                              }}
+                              transition={{ duration: 1.5, repeat: Infinity }}
+                            ></motion.div>
+                            <span className="text-white text-xs group-hover:text-green-100 transition-colors">Camera 12: Motion detected</span>
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-transparent via-green-500/10 to-transparent"
+                              animate={{ x: ['-100%', '100%'] }}
+                              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+                            />
                           </motion.div>
                           <motion.div 
                             initial={{ opacity: 0, x: -10 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.3, delay: 0.6 }}
                             viewport={{ once: true }}
-                            className="flex items-center space-x-3 p-2 rounded-md bg-blue-500/5 border-l-2 border-blue-500/50"
+                            className="flex items-center space-x-3 p-2 rounded-md bg-blue-500/5 border-l-2 border-blue-500/50 relative overflow-hidden group"
                           >
-                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse shadow-lg shadow-blue-500/50"></div>
-                            <span className="text-white text-xs">System: Backup completed</span>
+                            <motion.div 
+                              className="w-2 h-2 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50"
+                              animate={{ 
+                                scale: [1, 1.2, 1],
+                                opacity: [0.5, 1, 0.5]
+                              }}
+                              transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
+                            ></motion.div>
+                            <span className="text-white text-xs group-hover:text-blue-100 transition-colors">System: Backup completed</span>
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent"
+                              animate={{ x: ['-100%', '100%'] }}
+                              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, delay: 1 }}
+                            />
                           </motion.div>
                           <motion.div 
                             initial={{ opacity: 0, x: -10 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.3, delay: 0.7 }}
                             viewport={{ once: true }}
-                            className="flex items-center space-x-3 p-2 rounded-md bg-yellow-500/5 border-l-2 border-yellow-500/50"
+                            className="flex items-center space-x-3 p-2 rounded-md bg-yellow-500/5 border-l-2 border-yellow-500/50 relative overflow-hidden group"
                           >
-                            <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse shadow-lg shadow-yellow-500/50"></div>
-                            <span className="text-white text-xs">Alert: Unusual pattern detected</span>
+                            <motion.div 
+                              className="w-2 h-2 bg-yellow-500 rounded-full shadow-lg shadow-yellow-500/50"
+                              animate={{ 
+                                scale: [1, 1.2, 1],
+                                opacity: [0.5, 1, 0.5]
+                              }}
+                              transition={{ duration: 1.5, repeat: Infinity, delay: 1 }}
+                            ></motion.div>
+                            <span className="text-white text-xs group-hover:text-yellow-100 transition-colors">Alert: Unusual pattern detected</span>
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/10 to-transparent"
+                              animate={{ x: ['-100%', '100%'] }}
+                              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, delay: 2 }}
+                            />
                           </motion.div>
                         </div>
                       </motion.div>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -298,10 +476,50 @@ const WhoItsFor = () => {
 
                 <div className="grid grid-cols-2 gap-6">
                   {[
-                    { icon: '🛡️', title: 'Real-time Monitoring', desc: '24/7 AI surveillance with instant threat detection', delay: 0.3 },
-                    { icon: '⚡', title: 'Fast Response', desc: 'Immediate alerts and automated response systems', delay: 0.4 },
-                    { icon: '📊', title: 'Analytics', desc: 'Comprehensive reporting and insights', delay: 0.5 },
-                    { icon: '🔒', title: 'Secure', desc: 'Enterprise-grade security and compliance', delay: 0.6 }
+                    { 
+                      icon: (
+                        <svg className="w-8 h-8 text-red-500 drop-shadow-lg shadow-red-500/50" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                        </svg>
+                      ), 
+                      title: 'Real-time Monitoring', 
+                      desc: '24/7 AI surveillance with instant threat detection', 
+                      delay: 0.3,
+                      color: 'red'
+                    },
+                    { 
+                      icon: (
+                        <svg className="w-8 h-8 text-orange-500 drop-shadow-lg shadow-orange-500/50" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                      ), 
+                      title: 'Fast Response', 
+                      desc: 'Immediate alerts and automated response systems', 
+                      delay: 0.4,
+                      color: 'orange'
+                    },
+                    { 
+                      icon: (
+                        <svg className="w-8 h-8 text-blue-500 drop-shadow-lg shadow-blue-500/50" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+                        </svg>
+                      ), 
+                      title: 'Analytics', 
+                      desc: 'Comprehensive reporting and insights', 
+                      delay: 0.5,
+                      color: 'blue'
+                    },
+                    { 
+                      icon: (
+                        <svg className="w-8 h-8 text-green-500 drop-shadow-lg shadow-green-500/50" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                        </svg>
+                      ), 
+                      title: 'Secure', 
+                      desc: 'Enterprise-grade security and compliance', 
+                      delay: 0.6,
+                      color: 'green'
+                    }
                   ].map((item, index) => (
                     <motion.div 
                       key={index}
@@ -310,14 +528,57 @@ const WhoItsFor = () => {
                       transition={{ duration: 0.5, delay: item.delay }}
                       viewport={{ once: true }}
                       whileHover={{ scale: 1.05, y: -5 }}
-                      className="group relative bg-gradient-to-br from-[#0B0B0F]/80 to-[#1A1A1F]/60 backdrop-blur-xl border border-red-500/20 p-6 rounded-xl shadow-2xl hover:border-red-500/40 transition-all duration-300"
+                      className="group relative bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-xl border border-gray-700/50 p-6 rounded-xl shadow-2xl hover:border-red-500/40 transition-all duration-300 overflow-hidden"
                     >
-                      {/* Glow effect on hover */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-red-600/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      {/* Holographic background effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 via-orange-500/5 to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      {/* Animated border glow */}
+                      <motion.div
+                        className="absolute inset-0 rounded-xl"
+                        style={{
+                          background: `linear-gradient(45deg, transparent, ${item.color === 'red' ? 'rgba(239, 68, 68, 0.3)' : item.color === 'orange' ? 'rgba(249, 115, 22, 0.3)' : item.color === 'blue' ? 'rgba(59, 130, 246, 0.3)' : 'rgba(34, 197, 94, 0.3)'}, transparent)`
+                        }}
+                        animate={{ 
+                          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                        }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                      />
+                      
+                      {/* Pulsing icon glow */}
+                      <motion.div
+                        className="absolute top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full opacity-20"
+                        style={{
+                          backgroundColor: item.color === 'red' ? '#ef4444' : item.color === 'orange' ? '#f97316' : item.color === 'blue' ? '#3b82f6' : '#22c55e'
+                        }}
+                        animate={{ 
+                          scale: [1, 1.2, 1],
+                          opacity: [0.1, 0.3, 0.1]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity, delay: item.delay }}
+                      />
                       
                       <div className="relative z-10">
-                        <div className="text-3xl mb-3 filter drop-shadow-lg">{item.icon}</div>
-                        <h4 className="font-bold text-white mb-2 text-lg group-hover:text-red-100 transition-colors">{item.title}</h4>
+                        <motion.div 
+                          className="mb-3 flex items-center justify-center filter drop-shadow-lg"
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {item.icon}
+                        </motion.div>
+                        <motion.h4 
+                          className="font-bold text-white mb-2 text-lg group-hover:text-red-100 transition-colors"
+                          animate={{ 
+                            textShadow: [
+                              "0 0 5px rgba(255, 255, 255, 0.1)",
+                              "0 0 10px rgba(255, 255, 255, 0.2)",
+                              "0 0 5px rgba(255, 255, 255, 0.1)"
+                            ]
+                          }}
+                          transition={{ duration: 2, repeat: Infinity, delay: item.delay }}
+                        >
+                          {item.title}
+                        </motion.h4>
                         <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed">{item.desc}</p>
                       </div>
                     </motion.div>
@@ -331,41 +592,85 @@ const WhoItsFor = () => {
                   viewport={{ once: true }}
                   className="relative group"
                 >
-                  {/* Glow border effect */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/30 via-red-600/20 to-red-500/30 rounded-2xl blur-sm opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                  {/* Enhanced glow border effect */}
+                  <motion.div 
+                    className="absolute -inset-1 bg-gradient-to-r from-red-500/30 via-orange-500/20 to-red-600/30 rounded-2xl blur-sm opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"
+                    animate={{ 
+                      backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                    }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  ></motion.div>
                   
-                  <div className="relative bg-gradient-to-r from-red-600/10 via-red-500/5 to-red-800/10 backdrop-blur-xl border border-red-500/30 p-6 rounded-xl">
-                    <h4 className="font-bold text-xl mb-4 bg-gradient-to-r from-white to-red-100 bg-clip-text text-transparent">Why Choose NightShield?</h4>
-                    <ul className="space-y-3">
-                      {[
-                        '85% reduction in security incidents',
-                        '60% faster response times',
-                        '24/7 AI monitoring',
-                        'Easy integration with existing systems'
-                      ].map((item, index) => (
-                        <motion.li 
-                          key={index}
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
-                          viewport={{ once: true }}
-                          className="flex items-center space-x-3 text-gray-300 group-hover:text-gray-200 transition-colors"
-                        >
-                          <div className="w-2 h-2 bg-gradient-to-r from-red-400 to-red-600 rounded-full shadow-lg shadow-red-500/50"></div>
-                          <span className="text-sm font-medium">{item}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
+                  <div className="relative bg-gradient-to-r from-red-600/10 via-orange-500/5 to-red-800/10 backdrop-blur-xl border border-red-500/30 p-6 rounded-xl overflow-hidden">
+                    {/* Animated background pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="w-full h-full" style={{
+                        backgroundImage: `
+                          linear-gradient(rgba(239, 68, 68, 0.1) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(239, 68, 68, 0.1) 1px, transparent 1px)
+                        `,
+                        backgroundSize: '20px 20px'
+                      }}></div>
+                    </div>
+                    
+                    <div className="relative z-10">
+                      <motion.h4 
+                        className="font-bold text-xl mb-4 bg-gradient-to-r from-red-500 via-orange-500 to-red-600 bg-clip-text text-transparent"
+                        animate={{ 
+                          textShadow: [
+                            "0 0 10px rgba(239, 68, 68, 0.3)",
+                            "0 0 20px rgba(239, 68, 68, 0.6)",
+                            "0 0 10px rgba(239, 68, 68, 0.3)"
+                          ]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        Why Choose NightShield?
+                      </motion.h4>
+                      <ul className="space-y-3">
+                        {[
+                          '85% reduction in security incidents',
+                          '60% faster response times',
+                          '24/7 AI monitoring',
+                          'Easy integration with existing systems'
+                        ].map((item, index) => (
+                          <motion.li 
+                            key={index}
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
+                            viewport={{ once: true }}
+                            className="flex items-center space-x-3 text-gray-300 group-hover:text-gray-200 transition-colors relative"
+                          >
+                            <motion.div 
+                              className="w-2 h-2 bg-gradient-to-r from-red-400 to-red-600 rounded-full shadow-lg shadow-red-500/50"
+                              animate={{ 
+                                scale: [1, 1.2, 1],
+                                opacity: [0.7, 1, 0.7]
+                              }}
+                              transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+                            ></motion.div>
+                            <span className="text-sm font-medium">{item}</span>
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/5 to-transparent"
+                              animate={{ x: ['-100%', '100%'] }}
+                              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, delay: index * 0.5 }}
+                            />
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </motion.div>
               </div>
             </motion.div>
+            </div>
           </div>
         )}
 
 
 
-        {/* Enhanced Bottom CTA - Mobile Optimized */}
+        {/* Futuristic CTA Section */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -374,66 +679,98 @@ const WhoItsFor = () => {
           className="text-center"
         >
           <div className="relative group max-w-5xl mx-auto">
-            {/* Enhanced glow effect - Only on desktop */}
-            {!isMobile && (
-              <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 via-red-600/10 to-red-500/20 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
-            )}
+            {/* Enhanced holographic glow effect */}
+            <motion.div 
+              className="absolute -inset-1 bg-gradient-to-r from-red-500/20 via-orange-500/10 to-red-600/20 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"
+              animate={{ 
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+              }}
+              transition={{ duration: 6, repeat: Infinity }}
+            ></motion.div>
             
-            <div className={`relative bg-gradient-to-br from-[#0B0B0F]/95 via-[#1A1A1F]/90 to-[#0B0B0F]/95 backdrop-blur-xl border border-red-500/30 rounded-3xl shadow-2xl ${isMobile ? 'p-6' : 'p-10'}`}>
-              <motion.h3 
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className={`font-bold mb-6 bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent ${isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'}`}
-              >
-                Not Sure If NightShield Fits Your Venue?
-              </motion.h3>
-              <motion.p 
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-                className={`text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed ${isMobile ? 'text-base' : 'text-xl'}`}
-              >
-                Our security experts will analyze your specific needs and create a customized solution for your venue type.
-              </motion.p>
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                viewport={{ once: true }}
-                className="flex flex-col sm:flex-row gap-6 justify-center"
-              >
-                <motion.button
-                  whileHover={{ scale: isMobile ? 1 : 1.05, y: isMobile ? 0 : -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => {
-                    const element = document.querySelector('#contact')
-                    if (element) element.scrollIntoView({ behavior: 'smooth' })
+            <div className={`relative bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-xl border border-red-500/30 rounded-3xl shadow-2xl overflow-hidden ${isMobile ? 'p-6' : 'p-10'}`}>
+              {/* Animated background pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="w-full h-full" style={{
+                  backgroundImage: `
+                    linear-gradient(rgba(239, 68, 68, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(239, 68, 68, 0.1) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '30px 30px'
+                }}></div>
+              </div>
+              
+              <div className="relative z-10">
+                <motion.h3 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className={`font-bold mb-6 bg-gradient-to-r from-red-500 via-orange-500 to-red-600 bg-clip-text text-transparent ${isMobile ? 'text-2xl' : 'text-4xl md:text-5xl'}`}
+                  animate={{ 
+                    textShadow: [
+                      "0 0 20px rgba(239, 68, 68, 0.3)",
+                      "0 0 40px rgba(239, 68, 68, 0.6)",
+                      "0 0 20px rgba(239, 68, 68, 0.3)"
+                    ]
                   }}
-                  className={`relative group rounded-xl font-semibold text-white bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 transition-all duration-300 shadow-lg shadow-red-500/25 hover:shadow-red-500/40 ${isMobile ? 'py-3 px-6' : 'py-4 px-10'}`}
-                >
-                  {!isMobile && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-400/20 to-red-600/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  )}
-                  <span className="relative">Schedule Consultation</span>
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: isMobile ? 1 : 1.05, y: isMobile ? 0 : -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => {
-                    const element = document.querySelector('#pricing')
-                    if (element) element.scrollIntoView({ behavior: 'smooth' })
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 0.2,
+                    textShadow: { duration: 2, repeat: Infinity }
                   }}
-                  className={`relative group rounded-xl font-semibold text-white bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 border border-gray-600/50 hover:border-gray-500/50 transition-all duration-300 shadow-lg hover:shadow-xl ${isMobile ? 'py-3 px-6' : 'py-4 px-10'}`}
                 >
-                  {!isMobile && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  )}
-                  <span className="relative">View Pricing</span>
-                </motion.button>
-              </motion.div>
+                  Deploy Advanced Security Intelligence
+                </motion.h3>
+                <motion.p 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className={`text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed ${isMobile ? 'text-base' : 'text-xl'}`}
+                >
+                  Join the future of nightlife security with AI-powered surveillance technology designed for high-risk venues.
+                </motion.p>
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col sm:flex-row gap-6 justify-center"
+                >
+                  <motion.button
+                    whileHover={{ scale: isMobile ? 1 : 1.05, y: isMobile ? 0 : -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      const element = document.querySelector('#contact')
+                      if (element) element.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                    className={`relative group rounded-xl font-semibold text-white bg-gradient-to-r from-red-500 via-orange-500 to-red-600 hover:from-red-400 hover:via-orange-400 hover:to-red-500 transition-all duration-300 shadow-xl hover:shadow-2xl ${isMobile ? 'py-3 px-6' : 'py-4 px-10'} overflow-hidden`}
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                      animate={{ x: ['-100%', '100%'] }}
+                      transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                    />
+                    <span className="relative">Deploy Now</span>
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: isMobile ? 1 : 1.05, y: isMobile ? 0 : -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      const element = document.querySelector('#pricing')
+                      if (element) element.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                    className={`relative group rounded-xl font-semibold text-orange-400 bg-transparent border-2 border-orange-500 hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl ${isMobile ? 'py-3 px-6' : 'py-4 px-10'} overflow-hidden`}
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-orange-500/10 to-transparent"
+                      animate={{ x: ['-100%', '100%'] }}
+                      transition={{ duration: 2, repeat: Infinity, repeatDelay: 3, delay: 1 }}
+                    />
+                    <span className="relative">View Intelligence Report</span>
+                  </motion.button>
+                </motion.div>
+              </div>
             </div>
           </div>
         </motion.div>

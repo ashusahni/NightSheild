@@ -75,20 +75,20 @@ const Hero = () => {
       <div className="hidden md:block absolute top-1/2 left-1/4 w-16 h-16 bg-red-600/25 rounded-full blur-lg animate-pulse delay-500"></div>
 
       <div className="w-full px-4 relative z-10">
-        <div className="grid lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
-          {/* Left Content */}
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Main Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left lg:col-span-2"
+            className=""
           >
             {/* Logo */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="flex justify-center lg:justify-start mb-4 sm:mb-6 lg:mb-8"
+              className="flex justify-center mb-4 sm:mb-6 lg:mb-8"
             >
               <Image 
                 src="/images/logo/NIGHTSHIELD copy 3.png" 
@@ -99,27 +99,27 @@ const Hero = () => {
                 className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20"
               />
             </motion.div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
-              <div className="mb-2">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 leading-tight">
+              <div className="mb-3">
                 <SplitText 
                   delay={0.2}
                   duration={0.6}
                   staggerDelay={0.08}
                   splitBy="words"
                   animationType="slideUp"
-                  className=""
+                  className="text-white"
                 >
                   Real-Time AI Surveillance
                 </SplitText>
               </div>
-              <div className="mb-2">
+              <div className="mb-3">
                 <SplitText 
                   delay={0.6}
                   duration={0.6}
                   staggerDelay={0.08}
                   splitBy="words"
                   animationType="slideUp"
-                  className="gradient-text"
+                  className="text-red-500"
                 >
                   That Protects Venues
                 </SplitText>
@@ -142,32 +142,33 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.8 }}
-              className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0"
+              className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto text-center"
             >
+              Advanced AI surveillance system that detects threats and protects venues before incidents occur. 
+              Real-time monitoring with instant alerts and proactive security measures.
             </motion.p>
 
+            {/* Call to Action Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 2.2 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 sm:mb-12"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={scrollToContact}
-                className="btn-primary text-sm sm:text-base md:text-lg px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4"
+              <a
+                href="https://calendly.com/nightshield/demo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary px-8 py-4 text-lg font-semibold hover:scale-105 active:scale-95 transition-transform"
               >
-                Book Live Demo
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                Book Free Demo
+              </a>
+              <button
                 onClick={scrollToAction}
-                className="btn-secondary text-sm sm:text-base md:text-lg px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4"
+                className="px-8 py-4 text-lg font-semibold border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 rounded-lg"
               >
-                See It In Action
-              </motion.button>
+                Learn More
+              </button>
             </motion.div>
 
             {/* Stats */}
@@ -175,90 +176,29 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 2.6 }}
-              className="grid grid-cols-3 gap-3 sm:gap-6 mt-8 sm:mt-12 max-w-md mx-auto lg:mx-0"
+              className="grid grid-cols-3 gap-6 sm:gap-8 mt-12 sm:mt-16 max-w-lg mx-auto"
             >
               <div className="text-center">
-                <div className="text-lg sm:text-xl lg:text-2xl font-bold text-red-500">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-500 mb-1">
                   {useCounter({ end: 99.9, delay: isMobile ? 1300 : 2600, duration: isMobile ? 750 : 1500, decimals: 1 })}%
                 </div>
-                <div className="text-xs sm:text-sm text-gray-400">Detection Rate</div>
+                <div className="text-sm sm:text-base text-white font-medium">Detection Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-lg sm:text-xl lg:text-2xl font-bold text-red-500">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-500 mb-1">
                   &lt;{useCounter({ end: 2, delay: isMobile ? 1300 : 2600, duration: isMobile ? 750 : 1500, decimals: 0 })}s
                 </div>
-                <div className="text-xs sm:text-sm text-gray-400">Response Time</div>
+                <div className="text-sm sm:text-base text-white font-medium">Response Time</div>
               </div>
               <div className="text-center">
-                <div className="text-lg sm:text-xl lg:text-2xl font-bold text-red-500">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-500 mb-1">
                   {useCounter({ end: 24, delay: isMobile ? 1300 : 2600, duration: isMobile ? 750 : 1500, decimals: 0 })}/7
                 </div>
-                <div className="text-xs sm:text-sm text-gray-400">Monitoring</div>
+                <div className="text-sm sm:text-base text-white font-medium">Monitoring</div>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Content - VSL */}
-          <motion.div
-            initial={{ opacity: 0, x: isMobile ? 20 : 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: isMobile ? 0.4 : 0.8, delay: isMobile ? 0.15 : 0.3 }}
-            className="relative lg:col-span-3 mt-8 lg:mt-0"
-          >
-            {/* VSL Border Container with Red Theme */}
-            <div className="relative p-3 sm:p-4 lg:p-5 bg-gradient-to-br from-red-900/30 via-red-800/20 to-red-900/30 rounded-3xl border-2 border-red-200/40 shadow-2xl shadow-red-100/40">
-              {/* Inner Glow Effect */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-red-500/10 via-transparent to-red-600/10 pointer-events-none"></div>
-              
-              {/* VSL Video Container */}
-              <div className="relative bg-black rounded-2xl overflow-hidden shadow-xl border border-red-500/30">
-                <div className="relative aspect-[16/10]">
-                  <iframe
-                    className="absolute top-0 left-0 w-full h-full"
-                    src="https://drive.google.com/file/d/1qbR8VUeAJcKvePFYIC_gur8ySI9X2EDw/preview"
-                    title="NightShield VSL Video"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; allowfullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  ></iframe>
-                  
-                  {/* Enhanced CCTV Frame Overlay */}
-                  <div className="absolute inset-0 pointer-events-none">
-                    {/* Top Bar with Enhanced Styling */}
-                    <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-r from-black/80 via-black/60 to-black/80 backdrop-blur-sm flex items-center justify-between px-4 text-white text-sm">
-                      <span className="text-red-400 font-bold flex items-center gap-2">
-                        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                        NightShield AI
-                      </span>
-                      <span className="text-green-400 flex items-center gap-1">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        LIVE
-                      </span>
-                    </div>
-                    
-                    {/* Enhanced Corner Brackets */}
-                    <div className="absolute top-0 left-0 w-6 h-6 border-l-3 border-t-3 border-red-500"></div>
-                    <div className="absolute top-0 right-0 w-6 h-6 border-r-3 border-t-3 border-red-500"></div>
-                    <div className="absolute bottom-0 left-0 w-6 h-6 border-l-3 border-b-3 border-red-500"></div>
-                    <div className="absolute bottom-0 right-0 w-6 h-6 border-r-3 border-b-3 border-red-500"></div>
-                    
-                    {/* Subtle Scan Line Effect */}
-                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red-500/50 to-transparent animate-pulse"></div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* VSL Caption with Enhanced Styling */}
-              <div className="mt-4 text-center">
-                <p className="text-gray-200 text-sm sm:text-base font-medium">
-                  Watch how NightShield prevents incidents in real-time
-                </p>
-                <div className="mt-2 w-16 h-0.5 bg-gradient-to-r from-red-500 to-red-600 mx-auto rounded-full"></div>
-              </div>
-            </div>
-
-          </motion.div>
         </div>
       </div>
 

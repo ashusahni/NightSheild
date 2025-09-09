@@ -73,19 +73,83 @@ const Features = () => {
     {
       category: "Hardware Requirements",
       specs: [
-        { name: "Camera Resolution", value: "4K Ultra HD (3840×2160)", icon: "📹" },
-        { name: "Night Vision Range", value: "Up to 100 meters", icon: "🌙" },
-        { name: "Storage Capacity", value: "10TB - 100TB options", icon: "💾" },
-        { name: "Processing Power", value: "NVIDIA RTX 4090 GPU", icon: "⚡" }
+        { 
+          name: "Camera Resolution", 
+          value: "1080p HD (1920×1080)", 
+          icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+          )
+        },
+        { 
+          name: "Night Vision Range", 
+          value: "Up to 30 meters", 
+          icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          )
+        },
+        { 
+          name: "Storage Capacity", 
+          value: "1TB - 10TB options", 
+          icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+            </svg>
+          )
+        },
+        { 
+          name: "Processing Power", 
+          value: "Intel i5/AMD Ryzen 5", 
+          icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          )
+        }
       ]
     },
     {
       category: "Software Capabilities",
       specs: [
-        { name: "AI Processing Speed", value: "&lt; 2 seconds detection", icon: "🧠" },
-        { name: "Concurrent Streams", value: "Up to 64 cameras", icon: "📊" },
-        { name: "Uptime Guarantee", value: "99.9% availability", icon: "🔄" },
-        { name: "Data Retention", value: "Unlimited cloud storage", icon: "☁️" }
+        { 
+          name: "AI Processing Speed", 
+          value: "< 5 seconds detection", 
+          icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          )
+        },
+        { 
+          name: "Concurrent Streams", 
+          value: "Up to 16 cameras", 
+          icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          )
+        },
+        { 
+          name: "Uptime Guarantee", 
+          value: "99.5% availability", 
+          icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          )
+        },
+        { 
+          name: "Data Retention", 
+          value: "30-90 days storage", 
+          icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+            </svg>
+          )
+        }
       ]
     }
   ]
@@ -93,29 +157,45 @@ const Features = () => {
   const securityFeatures = [
     {
       title: "End-to-End Encryption",
-      description: "Military-grade AES-256 encryption for all data transmission and storage",
-      icon: "🔐",
+      description: "AES-256 encryption for all data transmission and storage",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+      ),
       gradient: "from-green-500/20 to-emerald-500/20",
       compliance: "SOC 2 Type II"
     },
     {
       title: "GDPR Compliance",
       description: "Full compliance with data protection regulations and privacy laws",
-      icon: "⚖️",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+        </svg>
+      ),
       gradient: "from-blue-500/20 to-cyan-500/20",
       compliance: "GDPR Ready"
     },
     {
       title: "Multi-Factor Authentication",
-      description: "Advanced user authentication with biometric and token-based security",
-      icon: "🛡️",
+      description: "Advanced user authentication with token-based security",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      ),
       gradient: "from-purple-500/20 to-pink-500/20",
       compliance: "ISO 27001"
     },
     {
       title: "Audit Trail",
       description: "Complete logging and monitoring of all system access and activities",
-      icon: "📋",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+        </svg>
+      ),
       gradient: "from-orange-500/20 to-red-500/20",
       compliance: "HIPAA Compatible"
     }
@@ -125,75 +205,69 @@ const Features = () => {
     {
       title: "Real-Time Dashboard",
       description: "Comprehensive overview of all security metrics and system status",
-      icon: "📈",
-      metrics: "50+ KPIs tracked"
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      ),
+      metrics: "20+ KPIs tracked"
     },
-    {
-      title: "Heat Maps",
-      description: "Visual representation of high-traffic and incident-prone areas",
-      icon: "🗺️",
-      metrics: "Zone-based analytics"
-    },
+    
     {
       title: "Incident Reports",
       description: "Automated generation of detailed incident documentation and analysis",
-      icon: "📄",
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      ),
       metrics: "PDF/Excel export"
     },
     {
       title: "Predictive Insights",
       description: "AI-powered forecasting of potential security risks and patterns",
-      icon: "🔮",
-      metrics: "95% accuracy rate"
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
+      metrics: "85% accuracy rate"
     }
   ]
 
-  const integrationOptions = [
-    {
-      name: "Access Control Systems",
-      description: "Seamless integration with door locks, keycards, and entry systems",
-      logo: "🚪",
-      partners: ["HID Global", "ASSA ABLOY", "Honeywell"]
-    },
-    {
-      name: "Fire Safety Systems",
-      description: "Connect with fire alarms, sprinklers, and emergency protocols",
-      logo: "🚨",
-      partners: ["Johnson Controls", "Siemens", "Tyco"]
-    },
-    {
-      name: "Building Management",
-      description: "Integration with HVAC, lighting, and facility management systems",
-      logo: "🏢",
-      partners: ["Schneider Electric", "Carrier", "Trane"]
-    },
-    {
-      name: "Communication Platforms",
-      description: "Connect with Slack, Teams, and other communication tools",
-      logo: "💬",
-      partners: ["Microsoft Teams", "Slack", "Discord"]
-    }
-  ]
+ 
 
   const deploymentOptions = [
     {
       title: "Cloud Deployment",
       description: "Fully managed cloud solution with automatic updates and scaling",
-      icon: "☁️",
-      setup: "15 minutes",
-      features: ["Auto-scaling", "Global CDN", "99.9% uptime"]
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+        </svg>
+      ),
+      setup: "30 minutes",
+      features: ["Auto-scaling", "Global CDN", "99.5% uptime"]
     },
     {
       title: "On-Premise Installation",
       description: "Complete control with local hardware and data storage",
-      icon: "🏗️",
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+      ),
       setup: "2-4 hours",
       features: ["Full control", "Local storage", "Custom config"]
     },
     {
       title: "Hybrid Solution",
       description: "Best of both worlds with local processing and cloud backup",
-      icon: "🔄",
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+      ),
       setup: "1-2 hours",
       features: ["Edge computing", "Cloud backup", "Flexible scaling"]
     }
@@ -662,7 +736,7 @@ const Features = () => {
             <p className="text-gray-400 text-lg">Comprehensive insights and intelligent reporting</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {analyticsFeatures.map((feature, index) => (
               <motion.div
                 key={index}
@@ -680,7 +754,7 @@ const Features = () => {
                   }}
                 >
                   <motion.div
-                    className="text-3xl mb-4 text-center"
+                    className="text-3xl mb-4 flex items-center justify-center"
                     whileHover={{ scale: 1.2, rotate: 5 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -713,78 +787,6 @@ const Features = () => {
           </div>
         </motion.div>
 
-        {/* Integration Capabilities */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 3.2 }}
-          className="mb-32"
-        >
-          <div className="text-center mb-16">
-            <h3 className="text-4xl font-bold text-white mb-4">Integration Capabilities</h3>
-            <p className="text-gray-400 text-lg">Seamless connectivity with your existing systems</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {integrationOptions.map((option, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.6, delay: 3.4 + index * 0.15 }}
-                className="group relative"
-              >
-                <motion.div
-                  className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 rounded-2xl p-6 border border-gray-700 hover:border-blue-500/50 transition-all duration-500 h-full"
-                  whileHover={{ 
-                    scale: 1.05, 
-                    y: -8,
-                    boxShadow: "0 20px 40px rgba(59, 130, 246, 0.15)"
-                  }}
-                >
-                  <motion.div
-                    className="text-4xl mb-4 text-center"
-                    whileHover={{ scale: 1.3, rotate: 15 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {option.logo}
-                  </motion.div>
-
-                  <h4 className="text-lg font-bold text-white mb-3 text-center group-hover:text-blue-100 transition-colors">
-                    {option.name}
-                  </h4>
-
-                  <p className="text-gray-400 text-sm leading-relaxed text-center mb-4 group-hover:text-gray-300 transition-colors">
-                    {option.description}
-                  </p>
-
-                  <div className="space-y-2">
-                    <p className="text-xs text-gray-500 text-center font-semibold">Partners:</p>
-                    <div className="flex flex-wrap justify-center gap-1">
-                      {option.partners.map((partner, partnerIndex) => (
-                        <span
-                          key={partnerIndex}
-                          className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full"
-                        >
-                          {partner}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Connection lines effect */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    initial={{ pathLength: 0 }}
-                    whileHover={{ pathLength: 1 }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent animate-pulse" />
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
 
         {/* Deployment Options */}
         <motion.div
@@ -903,7 +905,10 @@ const Features = () => {
                     whileHover={{ scale: 1.3, rotate: 15 }}
                     transition={{ duration: 0.3 }}
                   >
-                    🛠️
+                    <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
                   </motion.div>
                   <h4 className="text-xl font-bold text-white mb-3 group-hover:text-green-300 transition-colors">
                     24/7 Technical Support
@@ -930,7 +935,9 @@ const Features = () => {
                     whileHover={{ scale: 1.3, rotate: -15 }}
                     transition={{ duration: 0.3 }}
                   >
-                    🔄
+                    <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
                   </motion.div>
                   <h4 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">
                     Automatic Updates
@@ -957,7 +964,9 @@ const Features = () => {
                     whileHover={{ scale: 1.3, rotate: 10 }}
                     transition={{ duration: 0.3 }}
                   >
-                    📊
+                    <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
                   </motion.div>
                   <h4 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
                     Performance Monitoring

@@ -227,22 +227,39 @@ const Contact = () => {
                 Book a personalized demo with our security experts. See NightShield in action and get answers to all your questions.
               </p>
               
-              {/* Calendly Placeholder */}
-              <div className="bg-black/50 border border-red-500/20 rounded-lg p-8 text-center">
-                <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 3H5C3.89 3 3 3.89 3 5V19C3 20.11 3.89 21 5 21H19C20.11 21 21 20.11 21 19V5C21 3.89 20.11 3 19 3M19 19H5V9H19V19M19 7H5V5H19V7Z"/>
-                  </svg>
+              {/* Calendly Integration */}
+              <div className="bg-black/50 border border-red-500/20 rounded-lg overflow-hidden">
+                <div className="p-6 text-center border-b border-red-500/20">
+                  <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19 3H5C3.89 3 3 3.89 3 5V19C3 20.11 3.89 21 5 21H19C20.11 21 21 20.11 21 19V5C21 3.89 20.11 3 19 3M19 19H5V9H19V19M19 7H5V5H19V7Z"/>
+                    </svg>
+                  </div>
+                  <h4 className="text-lg font-semibold text-white mb-2">Schedule Your Demo</h4>
+                  <p className="text-gray-300 mb-4">
+                    Book a personalized demo with our security experts
+                  </p>
+                  <a
+                    href="https://calendly.com/nightshield/demo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary hover:scale-105 active:scale-95 inline-block"
+                  >
+                    Book Demo Now
+                  </a>
                 </div>
-                <h4 className="text-lg font-semibold text-white mb-2">Calendly Integration</h4>
-                <p className="text-gray-300 mb-4">
-                  Click below to schedule your personalized demo
-                </p>
-                <button
-                  className="btn-primary hover:scale-105 active:scale-95"
-                >
-                  Book Demo Now
-                </button>
+                
+                {/* Calendly Widget */}
+                <div className="h-96">
+                  <iframe
+                    src="https://calendly.com/nightshield/demo?embed_domain=nightshield.ai&embed_type=Inline"
+                    width="100%"
+                    height="100%"
+                    frameBorder="0"
+                    title="Schedule a Demo"
+                    className="rounded-b-lg"
+                  ></iframe>
+                </div>
               </div>
 
               {/* Contact Info */}
@@ -255,7 +272,9 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="text-white font-semibold">Phone</div>
-                    <div className="text-gray-300">+1 (555) 123-4567</div>
+                    <a href="tel:+447706085067" className="text-gray-300 hover:text-red-500 transition-colors">
+                      +44 7706085067
+                    </a>
                   </div>
                 </div>
                 
@@ -267,7 +286,9 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="text-white font-semibold">Email</div>
-                    <div className="text-gray-300">hello@nightshield.com</div>
+                    <a href="mailto:contact@nightshield.ai" className="text-gray-300 hover:text-red-500 transition-colors">
+                      contact@nightshield.ai
+                    </a>
                   </div>
                 </div>
 
@@ -278,8 +299,8 @@ const Contact = () => {
                     </svg>
                   </div>
                   <div>
-                    <div className="text-white font-semibold">Office</div>
-                    <div className="text-gray-300">123 Security Ave, Tech City, TC 12345</div>
+                    <div className="text-white font-semibold">Location</div>
+                    <div className="text-gray-300">Croydon, London</div>
                   </div>
                 </div>
               </div>

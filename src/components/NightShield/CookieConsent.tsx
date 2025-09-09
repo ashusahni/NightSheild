@@ -52,7 +52,7 @@ const CookieConsent = () => {
     <>
       {showConsent && (
         <div className="cookie-consent">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+          <div className="flex flex-col lg:flex-row items-center lg:items-center justify-center lg:justify-between gap-4 text-center lg:text-left">
             <div className="flex-1">
               <h3 className="text-lg font-bold text-white mb-2">
                 We Value Your Privacy
@@ -84,13 +84,13 @@ const CookieConsent = () => {
               
               <button
                 onClick={() => setShowDetails(!showDetails)}
-                className="text-red-500 hover:text-red-400 text-sm underline"
+                className="text-red-500 hover:text-red-400 text-sm underline block mx-auto lg:mx-0"
               >
                 {showDetails ? 'Hide Details' : 'Show Details'}
               </button>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-3 lg:flex-shrink-0">
+            <div className="flex flex-col sm:flex-row gap-3 lg:flex-shrink-0 justify-center lg:justify-end">
               <button
                 onClick={handleDecline}
                 className="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-600/20 transition-colors text-sm"

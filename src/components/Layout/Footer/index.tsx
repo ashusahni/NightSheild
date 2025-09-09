@@ -211,7 +211,7 @@ const Footer: FC = () => {
             {/* Social Icons & Contact - Mobile Optimized */}
             <div className='flex flex-col items-center space-y-3 lg:flex-row lg:space-y-0 lg:space-x-6'>
               <div className='flex gap-4'>
-                <Link href='https://www.linkedin.com/' className='group relative'>
+                <Link href='https://www.linkedin.com/in/stilyxn' target='_blank' rel='noopener noreferrer' className='group relative'>
                   <div className='absolute inset-0 bg-red-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
                   <Icon
                     icon='fa6-brands:linkedin'
@@ -220,10 +220,10 @@ const Footer: FC = () => {
                     className='text-white/60 group-hover:text-red-500 transition-all duration-300 relative z-10 group-hover:scale-110'
                   />
                 </Link>
-                <Link href='https://www.twitter.com/' className='group relative'>
+                <Link href='https://www.instagram.com/nightshield.ai' target='_blank' rel='noopener noreferrer' className='group relative'>
                   <div className='absolute inset-0 bg-red-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
                   <Icon
-                    icon='fa6-brands:x-twitter'
+                    icon='fa6-brands:instagram'
                     width='20'
                     height='20'
                     className='text-white/60 group-hover:text-red-500 transition-all duration-300 relative z-10 group-hover:scale-110'
@@ -232,10 +232,10 @@ const Footer: FC = () => {
               </div>
               
               <a
-                href='mailto:security@nightshield.ai'
+                href='mailto:contact@nightshield.ai'
                 className='text-white/60 hover:text-red-500 transition-all duration-300 text-sm font-medium hover:underline text-center lg:text-left'
               >
-                security@nightshield.ai
+                contact@nightshield.ai
               </a>
             </div>
 
