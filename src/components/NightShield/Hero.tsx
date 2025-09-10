@@ -144,8 +144,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 1.8 }}
               className="text-lg sm:text-xl text-gray-300 mb-8 sm:mb-12 max-w-2xl mx-auto text-center"
             >
-              Advanced AI surveillance system that detects threats and protects venues before incidents occur. 
-              Real-time monitoring with instant alerts and proactive security measures.
+              
             </motion.p>
 
             {/* VSL Section */}
