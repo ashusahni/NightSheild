@@ -154,8 +154,8 @@ const Testimonials = () => {
               </button>
               <button
                 onClick={() => {
-                  const element = document.querySelector('#pricing')
-                  if (element) element.scrollIntoView({ behavior: 'smooth' })
+                  const element = window.location.href = '/pricing';
+
                 }}
                 className="border border-gray-600 hover:border-gray-500 text-white font-medium px-8 py-3 rounded-lg transition-colors"
               >

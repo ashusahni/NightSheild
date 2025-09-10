@@ -1005,7 +1005,10 @@ const Features = () => {
                 transition={{ duration: 0.6, delay: 4.8 }}
                 className="text-center mt-12"
               >
-                <motion.button
+                <motion.button onClick={() => {
+                  const element = document.querySelector('#contact')
+                  if (element) element.scrollIntoView({ behavior: 'smooth' })
+                }}
                   className="bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold py-4 px-8 rounded-xl hover:from-red-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}

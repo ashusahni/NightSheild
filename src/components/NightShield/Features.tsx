@@ -207,9 +207,9 @@ const Features = () => {
           <div className={`w-full max-w-5xl mx-auto ${isMobile ? 'h-[400px]' : 'h-[480px]'} bg-gradient-to-br from-[#0B0B0F] via-[#1A1A1F] to-[#0B0B0F] rounded-2xl p-4 overflow-hidden border border-red-500/20 ${isMobile ? 'shadow-lg' : 'shadow-2xl'}`}>
             <ScrollStack
               className="w-full h-full"
-              itemDistance={isMobile ? 20 : 40}
-              itemScale={isMobile ? 0.01 : 0.02}
-              itemStackDistance={isMobile ? 2 : 4}
+              itemDistance={isMobile ? 15 : 30}
+              itemScale={isMobile ? 0.008 : 0.015}
+              itemStackDistance={isMobile ? 1.5 : 3}
               stackPosition={isMobile ? "15%" : "10%"}
               scaleEndPosition={isMobile ? "10%" : "5%"}
               baseScale={isMobile ? 0.98 : 0.95}
