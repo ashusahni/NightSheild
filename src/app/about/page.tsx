@@ -174,7 +174,7 @@ What I care about:
 
   return (
     <div className="bg-black text-white min-h-screen">
-      <div className="pt-4 md:pt-8">
+      <div>
         {/* Hero Section */}
         <section className="relative overflow-hidden py-12 md:py-16 px-4">
           {/* Background Gradient */}
@@ -364,32 +364,6 @@ What I care about:
 
         
 
-        {/* Timeline Section */}
-        {/* <section className="py-20 px-4">
-          <div className="container mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Our Journey to <span className="text-red-500">Redefining Security</span>
-            </h2>
-            <div className="relative">
-              <div className="absolute left-1/2 h-full w-0.5 bg-red-500/30 transform -translate-x-1/2"></div>
-              {milestones.map((item, index) => (
-                <div key={item.year} className="mb-8 flex justify-between items-center w-full">
-                  <div className={`w-5/12 ${index % 2 === 0 ? 'order-1 text-right' : 'order-3 text-left'}`}>
-                  </div>
-                  <div className="z-10 flex items-center order-2 bg-red-500 shadow-xl w-16 h-16 rounded-full">
-                    <div className="mx-auto text-white">
-                      {item.icon}
-                    </div>
-                  </div>
-                  <div className={`w-5/12 px-4 py-2 ${index % 2 === 0 ? 'order-3 text-left' : 'order-1 text-right'}`}>
-                    <p className="text-lg font-bold text-red-500">{item.year}</p>
-                    <h3 className="text-xl font-semibold">{item.event}</h3>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section> */}
         
         {/* Founder Section */}
         <section className="relative py-12 md:py-16 px-4 overflow-hidden">
@@ -430,13 +404,13 @@ What I care about:
                           <img 
                             src={founder.image} 
                             alt={founder.name}
-                            className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 object-cover rounded-lg shadow-2xl"
+                            className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 object-cover object-top rounded-lg shadow-2xl"
                           />
                         </div>
                         
                         {/* Floating elements */}
-                        <div className="absolute -top-2 -right-2 w-4 h-4 md:w-6 md:h-6 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-300"></div>
-                        <div className="absolute -bottom-2 -left-2 w-3 h-3 md:w-4 md:h-4 bg-red-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-500"></div>
+                        <div className="absolute top-2 right-2 w-3 h-3 md:w-4 md:h-4 bg-red-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-300 shadow-lg shadow-red-600/50"></div>
+                        <div className="absolute bottom-2 left-2 w-2 h-2 md:w-3 md:h-3 bg-red-700 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-500 shadow-lg shadow-red-700/50"></div>
                       </div>
                       
                       {/* Content section */}

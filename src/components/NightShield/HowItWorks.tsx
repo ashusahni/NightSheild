@@ -14,7 +14,7 @@ const HowItWorks = () => {
     {
       id: 1,
       title: 'Capture & Enhance',
-      description: 'Multi-camera intake with noise reduction and night-vision enhancement for crystal clear frames.',
+      description: 'Multi-camera intake with noise reduction and image enhancement for crystal clear frames.',
       thumb: '/images/icons/icon-camera-lens.svg',
     },
     {
@@ -460,7 +460,7 @@ const HowItWorks = () => {
     
               {/* Enhanced Fight Target Areas with instant lock */}
               <div 
-                className="cursor-target absolute inset-0 pointer-events-auto cursor-crosshair touch-manipulation"
+                className={`cursor-target absolute inset-0 pointer-events-auto touch-manipulation ${!isMobile ? 'cursor-crosshair' : ''}`}
                 onMouseEnter={!isMobile ? handleCursorEnter : undefined}
                 onMouseLeave={!isMobile ? handleCursorLeave : undefined}
                 onTouchStart={isMobile ? handleTouchStart : undefined}

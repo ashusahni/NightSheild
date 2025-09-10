@@ -227,38 +227,29 @@ const Contact = () => {
                 Book a personalized demo with our security experts. See NightShield in action and get answers to all your questions.
               </p>
               
-              {/* Calendly Integration */}
-              <div className="bg-black/50 border border-red-500/20 rounded-lg overflow-hidden">
-                <div className="p-6 text-center border-b border-red-500/20">
-                  <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19 3H5C3.89 3 3 3.89 3 5V19C3 20.11 3.89 21 5 21H19C20.11 21 21 20.11 21 19V5C21 3.89 20.11 3 19 3M19 19H5V9H19V19M19 7H5V5H19V7Z"/>
-                    </svg>
-                  </div>
-                  <h4 className="text-lg font-semibold text-white mb-2">Schedule Your Demo</h4>
-                  <p className="text-gray-300 mb-4">
-                    Book a personalized demo with our security experts
-                  </p>
+              {/* Demo Booking Section */}
+              <div className="bg-black/50 border border-red-500/20 rounded-lg p-8 text-center">
+                <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 3H5C3.89 3 3 3.89 3 5V19C3 20.11 3.89 21 5 21H19C20.11 21 21 20.11 21 19V5C21 3.89 20.11 3 19 3M19 19H5V9H19V19M19 7H5V5H19V7Z"/>
+                  </svg>
+                </div>
+                <h4 className="text-2xl font-bold text-white mb-4">Schedule Your Demo</h4>
+                <p className="text-gray-300 mb-6 text-lg">
+                  Book a personalized demo with our security experts and see NightShield in action
+                </p>
+                <div className="space-y-4">
                   <a
                     href="https://calendly.com/nightshield/demo"
                     target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary hover:scale-105 active:scale-95 inline-block"
+                    rel="noopener noreferrer nofollow"
+                    className="btn-primary hover:scale-105 active:scale-95 inline-block text-lg px-8 py-4"
                   >
                     Book Demo Now
                   </a>
-                </div>
-                
-                {/* Calendly Widget */}
-                <div className="h-96">
-                  <iframe
-                    src="https://calendly.com/nightshield/demo?embed_domain=nightshield.ai&embed_type=Inline"
-                    width="100%"
-                    height="100%"
-                    frameBorder="0"
-                    title="Schedule a Demo"
-                    className="rounded-b-lg"
-                  ></iframe>
+                  <p className="text-sm text-gray-400">
+                    Opens in a new window • No cookies required
+                  </p>
                 </div>
               </div>
 

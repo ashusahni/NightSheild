@@ -33,7 +33,7 @@ const Hero = () => {
 
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden aurora-bg" style={{
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden aurora-bg pt-20" style={{
       boxShadow: 'inset 0 0 100px rgba(139, 0, 0, 0.1)'
     }}>
 
@@ -142,33 +142,100 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.8 }}
-              className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto text-center"
+              className="text-lg sm:text-xl text-gray-300 mb-8 sm:mb-12 max-w-2xl mx-auto text-center"
             >
               Advanced AI surveillance system that detects threats and protects venues before incidents occur. 
               Real-time monitoring with instant alerts and proactive security measures.
             </motion.p>
 
-            {/* Call to Action Buttons */}
+            {/* VSL Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 2.0 }}
+              className="mb-8 sm:mb-12"
+            >
+              {/* VSL Header */}
+              <div className="text-center mb-6">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+                  See NightShield in Action
+                </h2>
+                <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
+                  Watch our AI prevent incidents before they happen
+                </p>
+              </div>
+
+              {/* VSL Video Container */}
+              <div className="relative max-w-4xl mx-auto">
+                {/* VSL Border Container with Red Theme */}
+                <div className="relative p-2 sm:p-3 lg:p-4 bg-gradient-to-br from-red-900/30 via-red-800/20 to-red-900/30 rounded-2xl border-2 border-red-200/40 shadow-2xl shadow-red-100/40">
+                  {/* Inner Glow Effect */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-red-500/10 via-transparent to-red-600/10 pointer-events-none"></div>
+                  
+                  {/* VSL Video Container */}
+                  <div className="relative bg-black rounded-xl overflow-hidden shadow-xl border border-red-500/30">
+                    <div className="relative" style={{ paddingTop: '56.25%' }}>
+                      <iframe
+                        src="https://customer-k3cj56a9l7jvykr1.cloudflarestream.com/05611ee0f64fcd0e1b317bed8cfce772/iframe?autoplay=true&poster=https%3A%2F%2Fnightshield.ai%2Fimages%2FWhatsApp%2520Image%25202025-09-08%2520at%252015.29.26_9cf54531.jpg&primaryColor=%23000000"
+                        loading="lazy"
+                        style={{ border: 'none', position: 'absolute', top: 0, left: 0, height: '100%', width: '100%' }}
+                        allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                        allowFullScreen
+                        title="NightShield VSL Video"
+                      ></iframe>
+                        
+                      {/* Enhanced CCTV Frame Overlay */}
+                      <div className="absolute inset-0 pointer-events-none">
+                        {/* Top Bar with Enhanced Styling */}
+                        <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-r from-black/80 via-black/60 to-black/80 backdrop-blur-sm flex items-center justify-between px-3 text-white text-xs">
+                          <span className="text-red-400 font-bold flex items-center gap-1">
+                            <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div>
+                            NightShield AI
+                          </span>
+                          <span className="text-green-400 flex items-center gap-1">
+                            <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
+                            LIVE
+                          </span>
+                        </div>
+                        
+                        {/* Enhanced Corner Brackets */}
+                        <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-red-500"></div>
+                        <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-red-500"></div>
+                        <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-red-500"></div>
+                        <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-red-500"></div>
+                        
+                        {/* Subtle Scan Line Effect */}
+                        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red-500/50 to-transparent animate-pulse"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* VSL Caption with Enhanced Styling */}
+                  <div className="mt-4 text-center">
+                    <p className="text-gray-200 text-sm font-medium">
+                      Real-time incident prevention
+                    </p>
+                    <div className="mt-2 w-16 h-0.5 bg-gradient-to-r from-red-500 to-red-600 mx-auto rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Call to Action */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 2.2 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 sm:mb-12"
+              className="flex justify-center items-center mb-8 sm:mb-12"
             >
               <a
                 href="https://calendly.com/nightshield/demo"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="btn-primary px-8 py-4 text-lg font-semibold hover:scale-105 active:scale-95 transition-transform"
               >
                 Book Free Demo
               </a>
-              <button
-                onClick={scrollToAction}
-                className="px-8 py-4 text-lg font-semibold border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 rounded-lg"
-              >
-                Learn More
-              </button>
             </motion.div>
 
             {/* Stats */}
@@ -202,16 +269,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        animate={{ y: isMobile ? [0, 5, 0] : [0, 10, 0] }}
-        transition={{ duration: isMobile ? 1.5 : 2, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-red-500 rounded-full flex justify-center">
-          <div className="w-1 h-2 sm:h-3 bg-red-500 rounded-full mt-1 sm:mt-2 animate-bounce"></div>
-        </div>
-      </motion.div>
     </section>
   )
 }
