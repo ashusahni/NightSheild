@@ -123,7 +123,7 @@ const FuturisticComparison = () => {
         <div className="relative">
           {/* Holographic Background */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-96 h-96 bg-gradient-to-r from-red-500/20 via-red-600/25 to-red-700/20 rounded-full blur-3xl"></div>
+            <div className="w-96 h-96 bg-gradient-to-r from-red-500/5 via-red-600/5 to-red-700/5 rounded-full blur-3xl"></div>
           </div>
           
           <div className="relative z-10">

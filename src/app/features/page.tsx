@@ -349,9 +349,9 @@ const Features = () => {
           <Image 
             src="/images/logo/TRANSPARENT LOGO + TEXT.png" 
             alt="NightShield Logo" 
-            width={200}
-            height={64}
-            className="h-16 w-auto"
+            width={180}
+            height={58}
+            className="h-14 w-auto"
             priority
           />
         </motion.div>
@@ -361,10 +361,10 @@ const Features = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <motion.h2 
-            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
+            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -372,7 +372,7 @@ const Features = () => {
             Powerful <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">Features</span>
           </motion.h2>
           <motion.p
-            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -382,15 +382,15 @@ const Features = () => {
         </motion.div>
 
         {/* Interactive Feature Cards */}
-        <div className="mb-32">
+        <div className="mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-center mb-16"
           >
-            <h3 className="text-4xl font-bold text-white mb-4">Available Now</h3>
-            <p className="text-gray-400 text-lg">Core features ready for deployment</p>
+            <h3 className="text-3xl font-bold text-white mb-4">Available Now</h3>
+            <p className="text-gray-400 text-base">Core features ready for deployment</p>
           </motion.div>
 
           <div 

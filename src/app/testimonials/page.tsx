@@ -49,9 +49,27 @@ const TestimonialsPage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
-      <section className="relative py-24 px-4 min-h-[80vh] flex items-center">
+      <div className="pt-20">
+        {/* Hero Section */}
+        <section className="relative py-24 px-4 min-h-[80vh] flex items-center">
         <div className="container mx-auto text-center max-w-6xl">
+          {/* Mobile Logo */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex justify-center mb-8 md:hidden"
+          >
+            <Image 
+              src="/images/logo/TRANSPARENT LOGO + TEXT.png" 
+              alt="NightShield Logo" 
+              width={200}
+              height={64}
+              className="h-16 w-auto"
+              priority
+            />
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -330,6 +348,7 @@ const TestimonialsPage = () => {
         </div>
         <Contact />
       </section>
+      </div>
     </div>
   )
 }

@@ -27,10 +27,10 @@ const WhoItsFor = () => {
   // Don't render until client-side to avoid hydration mismatch
   if (!isClient) {
     return (
-      <section className="py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0B0B0F] to-black"></div>
+      <section className="py-8 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-red-900/10 to-black"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
               Who <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">It&apos;s For</span>
             </h2>
@@ -41,18 +41,9 @@ const WhoItsFor = () => {
   }
 
   return (
-    <section className="py-16 relative overflow-hidden">
-      {/* Simplified Background for Mobile */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0B0B0F] to-black"></div>
-      {!isMobile && (
-        <>
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-500/5 via-transparent to-transparent"></div>
-          <div className="absolute inset-0 grid-texture opacity-5"></div>
-          {/* Animated Background Elements - Only on desktop */}
-          <div className="absolute top-20 left-10 w-72 h-72 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-500/3 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </>
-      )}
+    <section className="py-8 relative overflow-hidden">
+      {/* Simplified Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-red-900/10 to-black"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Enhanced Header with Animations */}
@@ -61,7 +52,7 @@ const WhoItsFor = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
@@ -71,13 +62,12 @@ const WhoItsFor = () => {
             className="flex justify-center items-center space-x-3 mb-6"
           >
             <div className="relative">
-              <div className="absolute inset-0 bg-red-500/20 rounded-full blur-lg animate-pulse"></div>
               <Image 
                 src="/images/logo/LOGO TRANSPARENT.png" 
                 alt="NightShield Logo" 
                 width={48} 
                 height={48}
-                className="w-12 h-12 relative z-10"
+                className="w-12 h-12"
                 priority
               />
             </div>
@@ -99,7 +89,7 @@ const WhoItsFor = () => {
         {/* Main Content - Mobile Optimized */}
         {isMobile ? (
           // Mobile Layout - Simplified and Performance Optimized
-          <div className="space-y-12 mb-16">
+          <div className="space-y-8 mb-8">
             {/* Mobile Header */}
             <div className="text-center">
               <h3 className="text-2xl font-bold bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent mb-4">
@@ -170,7 +160,7 @@ const WhoItsFor = () => {
           </div>
         ) : (
           // Desktop Layout - Full Featured
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="grid lg:grid-cols-2 gap-8 items-center mb-8">
             {/* Left Side - Enhanced Dashboard Preview */}
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
@@ -184,12 +174,6 @@ const WhoItsFor = () => {
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
-                {/* Glow Effect */}
-                <motion.div 
-                  className="absolute -inset-1 bg-gradient-to-r from-red-500/20 via-red-500/10 to-red-500/20 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                ></motion.div>
                 
                 <motion.div 
                   className="relative bg-[#0B0B0F]/90 backdrop-blur-xl border border-red-500/30 hover:border-red-500/50 rounded-2xl p-8 shadow-2xl transition-all duration-300 cursor-pointer"
@@ -427,12 +411,6 @@ const WhoItsFor = () => {
                       whileTap={{ scale: 0.98 }}
                       className="group relative bg-gradient-to-br from-[#0B0B0F]/80 to-[#1A1A1F]/60 backdrop-blur-xl border border-red-500/20 p-6 rounded-xl shadow-2xl hover:border-red-500/40 transition-all duration-300 cursor-pointer"
                     >
-                      {/* Enhanced glow effect on hover */}
-                      <motion.div 
-                        className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-red-600/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.3 }}
-                      ></motion.div>
                       
                       <div className="relative z-10">
                         <motion.div 
@@ -457,12 +435,6 @@ const WhoItsFor = () => {
                   whileHover={{ scale: 1.02, y: -3 }}
                   className="relative group cursor-pointer"
                 >
-                  {/* Enhanced glow border effect */}
-                  <motion.div 
-                    className="absolute -inset-1 bg-gradient-to-r from-red-500/30 via-red-600/20 to-red-500/30 rounded-2xl blur-sm opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                  ></motion.div>
                   
                   <motion.div 
                     className="relative bg-gradient-to-r from-red-600/10 via-red-500/5 to-red-800/10 backdrop-blur-xl border border-red-500/30 hover:border-red-500/50 p-6 rounded-xl transition-all duration-300"
