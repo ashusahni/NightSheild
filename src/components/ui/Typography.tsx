@@ -12,7 +12,7 @@ import { fontUtils, TypographyPreset } from '@/lib/fonts'
 // Base Typography component props
 interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   preset?: TypographyPreset
-  as?: keyof JSX.IntrinsicElements
+  as?: keyof React.JSX.IntrinsicElements
   children: React.ReactNode
   className?: string
 }
@@ -63,7 +63,7 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ level = 1, preset, className, children, ...props }, ref) => {
     // Determine preset based on level if not provided
     const headingPreset = preset || getDefaultHeadingPreset(level)
-    const Component = `h${level}` as keyof JSX.IntrinsicElements
+    const Component = `h${level}` as keyof React.JSX.IntrinsicElements
     
     return (
       <Typography
