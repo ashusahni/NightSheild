@@ -16,6 +16,7 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
@@ -28,20 +29,38 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitError('')
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    setIsSubmitting(false)
-    setSubmitSuccess(true)
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      venueType: '',
-      message: '',
-      consent: false
-    })
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      
+      const result = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message')
+      }
+      
+      setSubmitSuccess(true)
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        venueType: '',
+        message: '',
+        consent: false
+      })
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitError(error instanceof Error ? error.message : 'Something went wrong. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const venueTypes = [
@@ -56,7 +75,8 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contact" className="py-20 relative overflow-hidden">
+    <section id="
+    " className="py-20 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black"></div>
       <div className="absolute inset-0 grid-texture opacity-10"></div>
@@ -99,7 +119,10 @@ const Contact = () => {
                     We&apos;ve received your message and will get back to you within 24 hours.
                   </p>
                   <button
-                    onClick={() => setSubmitSuccess(false)}
+                    onClick={() => {
+                      setSubmitSuccess(false)
+                      setSubmitError('')
+                    }}
                     className="btn-primary"
                   >
                     Send Another Message
@@ -107,6 +130,16 @@ const Contact = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {submitError && (
+                    <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4">
+                      <div className="flex items-center space-x-3">
+                        <svg className="w-5 h-5 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                        </svg>
+                        <p className="text-red-500 text-sm">{submitError}</p>
+                      </div>
+                    </div>
+                  )}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
