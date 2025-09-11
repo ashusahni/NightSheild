@@ -73,6 +73,8 @@ const Footer: FC = () => {
                 width={40}
                 height={40}
                 className="w-10 h-10 lg:w-12 lg:h-12 group-hover:scale-110 transition-transform duration-300"
+                priority
+                loading="eager"
               />
               <div className="absolute inset-0 bg-red-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>

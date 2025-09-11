@@ -33,7 +33,7 @@ export default function Home() {
         <div className="wave-layer wave-3"></div>
       </div>
       
-      <div>
+      <div className="relative">
         <Hero />
         <HowItWorks />
         <Features />

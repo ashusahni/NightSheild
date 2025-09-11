@@ -8,7 +8,7 @@ export interface ScrollStackItemProps {
 
 export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({ children, itemClassName = '' }) => (
   <div
-    className={`scroll-stack-card relative w-full h-80 my-4 p-8 rounded-[40px] shadow-[0_0_30px_rgba(0,0,0,0.1)] box-border origin-top will-change-transform ${itemClassName}`.trim()}
+    className={`scroll-stack-card relative w-full h-80 my-4 p-6 sm:p-8 rounded-[40px] shadow-[0_0_30px_rgba(0,0,0,0.1)] box-border origin-top will-change-transform ${itemClassName}`.trim()}
     style={{
       backfaceVisibility: 'hidden',
       transformStyle: 'preserve-3d'
@@ -182,16 +182,16 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const lenis = new Lenis({
       wrapper: scroller,
       content: scroller.querySelector('.scroll-stack-inner') as HTMLElement,
-      duration: 0.8,
+      duration: 1.2, // Increased from 0.8 for slower scroll
       easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 3,
+      touchMultiplier: 2, // Reduced from 3 for slower touch scrolling
       infinite: false,
       gestureOrientation: 'vertical',
-      wheelMultiplier: 1.5,
-      lerp: 0.15,
+      wheelMultiplier: 1.0, // Reduced from 1.5 for slower wheel scrolling
+      lerp: 0.08, // Reduced from 0.15 for smoother, slower animation
       syncTouch: true,
-      syncTouchLerp: 0.1
+      syncTouchLerp: 0.05 // Reduced from 0.1 for slower touch sync
     });
 
     lenis.on('scroll', handleScroll);
@@ -267,10 +267,11 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         scrollBehavior: 'smooth',
         WebkitTransform: 'translateZ(0)',
         transform: 'translateZ(0)',
-        willChange: 'scroll-position'
+        willChange: 'scroll-position',
+        paddingBottom: 'env(safe-area-inset-bottom, 0px)' // Ensure content is visible above mobile bottom bars
       }}
     >
-      <div className="scroll-stack-inner pt-6 px-6 pb-6 min-h-full">
+      <div className="scroll-stack-inner pt-8 px-4 sm:px-6 pb-12 sm:pb-6 min-h-full">
         {children}
         {/* Spacer so the last pin can release cleanly */}
         <div className="scroll-stack-end w-full h-px" />

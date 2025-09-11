@@ -411,12 +411,12 @@ const HowItWorks = () => {
       )}
 
       <div className="container relative z-10">
-        <div className="text-center mb-16">
-          <div className="flex justify-center items-center space-x-4 mb-5">
-            <Image src="/images/logo/LOGO TRANSPARENT.png" alt="NightShield Logo" width={56} height={56} className="w-12 h-12" />
-            <h2 className="text-4xl md:text-5xl font-bold">How <span className="text-red-500">NightShield</span> Works</h2>
+        <div className="text-center mb-8 sm:mb-12 md:mb-16 px-4">
+          <div className="flex justify-center items-center space-x-2 sm:space-x-4 mb-3 sm:mb-5">
+            <Image src="/images/logo/LOGO TRANSPARENT.png" alt="NightShield Logo" width={56} height={56} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">How <span className="text-red-500">NightShield</span> Works</h2>
           </div>
-          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto">
             Experience NightShield's advanced AI detection system in action. Explore our comprehensive security workflow below.
           </p>
           
@@ -439,12 +439,12 @@ const HowItWorks = () => {
           )}
         </div>
 
-        <div ref={containerRef} className="grid lg:grid-cols-12 gap-6 items-start">
+        <div ref={containerRef} className="grid lg:grid-cols-12 gap-4 sm:gap-6 items-start">
           {/* Sticky Security Visual */}
           <div className="lg:col-span-7 order-2 lg:order-1">
             <div
               ref={stickyRef}
-              className="aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm lg:sticky lg:top-24 group hover:border-red-500/40 transition-all duration-300"
+              className="aspect-[16/10] lg:aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm lg:sticky lg:top-24 group hover:border-red-500/40 transition-all duration-300"
             >
              
               <Image
@@ -584,13 +584,13 @@ const HowItWorks = () => {
             </div>
 
             {/* Enhanced Thumbnail Gallery with Controls */}
-            <div className="mt-6">
+            <div className="mt-4 sm:mt-6">
               {/* Gallery Controls - Mobile Optimized */}
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   <button
                     onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                    className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 touch-manipulation ${
+                    className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 touch-manipulation ${
                       isAutoPlaying
                         ? 'bg-red-500/20 text-red-400 border border-red-500/30'
                         : 'bg-gray-800/50 text-gray-300 border border-gray-600/30 hover:bg-gray-700/50 active:bg-gray-600/50'
@@ -604,16 +604,16 @@ const HowItWorks = () => {
                 </div>
                 
                 {/* Navigation arrows - Mobile optimized */}
-                <div className="flex gap-2">
+                <div className="flex gap-1 sm:gap-2">
                   <button
                     onClick={() => handleImageSwitch((selectedImageIndex - 1 + galleryImages.length) % galleryImages.length)}
-                    className="p-2 rounded-full bg-gray-800/50 text-gray-300 hover:bg-red-500/20 hover:text-red-400 transition-all duration-300 touch-manipulation active:scale-95"
+                    className="p-1.5 sm:p-2 rounded-full bg-gray-800/50 text-gray-300 hover:bg-red-500/20 hover:text-red-400 transition-all duration-300 touch-manipulation active:scale-95"
                   >
                     ←
                   </button>
                   <button
                     onClick={() => handleImageSwitch((selectedImageIndex + 1) % galleryImages.length)}
-                    className="p-2 rounded-full bg-gray-800/50 text-gray-300 hover:bg-red-500/20 hover:text-red-400 transition-all duration-300 touch-manipulation active:scale-95"
+                    className="p-1.5 sm:p-2 rounded-full bg-gray-800/50 text-gray-300 hover:bg-red-500/20 hover:text-red-400 transition-all duration-300 touch-manipulation active:scale-95"
                   >
                     →
                   </button>
@@ -621,7 +621,7 @@ const HowItWorks = () => {
               </div>
 
               {/* Thumbnail Gallery - Mobile Responsive */}
-              <div className="flex gap-2 sm:gap-4 justify-between overflow-x-auto pb-2">
+              <div className="flex gap-1.5 sm:gap-2 md:gap-4 justify-between overflow-x-auto pb-2">
                 {galleryImages.map((image, idx) => (
                   <div
                     key={image.id}
@@ -632,7 +632,7 @@ const HowItWorks = () => {
                         : 'hover:scale-[1.02] active:scale-[1.03]'
                     }`}
                   >
-                    <div className={`w-full h-20 sm:h-24 rounded-lg overflow-hidden border-2 transition-all duration-300 relative ${
+                    <div className={`w-full h-16 sm:h-20 md:h-24 rounded-lg overflow-hidden border-2 transition-all duration-300 relative ${
                       selectedImageIndex === idx
                         ? 'border-red-500 shadow-lg shadow-red-500/20'
                         : 'border-red-500/30 hover:border-red-500/50'
@@ -660,7 +660,7 @@ const HowItWorks = () => {
                     </div>
                     
                     {/* Image title with enhanced styling */}
-                    <div className="mt-2 text-center">
+                    <div className="mt-1 sm:mt-2 text-center">
                       <p className={`text-xs font-medium transition-colors duration-300 ${
                         selectedImageIndex === idx
                           ? 'text-red-400'
@@ -679,12 +679,12 @@ const HowItWorks = () => {
           <div className="lg:col-span-5 order-1 lg:order-2">
             <div className="relative">
               {/* Progress Indicator */}
-              <div className="mb-8">
+              <div className="mb-6 sm:mb-8">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-gray-300">Progress</span>
-                  <span className="text-sm text-red-400">{activeStep + 1} / {features.length}</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-300">Progress</span>
+                  <span className="text-xs sm:text-sm text-red-400">{activeStep + 1} / {features.length}</span>
                 </div>
-                <div className="w-full bg-gray-800/50 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-gray-800/50 rounded-full h-1.5 sm:h-2 overflow-hidden">
                   <div
                     ref={progressRef}
                     className="h-full bg-gradient-to-r from-red-500 to-red-400 rounded-full transition-all duration-500 ease-out"
@@ -700,7 +700,7 @@ const HowItWorks = () => {
               />
               
               {/* Workflow steps */}
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {features.map((f, idx) => (
                   <div
                     key={f.id}
@@ -714,7 +714,7 @@ const HowItWorks = () => {
                     }`}
                   >
                     {/* Enhanced Step number circle */}
-                    <div className={`absolute left-0 top-0 w-14 h-14 rounded-full border-2 flex items-center justify-center text-base font-bold transition-all duration-300 ${
+                    <div className={`absolute left-0 top-0 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full border-2 flex items-center justify-center text-sm sm:text-base font-bold transition-all duration-300 ${
                       activeStep === idx
                         ? 'border-red-500 bg-red-500/20 text-red-400 shadow-lg shadow-red-500/30'
                         : 'border-red-500/40 bg-black/80 text-red-500/80 group-hover:border-red-500/60 group-hover:text-red-400'
@@ -728,8 +728,8 @@ const HowItWorks = () => {
 
                     {/* Enhanced Connecting arrow with animation */}
                     {idx < features.length - 1 && (
-                      <div className="absolute left-7 top-14 w-0.5 h-6 transition-all duration-300 bg-red-500/40">
-                        <div className={`absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[5px] border-l-transparent border-r-transparent transition-all duration-300 ${
+                      <div className="absolute left-5 sm:left-6 md:left-7 top-10 sm:top-12 md:top-14 w-0.5 h-4 sm:h-5 md:h-6 transition-all duration-300 bg-red-500/40">
+                        <div className={`absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[3px] sm:border-l-[4px] border-r-[3px] sm:border-r-[4px] border-t-[4px] sm:border-t-[5px] border-l-transparent border-r-transparent transition-all duration-300 ${
                           activeStep >= idx ? 'border-t-red-500' : 'border-t-red-500/40'
                         }`} />
                         {/* Animated flow indicator */}
@@ -740,43 +740,43 @@ const HowItWorks = () => {
                     )}
 
                     {/* Enhanced Feature card */}
-                    <div className={`ml-20 rounded-lg border p-5 transition-all duration-300 ${
+                    <div className={`ml-12 sm:ml-16 md:ml-20 rounded-lg border p-3 sm:p-4 md:p-5 transition-all duration-300 ${
                       activeStep === idx
                         ? 'bg-card-bg/95 border-red-500/60 shadow-lg shadow-red-500/10'
                         : 'bg-card-bg/95 border-red-500/20 hover:border-red-500/40'
                     }`}>
-                      <div className="flex items-start gap-4">
-                        <div className={`relative w-12 h-12 shrink-0 rounded-md overflow-hidden border transition-all duration-300 flex items-center justify-center ${
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className={`relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 shrink-0 rounded-md overflow-hidden border transition-all duration-300 flex items-center justify-center ${
                           activeStep === idx
                             ? 'border-red-500/50 bg-red-500/10 rotate-3 scale-[1.05]'
                             : 'border-red-500/30 bg-black/90 group-hover:rotate-3 group-hover:scale-[1.03]'
                         }`}>
-                          <img src={f.thumb} alt={f.title} className="w-6 h-6 text-red-500" />
+                          <img src={f.thumb} alt={f.title} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-red-500" />
                           {/* Glow effect for active step */}
                           {activeStep === idx && (
                             <div className="absolute inset-0 rounded-md bg-red-500/20 animate-pulse" />
                           )}
                         </div>
                         <div className="flex-1">
-                          <h3 className={`text-lg font-semibold mb-2 transition-colors ${
+                          <h3 className={`text-base sm:text-lg font-semibold mb-1 sm:mb-2 transition-colors ${
                             activeStep === idx
                               ? 'text-red-400'
                               : 'text-white group-hover:text-red-400'
                           }`}>
                             {f.title}
                           </h3>
-                          <p className="text-gray-100 leading-relaxed text-sm">{f.description}</p>
+                          <p className="text-gray-100 leading-relaxed text-xs sm:text-sm">{f.description}</p>
                           
                           {/* Additional info for active step */}
                           {activeStep === idx && (
-                            <div className="mt-3 p-3 bg-red-500/10 rounded-lg border border-red-500/20">
+                            <div className="mt-2 sm:mt-3 p-2 sm:p-3 bg-red-500/10 rounded-lg border border-red-500/20">
                               <p className="text-xs text-red-300 font-medium">
                                 💡 Click to explore this step in detail
                               </p>
                               {/* Special indicator for fight detection step */}
                               {idx === 1 && (
-                                <div className="mt-2 flex items-center gap-2">
-                                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                                <div className="mt-1 sm:mt-2 flex items-center gap-1.5 sm:gap-2">
+                                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full animate-pulse" />
                                   <p className="text-xs text-red-400 font-medium">
                                     🎯 {isMobile ? 'Tap anywhere on the image for instant AI lock-on detection' : 'Hover anywhere on the image for instant AI lock-on detection'}
                                   </p>
@@ -792,29 +792,7 @@ const HowItWorks = () => {
               </div>
             </div>
 
-            {/* Enhanced CTA */}
-            <div className="mt-10">
-              <div className="bg-card-bg/95 border border-red-500/20 rounded-2xl p-6 text-center relative overflow-hidden group">
-                {/* Background animation */}
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 via-transparent to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="relative z-10">
-                  <h3 className="text-lg font-semibold text-white mb-2">Ready to Experience NightShield?</h3>
-                  <p className="text-gray-300 text-sm mb-4">See our AI detection system in action with a live demonstration</p>
-                  
-                  <button
-                    onClick={() => {
-                      const element = document.querySelector('#contact')
-                      if (element) element.scrollIntoView({ behavior: 'smooth' })
-                    }}
-                    className="btn-primary px-8 py-4 text-lg font-semibold relative overflow-hidden group/btn touch-manipulation active:scale-95"
-                  >
-                    <span className="relative z-10">Schedule Live Demo</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
-                  </button>
-                </div>
-              </div>
-            </div>
+           
           </div>
         </div>
 

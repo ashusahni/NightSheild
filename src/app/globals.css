@@ -48,6 +48,10 @@
   --color-warning: #f7931a;
   --color-error: #cf3127;
 
+  /* Mobile Logo Optimization */
+  --logo-mobile-size: 2rem;
+  --logo-desktop-size: 3rem;
+
   /* Navbar responsive improvements */
   --navbar-min-width: 700px;
   --navbar-breakpoint: 1280px;
@@ -128,6 +132,22 @@
 
   .animate-pulse {
     animation-duration: 2s;
+  }
+
+  /* Improve touch targets for mobile */
+  button, a, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better mobile scrolling */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent zoom on input focus */
+  input, select, textarea {
+    font-size: 16px;
   }
 
   /* Disable heavy animations on mobile for better performance */
@@ -1002,4 +1022,82 @@ section {
 .navbar-cta {
   flex-shrink: 0;
   white-space: nowrap;
+}
+
+/* Calendly Widget Styling */
+.calendly-embed-container {
+  position: relative;
+}
+
+.calendly-widget-container {
+  position: relative;
+  background: #000000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Override Calendly's default styles to match our theme */
+.calendly-embed-container .calendly-inline-widget {
+  background: #000000 !important;
+  border: none !important;
+  border-radius: 8px !important;
+}
+
+.calendly-embed-container .calendly-inline-widget iframe {
+  border-radius: 8px !important;
+  border: none !important;
+}
+
+/* Ensure proper responsive behavior */
+@media (max-width: 768px) {
+  .calendly-embed-container .calendly-inline-widget {
+    height: 500px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendly-embed-container .calendly-inline-widget {
+    height: 450px !important;
+  }
+}
+
+/* Mobile Logo Display Fixes */
+@media (max-width: 768px) {
+  /* Ensure logo images are properly displayed on mobile */
+  img[alt*="NightShield Logo"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Fix for Next.js Image component on mobile */
+  .next-image-wrapper {
+    display: block !important;
+    position: relative !important;
+  }
+  
+  /* Ensure logo containers have proper dimensions */
+  .navbar-logo img,
+  .mobile-logo img {
+    min-width: 24px !important;
+    min-height: 24px !important;
+    width: auto !important;
+    height: auto !important;
+  }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 640px) {
+  /* Smaller logo sizes for very small screens */
+  .navbar-logo img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  
+  .mobile-logo img {
+    width: 24px !important;
+    height: 24px !important;
+  }
 }

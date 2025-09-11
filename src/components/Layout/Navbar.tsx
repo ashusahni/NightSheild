@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { IconMenu2, IconX } from '@tabler/icons-react'
+import Logo from '@/components/ui/Logo'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -41,6 +42,7 @@ const Navbar = () => {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Features', href: '/features' },
+    { name: 'Testimonials', href: '/testimonials' },
     { name: 'Pricing', href: '/pricing' },
     // { name: 'Venues', href: '/venues' },
     // { name: 'Contact', href: '#contact' },
@@ -70,12 +72,14 @@ const Navbar = () => {
             >
               <Link href="/" className="flex items-center space-x-3 group" onClick={closeMenu}>
                 <div className="relative">
-                  <Image 
+                  <Logo 
                     src="/images/logo/LOGO TRANSPARENT.png" 
                     alt="NightShield Logo" 
                     width={48} 
                     height={48}
                     className="w-12 h-12 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                    priority
+                    fallbackText="NS"
                   />
                   <div className="absolute inset-0 bg-red-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-125"></div>
                 </div>
@@ -158,12 +162,14 @@ const Navbar = () => {
               {/* Mobile Menu Header */}
               <div className="flex items-center justify-between p-6 border-b border-white/10">
                 <Link href="/" className="flex items-center space-x-3" onClick={closeMenu}>
-                  <Image 
+                  <Logo 
                     src="/images/logo/LOGO TRANSPARENT.png" 
                     alt="NightShield Logo" 
                     width={40} 
                     height={40}
                     className="w-10 h-10"
+                    priority
+                    fallbackText="NS"
                   />
                   <span className="text-lg font-bold text-white">
                     Night<span className="text-red-500">Shield</span>

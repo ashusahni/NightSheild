@@ -92,15 +92,16 @@ const Hero = () => {
             >
               <Image 
                 src="/images/logo/NIGHTSHIELD copy 3.png" 
-             
                 alt="NightShield Logo" 
                 width={80} 
                 height={80}
                 className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20"
+                priority
+                loading="eager"
               />
             </motion.div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 leading-tight">
-              <div className="mb-3">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 md:mb-8 leading-tight px-2">
+              <div className="mb-2 sm:mb-3">
                 <SplitText 
                   delay={0.2}
                   duration={0.6}
@@ -112,7 +113,7 @@ const Hero = () => {
                   Real-Time AI Surveillance
                 </SplitText>
               </div>
-              <div className="mb-3">
+              <div className="mb-2 sm:mb-3">
                 <SplitText 
                   delay={0.6}
                   duration={0.6}
@@ -149,11 +150,11 @@ const Hero = () => {
               className="mb-8 sm:mb-12"
             >
               {/* VSL Header */}
-              <div className="text-center mb-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+              <div className="text-center mb-4 sm:mb-6 px-2">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-4 tracking-tight">
                   See NightShield in Action
                 </h2>
-                <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
+                <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                   Watch our AI prevent incidents before they happen
                 </p>
               </div>
@@ -220,13 +221,13 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 2.2 }}
-              className="flex justify-center items-center mb-8 sm:mb-12"
+              className="flex justify-center items-center mb-6 sm:mb-8 md:mb-12 px-4"
             >
               <a
                 href="https://calendly.com/nightshield/demo"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                className="btn-primary px-8 py-4 text-lg font-semibold hover:scale-105 active:scale-95 transition-transform"
+                className="btn-primary px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold hover:scale-105 active:scale-95 transition-transform w-full sm:w-auto text-center"
               >
                 Book Free Demo
               </a>
@@ -237,25 +238,25 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 2.6 }}
-              className="grid grid-cols-3 gap-6 sm:gap-8 mt-12 sm:mt-16 max-w-lg mx-auto"
+              className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-12 md:mt-16 max-w-lg mx-auto px-4"
             >
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-500 mb-1">
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-red-500 mb-1">
                   {useCounter({ end: 99.9, delay: isMobile ? 1300 : 2600, duration: isMobile ? 750 : 1500, decimals: 1 })}%
                 </div>
-                <div className="text-sm sm:text-base text-white font-medium">Detection Rate</div>
+                <div className="text-xs sm:text-sm md:text-base text-white font-medium">Detection Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-500 mb-1">
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-red-500 mb-1">
                   &lt;{useCounter({ end: 2, delay: isMobile ? 1300 : 2600, duration: isMobile ? 750 : 1500, decimals: 0 })}s
                 </div>
-                <div className="text-sm sm:text-base text-white font-medium">Response Time</div>
+                <div className="text-xs sm:text-sm md:text-base text-white font-medium">Response Time</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-500 mb-1">
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-red-500 mb-1">
                   {useCounter({ end: 24, delay: isMobile ? 1300 : 2600, duration: isMobile ? 750 : 1500, decimals: 0 })}/7
                 </div>
-                <div className="text-sm sm:text-base text-white font-medium">Monitoring</div>
+                <div className="text-xs sm:text-sm md:text-base text-white font-medium">Monitoring</div>
               </div>
             </motion.div>
           </motion.div>
