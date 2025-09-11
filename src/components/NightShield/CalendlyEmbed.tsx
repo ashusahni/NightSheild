@@ -27,10 +27,6 @@ const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({ url, className = '' }) =>
     }
   }, [])
 
-  const handlePageHeight = (data: any) => {
-    // Optional: Handle height changes if needed
-    console.log('Calendly page height:', data)
-  }
 
   const prefill = {
     name: '',
@@ -82,7 +78,6 @@ const CalendlyEmbed: React.FC<CalendlyEmbedProps> = ({ url, className = '' }) =>
               border: 'none',
               borderRadius: '8px'
             }}
-            onPageHeight={handlePageHeight}
           />
         </div>
         
