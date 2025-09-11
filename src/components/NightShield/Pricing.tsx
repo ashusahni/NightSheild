@@ -7,7 +7,7 @@ import Contact from '@/components/NightShield/Contact'
 
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = useState('monthly')
-  const [activeFAQ, setActiveFAQ] = useState<number | null>(null)
+  const [activeFAQ, setActiveFAQ] = useState<string | null>(null)
 
   const plans = [
     {
@@ -66,7 +66,62 @@ const Pricing = () => {
     }
   ]
 
-  const faqs = [
+  const generalFAQs = [
+    {
+      question: "What is NightShield AI?",
+      answer: "Real-time AI for venues that turns your existing CCTV into a live incident detector—spotting fights and falls and alerting staff within seconds."
+    },
+    {
+      question: "Do I need new cameras?",
+      answer: "No. If your system supports RTSP/ONVIF (most IP/NVR setups do), you're good. We'll confirm compatibility during onboarding."
+    },
+    {
+      question: "How fast are alerts?",
+      answer: "Typically under 10 seconds from detection to notification, depending on camera settings and network."
+    },
+    {
+      question: "Will it work in nightclub lighting?",
+      answer: "Yes—our models are tuned for low-light venues. We also let you adjust sensitivity to reduce false positives."
+    },
+    {
+      question: "What do staff receive?",
+      answer: "A clear alert with incident type, camera/location, timestamp, and a short clip in the dashboard."
+    },
+    {
+      question: "Is NightShield GDPR compliant?",
+      answer: "Yes. We store only short, event-based clips, encrypt data, host in the UK/EU, and auto-delete per your policy."
+    },
+    {
+      question: "How long does setup take?",
+      answer: "Most pilots are live in 60–120 minutes once we have access to your streams."
+    },
+    {
+      question: "How much does it cost?",
+      answer: "Simple monthly pricing by number of camera streams. Pilots and multi-site discounts available. See Pricing."
+    }
+  ]
+
+  const pricingFAQs = [
+    {
+      question: "How do you price NightShield?",
+      answer: "By active camera streams and features. No long contracts required; annual discounts available."
+    },
+    {
+      question: "Do you offer a pilot or free trial?",
+      answer: "Yes—time-boxed pilots (e.g., 14–30 days) with success criteria, reduced pricing, and full support."
+    },
+    {
+      question: "What's included in the fee?",
+      answer: "Detection, alerts, dashboard access, updates, and standard support. Optional add-ons: on-prem edge device, premium SLA."
+    },
+    {
+      question: "Any hidden costs?",
+      answer: "No. If you choose cloud analysis, data/compute are included in your plan. SMS/voice alerts at standard pass-through rates."
+    },
+    {
+      question: "Can you invoice our group and split by site?",
+      answer: "Yes—central billing for groups with site-level reporting."
+    },
     {
       question: "Can I upgrade or downgrade my plan at any time?",
       answer: "Yes, you can change your plan at any time. Upgrades take effect immediately, while downgrades take effect at the next billing cycle. No setup fees apply."
@@ -222,21 +277,21 @@ const Pricing = () => {
 
 
 
-        {/* FAQ Section */}
-        <div className="mb-20">
+        {/* General FAQ Section */}
+        <div className="mb-16">
           <h3 className="text-3xl font-bold text-center mb-12 text-white">
-            Frequently Asked <span className="text-red-500">Questions</span>
+            General <span className="text-red-500">Questions</span>
           </h3>
           <div className="max-w-4xl mx-auto space-y-4">
-            {faqs.map((faq, index) => (
-              <div key={index} className="bg-card-bg border border-red-500/20 rounded-xl overflow-hidden">
+            {generalFAQs.map((faq, index) => (
+              <div key={`general-${index}`} className="bg-card-bg border border-red-500/20 rounded-xl overflow-hidden">
                 <button
-                  onClick={() => setActiveFAQ(activeFAQ === index ? null : index)}
+                  onClick={() => setActiveFAQ(activeFAQ === `general-${index}` ? null : `general-${index}`)}
                   className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-red-500/5 transition-colors"
                 >
                   <span className="font-semibold text-white">{faq.question}</span>
                   <svg
-                    className={`w-5 h-5 text-red-500 transition-transform ${activeFAQ === index ? 'rotate-180' : ''}`}
+                    className={`w-5 h-5 text-red-500 transition-transform ${activeFAQ === `general-${index}` ? 'rotate-180' : ''}`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -244,7 +299,39 @@ const Pricing = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                {activeFAQ === index && (
+                {activeFAQ === `general-${index}` && (
+                  <div className="px-6 pb-4">
+                    <p className="text-gray-300">{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Pricing FAQ Section */}
+        <div className="mb-20">
+          <h3 className="text-3xl font-bold text-center mb-12 text-white">
+            Pricing <span className="text-red-500">Questions</span>
+          </h3>
+          <div className="max-w-4xl mx-auto space-y-4">
+            {pricingFAQs.map((faq, index) => (
+              <div key={`pricing-${index}`} className="bg-card-bg border border-red-500/20 rounded-xl overflow-hidden">
+                <button
+                  onClick={() => setActiveFAQ(activeFAQ === `pricing-${index}` ? null : `pricing-${index}`)}
+                  className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-red-500/5 transition-colors"
+                >
+                  <span className="font-semibold text-white">{faq.question}</span>
+                  <svg
+                    className={`w-5 h-5 text-red-500 transition-transform ${activeFAQ === `pricing-${index}` ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {activeFAQ === `pricing-${index}` && (
                   <div className="px-6 pb-4">
                     <p className="text-gray-300">{faq.answer}</p>
                   </div>

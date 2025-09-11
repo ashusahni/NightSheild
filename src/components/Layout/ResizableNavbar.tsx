@@ -14,6 +14,7 @@ import {
   NavbarButton,
 } from '@/components/ui/resizable-navbar'
 import { cn } from '@/lib/utils'
+import Logo from '@/components/ui/Logo'
 
 type ResizableNavbarProps = {
   disableMobile?: boolean
@@ -24,7 +25,7 @@ const ResizableNavbar = ({ disableMobile = false }: ResizableNavbarProps) => {
 
   const navItems = [
     { name: 'Features', link: '/features' },
-    { name: 'Industries', link: '/industries' },
+    { name: 'Testimonials', link: '/testimonials' },
     { name: 'About', link: '/about' },
     { name: 'Pricing', link: '/pricing' },
   ]
@@ -44,12 +45,14 @@ const ResizableNavbar = ({ disableMobile = false }: ResizableNavbarProps) => {
         {/* Logo */}
         <Link href="/" className="navbar-logo relative z-20 mr-8 flex items-center space-x-3 group">
           <div className="relative">
-            <Image 
+            <Logo 
               src="/images/logo/LOGO TRANSPARENT.png" 
               alt="NightShield Logo" 
               width={36} 
               height={36}
               className="w-9 h-9 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+              priority
+              fallbackText="NS"
             />
             <div className="absolute inset-0 bg-red-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-125"></div>
           </div>
@@ -81,12 +84,14 @@ const ResizableNavbar = ({ disableMobile = false }: ResizableNavbarProps) => {
             {/* Mobile Logo */}
             <Link href="/" className="flex items-center space-x-2 group" onClick={closeMobileMenu}>
               <div className="relative">
-                <Image 
+                <Logo 
                   src="/images/logo/LOGO TRANSPARENT.png" 
                   alt="NightShield Logo" 
                   width={28} 
                   height={28}
                   className="w-7 h-7 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                  priority
+                  fallbackText="NS"
                 />
                 <div className="absolute inset-0 bg-red-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-125"></div>
               </div>
