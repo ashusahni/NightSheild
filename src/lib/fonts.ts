@@ -203,14 +203,14 @@ export const fontValidation = {
    * Validate if a font weight is part of our design system
    */
   isValidFontWeight: (fontWeight: string): boolean => {
-    return Object.values(FONT_WEIGHTS).includes(fontWeight)
+    return Object.values(FONT_WEIGHTS).includes(fontWeight as any)
   },
 
   /**
    * Validate if a font size is part of our typography scale
    */
   isValidFontSize: (fontSize: string): boolean => {
-    return Object.values(TYPOGRAPHY_SCALE).includes(fontSize)
+    return Object.values(TYPOGRAPHY_SCALE).includes(fontSize as any)
   },
 
   /**
