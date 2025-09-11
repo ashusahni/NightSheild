@@ -215,13 +215,12 @@ What I care about:
               
               {/* Call to action with modern button */}
               <div className="px-2">
-                <button className="group relative px-4 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25 w-full sm:w-auto">
-                  <span className="relative z-10 flex items-center justify-center gap-2">
+                <button className="px-4 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg w-full sm:w-auto">
+                  <span className="flex items-center justify-center gap-2">
                     <IconBolt size={16} className="md:hidden" />
                     <IconBolt size={18} className="hidden md:block" />
                     Discover Our Story
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
               </div>
             </div>
