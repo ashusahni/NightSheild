@@ -204,7 +204,7 @@ const Features = () => {
           </div>
 
           {/* ScrollStack Container - Centered and Optimized */}
-          <div className={`w-full max-w-5xl mx-auto ${isMobile ? 'h-[350px]' : 'h-[480px]'} bg-gradient-to-br from-[#0B0B0F] via-[#1A1A1F] to-[#0B0B0F] rounded-xl sm:rounded-2xl p-3 sm:p-4 overflow-hidden border border-red-500/20 ${isMobile ? 'shadow-lg' : 'shadow-2xl'} mx-4 sm:mx-0`}>
+          <div className={`w-full max-w-5xl mx-auto ${isMobile ? 'h-[350px]' : 'h-[480px]'} bg-gradient-to-br from-[#0B0B0F] via-[#1A1A1F] to-[#0B0B0F] rounded-xl sm:rounded-2xl p-3 sm:p-4 overflow-hidden border border-red-500/20 ${isMobile ? 'shadow-lg' : 'shadow-2xl'} ${isMobile ? 'mx-4' : ''}`}>
             <ScrollStack
               className="w-full h-full"
               itemDistance={isMobile ? 15 : 30}
