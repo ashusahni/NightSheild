@@ -284,8 +284,8 @@ class FontLinter {
     
     console.log('\n1. Use the Typography component for consistent styling:')
     console.log('   import { Typography, Heading, Text } from "@/components/ui/Typography"')
-    console.log('   <Heading level={1} preset="hero">Title</Heading>')
-    console.log('   <Text preset="body">Content</Text>')
+    console.log('   <Heading level={1} preset="HERO_TITLE">Title</Heading>')
+    console.log('   <Text preset="BODY">Content</Text>')
     
     console.log('\n2. Use predefined typography classes:')
     console.log('   className="text-hero" // for hero titles')
