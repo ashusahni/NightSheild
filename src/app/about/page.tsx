@@ -174,7 +174,7 @@ What I care about:
 
   return (
     <div className="bg-black text-white min-h-screen">
-      <div>
+      <div className="pt-20">
         {/* Hero Section */}
         <section className="relative overflow-hidden py-12 md:py-16 px-4">
           {/* Background Gradient */}
