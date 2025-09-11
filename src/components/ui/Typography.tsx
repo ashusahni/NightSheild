@@ -20,22 +20,22 @@ interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
 // Specific typography component props
 interface HeadingProps extends Omit<TypographyProps, 'preset'> {
   level?: 1 | 2 | 3 | 4 | 5 | 6
-  preset?: 'hero' | 'section' | 'card' | 'subtitle'
+  preset?: 'HERO_TITLE' | 'SECTION_TITLE' | 'CARD_TITLE' | 'SUBTITLE'
 }
 
 interface TextProps extends Omit<TypographyProps, 'preset'> {
-  preset?: 'body-large' | 'body' | 'body-small' | 'caption'
+  preset?: 'BODY_LARGE' | 'BODY' | 'BODY_SMALL' | 'CAPTION'
 }
 
 interface ButtonTextProps extends Omit<TypographyProps, 'preset'> {
-  preset?: 'button' | 'label'
+  preset?: 'BUTTON' | 'LABEL'
 }
 
 /**
  * Base Typography component
  */
 export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
-  ({ preset = 'body', as: Component = 'p', className, children, ...props }, ref) => {
+  ({ preset = 'BODY', as: Component = 'p', className, children, ...props }, ref) => {
     const typography = fontUtils.getTypographyPreset(preset)
     const tailwindClasses = fontUtils.getTailwindClasses(preset)
     
@@ -88,7 +88,7 @@ Heading.displayName = 'Heading'
  * Text component for body content
  */
 export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
-  ({ preset = 'body', className, children, ...props }, ref) => {
+  ({ preset = 'BODY', className, children, ...props }, ref) => {
     return (
       <Typography
         ref={ref}
@@ -110,7 +110,7 @@ Text.displayName = 'Text'
  * Button text component for UI elements
  */
 export const ButtonText = React.forwardRef<HTMLSpanElement, ButtonTextProps>(
-  ({ preset = 'button', className, children, ...props }, ref) => {
+  ({ preset = 'BUTTON', className, children, ...props }, ref) => {
     return (
       <Typography
         ref={ref}
@@ -133,7 +133,7 @@ ButtonText.displayName = 'ButtonText'
  * Label component for form labels and small UI text
  */
 export const Label = React.forwardRef<HTMLLabelElement, ButtonTextProps>(
-  ({ preset = 'label', className, children, ...props }, ref) => {
+  ({ preset = 'LABEL', className, children, ...props }, ref) => {
     return (
       <Typography
         ref={ref}
@@ -156,7 +156,7 @@ Label.displayName = 'Label'
  * Caption component for small descriptive text
  */
 export const Caption = React.forwardRef<HTMLParagraphElement, TextProps>(
-  ({ preset = 'caption', className, children, ...props }, ref) => {
+  ({ preset = 'CAPTION', className, children, ...props }, ref) => {
     return (
       <Typography
         ref={ref}
@@ -178,17 +178,17 @@ Caption.displayName = 'Caption'
 function getDefaultHeadingPreset(level: number): TypographyPreset {
   switch (level) {
     case 1:
-      return 'hero-title'
+      return 'HERO_TITLE'
     case 2:
-      return 'section-title'
+      return 'SECTION_TITLE'
     case 3:
     case 4:
-      return 'card-title'
+      return 'CARD_TITLE'
     case 5:
     case 6:
-      return 'subtitle'
+      return 'SUBTITLE'
     default:
-      return 'card-title'
+      return 'CARD_TITLE'
   }
 }
 
