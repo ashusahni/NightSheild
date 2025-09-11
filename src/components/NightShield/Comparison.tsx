@@ -46,8 +46,8 @@ const Comparison = () => {
   }
 
   return (
-    <section className={`relative overflow-hidden ${isMobile ? 'py-6' : 'py-10'}`}>
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black"></div>
+    <section className={`relative overflow-hidden ${isMobile ? 'py-4' : 'py-6'}`}>
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-red-900/20 to-black"></div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Futuristic Comparison for All Devices */}
