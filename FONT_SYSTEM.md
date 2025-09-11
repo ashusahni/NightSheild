@@ -95,13 +95,13 @@ Use the Typography component for consistent styling:
 import { Typography, Heading, Text, Label } from '@/components/ui/Typography'
 
 // Basic usage
-<Typography preset="hero-title">Welcome to NightShield</Typography>
+<Typography preset="HERO_TITLE">Welcome to NightShield</Typography>
 
 // Semantic components
-<Heading level={1} preset="hero">Main Title</Heading>
-<Heading level={2} preset="section">Section Title</Heading>
-<Text preset="body">This is body text</Text>
-<Label preset="label">Form Label</Label>
+<Heading level={1} preset="HERO_TITLE">Main Title</Heading>
+<Heading level={2} preset="SECTION_TITLE">Section Title</Heading>
+<Text preset="BODY">This is body text</Text>
+<Label preset="LABEL">Form Label</Label>
 ```
 
 ### 2. Tailwind Classes
@@ -191,8 +191,8 @@ npm run lint:all
 
 ```tsx
 // ✅ Good
-<Heading level={1} preset="hero">Welcome</Heading>
-<Text preset="body">Description</Text>
+<Heading level={1} preset="HERO_TITLE">Welcome</Heading>
+<Text preset="BODY">Description</Text>
 
 // ❌ Avoid
 <h1 className="text-6xl font-bold">Welcome</h1>
@@ -215,10 +215,10 @@ npm run lint:all
 
 ```tsx
 // ✅ Good - Clear hierarchy
-<Heading level={1} preset="hero">Main Title</Heading>
-<Heading level={2} preset="section">Section Title</Heading>
-<Heading level={3} preset="card">Card Title</Heading>
-<Text preset="body">Body content</Text>
+<Heading level={1} preset="HERO_TITLE">Main Title</Heading>
+<Heading level={2} preset="SECTION_TITLE">Section Title</Heading>
+<Heading level={3} preset="CARD_TITLE">Card Title</Heading>
+<Text preset="BODY">Body content</Text>
 
 // ❌ Avoid - Inconsistent sizing
 <h1 className="text-2xl">Main Title</h1>
@@ -233,7 +233,7 @@ npm run lint:all
 <h1 className="text-54 md:text-70 lg:text-86">Hero Title</h1>
 
 // ✅ Good - Typography component with responsive preset
-<Heading level={1} preset="hero" className="text-54 md:text-70 lg:text-86">
+<Heading level={1} preset="HERO_TITLE" className="text-54 md:text-70 lg:text-86">
   Hero Title
 </Heading>
 ```
@@ -253,7 +253,7 @@ npm run lint:all
 </h1>
 
 // After
-<Heading level={1} preset="section-title">
+<Heading level={1} preset="SECTION_TITLE">
   Title
 </Heading>
 ```
@@ -265,7 +265,7 @@ npm run lint:all
 <h1 className="text-4xl font-bold">Title</h1>
 
 // After
-<Heading level={1} preset="section-title">Title</Heading>
+<Heading level={1} preset="SECTION_TITLE">Title</Heading>
 ```
 
 ## Troubleshooting
