@@ -139,7 +139,7 @@ const WhoItsFor = () => {
         {/* Main Content - Mobile Optimized */}
         {isMobile ? (
           // Mobile Layout - Modern Card-Based Design
-          <div className="space-y-8 mb-16">
+          <div className="space-y-8 mb-6">
             {/* Hero Card */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}

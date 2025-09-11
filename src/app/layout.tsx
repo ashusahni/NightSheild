@@ -47,7 +47,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           <Aoscompo>
-            <ResizableNavbar />
+            <ResizableNavbar disableMobile={true} />
             <MobileDockNavbar />
             {children}
             <Footer />

@@ -75,9 +75,8 @@ const ResizableNavbar = ({ disableMobile = false }: ResizableNavbarProps) => {
         </NavbarButton>
       </NavBody>
 
-      {/* Mobile Navigation */}
-      {!disableMobile && (
-        <MobileNav className="navbar-mobile">
+      {/* Mobile Navigation - Hidden when disableMobile is true */}
+      <MobileNav className={`navbar-mobile ${disableMobile ? 'navbar-mobile-disabled' : ''}`}>
           <MobileNavHeader>
             {/* Mobile Logo */}
             <Link href="/" className="flex items-center space-x-2 group" onClick={closeMobileMenu}>
@@ -128,7 +127,6 @@ const ResizableNavbar = ({ disableMobile = false }: ResizableNavbarProps) => {
             </div>
           </MobileNavMenu>
         </MobileNav>
-      )}
     </Navbar>
   )
 }
