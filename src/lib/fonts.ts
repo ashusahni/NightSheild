@@ -181,13 +181,10 @@ export const fontUtils = {
     else classes.push('font-inter')
 
     // Map font weights to Tailwind classes
-    if (typography.fontWeight === FONT_WEIGHTS.LIGHT) classes.push('font-light')
-    else if (typography.fontWeight === FONT_WEIGHTS.NORMAL) classes.push('font-normal')
+    if (typography.fontWeight === FONT_WEIGHTS.NORMAL) classes.push('font-normal')
     else if (typography.fontWeight === FONT_WEIGHTS.MEDIUM) classes.push('font-medium')
     else if (typography.fontWeight === FONT_WEIGHTS.SEMIBOLD) classes.push('font-semibold')
     else if (typography.fontWeight === FONT_WEIGHTS.BOLD) classes.push('font-bold')
-    else if (typography.fontWeight === FONT_WEIGHTS.EXTRABOLD) classes.push('font-extrabold')
-    else if (typography.fontWeight === FONT_WEIGHTS.BLACK) classes.push('font-black')
 
     return classes.join(' ')
   },
