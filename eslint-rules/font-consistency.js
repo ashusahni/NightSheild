@@ -5,7 +5,7 @@
  * across the NightShield codebase.
  */
 
-module.exports = {
+export default {
   rules: {
     // Rule to enforce consistent font family usage
     'font-consistency/font-family': {
