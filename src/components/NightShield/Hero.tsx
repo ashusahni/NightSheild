@@ -138,14 +138,8 @@ const Hero = () => {
               </div>
             </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.8 }}
-              className="text-lg sm:text-xl text-gray-300 mb-8 sm:mb-12 max-w-2xl mx-auto text-center"
-            >
-              Advanced AI surveillance system that prevents incidents before they happen, protecting your venue with real-time monitoring and instant alerts.
-            </motion.p>
+            
+
 
             {/* VSL Section */}
             <motion.div
@@ -175,10 +169,11 @@ const Hero = () => {
                   <div className="relative bg-black rounded-xl overflow-hidden shadow-xl border border-red-500/30">
                     <div className="relative" style={{ paddingTop: '56.25%' }}>
                       <iframe
-                        src="https://customer-k3cj56a9l7jvykr1.cloudflarestream.com/05611ee0f64fcd0e1b317bed8cfce772/iframe?autoplay=true&poster=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1DMp4IQ_0E7kDIQNx7uCMg7e8P78nzYgs%2Fview%3Fusp%3Dsharing&primaryColor=%23000000"
-                        loading="lazy"
+                        src="https://customer-k3cj56a9l7jvykr1.cloudflarestream.com/05611ee0f64fcd0e1b317bed8cfce772/iframe?poster=https%3A%2F%2Fimagedelivery.net%2FsGwlGTkiTjXCqLHfhol7bg%2Fd8dda54a-02da-4f7e-0659-754569d93a00%2Fpublic"
+
+                        loading="eager"
                         style={{ border: 'none', position: 'absolute', top: 0, left: 0, height: '100%', width: '100%' }}
-                        allow="accelerometer; gyroscope; encrypted-media; picture-in-picture;"
+                        allow="accelerometer; gyroscope; encrypted-media; picture-in-picture; autoplay; fullscreen"
                         allowFullScreen
                         title="NightShield VSL Video"
                       ></iframe>
@@ -268,16 +263,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        animate={{ y: isMobile ? [0, 5, 0] : [0, 10, 0] }}
-        transition={{ duration: isMobile ? 1.5 : 2, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-red-500 rounded-full flex justify-center">
-          <div className="w-1 h-2 sm:h-3 bg-red-500 rounded-full mt-1 sm:mt-2 animate-bounce"></div>
-        </div>
-      </motion.div>
     </section>
   )
 }

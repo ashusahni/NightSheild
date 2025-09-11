@@ -386,7 +386,7 @@ const HowItWorks = () => {
   }, [activeStep, handleCursorEnter, handleCursorLeave])
 
   return (
-    <section id="how-it-works" className="py-24 relative overflow-hidden">
+    <section id="how-it-works" className={`relative overflow-hidden ${isMobile ? 'py-12' : 'py-24'}`}>
       <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black" />
       <div className="absolute inset-0 grid-texture opacity-10" />
       

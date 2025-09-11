@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import Contact from '@/components/NightShield/Contact'
+import Image from 'next/image'
 
 
 interface Feature {
@@ -343,12 +344,15 @@ const Features = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.6 }}
-          className="flex justify-center mb-8 md:hidden"
+          className="flex justify-center mb-8 md:hidden pt-24"
         >
-          <img 
+          <Image 
             src="/images/logo/TRANSPARENT LOGO + TEXT.png" 
             alt="NightShield Logo" 
+            width={200}
+            height={64}
             className="h-16 w-auto"
+            priority
           />
         </motion.div>
 

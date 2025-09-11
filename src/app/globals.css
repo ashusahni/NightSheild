@@ -982,6 +982,11 @@ section {
   }
 }
 
+/* Hide mobile navbar when disabled */
+.navbar-mobile-disabled {
+  display: none !important;
+}
+
 /* Prevent text overflow and overlapping */
 .navbar-logo {
   flex-shrink: 0;
