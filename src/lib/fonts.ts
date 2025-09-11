@@ -196,7 +196,7 @@ export const fontValidation = {
    * Validate if a font family is part of our design system
    */
   isValidFontFamily: (fontFamily: string): boolean => {
-    return Object.values(FONT_FAMILIES).includes(fontFamily)
+    return Object.values(FONT_FAMILIES).includes(fontFamily as any)
   },
 
   /**
