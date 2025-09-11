@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import {
   IconHome2,
   IconStars,
-  IconBuildingSkyscraper,
+  IconQuote,
   IconInfoCircle,
   IconCurrencyDollar,
 } from '@tabler/icons-react'
@@ -21,7 +21,7 @@ type DockItem = {
 const items: DockItem[] = [
   { name: 'Home', href: '/', Icon: IconHome2 },
   { name: 'Features', href: '/features', Icon: IconStars },
-  { name: 'Industries', href: '/industries', Icon: IconBuildingSkyscraper },
+  { name: 'Testimonials', href: '/testimonials', Icon: IconQuote },
   { name: 'About', href: '/about', Icon: IconInfoCircle },
   { name: 'Pricing', href: '/pricing', Icon: IconCurrencyDollar },
 ]
