@@ -203,7 +203,7 @@ export const fontValidation = {
    * Validate if a font weight is part of our design system
    */
   isValidFontWeight: (fontWeight: string): boolean => {
-    return Object.values(FONT_WEIGHTS).includes(fontWeight)
+    return Object.values(FONT_WEIGHTS).includes(fontWeight as FontWeight)
   },
 
   /**
