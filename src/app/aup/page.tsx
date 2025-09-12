@@ -15,7 +15,7 @@ const AUPPage = () => {
 
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 text-white">1) Lawful use only</h2>
-          <p className="text-white/80">
+          <p className="text-white/90">
             You will not use the service to violate law, including: unlawful surveillance; 
             unlawful discrimination; harassment; stalking; threatening behaviour; incitement; 
             or infringement of privacy, IP, or publicity rights.
