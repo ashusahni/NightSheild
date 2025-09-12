@@ -80,9 +80,9 @@ const Contact = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black"></div>
       <div className="absolute inset-0 grid-texture opacity-10"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 relative z-10 max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-8 sm:mb-12 md:mb-16 px-4">
+        <div className="text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16 px-2 sm:px-4">
           <div className="flex justify-center items-center space-x-2 sm:space-x-3 mb-4 sm:mb-6">
             <Image 
               src="/images/logo/LOGO TRANSPARENT.png" 
@@ -91,20 +91,20 @@ const Contact = () => {
               height={48}
               className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
             />
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
               Get in <span className="text-red-500">Touch</span>
             </h2>
           </div>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto px-2">
             Ready to protect your venue? Contact us for a personalized consultation and live demo.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
-          <div>
-            <div className="bg-card-bg border border-red-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-white">Contact Us</h3>
+          <div className="w-full">
+            <div className="bg-card-bg border border-red-500/20 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 w-full">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6 text-white">Contact Us</h3>
               
               {submitSuccess ? (
                 <div className="text-center py-8">
@@ -139,8 +139,8 @@ const Contact = () => {
                       </div>
                     </div>
                   )}
-                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-                    <div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                    <div className="w-full">
                       <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                         Full Name *
                       </label>
@@ -155,7 +155,7 @@ const Contact = () => {
                         placeholder="Your full name"
                       />
                     </div>
-                    <div>
+                    <div className="w-full">
                       <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                         Email Address *
                       </label>
@@ -172,8 +172,8 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-                    <div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                    <div className="w-full">
                       <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
                         Company Name
                       </label>
@@ -187,7 +187,7 @@ const Contact = () => {
                         placeholder="Your company name"
                       />
                     </div>
-                    <div>
+                    <div className="w-full">
                       <label htmlFor="venueType" className="block text-sm font-medium text-gray-300 mb-2">
                         Venue Type
                       </label>
@@ -222,7 +222,7 @@ const Contact = () => {
                     />
                   </div>
 
-                  <div className="flex items-start space-x-3">
+                  <div className="flex items-start space-x-2">
                     <input
                       type="checkbox"
                       id="consent"
@@ -230,9 +230,9 @@ const Contact = () => {
                       checked={formData.consent}
                       onChange={handleInputChange}
                       required
-                      className="mt-1 w-4 h-4 text-red-500 bg-black/50 border-red-500/20 rounded focus:ring-red-500 focus:ring-2"
+                      className="mt-0.5 w-3.5 h-3.5 text-red-500 bg-black/50 border-red-500/20 rounded focus:ring-red-500 focus:ring-1"
                     />
-                    <label htmlFor="consent" className="text-xs sm:text-sm text-gray-300">
+                    <label htmlFor="consent" className="text-xs text-gray-300 leading-tight">
                       I consent to NightShield processing my personal data in accordance with the{' '}
                       <a href="#" className="text-red-500 hover:underline">Privacy Policy</a> and{' '}
                       <a href="#" className="text-red-500 hover:underline">Terms of Service</a>.
@@ -252,9 +252,9 @@ const Contact = () => {
           </div>
 
           {/* Calendly Integration */}
-          <div>
-            <div className="bg-card-bg border border-red-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-white">Schedule a Demo</h3>
+          <div className="w-full">
+            <div className="bg-card-bg border border-red-500/20 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8 w-full">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6 text-white">Schedule a Demo</h3>
               <p className="text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">
                 Book a personalized demo with our security experts. See NightShield in action and get answers to all your questions.
               </p>

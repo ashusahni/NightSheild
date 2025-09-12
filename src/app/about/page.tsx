@@ -75,6 +75,8 @@ const CountUp = ({ end, duration = 2000, suffix = "", decimals = 0 }: {
 };
 
 const AboutPage = () => {
+  const [activeFAQ, setActiveFAQ] = useState<string | null>(null)
+
   const founder = {
     name: 'Stilyan Delgyanski',
     role: 'Founder',
@@ -170,6 +172,88 @@ What I care about:
     { year: '2024', title: 'Startup of the Year', organization: 'TechCrunch Disrupt' },
     { year: '2023', title: 'Excellence in Computer Vision', organization: 'AI Research Institute' },
     { year: '2023', title: 'Most Innovative Security Product', organization: 'International Security Expo' }
+  ];
+
+  const generalFAQs = [
+    {
+      question: "What is NightShield AI?",
+      answer: "Real-time AI for venues that turns your existing CCTV into a live incident detector—spotting fights and falls and alerting staff within seconds."
+    },
+    {
+      question: "Do I need new cameras?",
+      answer: "No. If your system supports RTSP/ONVIF (most IP/NVR setups do), you're good. We'll confirm compatibility during onboarding."
+    },
+    {
+      question: "How fast are alerts?",
+      answer: "Typically under 10 seconds from detection to notification, depending on camera settings and network."
+    },
+    {
+      question: "Will it work in nightclub lighting?",
+      answer: "Yes—our models are tuned for low-light venues. We also let you adjust sensitivity to reduce false positives."
+    },
+    {
+      question: "What do staff receive?",
+      answer: "A clear alert with incident type, camera/location, timestamp, and a short clip in the dashboard."
+    },
+    {
+      question: "Is NightShield GDPR compliant?",
+      answer: "Yes. We store only short, event-based clips, encrypt data, host in the UK/EU, and auto-delete per your policy."
+    },
+    {
+      question: "How long does setup take?",
+      answer: "Most pilots are live in 60–120 minutes once we have access to your streams."
+    },
+    {
+      question: "How much does it cost?",
+      answer: "Simple monthly pricing by number of camera streams. Pilots and multi-site discounts available. See Pricing."
+    }
+  ];
+
+  const pricingFAQs = [
+    {
+      question: "How do you price NightShield?",
+      answer: "By active camera streams and features. No long contracts required; annual discounts available."
+    },
+    {
+      question: "Do you offer a pilot or free trial?",
+      answer: "Yes—time-boxed pilots (e.g., 14–30 days) with success criteria, reduced pricing, and full support."
+    },
+    {
+      question: "What's included in the fee?",
+      answer: "Detection, alerts, dashboard access, updates, and standard support. Optional add-ons: on-prem edge device, premium SLA."
+    },
+    {
+      question: "Any hidden costs?",
+      answer: "No. If you choose cloud analysis, data/compute are included in your plan. SMS/voice alerts at standard pass-through rates."
+    },
+    {
+      question: "Can you invoice our group and split by site?",
+      answer: "Yes—central billing for groups with site-level reporting."
+    },
+    {
+      question: "Can I upgrade or downgrade my plan at any time?",
+      answer: "Yes, you can change your plan at any time. Upgrades take effect immediately, while downgrades take effect at the next billing cycle. No setup fees apply."
+    },
+    {
+      question: "What happens if I exceed my camera limit?",
+      answer: "We'll notify you when you're approaching your limit. You can either upgrade your plan or purchase additional camera licenses for £50/month per camera."
+    },
+    {
+      question: "Is there a long-term contract required?",
+      answer: "No long-term contracts required. All plans are month-to-month or yearly with a 20% discount. You can cancel anytime with 30 days notice."
+    },
+    {
+      question: "What's included in the setup service?",
+      answer: "Our professional setup includes camera installation, system configuration, staff training, and a 30-day follow-up support period. All hardware is included."
+    },
+    {
+      question: "Do you offer volume discounts for multiple venues?",
+      answer: "Yes! We offer significant discounts for businesses with 3+ locations. Contact our sales team for custom enterprise pricing and volume discounts."
+    },
+    {
+      question: "What if I'm not satisfied with the service?",
+      answer: "We offer a 30-day money-back guarantee. If you're not completely satisfied, we'll refund your payment and help you transition to another solution."
+    }
   ];
 
   return (
@@ -443,6 +527,79 @@ What I care about:
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="relative py-12 md:py-16 px-4 overflow-hidden">
+          {/* Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 via-transparent to-red-500/5"></div>
+          
+          <div className="container mx-auto relative z-10">
+            {/* General FAQ Section */}
+            <div className="mb-16">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-center mb-8 md:mb-12 px-2">
+                General <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">Questions</span>
+              </h3>
+              <div className="max-w-4xl mx-auto space-y-4">
+                {generalFAQs.map((faq, index) => (
+                  <div key={`general-${index}`} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:border-red-500/30 transition-all duration-300">
+                    <button
+                      onClick={() => setActiveFAQ(activeFAQ === `general-${index}` ? null : `general-${index}`)}
+                      className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
+                    >
+                      <span className="font-semibold text-white">{faq.question}</span>
+                      <svg
+                        className={`w-5 h-5 text-red-500 transition-transform ${activeFAQ === `general-${index}` ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {activeFAQ === `general-${index}` && (
+                      <div className="px-6 pb-4">
+                        <p className="text-gray-300">{faq.answer}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Pricing FAQ Section */}
+            <div className="mb-16">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-center mb-8 md:mb-12 px-2">
+                Pricing <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">Questions</span>
+              </h3>
+              <div className="max-w-4xl mx-auto space-y-4">
+                {pricingFAQs.map((faq, index) => (
+                  <div key={`pricing-${index}`} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden hover:border-red-500/30 transition-all duration-300">
+                    <button
+                      onClick={() => setActiveFAQ(activeFAQ === `pricing-${index}` ? null : `pricing-${index}`)}
+                      className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
+                    >
+                      <span className="font-semibold text-white">{faq.question}</span>
+                      <svg
+                        className={`w-5 h-5 text-red-500 transition-transform ${activeFAQ === `pricing-${index}` ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {activeFAQ === `pricing-${index}` && (
+                      <div className="px-6 pb-4">
+                        <p className="text-gray-300">{faq.answer}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>

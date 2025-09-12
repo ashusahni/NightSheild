@@ -31,7 +31,7 @@ const Features = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
         </svg>
       ),
-      gradient: "from-red-500/20 to-orange-500/20",
+      gradient: "from-red-500/20 to-red-600/20",
       stats: "99.9% Accuracy",
       badge: "MVP"
     },
@@ -43,7 +43,7 @@ const Features = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
         </svg>
       ),
-      gradient: "from-blue-500/20 to-cyan-500/20",
+      gradient: "from-red-500/20 to-red-600/20",
       stats: "4K Resolution"
     },
     {
@@ -54,7 +54,7 @@ const Features = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
         </svg>
       ),
-      gradient: "from-purple-500/20 to-pink-500/20",
+      gradient: "from-red-500/20 to-red-600/20",
       stats: "<2s Response"
     },
     {
@@ -65,7 +65,7 @@ const Features = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
         </svg>
       ),
-      gradient: "from-green-500/20 to-emerald-500/20",
+      gradient: "from-red-500/20 to-red-600/20",
       stats: "Unlimited Storage"
     }
   ]
@@ -165,7 +165,7 @@ const Features = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
         </svg>
       ),
-      gradient: "from-green-500/20 to-emerald-500/20",
+      gradient: "from-red-500/20 to-red-600/20",
       compliance: "SOC 2 Type II"
     },
     {
@@ -176,7 +176,7 @@ const Features = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
         </svg>
       ),
-      gradient: "from-blue-500/20 to-cyan-500/20",
+      gradient: "from-red-500/20 to-red-600/20",
       compliance: "GDPR Ready"
     },
     {
@@ -187,7 +187,7 @@ const Features = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
         </svg>
       ),
-      gradient: "from-purple-500/20 to-pink-500/20",
+      gradient: "from-red-500/20 to-red-600/20",
       compliance: "ISO 27001"
     },
     {
@@ -198,7 +198,7 @@ const Features = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
         </svg>
       ),
-      gradient: "from-orange-500/20 to-red-500/20",
+      gradient: "from-red-600/20 to-red-500/20",
       compliance: "HIPAA Compatible"
     }
   ]
@@ -285,7 +285,7 @@ const Features = () => {
         </svg>
       ),
       eta: "Q2 2024",
-      gradient: "from-amber-500/20 to-yellow-500/20"
+      gradient: "from-red-500/20 to-red-600/20"
     },
     {
       title: "Predictive Analytics",
@@ -296,7 +296,7 @@ const Features = () => {
         </svg>
       ),
       eta: "Q3 2024",
-      gradient: "from-indigo-500/20 to-purple-500/20"
+      gradient: "from-red-500/20 to-red-600/20"
     },
     {
       title: "Integration APIs",
@@ -307,7 +307,7 @@ const Features = () => {
         </svg>
       ),
       eta: "Q4 2024",
-      gradient: "from-teal-500/20 to-blue-500/20"
+      gradient: "from-red-500/20 to-red-600/20"
     }
   ]
 
@@ -325,14 +325,14 @@ const Features = () => {
     <section id="features" className="py-24 relative overflow-hidden bg-black">
       {/* Animated Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-blue-500/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-red-600/5" />
         <motion.div
           className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl"
           animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl"
           animate={{ scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
         />
@@ -369,7 +369,7 @@ const Features = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Powerful <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">Features</span>
+            Powerful <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">Features</span>
           </motion.h2>
           <motion.p
             className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed"
@@ -449,7 +449,7 @@ const Features = () => {
 
                   {/* Active indicator */}
                   <motion.div
-                    className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-red-500 to-orange-500 rounded-r"
+                    className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-red-500 to-red-600 rounded-r"
                     initial={{ scaleY: 0 }}
                     animate={{ scaleY: activeFeature === index ? 1 : 0 }}
                     transition={{ duration: 0.3 }}
@@ -484,7 +484,7 @@ const Features = () => {
 
                   <div className="relative z-10">
                     <motion.div
-                      className="w-20 h-20 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 mx-auto"
+                      className="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 mx-auto"
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.8 }}
                     >
@@ -503,7 +503,7 @@ const Features = () => {
 
                     <div className="text-center">
                       <div className="inline-flex items-center space-x-2 bg-white/10 rounded-full px-6 py-3">
-                        <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
+                        <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse" />
                         <span className="text-white font-semibold">{features[activeFeature].stats}</span>
                       </div>
                     </div>
@@ -559,7 +559,7 @@ const Features = () => {
                   }}
                 >
                   {/* Coming soon badge */}
-                  <div className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs px-2 py-1 rounded-full font-semibold">
+                  <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
                     Soon
                   </div>
 
@@ -584,7 +584,7 @@ const Features = () => {
                   </p>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-yellow-400 font-semibold text-sm">{feature.eta}</span>
+                    <span className="text-red-400 font-semibold text-sm">{feature.eta}</span>
                     <motion.div
                       className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center"
                       whileHover={{ rotate: 180 }}
@@ -667,7 +667,7 @@ const Features = () => {
 
                   {/* Decorative gradient border */}
                   <motion.div
-                    className="absolute inset-0 rounded-3xl bg-gradient-to-r from-red-500/20 via-transparent to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
+                    className="absolute inset-0 rounded-3xl bg-gradient-to-r from-red-500/20 via-transparent to-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
                     whileHover={{ scale: 1.02 }}
                   />
                 </div>
@@ -710,7 +710,7 @@ const Features = () => {
                   }}
                 >
                   {/* Compliance badge */}
-                  <div className="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                  <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
                     {feature.compliance}
                   </div>
 
@@ -829,7 +829,7 @@ const Features = () => {
                 className="group relative"
               >
                 <motion.div
-                  className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-3xl p-8 border border-gray-700 hover:border-purple-500/50 transition-all duration-500 h-full"
+                  className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-3xl p-8 border border-gray-700 hover:border-red-500/50 transition-all duration-500 h-full"
                   whileHover={{ 
                     scale: 1.03, 
                     y: -10,
@@ -844,7 +844,7 @@ const Features = () => {
                     {option.icon}
                   </motion.div>
 
-                  <h4 className="text-2xl font-bold text-white mb-4 text-center group-hover:text-purple-100 transition-colors">
+                  <h4 className="text-2xl font-bold text-white mb-4 text-center group-hover:text-red-100 transition-colors">
                     {option.title}
                   </h4>
 
@@ -853,11 +853,11 @@ const Features = () => {
                   </p>
 
                   <div className="text-center mb-6">
-                    <div className="inline-flex items-center space-x-2 bg-purple-500/20 rounded-full px-4 py-2">
-                      <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="inline-flex items-center space-x-2 bg-red-500/20 rounded-full px-4 py-2">
+                      <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      <span className="text-purple-300 font-semibold text-sm">Setup: {option.setup}</span>
+                      <span className="text-red-300 font-semibold text-sm">Setup: {option.setup}</span>
                     </div>
                   </div>
 
@@ -870,7 +870,7 @@ const Features = () => {
                         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                         transition={{ duration: 0.4, delay: 4.0 + index * 0.2 + featureIndex * 0.1 }}
                       >
-                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse" />
+                        <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse" />
                         <span className="text-gray-300 group-hover:text-white transition-colors">{feature}</span>
                       </motion.div>
                     ))}
@@ -878,7 +878,7 @@ const Features = () => {
 
                   {/* Animated background gradient */}
                   <motion.div
-                    className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    className="absolute inset-0 rounded-3xl bg-gradient-to-br from-red-500/5 via-transparent to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     animate={{ 
                       background: [
                         "linear-gradient(45deg, rgba(147, 51, 234, 0.05), transparent, rgba(236, 72, 153, 0.05))",
@@ -929,16 +929,16 @@ const Features = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </motion.div>
-                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-green-300 transition-colors">
+                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-red-300 transition-colors">
                     24/7 Technical Support
                   </h4>
                   <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors">
                     Round-the-clock expert support with average response time under 15 minutes
                   </p>
                   <div className="mt-3">
-                    <span className="inline-flex items-center space-x-2 bg-green-500/20 rounded-full px-3 py-1">
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                      <span className="text-green-400 font-semibold text-xs">&lt; 15min response</span>
+                    <span className="inline-flex items-center space-x-2 bg-red-500/20 rounded-full px-3 py-1">
+                      <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse" />
+                      <span className="text-red-400 font-semibold text-xs">&lt; 15min response</span>
                     </span>
                   </div>
                 </motion.div>
@@ -958,16 +958,16 @@ const Features = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                     </svg>
                   </motion.div>
-                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">
+                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-red-300 transition-colors">
                     Automatic Updates
                   </h4>
                   <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors">
                     Seamless security patches and feature updates with zero downtime deployment
                   </p>
                   <div className="mt-3">
-                    <span className="inline-flex items-center space-x-2 bg-blue-500/20 rounded-full px-3 py-1">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-                      <span className="text-blue-400 font-semibold text-xs">Zero downtime</span>
+                    <span className="inline-flex items-center space-x-2 bg-red-500/20 rounded-full px-3 py-1">
+                      <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse" />
+                      <span className="text-red-400 font-semibold text-xs">Zero downtime</span>
                     </span>
                   </div>
                 </motion.div>
@@ -987,16 +987,16 @@ const Features = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
                   </motion.div>
-                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-red-300 transition-colors">
                     Performance Monitoring
                   </h4>
                   <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors">
                     Continuous system optimization and performance analytics for peak efficiency
                   </p>
                   <div className="mt-3">
-                    <span className="inline-flex items-center space-x-2 bg-purple-500/20 rounded-full px-3 py-1">
-                      <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse" />
-                      <span className="text-purple-400 font-semibold text-xs">Real-time monitoring</span>
+                    <span className="inline-flex items-center space-x-2 bg-red-500/20 rounded-full px-3 py-1">
+                      <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse" />
+                      <span className="text-red-400 font-semibold text-xs">Real-time monitoring</span>
                     </span>
                   </div>
                 </motion.div>
@@ -1013,7 +1013,7 @@ const Features = () => {
                   const element = document.querySelector('#contact')
                   if (element) element.scrollIntoView({ behavior: 'smooth' })
                 }}
-                  className="bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold py-4 px-8 rounded-xl hover:from-red-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="bg-gradient-to-r from-red-500 to-red-600 text-white font-bold py-4 px-8 rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >

@@ -76,7 +76,7 @@ const TestimonialsPage = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Be Our First Real Customer
+            Join us on our mission
             </h1>
             <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-5xl mx-auto leading-relaxed">
               Get a month of NightShield completely free and honest feedback. 
@@ -191,7 +191,7 @@ const TestimonialsPage = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Proven Results</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Proven Tested</h2>
             <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
               Join the growing community of venues that trust NightShield
             </p>
@@ -205,9 +205,9 @@ const TestimonialsPage = () => {
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold text-white mb-3">500+</div>
-              <div className="text-lg md:text-xl font-medium text-gray-300 mb-2">Happy Clients</div>
-              <div className="text-sm md:text-base text-gray-500">Active deployments worldwide</div>
+              <div className="text-4xl md:text-5xl font-bold text-white mb-3">90%+</div>
+              <div className="text-lg md:text-xl font-medium text-gray-300 mb-2">Detection Accuracy</div>
+              <div className="text-sm md:text-base text-gray-500">AI threat identification rate</div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -216,9 +216,9 @@ const TestimonialsPage = () => {
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold text-white mb-3">4.9/5</div>
-              <div className="text-lg md:text-xl font-medium text-gray-300 mb-2">Average Rating</div>
-              <div className="text-sm md:text-base text-gray-500">Customer satisfaction score</div>
+              <div className="text-4xl md:text-5xl font-bold text-white mb-3">&lt;2s</div>
+              <div className="text-lg md:text-xl font-medium text-gray-300 mb-2">Latency Metrics</div>
+              <div className="text-sm md:text-base text-gray-500">Real-time response time</div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
