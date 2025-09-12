@@ -222,7 +222,7 @@ const Contact = () => {
                     />
                   </div>
 
-                  <div className="flex items-start space-x-2">
+                  <div className="flex items-start space-x-3">
                     <input
                       type="checkbox"
                       id="consent"
@@ -230,9 +230,9 @@ const Contact = () => {
                       checked={formData.consent}
                       onChange={handleInputChange}
                       required
-                      className="mt-0.5 w-3.5 h-3.5 text-red-500 bg-black/50 border-red-500/20 rounded focus:ring-red-500 focus:ring-1"
+                      className="mt-1 w-4 h-4 text-red-500 bg-black/50 border border-red-500/30 rounded focus:ring-red-500 focus:ring-2 focus:ring-offset-0 accent-red-500"
                     />
-                    <label htmlFor="consent" className="text-xs text-gray-300 leading-tight">
+                    <label htmlFor="consent" className="text-sm text-gray-300 leading-relaxed">
                       I consent to NightShield processing my personal data in accordance with the{' '}
                       <a href="#" className="text-red-500 hover:underline">Privacy Policy</a> and{' '}
                       <a href="#" className="text-red-500 hover:underline">Terms of Service</a>.
