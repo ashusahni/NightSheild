@@ -683,7 +683,7 @@ const HowItWorks = () => {
               </div>
     
               {/* Enhanced vignette with detection overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
               
               {/* Feature Status Overlay - Shows for all features with color coding */}
               {(isCursorActive || detectionStatus) && (
@@ -978,31 +978,6 @@ const HowItWorks = () => {
                           </h3>
                           <p className={`text-gray-100 leading-relaxed ${isMobile ? 'text-xs' : 'text-xs sm:text-sm'}`}>{f.description}</p>
                           
-                          {/* Additional info for active step - simplified for mobile */}
-                          {activeStep === idx && !isMobile && (
-                            <div className="mt-2 sm:mt-3 p-2 sm:p-3 bg-red-500/10 rounded-lg border border-red-500/20">
-                              <p className="text-xs text-red-300 font-medium">
-                                💡 Click to explore this step in detail
-                              </p>
-                              {/* Special indicator for fight detection step */}
-                              {idx === 1 && (
-                                <div className="mt-1 sm:mt-2 flex items-center gap-1.5 sm:gap-2">
-                                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full animate-pulse" />
-                                  <p className="text-xs text-red-400 font-medium">
-                                    🎯 Hover anywhere on the image for instant AI lock-on detection
-                                  </p>
-                                </div>
-                              )}
-                            </div>
-                          )}
-                          {/* Simplified mobile info */}
-                          {activeStep === idx && isMobile && idx === 1 && (
-                            <div className="mt-2 p-2 bg-red-500/10 rounded-lg border border-red-500/20">
-                              <p className="text-xs text-red-400 font-medium">
-                                🎯 Tap the image for AI detection
-                              </p>
-                            </div>
-                          )}
                         </div>
                       </div>
                     </div>
