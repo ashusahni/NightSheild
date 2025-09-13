@@ -225,7 +225,7 @@ const TestimonialsPage = () => {
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold text-white mb-3">90%+</div>
+              <div className="text-4xl md:text-5xl font-bold text-red-500 mb-3">90%+</div>
               <div className="text-lg md:text-xl font-medium text-gray-300 mb-2">Detection Accuracy</div>
               <div className="text-sm md:text-base text-gray-500">AI threat identification rate</div>
             </motion.div>
@@ -236,7 +236,7 @@ const TestimonialsPage = () => {
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold text-white mb-3">&lt;2s</div>
+              <div className="text-4xl md:text-5xl font-bold text-red-500 mb-3">&lt;2s</div>
               <div className="text-lg md:text-xl font-medium text-gray-300 mb-2">Latency Metrics</div>
               <div className="text-sm md:text-base text-gray-500">Real-time response time</div>
             </motion.div>
@@ -247,7 +247,7 @@ const TestimonialsPage = () => {
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold text-white mb-3">98%</div>
+              <div className="text-4xl md:text-5xl font-bold text-red-500 mb-3">98%</div>
               <div className="text-lg md:text-xl font-medium text-gray-300 mb-2">Satisfaction Rate</div>
               <div className="text-sm md:text-base text-gray-500">Client retention rate</div>
             </motion.div>
@@ -258,7 +258,7 @@ const TestimonialsPage = () => {
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold text-white mb-3">24/7</div>
+              <div className="text-4xl md:text-5xl font-bold text-red-500 mb-3">24/7</div>
               <div className="text-lg md:text-xl font-medium text-gray-300 mb-2">Support Available</div>
               <div className="text-sm md:text-base text-gray-500">Round-the-clock assistance</div>
             </motion.div>

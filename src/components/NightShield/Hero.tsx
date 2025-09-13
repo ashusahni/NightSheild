@@ -33,7 +33,7 @@ const Hero = () => {
 
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden aurora-bg pt-20" style={{
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden aurora-bg" style={{
       boxShadow: 'inset 0 0 100px rgba(139, 0, 0, 0.1)'
     }}>
 
@@ -75,7 +75,7 @@ const Hero = () => {
       <div className="hidden md:block absolute top-1/2 left-1/4 w-16 h-16 bg-red-600/25 rounded-full blur-lg animate-pulse delay-500"></div>
 
       <div className="w-full px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl lg:pt-20 mx-auto text-center">
           {/* Main Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

@@ -175,7 +175,7 @@ const Industries = () => {
                 transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
                 className="text-center group"
               >
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3">
+                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-red-500 mb-3">
                   <CountUp 
                     end={stat.metric} 
                     duration={1500} 
