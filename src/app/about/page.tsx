@@ -276,9 +276,9 @@ What I care about:
 
   return (
     <div className="bg-black text-white min-h-screen">
-      <div className="lg:pt-20">
+      <div className="">
         {/* Hero Section */}
-        <section className="relative overflow-hidden py-12 md:py-16 px-4">
+        <section className="relative overflow-hidden pt-20 pb-12 md:py-16 md:pt-0 lg:pt-28 px-4">
           {/* Background Gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/10"></div>

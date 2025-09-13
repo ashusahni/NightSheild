@@ -33,7 +33,7 @@ const Hero = () => {
 
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden aurora-bg" style={{
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden aurora-bg pt-20" style={{
       boxShadow: 'inset 0 0 100px rgba(139, 0, 0, 0.1)'
     }}>
 
