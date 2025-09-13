@@ -126,11 +126,11 @@ const Pricing = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto mb-16 px-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto mb-16 px-2">
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative group ${plan.popular ? 'lg:scale-105' : ''}`}
+              className={`relative group`}
             >
               {/* Popular Badge */}
               {plan.popular && (
@@ -142,18 +142,16 @@ const Pricing = () => {
               )}
 
               {/* Glassmorphism card */}
-              <div className={`relative bg-white/5 backdrop-blur-xl border rounded-2xl p-6 md:p-8 h-full transition-all duration-500 hover:bg-white/10 hover:border-red-500/30 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/10 ${
+              <div className={`relative bg-white/5 backdrop-blur-xl border rounded-2xl p-4 md:p-6 h-full transition-all duration-300 ${
                 plan.popular 
                   ? 'border-red-500/50 shadow-2xl shadow-red-500/20' 
                   : 'border-white/10'
               }`}>
-                {/* Gradient border effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 {/* Plan Header */}
                 <div className="relative z-10 text-center mb-6 md:mb-8">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2 text-white group-hover:text-red-100 transition-colors">{plan.name}</h3>
-                  <p className="text-gray-300 mb-3 md:mb-4 text-sm md:text-base group-hover:text-gray-200 transition-colors">{plan.description}</p>
-                  <p className="text-xs md:text-sm text-gray-400 mb-4 md:mb-6 group-hover:text-gray-300 transition-colors">{plan.bestFor}</p>
+                  <h3 className="text-xl md:text-2xl font-bold mb-2 text-white">{plan.name}</h3>
+                  <p className="text-gray-300 mb-3 md:mb-4 text-sm md:text-base">{plan.description}</p>
+                  <p className="text-xs md:text-sm text-gray-400 mb-4 md:mb-6">{plan.bestFor}</p>
                   
                   {/* Price with glow effect */}
                   <div className="mb-4 md:mb-6 relative">

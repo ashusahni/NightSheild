@@ -16,8 +16,8 @@ const SupportPage = () => {
           <ul className="list-disc pl-6 space-y-2">
             <li><strong>Hours:</strong> Mon–Fri 09:00–18:00 UK (excl. UK public holidays)</li>
             <li><strong>After-hours:</strong> P1 only (24×7) via email subject prefix [P1]</li>
-            <li><strong>Email:</strong> <a href="mailto:support@nightshield.ai" className="text-blue-600 hover:underline">support@nightshield.ai</a> (all severities)</li>
-            <li><strong>Security incidents:</strong> <a href="mailto:security@nightshield.ai" className="text-blue-600 hover:underline">security@nightshield.ai</a> (see <a href="/security" className="text-blue-600 hover:underline">/security</a>)</li>
+            <li><strong>Email:</strong> <a href="mailto:support@nightshield.ai" className="text-red-600 hover:underline">support@nightshield.ai</a> (all severities)</li>
+            <li><strong>Security incidents:</strong> <a href="mailto:security@nightshield.ai" className="text-red-600 hover:underline">security@nightshield.ai</a> (see <a href="/security" className="text-red-600 hover:underline">/security</a>)</li>
           </ul>
         </section>
 
@@ -77,7 +77,7 @@ const SupportPage = () => {
           <h2 className="text-2xl font-semibold mb-4">Maintenance</h2>
           <ul className="list-disc pl-6 space-y-2">
             <li><strong>Standard window:</strong> Sundays 02:00–04:00 UK (as needed)</li>
-            <li><strong>Notice:</strong> ≥48h on <a href="https://status.nightshield.ai" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">status.nightshield.ai</a> (emergency work may be shorter)</li>
+            <li><strong>Notice:</strong> ≥48h on <a href="https://status.nightshield.ai" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline">status.nightshield.ai</a> (emergency work may be shorter)</li>
           </ul>
         </section>
 
@@ -118,7 +118,7 @@ const SupportPage = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-blue-600 hover:text-blue-800 hover:underline"
+                className="text-red-600 hover:text-red-800 hover:underline"
               >
                 {link.text}
               </a>
