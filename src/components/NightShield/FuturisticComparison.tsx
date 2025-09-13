@@ -7,6 +7,7 @@ const FuturisticComparison = () => {
   const [selectedCompetitor, setSelectedCompetitor] = useState<number | null>(null)
   const [activeMetric, setActiveMetric] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
+  const [clickPosition, setClickPosition] = useState<{ x: number; y: number } | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -69,7 +70,7 @@ const FuturisticComparison = () => {
       type: "Open VMS",
       score: 6,
       color: "#10B981",
-      position: { x: 40, y: 60 },
+      position: { x: 35, y: 70 },
       data: {
         nightlife: 18,
         ease: 40,
@@ -163,7 +164,19 @@ const FuturisticComparison = () => {
       <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
         {/* Competitor Network */}
         <div className="lg:col-span-2">
-          <h3 className="text-xl lg:text-2xl font-bold text-white mb-6 lg:mb-8 text-center">Competitor Network</h3>
+          <div className="text-center mb-6 lg:mb-8">
+            <h3 className="text-xl lg:text-2xl font-bold text-white mb-2">Competitor Network</h3>
+            <p className="text-sm text-gray-400 flex items-center justify-center space-x-2">
+              <motion.span
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="text-red-400"
+              >
+                🎯
+              </motion.span>
+              <span>Click competitor dots for detailed comparison</span>
+            </p>
+          </div>
           <div className="relative h-64 sm:h-80 lg:h-96 bg-gradient-to-br from-gray-900/60 via-red-900/20 to-gray-800/60 rounded-2xl lg:rounded-3xl border border-red-500/30 p-4 sm:p-6 lg:p-8 overflow-hidden">
             {/* Grid Background */}
             <div className="absolute inset-0 opacity-20">
@@ -183,20 +196,39 @@ const FuturisticComparison = () => {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="absolute cursor-pointer group"
+                className="absolute cursor-pointer group hover:z-10"
                 style={{
                   left: `${competitor.position.x}%`,
                   top: `${competitor.position.y}%`,
                   transform: 'translate(-50%, -50%)'
                 }}
-                onClick={() => setSelectedCompetitor(selectedCompetitor === competitor.id ? null : competitor.id)}
+                onClick={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect()
+                  const containerRect = containerRef.current?.getBoundingClientRect()
+                  if (containerRect) {
+                    setClickPosition({
+                      x: rect.left + rect.width / 2 - containerRect.left,
+                      y: rect.top - containerRect.top
+                    })
+                  }
+                  setSelectedCompetitor(selectedCompetitor === competitor.id ? null : competitor.id)
+                }}
                 whileHover={{ scale: 1.1 }}
               >
                 <div 
-                  className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base lg:text-lg shadow-lg border-2 border-white/20"
+                  className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base lg:text-lg shadow-lg border-2 border-white/20 group-hover:border-white/40 group-hover:shadow-xl transition-all duration-300"
                   style={{ backgroundColor: competitor.color }}
                 >
                   {competitor.name.charAt(0)}
+                  
+                  {/* Hover indicator */}
+                  <motion.div
+                    className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                    }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                  />
                 </div>
                 
                 {/* Connection Lines */}
@@ -247,22 +279,46 @@ const FuturisticComparison = () => {
 
         {/* Metric Selector */}
         <div className="space-y-4 lg:space-y-6">
-          <h3 className="text-xl lg:text-2xl font-bold text-white mb-4 lg:mb-6">Performance Metrics</h3>
+          <div className="mb-4 lg:mb-6">
+            <h3 className="text-xl lg:text-2xl font-bold text-white mb-2">Performance Metrics</h3>
+            <p className="text-sm text-gray-400 flex items-center space-x-2">
+              <motion.span
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="text-red-400"
+              >
+                👇
+              </motion.span>
+              <span>Click to compare different metrics</span>
+            </p>
+          </div>
           {metrics.map((metric, index) => (
             <motion.button
               key={metric.key}
               onClick={() => setActiveMetric(index)}
-              className={`w-full p-3 lg:p-4 rounded-xl lg:rounded-2xl border transition-all duration-300 ${
+              className={`w-full p-3 lg:p-4 rounded-xl lg:rounded-2xl border transition-all duration-300 cursor-pointer group ${
                 activeMetric === index
-                  ? 'bg-gradient-to-r from-red-500/20 to-red-600/20 border-red-500/50'
-                  : 'bg-gray-800/30 border-gray-700/50 hover:border-gray-600/70'
+                  ? 'bg-gradient-to-r from-red-500/20 to-red-600/20 border-red-500/50 shadow-lg shadow-red-500/20'
+                  : 'bg-gray-800/30 border-gray-700/50 hover:border-red-500/30 hover:bg-gray-800/50 hover:shadow-md hover:shadow-red-500/10'
               }`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="flex items-center space-x-2 lg:space-x-3">
-                <span className="text-lg lg:text-2xl">{metric.icon}</span>
-                <span className="text-white font-semibold text-sm lg:text-base">{metric.label}</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2 lg:space-x-3">
+                  <span className="text-lg lg:text-2xl">{metric.icon}</span>
+                  <span className="text-white font-semibold text-sm lg:text-base group-hover:text-red-300 transition-colors">{metric.label}</span>
+                </div>
+                <motion.div
+                  className="text-gray-500 group-hover:text-red-400 transition-colors"
+                  animate={{ 
+                    x: activeMetric === index ? [0, 4, 0] : 0,
+                    opacity: activeMetric === index ? [1, 0.7, 1] : 1
+                  }}
+                  transition={{ duration: 1, repeat: activeMetric === index ? Infinity : 0 }}
+                >
+                  {activeMetric === index ? '●' : '○'}
+                </motion.div>
               </div>
             </motion.button>
           ))}
@@ -693,14 +749,22 @@ const FuturisticComparison = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-            onClick={() => setSelectedCompetitor(null)}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 p-4"
+            onClick={() => {
+              setSelectedCompetitor(null)
+              setClickPosition(null)
+            }}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-gradient-to-br from-gray-900 via-red-900/20 to-gray-800 rounded-2xl lg:rounded-3xl border border-red-500/30 p-4 sm:p-6 lg:p-8 max-w-2xl w-full mx-4"
+              className="absolute bg-gradient-to-br from-gray-900 via-red-900/20 to-gray-800 rounded-2xl lg:rounded-3xl border border-red-500/30 p-4 sm:p-6 lg:p-8 w-full max-w-sm sm:max-w-md lg:max-w-2xl"
+              style={{
+                left: clickPosition ? `${Math.min(Math.max(clickPosition.x - 200, 16), window.innerWidth - 400)}px` : '50%',
+                top: clickPosition ? `${Math.max(clickPosition.y - 300, 16)}px` : '50%',
+                transform: !clickPosition ? 'translate(-50%, -50%)' : 'none'
+              }}
               onClick={(e) => e.stopPropagation()}
             >
               {(() => {
@@ -788,7 +852,7 @@ const FuturisticComparison = () => {
                 whileTap={{ scale: 0.95 }}
                 className="bg-transparent border-2 border-red-500 text-red-400 px-6 sm:px-8 lg:px-10 py-3 lg:py-4 rounded-xl lg:rounded-2xl font-semibold text-base lg:text-lg hover:bg-red-500 hover:text-white transition-all duration-300 inline-block text-center"
               >
-                View Intelligence Report
+                Book a Demo
               </motion.a>
             </div>
           </div>

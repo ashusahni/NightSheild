@@ -920,7 +920,7 @@ const Features = () => {
                   className="group"
                 >
                   <motion.div
-                    className="text-5xl mb-4"
+                    className="text-5xl mb-4 flex justify-center"
                     whileHover={{ scale: 1.3, rotate: 15 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -950,7 +950,7 @@ const Features = () => {
                   className="group"
                 >
                   <motion.div
-                    className="text-5xl mb-4"
+                    className="text-5xl mb-4 flex justify-center"
                     whileHover={{ scale: 1.3, rotate: -15 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -979,7 +979,7 @@ const Features = () => {
                   className="group"
                 >
                   <motion.div
-                    className="text-5xl mb-4"
+                    className="text-5xl mb-4 flex justify-center"
                     whileHover={{ scale: 1.3, rotate: 10 }}
                     transition={{ duration: 0.3 }}
                   >

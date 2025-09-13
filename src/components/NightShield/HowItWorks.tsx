@@ -127,22 +127,22 @@ const HowItWorks = () => {
     setShowDetectionOverlay(true)
     setDetectionStatus('AI Analyzing...')
     
-    // Simulate AI detection process with very fast timing (1 second total)
+    // Simulate AI detection process with much slower timing (2.5 seconds total)
     setTimeout(() => {
       setDetectionStatus('Threat Detected!')
-    }, 200)
-    
-    setTimeout(() => {
-      setDetectionStatus('Alert Sent!')
-    }, 400)
-    
-    setTimeout(() => {
-      setDetectionStatus('Security Notified!')
     }, 600)
     
     setTimeout(() => {
+      setDetectionStatus('Alert Sent!')
+    }, 1200)
+    
+    setTimeout(() => {
+      setDetectionStatus('Security Notified!')
+    }, 1800)
+    
+    setTimeout(() => {
       setDetectionStatus('Response Deployed!')
-    }, 800)
+    }, 2400)
   }, [])
 
   const handleCursorLeave = useCallback(() => {
@@ -270,12 +270,56 @@ const HowItWorks = () => {
       }
     }
 
-    // Trigger cursor interaction for fight detection step
-    if (stepIndex === 1) { // Fight Detection step
+    // Feature-specific interactions with enhanced visual feedback
+    if (stepIndex === 0) { // Capture & Enhance
+      setIsCursorActive(true)
+      setShowDetectionOverlay(true)
+      setDetectionStatus('📹 Multi-Camera System Initializing...')
+      setTimeout(() => setDetectionStatus('🔍 Scanning Environment'), 600)
+      setTimeout(() => setDetectionStatus('🔧 Noise Reduction Active'), 1200)
+      setTimeout(() => setDetectionStatus('✨ Image Enhancement Complete'), 1800)
+      setTimeout(() => setDetectionStatus('🎯 Crystal Clear Frames Ready'), 2400)
+      setTimeout(() => {
+        setIsCursorActive(false)
+        setShowDetectionOverlay(false)
+        setDetectionStatus('')
+      }, 3500)
+    } else if (stepIndex === 1) { // Fight Detection
       setTimeout(() => {
         handleCursorEnter()
       }, 500)
-    } else {
+    } else if (stepIndex === 2) { // Instant Alerts
+      setIsCursorActive(true)
+      setShowDetectionOverlay(true)
+      setDetectionStatus('🚨 Alert System Activated')
+      setTimeout(() => setDetectionStatus('📊 Analyzing Threat Level'), 500)
+      setTimeout(() => setDetectionStatus('📱 Push Notification Sent'), 1000)
+      setTimeout(() => setDetectionStatus('📍 GPS Location Marked'), 1500)
+      setTimeout(() => setDetectionStatus('👮 Security Team Notified'), 2000)
+      setTimeout(() => setDetectionStatus('⚡ Response Time: <1 Second'), 2500)
+      setTimeout(() => {
+        setIsCursorActive(false)
+        setShowDetectionOverlay(false)
+        setDetectionStatus('')
+      }, 3500)
+    } else if (stepIndex === 3) { // Evidence Vault
+      setIsCursorActive(true)
+      setShowDetectionOverlay(true)
+      setDetectionStatus('🔒 Secure Vault Accessing...')
+      setTimeout(() => setDetectionStatus('🔐 Encryption Keys Verified'), 600)
+      setTimeout(() => setDetectionStatus('📹 Recording Archived'), 1200)
+      setTimeout(() => setDetectionStatus('🛡️ Tamper-Proof Seal Applied'), 1800)
+      setTimeout(() => setDetectionStatus('📋 Audit Trail Generated'), 2400)
+      setTimeout(() => setDetectionStatus('⚖️ Legal Evidence Ready'), 3000)
+      setTimeout(() => {
+        setIsCursorActive(false)
+        setShowDetectionOverlay(false)
+        setDetectionStatus('')
+      }, 4000)
+    }
+
+    // Reset cursor state for non-fight detection steps
+    if (stepIndex !== 1) {
       handleCursorLeave()
     }
   }, [features.length, handleCursorEnter, handleCursorLeave, isMobile])
@@ -458,35 +502,158 @@ const HowItWorks = () => {
                 quality={isMobile ? 75 : 90}
               />
     
-              {/* Enhanced Fight Target Areas with instant lock */}
+              {/* Enhanced Interactive Target Areas for all features */}
               <div 
-                className={`cursor-target absolute inset-0 pointer-events-auto touch-manipulation ${!isMobile ? 'cursor-crosshair' : ''}`}
-                onMouseEnter={!isMobile ? handleCursorEnter : undefined}
-                onMouseLeave={!isMobile ? handleCursorLeave : undefined}
+                className={`cursor-target absolute inset-0 pointer-events-auto touch-manipulation ${!isMobile ? 'cursor-pointer' : ''}`}
+                onMouseEnter={!isMobile && activeStep === 1 ? handleCursorEnter : undefined}
+                onMouseLeave={!isMobile && activeStep === 1 ? handleCursorLeave : undefined}
                 onTouchStart={isMobile ? handleTouchStart : undefined}
                 onTouchEnd={isMobile ? handleTouchEnd : undefined}
-                onClick={!isMobile ? handleClick : undefined}
+                onClick={() => handleStepClick(activeStep)}
               >
-                {/* Primary fighting scene target - larger area for easier targeting */}
-                <div className="absolute top-1/4 left-1/3 w-1/3 h-1/2 pointer-events-none">
-                  {/* Fighting scene highlight overlay */}
-                  <div className={`absolute inset-0 border-2 border-red-500/50 rounded-lg transition-all duration-500 ${
-                    isCursorActive ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
-                  }`}>
-                    <div className={`absolute inset-0 bg-red-500/10 rounded-lg ${
-                      isLowPerformance ? '' : 'animate-pulse'
-                    }`} />
-                  </div>
-                  
-                  {/* Detection status indicator */}
-                  {isCursorActive && (
-                    <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
-                      isLowPerformance ? '' : 'animate-bounce'
+                {/* Feature-specific target areas */}
+                {activeStep === 0 && ( // Capture & Enhance
+                  <div className="absolute top-1/6 left-1/4 w-1/2 h-2/3 pointer-events-none">
+                    <div className={`absolute inset-0 border-2 border-blue-500/50 rounded-lg transition-all duration-500 ${
+                      isCursorActive ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
                     }`}>
-                      {detectionStatus}
+                      <div className={`absolute inset-0 bg-blue-500/10 rounded-lg ${
+                        isLowPerformance ? '' : 'animate-pulse'
+                      }`} />
+                      {/* Enhanced camera scan lines effect */}
+                      <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
+                        <div className="absolute top-0 left-0 w-full h-0.5 bg-blue-400 animate-pulse" />
+                        <div className="absolute top-1/3 left-0 w-full h-0.5 bg-blue-400 animate-pulse" style={{animationDelay: '0.5s'}} />
+                        <div className="absolute top-2/3 left-0 w-full h-0.5 bg-blue-400 animate-pulse" style={{animationDelay: '1s'}} />
+                        {/* Corner camera indicators */}
+                        <div className="absolute top-2 left-2 w-3 h-3 border-2 border-blue-400 rounded-full animate-ping" />
+                        <div className="absolute top-2 right-2 w-3 h-3 border-2 border-blue-400 rounded-full animate-ping" style={{animationDelay: '0.3s'}} />
+                        <div className="absolute bottom-2 left-2 w-3 h-3 border-2 border-blue-400 rounded-full animate-ping" style={{animationDelay: '0.6s'}} />
+                        <div className="absolute bottom-2 right-2 w-3 h-3 border-2 border-blue-400 rounded-full animate-ping" style={{animationDelay: '0.9s'}} />
+                      </div>
+                      {/* Rotating focus ring */}
+                      <div className={`absolute inset-0 rounded-lg border border-blue-400/30 ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '4s'}} />
                     </div>
-                  )}
-                </div>
+                    {(isCursorActive || detectionStatus) && (
+                      <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-blue-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+                        isLowPerformance ? '' : 'animate-bounce'
+                      }`}>
+                        {detectionStatus}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {activeStep === 1 && ( // Fight Detection
+                  <div className="absolute top-1/4 left-1/3 w-1/3 h-1/2 pointer-events-none">
+                    <div className={`absolute inset-0 border-2 border-red-500/50 rounded-lg transition-all duration-500 ${
+                      isCursorActive ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
+                    }`}>
+                      <div className={`absolute inset-0 bg-red-500/10 rounded-lg ${
+                        isLowPerformance ? '' : 'animate-pulse'
+                      }`} />
+                      {/* Enhanced fight detection effects */}
+                      <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
+                        {/* Crosshair targeting system */}
+                        <div className="absolute top-1/2 left-0 w-full h-0.5 bg-red-400 animate-pulse" />
+                        <div className="absolute top-0 left-1/2 w-0.5 h-full bg-red-400 animate-pulse" />
+                        {/* Corner threat indicators */}
+                        <div className="absolute top-1 left-1 w-2 h-2 border border-red-400 animate-ping" />
+                        <div className="absolute top-1 right-1 w-2 h-2 border border-red-400 animate-ping" style={{animationDelay: '0.2s'}} />
+                        <div className="absolute bottom-1 left-1 w-2 h-2 border border-red-400 animate-ping" style={{animationDelay: '0.4s'}} />
+                        <div className="absolute bottom-1 right-1 w-2 h-2 border border-red-400 animate-ping" style={{animationDelay: '0.6s'}} />
+                        {/* Pulsing threat zone */}
+                        <div className="absolute inset-2 border border-red-400/50 rounded animate-pulse" />
+                      </div>
+                      {/* Rotating threat scanner */}
+                      <div className={`absolute inset-0 rounded-lg border border-red-400/30 ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '2s'}} />
+                    </div>
+                    {(isCursorActive || detectionStatus) && (
+                      <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+                        isLowPerformance ? '' : 'animate-bounce'
+                      }`}>
+                        {detectionStatus}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {activeStep === 2 && ( // Instant Alerts
+                  <div className="absolute top-1/8 left-1/8 w-3/4 h-3/4 pointer-events-none">
+                    <div className={`absolute inset-0 border-2 border-yellow-500/50 rounded-lg transition-all duration-500 ${
+                      isCursorActive ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
+                    }`}>
+                      <div className={`absolute inset-0 bg-yellow-500/10 rounded-lg ${
+                        isLowPerformance ? '' : 'animate-pulse'
+                      }`} />
+                      {/* Enhanced alert notification effects */}
+                      <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
+                        {/* Notification waves */}
+                        <div className={`absolute top-2 right-2 w-4 h-4 bg-yellow-400 rounded-full ${isCursorActive ? 'animate-ping' : 'opacity-0'}`} />
+                        <div className={`absolute bottom-2 left-2 w-4 h-4 bg-yellow-400 rounded-full ${isCursorActive ? 'animate-ping' : 'opacity-0'}`} style={{animationDelay: '0.5s'}} />
+                        <div className={`absolute top-1/2 left-2 w-3 h-3 bg-yellow-400 rounded-full ${isCursorActive ? 'animate-ping' : 'opacity-0'}`} style={{animationDelay: '1s'}} />
+                        <div className={`absolute top-1/2 right-2 w-3 h-3 bg-yellow-400 rounded-full ${isCursorActive ? 'animate-ping' : 'opacity-0'}`} style={{animationDelay: '1.5s'}} />
+                        {/* Signal strength bars */}
+                        <div className="absolute top-1 left-1 flex space-x-1">
+                          <div className="w-1 h-2 bg-yellow-400 animate-pulse" />
+                          <div className="w-1 h-3 bg-yellow-400 animate-pulse" style={{animationDelay: '0.1s'}} />
+                          <div className="w-1 h-4 bg-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
+                          <div className="w-1 h-3 bg-yellow-400 animate-pulse" style={{animationDelay: '0.3s'}} />
+                        </div>
+                        {/* Alert ripple effect */}
+                        <div className="absolute inset-4 border border-yellow-400/50 rounded animate-pulse" />
+                      </div>
+                      {/* Rotating alert scanner */}
+                      <div className={`absolute inset-0 rounded-lg border border-yellow-400/30 ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '3s'}} />
+                    </div>
+                    {(isCursorActive || detectionStatus) && (
+                      <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-yellow-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+                        isLowPerformance ? '' : 'animate-bounce'
+                      }`}>
+                        {detectionStatus}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {activeStep === 3 && ( // Evidence Vault
+                  <div className="absolute top-1/5 left-1/5 w-3/5 h-3/5 pointer-events-none">
+                    <div className={`absolute inset-0 border-2 border-green-500/50 rounded-lg transition-all duration-500 ${
+                      isCursorActive ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
+                    }`}>
+                      <div className={`absolute inset-0 bg-green-500/10 rounded-lg ${
+                        isLowPerformance ? '' : 'animate-pulse'
+                      }`} />
+                      {/* Enhanced vault lock effects */}
+                      <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
+                        {/* Main vault lock */}
+                        <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 border-2 border-green-400 rounded-full ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '3s'}} />
+                        <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-green-400 rounded-full ${isCursorActive ? 'animate-pulse' : 'opacity-0'}`} />
+                        {/* Security corner indicators */}
+                        <div className="absolute top-2 left-2 w-2 h-2 border border-green-400 rounded-full animate-ping" />
+                        <div className="absolute top-2 right-2 w-2 h-2 border border-green-400 rounded-full animate-ping" style={{animationDelay: '0.2s'}} />
+                        <div className="absolute bottom-2 left-2 w-2 h-2 border border-green-400 rounded-full animate-ping" style={{animationDelay: '0.4s'}} />
+                        <div className="absolute bottom-2 right-2 w-2 h-2 border border-green-400 rounded-full animate-ping" style={{animationDelay: '0.6s'}} />
+                        {/* Encryption lines */}
+                        <div className="absolute top-1/4 left-1/4 w-1/2 h-0.5 bg-green-400/50 animate-pulse" />
+                        <div className="absolute top-3/4 left-1/4 w-1/2 h-0.5 bg-green-400/50 animate-pulse" style={{animationDelay: '0.5s'}} />
+                        <div className="absolute top-1/2 left-1/4 w-0.5 h-1/2 bg-green-400/50 animate-pulse" style={{animationDelay: '1s'}} />
+                        <div className="absolute top-1/2 right-1/4 w-0.5 h-1/2 bg-green-400/50 animate-pulse" style={{animationDelay: '1.5s'}} />
+                        {/* Vault door frame */}
+                        <div className="absolute inset-4 border border-green-400/30 rounded animate-pulse" />
+                      </div>
+                      {/* Rotating security scanner */}
+                      <div className={`absolute inset-0 rounded-lg border border-green-400/30 ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '5s'}} />
+                    </div>
+                    {(isCursorActive || detectionStatus) && (
+                      <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+                        isLowPerformance ? '' : 'animate-bounce'
+                      }`}>
+                        {detectionStatus}
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* Secondary target areas for different images - also larger */}
                 {selectedImageIndex === 1 && (
@@ -522,14 +689,36 @@ const HowItWorks = () => {
               {/* Enhanced vignette with detection overlay */}
               <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20" />
               
-              {/* AI Detection Status Overlay */}
-              {isCursorActive && (
-                <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm border border-red-500/30 rounded-lg p-3 animate-fadeIn">
+              {/* Feature Status Overlay - Shows for all features with color coding */}
+              {(isCursorActive || detectionStatus) && (
+                <div className={`absolute top-4 left-4 bg-black/80 backdrop-blur-sm border rounded-lg p-3 animate-fadeIn ${
+                  activeStep === 0 ? 'border-blue-500/30' :
+                  activeStep === 1 ? 'border-red-500/30' :
+                  activeStep === 2 ? 'border-yellow-500/30' :
+                  'border-green-500/30'
+                }`}>
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                    <span className="text-red-400 text-sm font-medium">AI Detection Active</span>
+                    <div className={`w-2 h-2 rounded-full animate-pulse ${
+                      activeStep === 0 ? 'bg-blue-500' :
+                      activeStep === 1 ? 'bg-red-500' :
+                      activeStep === 2 ? 'bg-yellow-500' :
+                      'bg-green-500'
+                    }`} />
+                    <span className={`text-sm font-medium ${
+                      activeStep === 0 ? 'text-blue-400' :
+                      activeStep === 1 ? 'text-red-400' :
+                      activeStep === 2 ? 'text-yellow-400' :
+                      'text-green-400'
+                    }`}>
+                      {features[activeStep]?.title + ' Active'}
+                    </span>
                   </div>
-                  <p className="text-gray-300 text-xs mt-1">Instant lock-on detection system engaged</p>
+                  <p className="text-gray-300 text-xs mt-1">
+                    {activeStep === 0 ? 'Multi-camera system processing frames' :
+                     activeStep === 1 ? 'Instant lock-on detection system engaged' :
+                     activeStep === 2 ? 'Real-time alert system broadcasting' :
+                     'Secure vault encrypting evidence'}
+                  </p>
                 </div>
               )}
 
@@ -569,13 +758,18 @@ const HowItWorks = () => {
                 </div>
               )}
 
-              {/* Simple hover hint */}
+              {/* Enhanced interaction hint */}
               {!isCursorActive && !showDemoGuide && (
                 <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm border border-gray-500/30 rounded-lg p-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                    <div className={`w-2 h-2 rounded-full animate-pulse ${
+                      activeStep === 0 ? 'bg-blue-400' :
+                      activeStep === 1 ? 'bg-red-400' :
+                      activeStep === 2 ? 'bg-yellow-400' :
+                      'bg-green-400'
+                    }`} />
                     <span className="text-gray-300 text-xs">
-                      {isMobile ? 'Tap to see AI in action' : 'Hover to see AI in action'}
+                      {isMobile ? `Tap to see ${features[activeStep]?.title} in action` : `Click to see ${features[activeStep]?.title} in action`}
                     </span>
                   </div>
                 </div>
@@ -748,13 +942,30 @@ const HowItWorks = () => {
                       <div className="flex items-start gap-3 sm:gap-4">
                         <div className={`relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 shrink-0 rounded-md overflow-hidden border transition-all duration-300 flex items-center justify-center ${
                           activeStep === idx
-                            ? 'border-red-500/50 bg-red-500/10 rotate-3 scale-[1.05]'
+                            ? `border-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500/50 bg-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500/10 rotate-3 scale-[1.05]`
                             : 'border-red-500/30 bg-black/90 group-hover:rotate-3 group-hover:scale-[1.03]'
                         }`}>
-                          <img src={f.thumb} alt={f.title} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-red-500" />
-                          {/* Glow effect for active step */}
+                          <img 
+                            src={f.thumb} 
+                            alt={f.title} 
+                            className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-all duration-300 ${
+                              activeStep === idx 
+                                ? `text-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500 animate-pulse` 
+                                : 'text-red-500'
+                            }`} 
+                          />
+                          {/* Enhanced glow effect for active step */}
                           {activeStep === idx && (
-                            <div className="absolute inset-0 rounded-md bg-red-500/20 animate-pulse" />
+                            <>
+                              <div className={`absolute inset-0 rounded-md bg-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500/20 animate-pulse`} />
+                              <div className={`absolute inset-0 rounded-md bg-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500/30 animate-ping`} />
+                              {/* Rotating ring effect */}
+                              <div className={`absolute inset-0 rounded-md border-2 border-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-400 animate-spin`} style={{animationDuration: '3s'}} />
+                            </>
+                          )}
+                          {/* Hover glow effect */}
+                          {activeStep !== idx && (
+                            <div className="absolute inset-0 rounded-md bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           )}
                         </div>
                         <div className="flex-1">

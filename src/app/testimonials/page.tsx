@@ -14,7 +14,7 @@ const TestimonialsPage = () => {
       company: "The Blue Moon Club",
       rating: 5,
       content: "NightShield has completely transformed our security operations. We've seen an 80% reduction in incidents since implementation. The AI detection is incredibly accurate and the response time is lightning fast.",
-      avatar: "👩‍💼"
+      avatar: "/images/profiles/sarah-johnson.jpg"
     },
     {
       name: "Michael Chen",
@@ -22,7 +22,7 @@ const TestimonialsPage = () => {
       company: "Royal Casino",
       rating: 5,
       content: "The facial recognition and threat detection capabilities are outstanding. Our security team can now focus on prevention rather than reaction. NightShield has become an essential part of our operations.",
-      avatar: "👨‍💼"
+      avatar: "/images/profiles/michael-chen.jpg"
     },
     {
       name: "Emma Rodriguez",
@@ -30,7 +30,7 @@ const TestimonialsPage = () => {
       company: "Pulse Nightclub",
       rating: 5,
       content: "The mobile app alerts are game-changing. Our security staff receives instant notifications and can respond immediately. The system has paid for itself many times over in prevented incidents.",
-      avatar: "👩‍💼"
+      avatar: "/images/profiles/emma-rodriguez.jpg"
     }
   ]
 
@@ -167,7 +167,15 @@ const TestimonialsPage = () => {
 
                 {/* Author */}
                 <div className="flex items-center mt-auto">
-                  <div className="text-2xl mr-4">{testimonial.avatar}</div>
+                  <div className="w-12 h-12 mr-4 rounded-full overflow-hidden flex-shrink-0">
+                    <Image
+                      src={testimonial.avatar}
+                      alt={`${testimonial.name} profile picture`}
+                      width={48}
+                      height={48}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <div>
                     <div className="font-semibold text-white group-hover:text-red-100 transition-colors">{testimonial.name}</div>
                     <div className="text-sm text-gray-500">
@@ -256,8 +264,8 @@ const TestimonialsPage = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to Be Our First Real Customer?
+            <h2 className="text-5xl md:text-4xl font-bold mb-6">
+            Be One of the First to Experience What We Offer?
             </h2>
             <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed">
               Get a complete month of NightShield absolutely free. No strings attached, no hidden fees. 

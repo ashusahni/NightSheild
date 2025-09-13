@@ -115,7 +115,7 @@ const Navbar = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="hidden lg:flex items-center space-x-4"
+              className="hidden lg:flex items-center space-x-8"
             >
               {/* CTA Button */}
               <Link
