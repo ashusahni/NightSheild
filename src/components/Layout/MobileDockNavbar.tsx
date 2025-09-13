@@ -30,7 +30,7 @@ const MobileDockNavbar = () => {
   const pathname = usePathname()
 
   return (
-    <div className="fixed inset-x-0 bottom-4 z-[90] px-4 lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-[90] px-4 lg:hidden">
       <nav className="mx-auto max-w-md">
         <div className="flex items-center justify-between rounded-2xl border border-red-500/20 bg-black/80 px-3 py-2 backdrop-blur-xl shadow-[0_0_24px_rgba(239,_68,_68,_0.15),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(239,_68,_68,_0.1),_0_0_4px_rgba(239,_68,_68,_0.1),_0_16px_68px_rgba(0,_0,_0,_0.3),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]">
           {items.map(({ name, href, Icon }) => {
