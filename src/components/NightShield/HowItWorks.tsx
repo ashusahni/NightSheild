@@ -426,13 +426,7 @@ const HowItWorks = () => {
           )}
 
           {/* Performance Warning for Mobile */}
-          {isMobile && isLowPerformance && (
-            <div className="mt-4 flex items-center justify-center gap-2 animate-fadeIn">
-              <div className="w-3 h-3 bg-yellow-500 rounded-full animate-pulse" />
-              <span className="text-yellow-400 text-sm font-medium">Performance Mode: Simplified animations enabled</span>
-              <div className="w-3 h-3 bg-yellow-500 rounded-full animate-pulse" />
-            </div>
-          )}
+          
         </div>
 
         <div ref={containerRef} className={`grid lg:grid-cols-12 ${isMobile ? 'gap-3' : 'gap-4 sm:gap-6'} items-start`}>
@@ -461,7 +455,7 @@ const HowItWorks = () => {
                 onMouseLeave={!isMobile && activeStep === 1 ? handleCursorLeave : undefined}
                 onTouchStart={isMobile ? handleTouchStart : undefined}
                 onTouchEnd={isMobile ? handleTouchEnd : undefined}
-                onClick={() => handleStepClick(activeStep)}
+                onClick={isMobile ? () => handleStepClick((activeStep + 1) % features.length) : () => handleStepClick(activeStep)}
               >
                 {/* Feature-specific target areas */}
                 {activeStep === 0 && ( // Capture & Enhance
@@ -498,7 +492,7 @@ const HowItWorks = () => {
                       )}
                     </div>
                     {(isCursorActive || detectionStatus) && (
-                      <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-blue-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+                      <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 bg-blue-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
                         (isLowPerformance || isMobile) ? '' : 'animate-bounce'
                       }`}>
                         {detectionStatus}
@@ -543,7 +537,7 @@ const HowItWorks = () => {
                       )}
                     </div>
                     {(isCursorActive || detectionStatus) && (
-                      <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+                      <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
                         (isLowPerformance || isMobile) ? '' : 'animate-bounce'
                       }`}>
                         {detectionStatus}
@@ -592,7 +586,7 @@ const HowItWorks = () => {
                       )}
                     </div>
                     {(isCursorActive || detectionStatus) && (
-                      <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-yellow-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+                      <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 bg-yellow-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
                         (isLowPerformance || isMobile) ? '' : 'animate-bounce'
                       }`}>
                         {detectionStatus}
@@ -642,7 +636,7 @@ const HowItWorks = () => {
                       )}
                     </div>
                     {(isCursorActive || detectionStatus) && (
-                      <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+                      <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 bg-green-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
                         (isLowPerformance || isMobile) ? '' : 'animate-bounce'
                       }`}>
                         {detectionStatus}
@@ -735,16 +729,16 @@ const HowItWorks = () => {
                 <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
                   <button
                     onClick={startDemo}
-                    className="bg-red-500/90 hover:bg-red-500 text-white px-6 py-3 rounded-full font-semibold text-sm shadow-lg hover:shadow-red-500/25 transition-all duration-300 transform hover:scale-105 animate-pulse touch-manipulation active:scale-95"
+                    className={`bg-red-500/90 hover:bg-red-500 text-white font-semibold rounded-full shadow-lg hover:shadow-red-500/25 transition-all duration-300 transform hover:scale-105 animate-pulse touch-manipulation active:scale-95 ${isMobile ? 'px-4 py-2 text-xs' : 'px-6 py-3 text-sm'}`}
                   >
-                    🚀 {isMobile ? 'Tap to Try AI Demo' : 'Try AI Detection Demo'}
+                    🚀 {isMobile ? 'Try AI Demo' : 'Try AI Detection Demo'}
                   </button>
                 </div>
               )}
 
               {/* Reset Button */}
               {(isCursorActive || showDemoGuide) && (
-                <div className="absolute top-4 left-4">
+                <div className="absolute top-4 right-4">
                   <button
                     onClick={resetDemo}
                     className="bg-gray-600/80 hover:bg-gray-600 text-white px-4 py-2 rounded-full font-medium text-xs shadow-lg transition-all duration-300 transform hover:scale-105"
@@ -869,6 +863,7 @@ const HowItWorks = () => {
           <div className="lg:col-span-5 order-1 lg:order-2">
             <div className="relative">
               {/* Progress Indicator */}
+              {!isMobile && (
               <div className={`${isMobile ? 'mb-4' : 'mb-6 sm:mb-8'}`}>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs sm:text-sm font-medium text-gray-300">Progress</span>
@@ -882,6 +877,7 @@ const HowItWorks = () => {
                   />
                 </div>
               </div>
+              )}
 
               {/* Enhanced Vertical timeline line */}
               <div 
@@ -896,22 +892,24 @@ const HowItWorks = () => {
                     key={f.id}
                     ref={(el) => { cardRefs.current[idx] = el }}
                     data-index={idx}
-                    onClick={() => handleStepClick(idx)}
-                    className={`group relative transition-all duration-300 cursor-pointer will-change-transform touch-manipulation ${
-                      activeStep === idx 
-                        ? 'scale-[1.02]' 
-                        : 'hover:scale-[1.01] active:scale-[1.02]'
+                    onClick={isMobile ? undefined : () => handleStepClick(idx)}
+                    className={`group relative transition-all duration-300 will-change-transform touch-manipulation ${isMobile ? '' : 'cursor-pointer'} ${
+                      activeStep === idx && !isMobile
+                        ? 'scale-[1.02]'
+                        : !isMobile
+                        ? 'hover:scale-[1.01] active:scale-[1.02]'
+                        : ''
                     }`}
                   >
                     {/* Enhanced Step number circle */}
                     <div className={`absolute left-0 top-0 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full border-2 flex items-center justify-center text-sm sm:text-base font-bold transition-all duration-300 ${
-                      activeStep === idx
+                      activeStep === idx && !isMobile
                         ? 'border-red-500 bg-red-500/20 text-red-400 shadow-lg shadow-red-500/30'
                         : 'border-red-500/40 bg-black/80 text-red-500/80 group-hover:border-red-500/60 group-hover:text-red-400'
                     }`}>
                       {idx + 1}
                       {/* Pulse effect for active step */}
-                      {activeStep === idx && (
+                      {activeStep === idx && !isMobile && (
                         <div className="absolute inset-0 rounded-full border-2 border-red-500 animate-ping opacity-75" />
                       )}
                     </div>
@@ -931,13 +929,13 @@ const HowItWorks = () => {
 
                     {/* Enhanced Feature card */}
                     <div className={`${isMobile ? 'ml-10' : 'ml-12 sm:ml-16 md:ml-20'} rounded-lg border ${isMobile ? 'p-3' : 'p-3 sm:p-4 md:p-5'} transition-all duration-300 ${
-                      activeStep === idx
+                      activeStep === idx && !isMobile
                         ? 'bg-card-bg/95 border-red-500/60 shadow-lg shadow-red-500/10'
                         : 'bg-card-bg/95 border-red-500/20 hover:border-red-500/40'
                     }`}>
                       <div className={`flex items-start ${isMobile ? 'gap-2' : 'gap-3 sm:gap-4'}`}>
                         <div className={`relative ${isMobile ? 'w-6 h-6' : 'w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12'} shrink-0 rounded-md overflow-hidden border transition-all duration-300 flex items-center justify-center ${
-                          activeStep === idx
+                          activeStep === idx && !isMobile
                             ? `border-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500/50 bg-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500/10 rotate-3 scale-[1.05]`
                             : 'border-red-500/30 bg-black/90 group-hover:rotate-3 group-hover:scale-[1.03]'
                         }`}>
@@ -945,7 +943,7 @@ const HowItWorks = () => {
                             src={f.thumb} 
                             alt={f.title} 
                             className={`${isMobile ? 'w-3 h-3' : 'w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6'} transition-all duration-300 ${
-                              activeStep === idx 
+                              activeStep === idx && !isMobile 
                                 ? `text-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500 ${!isMobile ? 'animate-pulse' : ''}` 
                                 : 'text-red-500'
                             }`} 
@@ -970,7 +968,7 @@ const HowItWorks = () => {
                         </div>
                         <div className="flex-1">
                           <h3 className={`${isMobile ? 'text-sm' : 'text-base sm:text-lg'} font-semibold ${isMobile ? 'mb-1' : 'mb-1 sm:mb-2'} transition-colors ${
-                            activeStep === idx
+                            activeStep === idx && !isMobile
                               ? 'text-red-400'
                               : 'text-white group-hover:text-red-400'
                           }`}>
