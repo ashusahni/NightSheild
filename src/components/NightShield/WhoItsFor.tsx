@@ -330,7 +330,7 @@ const WhoItsFor = () => {
                               whileHover={{ scale: 1.5, rotate: 180 }}
                               transition={{ duration: 0.3 }}
                             ></motion.div>
-                            <span className="text-white text-xs group-hover/item:text-green-100 transition-colors duration-300">Camera 12: Motion detected</span>
+                            <span className="text-white text-xs group-hover/item:text-green-100 transition-colors duration-300">Recent Activity: Full detected</span>
                           </motion.div>
                           <motion.div 
                             initial={{ opacity: 0, x: -10 }}
@@ -360,7 +360,7 @@ const WhoItsFor = () => {
                               whileHover={{ scale: 1.5, rotate: 180 }}
                               transition={{ duration: 0.3 }}
                             ></motion.div>
-                            <span className="text-white text-xs group-hover/item:text-yellow-100 transition-colors duration-300">Alert: Unusual pattern detected</span>
+                            <span className="text-white text-xs group-hover/item:text-yellow-100 transition-colors duration-300">Alert: Fire protected</span>
                           </motion.div>
                         </div>
                       </motion.div>
