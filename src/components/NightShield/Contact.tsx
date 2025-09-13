@@ -4,7 +4,11 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import CalendlyEmbed from './CalendlyEmbed'
 
-const Contact = () => {
+interface ContactProps {
+  compact?: boolean
+}
+
+const Contact = ({ compact = false }: ContactProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -75,7 +79,7 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contact" className="py-20 relative overflow-hidden">
+    <section id="contact" className={`${compact ? 'pt-12 pb-0' : 'py-20'} relative overflow-hidden`}>
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black"></div>
       <div className="absolute inset-0 grid-texture opacity-10"></div>

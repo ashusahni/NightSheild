@@ -276,7 +276,7 @@ What I care about:
 
   return (
     <div className="bg-black text-white min-h-screen">
-      <div className="pt-20">
+      <div className="lg:pt-20">
         {/* Hero Section */}
         <section className="relative overflow-hidden py-12 md:py-16 px-4">
           {/* Background Gradient */}
@@ -695,7 +695,7 @@ What I care about:
             </div>
           </div>
           
-          <Contact />
+          <Contact compact />
         </section>
       </div>
     </div>

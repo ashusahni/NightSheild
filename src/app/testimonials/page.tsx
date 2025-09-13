@@ -3,8 +3,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import Contact from '@/components/NightShield/Contact'
+import { IconShield } from '@tabler/icons-react'
 
 const TestimonialsPage = () => {
   const testimonials = [
@@ -49,10 +49,14 @@ const TestimonialsPage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <div className="pt-20">
+      <div className="">
         {/* Hero Section */}
-        <section className="relative py-24 px-4 min-h-[80vh] flex items-center">
-        <div className="container mx-auto text-center max-w-6xl">
+        <section className="relative lg:pt-30 overflow-hidden py-12 md:py-16 px-4 min-h-[80vh] flex items-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/10"></div>
+        <div className="absolute top-10 left-10 w-32 h-32 md:w-48 md:h-48 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 md:w-64 md:h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="container mx-auto text-center max-w-6xl relative z-10">
           {/* Mobile Logo */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -60,14 +64,7 @@ const TestimonialsPage = () => {
             transition={{ duration: 0.6 }}
             className="flex justify-center mb-8 md:hidden"
           >
-            <Image 
-              src="/images/logo/TRANSPARENT LOGO + TEXT.png" 
-              alt="NightShield Logo" 
-              width={200}
-              height={64}
-              className="h-16 w-auto"
-              priority
-            />
+            
           </motion.div>
 
           <motion.div
@@ -75,8 +72,19 @@ const TestimonialsPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-            Join us on our mission
+            {/* Icon with glow effect */}
+            <div className="relative inline-block mb-4 md:mb-6">
+              <div className="absolute inset-0 bg-red-500/20 rounded-full blur-xl scale-150"></div>
+              <div className="relative bg-gradient-to-r from-red-500 to-red-600 p-2 md:p-3 rounded-xl shadow-2xl">
+                <IconShield size={24} className="md:hidden text-white" />
+                <IconShield size={32} className="hidden md:block text-white" />
+              </div>
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-6 leading-tight px-2">
+              <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">Join us</span>
+              <br />
+              <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">on our mission</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-5xl mx-auto leading-relaxed">
               Get a month of NightShield completely free and honest feedback. 
@@ -84,18 +92,18 @@ const TestimonialsPage = () => {
             </p>
             
             {/* Value Proposition Cards */}
-            <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
-              <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
+            <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto px-2">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg p-6 hover:bg-white/10 hover:border-red-500/30 transition-all">
                 <div className="text-3xl mb-3">🚀</div>
                 <h3 className="text-lg font-semibold text-white mb-2">Free Trial</h3>
                 <p className="text-gray-400 text-sm">Complete month of NightShield at no cost</p>
               </div>
-              <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg p-6 hover:bg-white/10 hover:border-red-500/30 transition-all">
                 <div className="text-3xl mb-3">🤝</div>
                 <h3 className="text-lg font-semibold text-white mb-2">Honest Feedback</h3>
                 <p className="text-gray-400 text-sm">Help us improve while you benefit</p>
               </div>
-              <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg p-6 hover:bg-white/10 hover:border-red-500/30 transition-all">
                 <div className="text-3xl mb-3">🛡️</div>
                 <h3 className="text-lg font-semibold text-white mb-2">Full Protection</h3>
                 <p className="text-gray-400 text-sm">Complete AI security system included</p>
@@ -130,8 +138,10 @@ const TestimonialsPage = () => {
       </section>
 
       {/* Case Studies Section */}
-      <section className="py-20 px-4 bg-gray-900/30">
-        <div className="container mx-auto max-w-6xl">
+      <section className="relative py-12 md:py-16 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 via-transparent to-red-500/5"></div>
+        <div className="container mx-auto max-w-6xl relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -153,7 +163,7 @@ const TestimonialsPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gray-900/50 border border-gray-800 rounded-xl p-8 hover:bg-gray-900/70 hover:border-gray-700 transition-all group flex flex-col h-full"
+                className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-8 hover:bg-white/10 hover:border-red-500/30 transition-all group flex flex-col h-full"
               >
                 {/* Rating */}
                 <div className="flex mb-4">
@@ -190,8 +200,10 @@ const TestimonialsPage = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
+      <section className="relative py-12 md:py-16 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/10"></div>
+        <div className="container mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -255,8 +267,12 @@ const TestimonialsPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4 bg-gradient-to-r from-gray-900/50 to-gray-800/50">
-        <div className="container mx-auto max-w-6xl">
+      <section className="relative py-12 md:py-16 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-transparent to-red-500/20"></div>
+        <div className="absolute top-1/4 left-1/4 w-40 h-40 md:w-64 md:h-64 bg-red-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-32 h-32 md:w-48 md:h-48 bg-red-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="container mx-auto max-w-6xl relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -274,7 +290,7 @@ const TestimonialsPage = () => {
             
             <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
               {/* What You Get */}
-              <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-8 text-left">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-8 text-left hover:bg-white/10 hover:border-red-500/30 transition-all">
                 <h3 className="text-2xl md:text-3xl font-semibold text-white mb-6">
                   What You Get:
                 </h3>
@@ -315,7 +331,7 @@ const TestimonialsPage = () => {
               </div>
 
               {/* Why This Matters */}
-              <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-8 text-left">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-8 text-left hover:bg-white/10 hover:border-red-500/30 transition-all">
                 <h3 className="text-2xl md:text-3xl font-semibold text-white mb-6">
                   Why This Matters:
                 </h3>
@@ -354,7 +370,7 @@ const TestimonialsPage = () => {
 
           </motion.div>
         </div>
-        <Contact />
+        <Contact compact />
       </section>
       </div>
     </div>
