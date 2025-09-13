@@ -33,7 +33,7 @@ const Hero = () => {
 
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden aurora-bg pt-20" style={{
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden aurora-bg" style={{
       boxShadow: 'inset 0 0 100px rgba(139, 0, 0, 0.1)'
     }}>
 
@@ -42,7 +42,7 @@ const Hero = () => {
       <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
         {isMobile ? (
           // Mobile-optimized static background matching website theme
-          <div className="w-full h-full bg-gradient-to-br from-black via-red-900/20 to-black">
+          <div className=" w-full h-full bg-gradient-to-br from-black via-red-900/20 to-black">
             <div className="absolute inset-0 bg-gradient-to-r from-red-900/10 via-transparent to-red-900/10"></div>
             <div 
               className="absolute inset-0 pointer-events-none"

@@ -322,79 +322,57 @@ const Features = () => {
   }, [isHovered, features.length])
 
   return (
-    <section id="features" className="py-24 relative overflow-hidden bg-black">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-red-600/5" />
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl"
-          animate={{ scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10" ref={containerRef}>
-        {/* Mobile Logo */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-          transition={{ duration: 0.6 }}
-          className="flex justify-center mb-8 md:hidden pt-24"
-        >
-          <Image 
-            src="/images/logo/TRANSPARENT LOGO + TEXT.png" 
-            alt="NightShield Logo" 
-            width={180}
-            height={58}
-            className="h-14 w-auto"
-            priority
-          />
-        </motion.div>
-
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <motion.h2 
-            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Powerful <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">Features</span>
-          </motion.h2>
-          <motion.p
-            className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
+    <section id="features" className="relative lg:pt-30 overflow-hidden py-12 md:py-16 px-4">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/10"></div>
+      
+      {/* Animated Background Elements */}
+      <div className="absolute top-10 left-10 w-32 h-32 md:w-48 md:h-48 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-10 right-10 w-40 h-40 md:w-64 md:h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      
+      <div className="container mx-auto relative z-10 pt-20 md:pt-0" ref={containerRef}>
+        {/* Hero Section */}
+        <div className="text-center max-w-4xl mx-auto mb-16">
+          {/* Icon with glow effect */}
+          <div className="relative inline-block mb-4 md:mb-6">
+            <div className="absolute inset-0 bg-red-500/20 rounded-full blur-xl scale-150"></div>
+            <div className="relative bg-gradient-to-r from-red-500 to-red-600 p-2 md:p-3 rounded-xl shadow-2xl">
+              <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+          </div>
+          
+          {/* Main heading with gradient text */}
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-black mb-4 md:mb-6 leading-tight px-2">
+            <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+              Powerful  <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">Features</span>
+            </span>
+            
+            
+          </h1>
+          
+          {/* Subtitle with modern styling */}
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light px-2">
             Everything you need to protect your venue with cutting-edge AI surveillance technology
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* Interactive Feature Cards */}
-        <div className="mb-20">
+        <div className="mb-12 md:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-8 md:mb-16 px-2"
           >
-            <h3 className="text-3xl font-bold text-white mb-4">Available Now</h3>
-            <p className="text-gray-400 text-base">Core features ready for deployment</p>
+            <h3 className="text-2xl sm:text-3xl md:text-3xl font-bold text-white mb-3 md:mb-4">Available Now</h3>
+            <p className="text-gray-400 text-sm md:text-base">Core features ready for deployment</p>
           </motion.div>
 
           <div 
-            className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto px-2"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -407,7 +385,7 @@ const Features = () => {
                   animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
                   transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                   className={cn(
-                    "relative p-6 rounded-2xl border transition-all duration-500 cursor-pointer group",
+                    "relative p-4 md:p-6 rounded-2xl border transition-all duration-500 cursor-pointer group",
                     activeFeature === index
                       ? "bg-gradient-to-r from-gray-900/90 to-gray-800/90 border-red-500/50 shadow-2xl shadow-red-500/20"
                       : "bg-gray-900/50 border-gray-800 hover:border-gray-600"
@@ -423,10 +401,10 @@ const Features = () => {
                     </div>
                   )}
 
-                  <div className="flex items-start space-x-4">
+                  <div className="flex items-start space-x-3 md:space-x-4">
                     <motion.div
                       className={cn(
-                        "p-3 rounded-xl transition-all duration-500",
+                        "p-2 md:p-3 rounded-xl transition-all duration-500",
                         activeFeature === index ? "bg-red-500/20 text-red-400" : "bg-gray-800 text-gray-400"
                       )}
                       whileHover={{ rotate: 5, scale: 1.1 }}
@@ -434,14 +412,14 @@ const Features = () => {
                       {feature.icon}
                     </motion.div>
                     <div className="flex-1">
-                      <h4 className="text-xl font-bold text-white mb-2 group-hover:text-red-100 transition-colors">
+                      <h4 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-red-100 transition-colors">
                         {feature.title}
                       </h4>
-                      <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors">
+                      <p className="text-gray-400 text-xs md:text-sm leading-relaxed group-hover:text-gray-300 transition-colors">
                         {feature.description}
                       </p>
-                      <div className="mt-3 flex items-center justify-between">
-                        <span className="text-red-400 font-semibold text-sm">{feature.stats}</span>
+                      <div className="mt-2 md:mt-3 flex items-center justify-between">
+                        <span className="text-red-400 font-semibold text-xs md:text-sm">{feature.stats}</span>
                         <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
                       </div>
                     </div>
@@ -463,16 +441,16 @@ const Features = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
               transition={{ duration: 0.6, delay: 1.2 }}
-              className="relative"
+              className="relative mt-8 lg:mt-0 hidden lg:block"
             >
-              <div className="sticky top-24">
+              <div className="lg:sticky lg:top-24">
                 <motion.div
                   key={activeFeature}
                   initial={{ opacity: 0, scale: 0.8, rotateY: 90 }}
                   animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                   transition={{ duration: 0.8, type: "spring" }}
                   className={cn(
-                    "relative p-8 rounded-3xl border-2 bg-gradient-to-br backdrop-blur-xl",
+                    "relative p-6 md:p-8 rounded-3xl border-2 bg-gradient-to-br backdrop-blur-xl",
                     `bg-gradient-to-br ${features[activeFeature].gradient}`,
                     "border-white/20 shadow-2xl"
                   )}
@@ -484,7 +462,7 @@ const Features = () => {
 
                   <div className="relative z-10">
                     <motion.div
-                      className="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 mx-auto"
+                      className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mb-4 md:mb-6 mx-auto"
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.8 }}
                     >
@@ -493,29 +471,29 @@ const Features = () => {
                       </div>
                     </motion.div>
 
-                    <h3 className="text-3xl font-bold text-white text-center mb-4">
+                    <h3 className="text-xl md:text-3xl font-bold text-white text-center mb-3 md:mb-4">
                       {features[activeFeature].title}
                     </h3>
 
-                    <p className="text-gray-300 text-center leading-relaxed mb-6">
+                    <p className="text-gray-300 text-center leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
                       {features[activeFeature].description}
                     </p>
 
                     <div className="text-center">
-                      <div className="inline-flex items-center space-x-2 bg-white/10 rounded-full px-6 py-3">
-                        <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse" />
-                        <span className="text-white font-semibold">{features[activeFeature].stats}</span>
+                      <div className="inline-flex items-center space-x-2 bg-white/10 rounded-full px-4 md:px-6 py-2 md:py-3">
+                        <div className="w-2 h-2 md:w-3 md:h-3 bg-red-400 rounded-full animate-pulse" />
+                        <span className="text-white font-semibold text-sm md:text-base">{features[activeFeature].stats}</span>
                       </div>
                     </div>
 
                     {/* Progress indicators */}
-                    <div className="flex justify-center space-x-2 mt-8">
+                    <div className="flex justify-center space-x-2 mt-6 md:mt-8">
                       {features.map((_, index) => (
                         <motion.div
                           key={index}
                           className={cn(
                             "w-2 h-2 rounded-full cursor-pointer transition-all duration-300",
-                            activeFeature === index ? "bg-red-500 w-8" : "bg-gray-600"
+                            activeFeature === index ? "bg-red-500 w-6 md:w-8" : "bg-gray-600"
                           )}
                           onClick={() => setActiveFeature(index)}
                           whileHover={{ scale: 1.2 }}
@@ -529,19 +507,51 @@ const Features = () => {
           </div>
         </div>
 
+        {/* Mobile Feature Visualization (carousel) */}
+        <div className="lg:hidden mt-6 px-2">
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2">
+            {features.map((feature, index) => (
+              <div
+                key={`mobile-${index}`}
+                className={cn(
+                  "min-w-[85%] p-5 rounded-2xl border bg-gradient-to-br backdrop-blur-xl snap-center",
+                  feature.gradient,
+                  "border-white/10 shadow-2xl"
+                )}
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mb-4">
+                  <div className="text-white scale-125">
+                    {feature.icon}
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                  {feature.description}
+                </p>
+                <span className="inline-flex items-center space-x-2 bg-white/10 rounded-full px-4 py-2">
+                  <span className="w-2 h-2 bg-red-400 rounded-full animate-pulse" />
+                  <span className="text-white font-semibold text-sm">{feature.stats}</span>
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Coming Soon Features */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 1.4 }}
-          className="mb-20"
+          className="mb-12 md:mb-20"
         >
-          <div className="text-center mb-16">
-            <h3 className="text-4xl font-bold text-gray-400 mb-4">Coming Soon</h3>
-            <p className="text-gray-500 text-lg">Advanced features in development</p>
+          <div className="text-center mb-8 md:mb-16 px-2">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-400 mb-3 md:mb-4">Coming Soon</h3>
+            <p className="text-gray-500 text-sm md:text-lg">Advanced features in development</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto px-2">
             {upcomingFeatures.map((feature, index) => (
               <motion.div
                 key={index}
@@ -551,7 +561,7 @@ const Features = () => {
                 className="group relative"
               >
                 <motion.div
-                  className="relative p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-gray-600 transition-all duration-500 h-full"
+                  className="relative p-4 md:p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-gray-600 transition-all duration-500 h-full"
                   whileHover={{ 
                     scale: 1.05, 
                     y: -10,
@@ -565,32 +575,32 @@ const Features = () => {
 
                   <motion.div
                     className={cn(
-                      "w-16 h-16 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br",
+                      "w-12 h-12 md:w-16 md:h-16 rounded-xl flex items-center justify-center mb-3 md:mb-4 bg-gradient-to-br",
                       feature.gradient
                     )}
                     whileHover={{ rotate: 5, scale: 1.1 }}
                   >
-                    <div className="text-white">
+                    <div className="text-white scale-75 md:scale-100">
                       {feature.icon}
                     </div>
                   </motion.div>
 
-                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">
+                  <h4 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3 group-hover:text-gray-200 transition-colors">
                     {feature.title}
                   </h4>
 
-                  <p className="text-gray-400 text-sm leading-relaxed mb-4 group-hover:text-gray-300 transition-colors">
+                  <p className="text-gray-400 text-xs md:text-sm leading-relaxed mb-3 md:mb-4 group-hover:text-gray-300 transition-colors">
                     {feature.description}
                   </p>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-red-400 font-semibold text-sm">{feature.eta}</span>
+                    <span className="text-red-400 font-semibold text-xs md:text-sm">{feature.eta}</span>
                     <motion.div
-                      className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center"
+                      className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-800 flex items-center justify-center"
                       whileHover={{ rotate: 180 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3 h-3 md:w-4 md:h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                       </svg>
                     </motion.div>
@@ -614,14 +624,14 @@ const Features = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 2.0 }}
-          className="mb-32"
+          className="mb-16 md:mb-32"
         >
-          <div className="text-center mb-16">
-            <h3 className="text-4xl font-bold text-white mb-4">Technical Specifications</h3>
-            <p className="text-gray-400 text-lg">Enterprise-grade hardware and software capabilities</p>
+          <div className="text-center mb-8 md:mb-16 px-2">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 md:mb-4">Technical Specifications</h3>
+            <p className="text-gray-400 text-sm md:text-lg">Enterprise-grade hardware and software capabilities</p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto px-2">
             {technicalSpecs.map((category, categoryIndex) => (
               <motion.div
                 key={categoryIndex}
@@ -630,34 +640,34 @@ const Features = () => {
                 transition={{ duration: 0.6, delay: 2.2 + categoryIndex * 0.2 }}
                 className="relative"
               >
-                <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 rounded-3xl p-8 border border-gray-700 hover:border-gray-600 transition-all duration-500 h-full">
-                  <h4 className="text-2xl font-bold text-white mb-8 text-center">{category.category}</h4>
+                <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 rounded-3xl p-6 md:p-8 border border-gray-700 hover:border-gray-600 transition-all duration-500 h-full">
+                  <h4 className="text-xl md:text-2xl font-bold text-white mb-6 md:mb-8 text-center">{category.category}</h4>
                   
-                  <div className="space-y-6">
+                  <div className="space-y-4 md:space-y-6">
                     {category.specs.map((spec, specIndex) => (
                       <motion.div
                         key={specIndex}
                         initial={{ opacity: 0, y: 20 }}
                         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                         transition={{ duration: 0.4, delay: 2.4 + categoryIndex * 0.2 + specIndex * 0.1 }}
-                        className="flex items-center justify-between p-4 bg-black/30 rounded-xl hover:bg-black/50 transition-all duration-300 group"
+                        className="flex items-center justify-between p-3 md:p-4 bg-black/30 rounded-xl hover:bg-black/50 transition-all duration-300 group"
                       >
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-3 md:space-x-4">
                           <motion.div
-                            className="text-2xl"
+                            className="text-xl md:text-2xl"
                             whileHover={{ scale: 1.2, rotate: 10 }}
                             transition={{ duration: 0.2 }}
                           >
                             {spec.icon}
                           </motion.div>
                           <div>
-                            <p className="text-gray-300 font-medium group-hover:text-white transition-colors">
+                            <p className="text-gray-300 font-medium group-hover:text-white transition-colors text-sm md:text-base">
                               {spec.name}
                             </p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="text-red-400 font-bold text-sm">
+                          <p className="text-red-400 font-bold text-xs md:text-sm">
                             {spec.value}
                           </p>
                         </div>
@@ -681,14 +691,14 @@ const Features = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 2.4 }}
-          className="mb-32"
+          className="mb-16 md:mb-32"
         >
-          <div className="text-center mb-16">
-            <h3 className="text-4xl font-bold text-white mb-4">Advanced Security</h3>
-            <p className="text-gray-400 text-lg">Enterprise-grade security and compliance standards</p>
+          <div className="text-center mb-8 md:mb-16 px-2">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 md:mb-4">Advanced Security</h3>
+            <p className="text-gray-400 text-sm md:text-lg">Enterprise-grade security and compliance standards</p>
           </div>
 
-          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto px-2">
             {securityFeatures.map((feature, index) => (
               <motion.div
                 key={index}
@@ -699,7 +709,7 @@ const Features = () => {
               >
                 <motion.div
                   className={cn(
-                    "relative p-6 rounded-2xl border transition-all duration-500 h-full bg-gradient-to-br",
+                    "relative p-4 md:p-6 rounded-2xl border transition-all duration-500 h-full bg-gradient-to-br",
                     feature.gradient,
                     "border-gray-700 hover:border-gray-500 backdrop-blur-sm"
                   )}
@@ -715,18 +725,18 @@ const Features = () => {
                   </div>
 
                   <motion.div
-                    className="text-4xl mb-4 text-center"
+                    className="text-3xl md:text-4xl mb-3 md:mb-4 text-center"
                     whileHover={{ rotate: 10, scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   >
                     {feature.icon}
                   </motion.div>
 
-                  <h4 className="text-xl font-bold text-white mb-3 text-center group-hover:text-gray-200 transition-colors">
+                  <h4 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3 text-center group-hover:text-gray-200 transition-colors">
                     {feature.title}
                   </h4>
 
-                  <p className="text-gray-400 text-sm leading-relaxed text-center group-hover:text-gray-300 transition-colors">
+                  <p className="text-gray-400 text-xs md:text-sm leading-relaxed text-center group-hover:text-gray-300 transition-colors">
                     {feature.description}
                   </p>
 
@@ -748,14 +758,14 @@ const Features = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 2.8 }}
-          className="mb-32"
+          className="mb-16 md:mb-32"
         >
-          <div className="text-center mb-16">
-            <h3 className="text-4xl font-bold text-white mb-4">Analytics & Reporting</h3>
-            <p className="text-gray-400 text-lg">Comprehensive insights and intelligent reporting</p>
+          <div className="text-center mb-8 md:mb-16 px-2">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 md:mb-4">Analytics & Reporting</h3>
+            <p className="text-gray-400 text-sm md:text-lg">Comprehensive insights and intelligent reporting</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto px-2">
             {analyticsFeatures.map((feature, index) => (
               <motion.div
                 key={index}
@@ -765,7 +775,7 @@ const Features = () => {
                 className="group relative"
               >
                 <motion.div
-                  className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-2xl p-6 border border-gray-700 hover:border-red-500/50 transition-all duration-500 h-full"
+                  className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-2xl p-4 md:p-6 border border-gray-700 hover:border-red-500/50 transition-all duration-500 h-full"
                   whileHover={{ 
                     scale: 1.03, 
                     y: -5,
@@ -773,18 +783,18 @@ const Features = () => {
                   }}
                 >
                   <motion.div
-                    className="text-3xl mb-4 flex items-center justify-center"
+                    className="text-2xl md:text-3xl mb-3 md:mb-4 flex items-center justify-center"
                     whileHover={{ scale: 1.2, rotate: 5 }}
                     transition={{ duration: 0.3 }}
                   >
                     {feature.icon}
                   </motion.div>
 
-                  <h4 className="text-lg font-bold text-white mb-3 text-center group-hover:text-red-100 transition-colors">
+                  <h4 className="text-base md:text-lg font-bold text-white mb-2 md:mb-3 text-center group-hover:text-red-100 transition-colors">
                     {feature.title}
                   </h4>
 
-                  <p className="text-gray-400 text-sm leading-relaxed text-center mb-4 group-hover:text-gray-300 transition-colors">
+                  <p className="text-gray-400 text-xs md:text-sm leading-relaxed text-center mb-3 md:mb-4 group-hover:text-gray-300 transition-colors">
                     {feature.description}
                   </p>
 
@@ -812,14 +822,14 @@ const Features = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 3.6 }}
-          className="mb-32"
+          className="mb-16 md:mb-32"
         >
-          <div className="text-center mb-16">
-            <h3 className="text-4xl font-bold text-white mb-4">Deployment Options</h3>
-            <p className="text-gray-400 text-lg">Flexible installation methods to suit your needs</p>
+          <div className="text-center mb-8 md:mb-16 px-2">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 md:mb-4">Deployment Options</h3>
+            <p className="text-gray-400 text-sm md:text-lg">Flexible installation methods to suit your needs</p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto px-2">
             {deploymentOptions.map((option, index) => (
               <motion.div
                 key={index}
@@ -829,7 +839,7 @@ const Features = () => {
                 className="group relative"
               >
                 <motion.div
-                  className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-3xl p-8 border border-gray-700 hover:border-red-500/50 transition-all duration-500 h-full"
+                  className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-3xl p-6 md:p-8 border border-gray-700 hover:border-red-500/50 transition-all duration-500 h-full"
                   whileHover={{ 
                     scale: 1.03, 
                     y: -10,
@@ -837,18 +847,18 @@ const Features = () => {
                   }}
                 >
                   <motion.div
-                    className="text-5xl mb-6 text-center"
+                    className="text-4xl md:text-5xl mb-4 md:mb-6 text-center"
                     whileHover={{ scale: 1.2, rotate: 10 }}
                     transition={{ duration: 0.4 }}
                   >
                     {option.icon}
                   </motion.div>
 
-                  <h4 className="text-2xl font-bold text-white mb-4 text-center group-hover:text-red-100 transition-colors">
+                  <h4 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 text-center group-hover:text-red-100 transition-colors">
                     {option.title}
                   </h4>
 
-                  <p className="text-gray-400 leading-relaxed text-center mb-6 group-hover:text-gray-300 transition-colors">
+                  <p className="text-gray-400 leading-relaxed text-center mb-4 md:mb-6 group-hover:text-gray-300 transition-colors text-sm md:text-base">
                     {option.description}
                   </p>
 
@@ -899,20 +909,20 @@ const Features = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 4.0 }}
-          className="mb-20"
+          className="mb-12 md:mb-20"
         >
-          <div className="text-center mb-16">
-            <h3 className="text-4xl font-bold text-white mb-4">Support & Maintenance</h3>
-            <p className="text-gray-400 text-lg">24/7 support and continuous system optimization</p>
+          <div className="text-center mb-8 md:mb-16 px-2">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 md:mb-4">Support & Maintenance</h3>
+            <p className="text-gray-400 text-sm md:text-lg">24/7 support and continuous system optimization</p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto px-2">
             <motion.div
-              className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-3xl p-8 border border-gray-700"
+              className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-3xl p-6 md:p-8 border border-gray-700"
               whileHover={{ scale: 1.02, boxShadow: "0 25px 50px rgba(0,0,0,0.3)" }}
               transition={{ duration: 0.5 }}
             >
-              <div className="grid md:grid-cols-3 gap-8 text-center">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -920,19 +930,19 @@ const Features = () => {
                   className="group"
                 >
                   <motion.div
-                    className="text-5xl mb-4 flex justify-center"
+                    className="text-4xl md:text-5xl mb-3 md:mb-4 flex justify-center"
                     whileHover={{ scale: 1.3, rotate: 15 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </motion.div>
-                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-red-300 transition-colors">
+                  <h4 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3 group-hover:text-red-300 transition-colors">
                     24/7 Technical Support
                   </h4>
-                  <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors">
+                  <p className="text-gray-400 text-xs md:text-sm leading-relaxed group-hover:text-gray-300 transition-colors">
                     Round-the-clock expert support with average response time under 15 minutes
                   </p>
                   <div className="mt-3">
@@ -1007,19 +1017,19 @@ const Features = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 4.8 }}
-                className="text-center mt-12"
+                className="text-center mt-8 md:mt-12"
               >
                 <motion.button onClick={() => {
                   const element = document.querySelector('#contact')
                   if (element) element.scrollIntoView({ behavior: 'smooth' })
                 }}
-                  className="bg-gradient-to-r from-red-500 to-red-600 text-white font-bold py-4 px-8 rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="bg-gradient-to-r from-red-500 to-red-600 text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl text-sm md:text-base"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Get Started Today
                 </motion.button>
-                <p className="text-gray-400 text-sm mt-3">
+                <p className="text-gray-400 text-xs md:text-sm mt-2 md:mt-3">
                   Contact our team for a personalized demo and consultation
                 </p>
               </motion.div>
@@ -1027,7 +1037,7 @@ const Features = () => {
           </div>
         </motion.div>
       </div>
-      <Contact />
+      <Contact compact />
     </section>
   )
 }

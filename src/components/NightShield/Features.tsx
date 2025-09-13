@@ -196,11 +196,7 @@ const Features = () => {
             <p className="text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed">
               Core features ready for immediate deployment with cutting-edge AI surveillance technology
             </p>
-            <div className="flex justify-center mt-3 sm:mt-4">
-              <div className="bg-red-500/10 border border-red-500/30 rounded-full px-4 sm:px-6 py-1.5 sm:py-2">
-                <span className="text-red-400 font-semibold text-xs sm:text-sm">Scroll down to see features in action</span>
-              </div>
-            </div>
+            
           </div>
 
           {/* ScrollStack Container - Centered and Optimized */}
@@ -216,6 +212,7 @@ const Features = () => {
               rotationAmount={0}
               blurAmount={0}
               onStackComplete={() => console.log('Stack animation completed')}
+              subtext="Scroll down to see features in action"
             >
               {availableFeatures.map((feature, index) => (
                 <ScrollStackItem key={index} itemClassName="bg-[#1A1A1F] border border-red-500/30 p-4 sm:p-6">

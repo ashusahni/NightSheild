@@ -96,27 +96,13 @@ const HowItWorks = () => {
     setDetectionStatus('')
     setShowDetectionOverlay(false)
     
-    // Animate the main image - lighter animation for mobile
-    if (stickyRef.current) {
-      if (isMobile) {
-        // Use CSS transition for mobile instead of GSAP
-        stickyRef.current.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out'
-        stickyRef.current.style.transform = 'scale(0.95)'
-        stickyRef.current.style.opacity = '0.7'
-        
-        requestAnimationFrame(() => {
-          if (stickyRef.current) {
-            stickyRef.current.style.transform = 'scale(1)'
-            stickyRef.current.style.opacity = '1'
-          }
-        })
-      } else {
-        // Use GSAP for desktop
-        gsap.fromTo(stickyRef.current, 
-          { scale: 0.95, opacity: 0.7 },
-          { scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' }
-        )
-      }
+    // Minimal animation for mobile to prevent lag
+    if (stickyRef.current && !isMobile) {
+      // Only animate on desktop
+      gsap.fromTo(stickyRef.current, 
+        { scale: 0.98, opacity: 0.8 },
+        { scale: 1, opacity: 1, duration: 0.2, ease: 'power1.out' }
+      )
     }
   }, [selectedImageIndex, isMobile])
 
@@ -127,23 +113,25 @@ const HowItWorks = () => {
     setShowDetectionOverlay(true)
     setDetectionStatus('AI Analyzing...')
     
-    // Simulate AI detection process with much slower timing (2.5 seconds total)
+    // Faster timing for mobile to reduce lag and improve UX
+    const timingMultiplier = isMobile ? 0.6 : 1
+    
     setTimeout(() => {
       setDetectionStatus('Threat Detected!')
-    }, 600)
+    }, 400 * timingMultiplier)
     
     setTimeout(() => {
       setDetectionStatus('Alert Sent!')
-    }, 1200)
+    }, 800 * timingMultiplier)
     
     setTimeout(() => {
       setDetectionStatus('Security Notified!')
-    }, 1800)
+    }, 1200 * timingMultiplier)
     
     setTimeout(() => {
       setDetectionStatus('Response Deployed!')
-    }, 2400)
-  }, [])
+    }, 1600 * timingMultiplier)
+  }, [isMobile])
 
   const handleCursorLeave = useCallback(() => {
     // Add slight delay to prevent flickering
@@ -226,46 +214,29 @@ const HowItWorks = () => {
   const handleStepClick = useCallback((stepIndex: number) => {
     setActiveStep(stepIndex)
     
-    // Animate the clicked step - lighter animation for mobile
+    // Minimal animation for mobile to prevent lag
     const stepElement = cardRefs.current[stepIndex]
-    if (stepElement) {
-      if (isMobile) {
-        // Use CSS transition for mobile
-        stepElement.style.transition = 'transform 0.2s ease-out'
-        stepElement.style.transform = 'scale(0.98)'
-        
-        requestAnimationFrame(() => {
-          if (stepElement) {
-            stepElement.style.transform = 'scale(1.02)'
-            setTimeout(() => {
-              if (stepElement) {
-                stepElement.style.transform = 'scale(1)'
-              }
-            }, 200)
-          }
-        })
-      } else {
-        // Use GSAP for desktop
-        gsap.fromTo(stepElement,
-          { scale: 0.98 },
-          { scale: 1.02, duration: 0.2, yoyo: true, repeat: 1 }
-        )
-      }
+    if (stepElement && !isMobile) {
+      // Only animate on desktop to prevent mobile lag
+      gsap.fromTo(stepElement,
+        { scale: 0.99 },
+        { scale: 1.01, duration: 0.15, yoyo: true, repeat: 1 }
+      )
     }
 
-    // Update progress indicator - lighter animation for mobile
+    // Update progress indicator - simpler for mobile
     if (progressRef.current) {
       const progress = ((stepIndex + 1) / features.length) * 100
       if (isMobile) {
-        // Use CSS transition for mobile
-        progressRef.current.style.transition = 'width 0.5s ease-out'
+        // Simple CSS transition for mobile
+        progressRef.current.style.transition = 'width 0.3s ease-out'
         progressRef.current.style.width = `${progress}%`
       } else {
         // Use GSAP for desktop
         gsap.to(progressRef.current, {
           width: `${progress}%`,
-          duration: 0.5,
-          ease: 'power2.out'
+          duration: 0.4,
+          ease: 'power1.out'
         })
       }
     }
@@ -324,35 +295,28 @@ const HowItWorks = () => {
     }
   }, [features.length, handleCursorEnter, handleCursorLeave, isMobile])
 
-  // Intersection Observer for scroll-based animations (without auto-selection)
+  // Intersection Observer for scroll-based animations (simplified for mobile)
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Use lighter animations for mobile
             if (isMobile) {
-              // Use CSS transition for mobile
+              // Very simple fade-in for mobile to prevent lag
               const element = entry.target as HTMLElement
-              element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out'
-              element.style.opacity = '0'
-              element.style.transform = 'translateY(30px)'
-              
-              requestAnimationFrame(() => {
-                element.style.opacity = '1'
-                element.style.transform = 'translateY(0)'
-              })
+              element.style.transition = 'opacity 0.4s ease-out'
+              element.style.opacity = '1'
             } else {
               // Use GSAP for desktop
               gsap.fromTo(entry.target,
-                { opacity: 0, y: 30 },
-                { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5, ease: 'power1.out' }
               )
             }
           }
         })
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     )
 
     cardRefs.current.forEach((ref) => {
@@ -362,26 +326,14 @@ const HowItWorks = () => {
     return () => observer.disconnect()
   }, [isMobile])
 
-  // Initialize animations on mount
+  // Initialize animations on mount (simplified for mobile)
   useEffect(() => {
-    if (timelineRef.current) {
-      if (isMobile) {
-        // Use CSS transition for mobile
-        timelineRef.current.style.transition = 'transform 1s ease-out'
-        timelineRef.current.style.transform = 'scaleY(0)'
-        
-        setTimeout(() => {
-          if (timelineRef.current) {
-            timelineRef.current.style.transform = 'scaleY(1)'
-          }
-        }, 500)
-      } else {
-        // Use GSAP for desktop
-        gsap.fromTo(timelineRef.current,
-          { scaleY: 0 },
-          { scaleY: 1, duration: 1, ease: 'power2.out', delay: 0.5 }
-        )
-      }
+    if (timelineRef.current && !isMobile) {
+      // Only animate timeline on desktop
+      gsap.fromTo(timelineRef.current,
+        { scaleY: 0 },
+        { scaleY: 1, duration: 0.8, ease: 'power1.out', delay: 0.3 }
+      )
     }
   }, [isMobile])
 
@@ -430,7 +382,7 @@ const HowItWorks = () => {
   }, [activeStep, handleCursorEnter, handleCursorLeave])
 
   return (
-    <section id="how-it-works" className={`relative overflow-hidden ${isMobile ? 'py-12' : 'py-24'}`}>
+    <section id="how-it-works" className={`relative overflow-hidden ${isMobile ? 'py-8' : 'py-24'}`}>
       <div className="absolute inset-0 bg-gradient-to-br from-black via-card-bg to-black" />
       <div className="absolute inset-0 grid-texture opacity-10" />
       
@@ -455,13 +407,13 @@ const HowItWorks = () => {
       )}
 
       <div className="container relative z-10">
-        <div className="text-center mb-8 sm:mb-12 md:mb-16 px-4">
-          <div className="flex justify-center items-center space-x-2 sm:space-x-4 mb-3 sm:mb-5">
-            <Image src="/images/logo/LOGO TRANSPARENT.png" alt="NightShield Logo" width={56} height={56} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">How <span className="text-red-500">NightShield</span> Works</h2>
+        <div className={`text-center ${isMobile ? 'mb-6 px-4' : 'mb-8 sm:mb-12 md:mb-16 px-4'}`}>
+          <div className={`flex justify-center items-center ${isMobile ? 'space-x-2 mb-2' : 'space-x-2 sm:space-x-4 mb-3 sm:mb-5'}`}>
+            <Image src="/images/logo/LOGO TRANSPARENT.png" alt="NightShield Logo" width={56} height={56} className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12'}`} />
+            <h2 className={`${isMobile ? 'text-xl' : 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl'} font-bold`}>How <span className="text-red-500">NightShield</span> Works</h2>
           </div>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto">
-            Experience NightShield's advanced AI detection system in action. Explore our comprehensive security workflow below.
+          <p className={`${isMobile ? 'text-sm' : 'text-sm sm:text-base md:text-lg lg:text-xl'} text-gray-300 max-w-3xl mx-auto`}>
+            Experience NightShield's advanced AI detection system in action. {!isMobile && 'Explore our comprehensive security workflow below.'}
           </p>
           
           {/* AI Detection Status Indicator */}
@@ -483,12 +435,12 @@ const HowItWorks = () => {
           )}
         </div>
 
-        <div ref={containerRef} className="grid lg:grid-cols-12 gap-4 sm:gap-6 items-start">
+        <div ref={containerRef} className={`grid lg:grid-cols-12 ${isMobile ? 'gap-3' : 'gap-4 sm:gap-6'} items-start`}>
           {/* Sticky Security Visual */}
           <div className="lg:col-span-7 order-2 lg:order-1">
             <div
               ref={stickyRef}
-              className="aspect-[16/10] lg:aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm lg:sticky lg:top-24 group hover:border-red-500/40 transition-all duration-300"
+              className={`${isMobile ? 'aspect-[4/3]' : 'aspect-[16/10] lg:aspect-[4/3]'} ${isMobile ? 'rounded-lg' : 'rounded-xl sm:rounded-2xl'} overflow-hidden bg-black/60 border border-red-500/20 backdrop-blur-sm lg:sticky lg:top-24 group hover:border-red-500/40 transition-all duration-300`}
             >
              
               <Image
@@ -513,30 +465,41 @@ const HowItWorks = () => {
               >
                 {/* Feature-specific target areas */}
                 {activeStep === 0 && ( // Capture & Enhance
-                  <div className="absolute top-1/6 left-1/4 w-1/2 h-2/3 pointer-events-none">
-                    <div className={`absolute inset-0 border-2 border-blue-500/50 rounded-lg transition-all duration-500 ${
+                  <div className={`absolute ${isMobile ? 'top-1/4 left-1/3 w-1/3 h-1/2' : 'top-1/6 left-1/4 w-1/2 h-2/3'} pointer-events-none`}>
+                    <div className={`absolute inset-0 border-2 border-blue-500/50 rounded-lg transition-all ${isMobile ? 'duration-300' : 'duration-500'} ${
                       isCursorActive ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
                     }`}>
                       <div className={`absolute inset-0 bg-blue-500/10 rounded-lg ${
-                        isLowPerformance ? '' : 'animate-pulse'
+                        (isLowPerformance || isMobile) ? '' : 'animate-pulse'
                       }`} />
-                      {/* Enhanced camera scan lines effect */}
-                      <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
-                        <div className="absolute top-0 left-0 w-full h-0.5 bg-blue-400 animate-pulse" />
-                        <div className="absolute top-1/3 left-0 w-full h-0.5 bg-blue-400 animate-pulse" style={{animationDelay: '0.5s'}} />
-                        <div className="absolute top-2/3 left-0 w-full h-0.5 bg-blue-400 animate-pulse" style={{animationDelay: '1s'}} />
-                        {/* Corner camera indicators */}
-                        <div className="absolute top-2 left-2 w-3 h-3 border-2 border-blue-400 rounded-full animate-ping" />
-                        <div className="absolute top-2 right-2 w-3 h-3 border-2 border-blue-400 rounded-full animate-ping" style={{animationDelay: '0.3s'}} />
-                        <div className="absolute bottom-2 left-2 w-3 h-3 border-2 border-blue-400 rounded-full animate-ping" style={{animationDelay: '0.6s'}} />
-                        <div className="absolute bottom-2 right-2 w-3 h-3 border-2 border-blue-400 rounded-full animate-ping" style={{animationDelay: '0.9s'}} />
-                      </div>
-                      {/* Rotating focus ring */}
-                      <div className={`absolute inset-0 rounded-lg border border-blue-400/30 ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '4s'}} />
+                      {/* Simplified camera scan lines for mobile */}
+                      {!isMobile && (
+                        <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
+                          <div className="absolute top-0 left-0 w-full h-0.5 bg-blue-400 animate-pulse" />
+                          <div className="absolute top-1/3 left-0 w-full h-0.5 bg-blue-400 animate-pulse" style={{animationDelay: '0.5s'}} />
+                          <div className="absolute top-2/3 left-0 w-full h-0.5 bg-blue-400 animate-pulse" style={{animationDelay: '1s'}} />
+                          {/* Corner camera indicators */}
+                          <div className="absolute top-2 left-2 w-3 h-3 border-2 border-blue-400 rounded-full animate-ping" />
+                          <div className="absolute top-2 right-2 w-3 h-3 border-2 border-blue-400 rounded-full animate-ping" style={{animationDelay: '0.3s'}} />
+                          <div className="absolute bottom-2 left-2 w-3 h-3 border-2 border-blue-400 rounded-full animate-ping" style={{animationDelay: '0.6s'}} />
+                          <div className="absolute bottom-2 right-2 w-3 h-3 border-2 border-blue-400 rounded-full animate-ping" style={{animationDelay: '0.9s'}} />
+                        </div>
+                      )}
+                      {/* Mobile simplified indicators */}
+                      {isMobile && (
+                        <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
+                          <div className="absolute top-2 left-2 w-2 h-2 border border-blue-400 rounded-full animate-pulse" />
+                          <div className="absolute top-2 right-2 w-2 h-2 border border-blue-400 rounded-full animate-pulse" />
+                        </div>
+                      )}
+                      {/* Rotating focus ring - disabled on mobile */}
+                      {!isMobile && (
+                        <div className={`absolute inset-0 rounded-lg border border-blue-400/30 ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '4s'}} />
+                      )}
                     </div>
                     {(isCursorActive || detectionStatus) && (
                       <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-blue-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
-                        isLowPerformance ? '' : 'animate-bounce'
+                        (isLowPerformance || isMobile) ? '' : 'animate-bounce'
                       }`}>
                         {detectionStatus}
                       </div>
@@ -545,32 +508,43 @@ const HowItWorks = () => {
                 )}
 
                 {activeStep === 1 && ( // Fight Detection
-                  <div className="absolute top-1/4 left-1/3 w-1/3 h-1/2 pointer-events-none">
-                    <div className={`absolute inset-0 border-2 border-red-500/50 rounded-lg transition-all duration-500 ${
+                  <div className={`absolute ${isMobile ? 'top-1/3 left-1/3 w-1/3 h-1/3' : 'top-1/4 left-1/3 w-1/3 h-1/2'} pointer-events-none`}>
+                    <div className={`absolute inset-0 border-2 border-red-500/50 rounded-lg transition-all ${isMobile ? 'duration-300' : 'duration-500'} ${
                       isCursorActive ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
                     }`}>
                       <div className={`absolute inset-0 bg-red-500/10 rounded-lg ${
-                        isLowPerformance ? '' : 'animate-pulse'
+                        (isLowPerformance || isMobile) ? '' : 'animate-pulse'
                       }`} />
-                      {/* Enhanced fight detection effects */}
-                      <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
-                        {/* Crosshair targeting system */}
-                        <div className="absolute top-1/2 left-0 w-full h-0.5 bg-red-400 animate-pulse" />
-                        <div className="absolute top-0 left-1/2 w-0.5 h-full bg-red-400 animate-pulse" />
-                        {/* Corner threat indicators */}
-                        <div className="absolute top-1 left-1 w-2 h-2 border border-red-400 animate-ping" />
-                        <div className="absolute top-1 right-1 w-2 h-2 border border-red-400 animate-ping" style={{animationDelay: '0.2s'}} />
-                        <div className="absolute bottom-1 left-1 w-2 h-2 border border-red-400 animate-ping" style={{animationDelay: '0.4s'}} />
-                        <div className="absolute bottom-1 right-1 w-2 h-2 border border-red-400 animate-ping" style={{animationDelay: '0.6s'}} />
-                        {/* Pulsing threat zone */}
-                        <div className="absolute inset-2 border border-red-400/50 rounded animate-pulse" />
-                      </div>
-                      {/* Rotating threat scanner */}
-                      <div className={`absolute inset-0 rounded-lg border border-red-400/30 ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '2s'}} />
+                      {/* Simplified fight detection effects for mobile */}
+                      {!isMobile && (
+                        <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
+                          {/* Crosshair targeting system */}
+                          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-red-400 animate-pulse" />
+                          <div className="absolute top-0 left-1/2 w-0.5 h-full bg-red-400 animate-pulse" />
+                          {/* Corner threat indicators */}
+                          <div className="absolute top-1 left-1 w-2 h-2 border border-red-400 animate-ping" />
+                          <div className="absolute top-1 right-1 w-2 h-2 border border-red-400 animate-ping" style={{animationDelay: '0.2s'}} />
+                          <div className="absolute bottom-1 left-1 w-2 h-2 border border-red-400 animate-ping" style={{animationDelay: '0.4s'}} />
+                          <div className="absolute bottom-1 right-1 w-2 h-2 border border-red-400 animate-ping" style={{animationDelay: '0.6s'}} />
+                          {/* Pulsing threat zone */}
+                          <div className="absolute inset-2 border border-red-400/50 rounded animate-pulse" />
+                        </div>
+                      )}
+                      {/* Mobile simplified crosshair */}
+                      {isMobile && (
+                        <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
+                          <div className="absolute top-1/2 left-0 w-full h-px bg-red-400" />
+                          <div className="absolute top-0 left-1/2 w-px h-full bg-red-400" />
+                        </div>
+                      )}
+                      {/* Rotating threat scanner - disabled on mobile */}
+                      {!isMobile && (
+                        <div className={`absolute inset-0 rounded-lg border border-red-400/30 ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '2s'}} />
+                      )}
                     </div>
                     {(isCursorActive || detectionStatus) && (
                       <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
-                        isLowPerformance ? '' : 'animate-bounce'
+                        (isLowPerformance || isMobile) ? '' : 'animate-bounce'
                       }`}>
                         {detectionStatus}
                       </div>
@@ -579,36 +553,47 @@ const HowItWorks = () => {
                 )}
 
                 {activeStep === 2 && ( // Instant Alerts
-                  <div className="absolute top-1/8 left-1/8 w-3/4 h-3/4 pointer-events-none">
-                    <div className={`absolute inset-0 border-2 border-yellow-500/50 rounded-lg transition-all duration-500 ${
+                  <div className={`absolute ${isMobile ? 'top-1/4 left-1/4 w-1/2 h-1/2' : 'top-1/8 left-1/8 w-3/4 h-3/4'} pointer-events-none`}>
+                    <div className={`absolute inset-0 border-2 border-yellow-500/50 rounded-lg transition-all ${isMobile ? 'duration-300' : 'duration-500'} ${
                       isCursorActive ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
                     }`}>
                       <div className={`absolute inset-0 bg-yellow-500/10 rounded-lg ${
-                        isLowPerformance ? '' : 'animate-pulse'
+                        (isLowPerformance || isMobile) ? '' : 'animate-pulse'
                       }`} />
-                      {/* Enhanced alert notification effects */}
-                      <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
-                        {/* Notification waves */}
-                        <div className={`absolute top-2 right-2 w-4 h-4 bg-yellow-400 rounded-full ${isCursorActive ? 'animate-ping' : 'opacity-0'}`} />
-                        <div className={`absolute bottom-2 left-2 w-4 h-4 bg-yellow-400 rounded-full ${isCursorActive ? 'animate-ping' : 'opacity-0'}`} style={{animationDelay: '0.5s'}} />
-                        <div className={`absolute top-1/2 left-2 w-3 h-3 bg-yellow-400 rounded-full ${isCursorActive ? 'animate-ping' : 'opacity-0'}`} style={{animationDelay: '1s'}} />
-                        <div className={`absolute top-1/2 right-2 w-3 h-3 bg-yellow-400 rounded-full ${isCursorActive ? 'animate-ping' : 'opacity-0'}`} style={{animationDelay: '1.5s'}} />
-                        {/* Signal strength bars */}
-                        <div className="absolute top-1 left-1 flex space-x-1">
-                          <div className="w-1 h-2 bg-yellow-400 animate-pulse" />
-                          <div className="w-1 h-3 bg-yellow-400 animate-pulse" style={{animationDelay: '0.1s'}} />
-                          <div className="w-1 h-4 bg-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
-                          <div className="w-1 h-3 bg-yellow-400 animate-pulse" style={{animationDelay: '0.3s'}} />
+                      {/* Simplified alert effects for mobile */}
+                      {!isMobile && (
+                        <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
+                          {/* Notification waves */}
+                          <div className={`absolute top-2 right-2 w-4 h-4 bg-yellow-400 rounded-full ${isCursorActive ? 'animate-ping' : 'opacity-0'}`} />
+                          <div className={`absolute bottom-2 left-2 w-4 h-4 bg-yellow-400 rounded-full ${isCursorActive ? 'animate-ping' : 'opacity-0'}`} style={{animationDelay: '0.5s'}} />
+                          <div className={`absolute top-1/2 left-2 w-3 h-3 bg-yellow-400 rounded-full ${isCursorActive ? 'animate-ping' : 'opacity-0'}`} style={{animationDelay: '1s'}} />
+                          <div className={`absolute top-1/2 right-2 w-3 h-3 bg-yellow-400 rounded-full ${isCursorActive ? 'animate-ping' : 'opacity-0'}`} style={{animationDelay: '1.5s'}} />
+                          {/* Signal strength bars */}
+                          <div className="absolute top-1 left-1 flex space-x-1">
+                            <div className="w-1 h-2 bg-yellow-400 animate-pulse" />
+                            <div className="w-1 h-3 bg-yellow-400 animate-pulse" style={{animationDelay: '0.1s'}} />
+                            <div className="w-1 h-4 bg-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
+                            <div className="w-1 h-3 bg-yellow-400 animate-pulse" style={{animationDelay: '0.3s'}} />
+                          </div>
+                          {/* Alert ripple effect */}
+                          <div className="absolute inset-4 border border-yellow-400/50 rounded animate-pulse" />
                         </div>
-                        {/* Alert ripple effect */}
-                        <div className="absolute inset-4 border border-yellow-400/50 rounded animate-pulse" />
-                      </div>
-                      {/* Rotating alert scanner */}
-                      <div className={`absolute inset-0 rounded-lg border border-yellow-400/30 ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '3s'}} />
+                      )}
+                      {/* Mobile simplified alert indicators */}
+                      {isMobile && (
+                        <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
+                          <div className="absolute top-2 right-2 w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
+                          <div className="absolute bottom-2 left-2 w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
+                        </div>
+                      )}
+                      {/* Rotating alert scanner - disabled on mobile */}
+                      {!isMobile && (
+                        <div className={`absolute inset-0 rounded-lg border border-yellow-400/30 ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '3s'}} />
+                      )}
                     </div>
                     {(isCursorActive || detectionStatus) && (
                       <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-yellow-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
-                        isLowPerformance ? '' : 'animate-bounce'
+                        (isLowPerformance || isMobile) ? '' : 'animate-bounce'
                       }`}>
                         {detectionStatus}
                       </div>
@@ -617,37 +602,48 @@ const HowItWorks = () => {
                 )}
 
                 {activeStep === 3 && ( // Evidence Vault
-                  <div className="absolute top-1/5 left-1/5 w-3/5 h-3/5 pointer-events-none">
-                    <div className={`absolute inset-0 border-2 border-green-500/50 rounded-lg transition-all duration-500 ${
+                  <div className={`absolute ${isMobile ? 'top-1/3 left-1/3 w-1/3 h-1/3' : 'top-1/5 left-1/5 w-3/5 h-3/5'} pointer-events-none`}>
+                    <div className={`absolute inset-0 border-2 border-green-500/50 rounded-lg transition-all ${isMobile ? 'duration-300' : 'duration-500'} ${
                       isCursorActive ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
                     }`}>
                       <div className={`absolute inset-0 bg-green-500/10 rounded-lg ${
-                        isLowPerformance ? '' : 'animate-pulse'
+                        (isLowPerformance || isMobile) ? '' : 'animate-pulse'
                       }`} />
-                      {/* Enhanced vault lock effects */}
-                      <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
-                        {/* Main vault lock */}
-                        <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 border-2 border-green-400 rounded-full ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '3s'}} />
-                        <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-green-400 rounded-full ${isCursorActive ? 'animate-pulse' : 'opacity-0'}`} />
-                        {/* Security corner indicators */}
-                        <div className="absolute top-2 left-2 w-2 h-2 border border-green-400 rounded-full animate-ping" />
-                        <div className="absolute top-2 right-2 w-2 h-2 border border-green-400 rounded-full animate-ping" style={{animationDelay: '0.2s'}} />
-                        <div className="absolute bottom-2 left-2 w-2 h-2 border border-green-400 rounded-full animate-ping" style={{animationDelay: '0.4s'}} />
-                        <div className="absolute bottom-2 right-2 w-2 h-2 border border-green-400 rounded-full animate-ping" style={{animationDelay: '0.6s'}} />
-                        {/* Encryption lines */}
-                        <div className="absolute top-1/4 left-1/4 w-1/2 h-0.5 bg-green-400/50 animate-pulse" />
-                        <div className="absolute top-3/4 left-1/4 w-1/2 h-0.5 bg-green-400/50 animate-pulse" style={{animationDelay: '0.5s'}} />
-                        <div className="absolute top-1/2 left-1/4 w-0.5 h-1/2 bg-green-400/50 animate-pulse" style={{animationDelay: '1s'}} />
-                        <div className="absolute top-1/2 right-1/4 w-0.5 h-1/2 bg-green-400/50 animate-pulse" style={{animationDelay: '1.5s'}} />
-                        {/* Vault door frame */}
-                        <div className="absolute inset-4 border border-green-400/30 rounded animate-pulse" />
-                      </div>
-                      {/* Rotating security scanner */}
-                      <div className={`absolute inset-0 rounded-lg border border-green-400/30 ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '5s'}} />
+                      {/* Simplified vault effects for mobile */}
+                      {!isMobile && (
+                        <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
+                          {/* Main vault lock */}
+                          <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 border-2 border-green-400 rounded-full ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '3s'}} />
+                          <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-green-400 rounded-full ${isCursorActive ? 'animate-pulse' : 'opacity-0'}`} />
+                          {/* Security corner indicators */}
+                          <div className="absolute top-2 left-2 w-2 h-2 border border-green-400 rounded-full animate-ping" />
+                          <div className="absolute top-2 right-2 w-2 h-2 border border-green-400 rounded-full animate-ping" style={{animationDelay: '0.2s'}} />
+                          <div className="absolute bottom-2 left-2 w-2 h-2 border border-green-400 rounded-full animate-ping" style={{animationDelay: '0.4s'}} />
+                          <div className="absolute bottom-2 right-2 w-2 h-2 border border-green-400 rounded-full animate-ping" style={{animationDelay: '0.6s'}} />
+                          {/* Encryption lines */}
+                          <div className="absolute top-1/4 left-1/4 w-1/2 h-0.5 bg-green-400/50 animate-pulse" />
+                          <div className="absolute top-3/4 left-1/4 w-1/2 h-0.5 bg-green-400/50 animate-pulse" style={{animationDelay: '0.5s'}} />
+                          <div className="absolute top-1/2 left-1/4 w-0.5 h-1/2 bg-green-400/50 animate-pulse" style={{animationDelay: '1s'}} />
+                          <div className="absolute top-1/2 right-1/4 w-0.5 h-1/2 bg-green-400/50 animate-pulse" style={{animationDelay: '1.5s'}} />
+                          {/* Vault door frame */}
+                          <div className="absolute inset-4 border border-green-400/30 rounded animate-pulse" />
+                        </div>
+                      )}
+                      {/* Mobile simplified vault lock */}
+                      {isMobile && (
+                        <div className={`absolute inset-0 ${isCursorActive ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
+                          <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 border border-green-400 rounded-full animate-pulse`} />
+                          <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-green-400 rounded-full`} />
+                        </div>
+                      )}
+                      {/* Rotating security scanner - disabled on mobile */}
+                      {!isMobile && (
+                        <div className={`absolute inset-0 rounded-lg border border-green-400/30 ${isCursorActive ? 'animate-spin' : 'opacity-0'}`} style={{animationDuration: '5s'}} />
+                      )}
                     </div>
                     {(isCursorActive || detectionStatus) && (
                       <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-500/90 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
-                        isLowPerformance ? '' : 'animate-bounce'
+                        (isLowPerformance || isMobile) ? '' : 'animate-bounce'
                       }`}>
                         {detectionStatus}
                       </div>
@@ -778,9 +774,9 @@ const HowItWorks = () => {
             </div>
 
             {/* Enhanced Thumbnail Gallery with Controls */}
-            <div className="mt-4 sm:mt-6">
+            <div className={`${isMobile ? 'mt-3' : 'mt-4 sm:mt-6'}`}>
               {/* Gallery Controls - Mobile Optimized */}
-              <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className={`flex items-center justify-between ${isMobile ? 'mb-2' : 'mb-3 sm:mb-4'}`}>
                 <div className="flex items-center gap-1.5 sm:gap-2">
                   <button
                     onClick={() => setIsAutoPlaying(!isAutoPlaying)}
@@ -815,7 +811,7 @@ const HowItWorks = () => {
               </div>
 
               {/* Thumbnail Gallery - Mobile Responsive */}
-              <div className="flex gap-1.5 sm:gap-2 md:gap-4 justify-between overflow-x-auto pb-2">
+              <div className={`flex ${isMobile ? 'gap-1' : 'gap-1.5 sm:gap-2 md:gap-4'} justify-between overflow-x-auto ${isMobile ? 'pb-1' : 'pb-2'}`}>
                 {galleryImages.map((image, idx) => (
                   <div
                     key={image.id}
@@ -873,7 +869,7 @@ const HowItWorks = () => {
           <div className="lg:col-span-5 order-1 lg:order-2">
             <div className="relative">
               {/* Progress Indicator */}
-              <div className="mb-6 sm:mb-8">
+              <div className={`${isMobile ? 'mb-4' : 'mb-6 sm:mb-8'}`}>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs sm:text-sm font-medium text-gray-300">Progress</span>
                   <span className="text-xs sm:text-sm text-red-400">{activeStep + 1} / {features.length}</span>
@@ -894,7 +890,7 @@ const HowItWorks = () => {
               />
               
               {/* Workflow steps */}
-              <div className="space-y-4 sm:space-y-6">
+              <div className={`${isMobile ? 'space-y-3' : 'space-y-4 sm:space-y-6'}`}>
                 {features.map((f, idx) => (
                   <div
                     key={f.id}
@@ -934,13 +930,13 @@ const HowItWorks = () => {
                     )}
 
                     {/* Enhanced Feature card */}
-                    <div className={`ml-12 sm:ml-16 md:ml-20 rounded-lg border p-3 sm:p-4 md:p-5 transition-all duration-300 ${
+                    <div className={`${isMobile ? 'ml-10' : 'ml-12 sm:ml-16 md:ml-20'} rounded-lg border ${isMobile ? 'p-3' : 'p-3 sm:p-4 md:p-5'} transition-all duration-300 ${
                       activeStep === idx
                         ? 'bg-card-bg/95 border-red-500/60 shadow-lg shadow-red-500/10'
                         : 'bg-card-bg/95 border-red-500/20 hover:border-red-500/40'
                     }`}>
-                      <div className="flex items-start gap-3 sm:gap-4">
-                        <div className={`relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 shrink-0 rounded-md overflow-hidden border transition-all duration-300 flex items-center justify-center ${
+                      <div className={`flex items-start ${isMobile ? 'gap-2' : 'gap-3 sm:gap-4'}`}>
+                        <div className={`relative ${isMobile ? 'w-6 h-6' : 'w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12'} shrink-0 rounded-md overflow-hidden border transition-all duration-300 flex items-center justify-center ${
                           activeStep === idx
                             ? `border-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500/50 bg-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500/10 rotate-3 scale-[1.05]`
                             : 'border-red-500/30 bg-black/90 group-hover:rotate-3 group-hover:scale-[1.03]'
@@ -948,14 +944,14 @@ const HowItWorks = () => {
                           <img 
                             src={f.thumb} 
                             alt={f.title} 
-                            className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-all duration-300 ${
+                            className={`${isMobile ? 'w-3 h-3' : 'w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6'} transition-all duration-300 ${
                               activeStep === idx 
-                                ? `text-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500 animate-pulse` 
+                                ? `text-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500 ${!isMobile ? 'animate-pulse' : ''}` 
                                 : 'text-red-500'
                             }`} 
                           />
-                          {/* Enhanced glow effect for active step */}
-                          {activeStep === idx && (
+                          {/* Enhanced glow effect for active step - simplified for mobile */}
+                          {activeStep === idx && !isMobile && (
                             <>
                               <div className={`absolute inset-0 rounded-md bg-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500/20 animate-pulse`} />
                               <div className={`absolute inset-0 rounded-md bg-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500/30 animate-ping`} />
@@ -963,23 +959,27 @@ const HowItWorks = () => {
                               <div className={`absolute inset-0 rounded-md border-2 border-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-400 animate-spin`} style={{animationDuration: '3s'}} />
                             </>
                           )}
+                          {/* Simple glow for mobile */}
+                          {activeStep === idx && isMobile && (
+                            <div className={`absolute inset-0 rounded-md bg-${idx === 0 ? 'blue' : idx === 1 ? 'red' : idx === 2 ? 'yellow' : 'green'}-500/20`} />
+                          )}
                           {/* Hover glow effect */}
                           {activeStep !== idx && (
                             <div className="absolute inset-0 rounded-md bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           )}
                         </div>
                         <div className="flex-1">
-                          <h3 className={`text-base sm:text-lg font-semibold mb-1 sm:mb-2 transition-colors ${
+                          <h3 className={`${isMobile ? 'text-sm' : 'text-base sm:text-lg'} font-semibold ${isMobile ? 'mb-1' : 'mb-1 sm:mb-2'} transition-colors ${
                             activeStep === idx
                               ? 'text-red-400'
                               : 'text-white group-hover:text-red-400'
                           }`}>
                             {f.title}
                           </h3>
-                          <p className="text-gray-100 leading-relaxed text-xs sm:text-sm">{f.description}</p>
+                          <p className={`text-gray-100 leading-relaxed ${isMobile ? 'text-xs' : 'text-xs sm:text-sm'}`}>{f.description}</p>
                           
-                          {/* Additional info for active step */}
-                          {activeStep === idx && (
+                          {/* Additional info for active step - simplified for mobile */}
+                          {activeStep === idx && !isMobile && (
                             <div className="mt-2 sm:mt-3 p-2 sm:p-3 bg-red-500/10 rounded-lg border border-red-500/20">
                               <p className="text-xs text-red-300 font-medium">
                                 💡 Click to explore this step in detail
@@ -989,10 +989,18 @@ const HowItWorks = () => {
                                 <div className="mt-1 sm:mt-2 flex items-center gap-1.5 sm:gap-2">
                                   <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full animate-pulse" />
                                   <p className="text-xs text-red-400 font-medium">
-                                    🎯 {isMobile ? 'Tap anywhere on the image for instant AI lock-on detection' : 'Hover anywhere on the image for instant AI lock-on detection'}
+                                    🎯 Hover anywhere on the image for instant AI lock-on detection
                                   </p>
                                 </div>
                               )}
+                            </div>
+                          )}
+                          {/* Simplified mobile info */}
+                          {activeStep === idx && isMobile && idx === 1 && (
+                            <div className="mt-2 p-2 bg-red-500/10 rounded-lg border border-red-500/20">
+                              <p className="text-xs text-red-400 font-medium">
+                                🎯 Tap the image for AI detection
+                              </p>
                             </div>
                           )}
                         </div>

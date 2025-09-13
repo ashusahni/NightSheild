@@ -1,5 +1,11 @@
 import React, { ReactNode, useLayoutEffect, useRef, useCallback } from 'react';
 import Lenis from 'lenis';
+import Slider from 'react-slick';
+import { useIsMobile } from '@/hooks/useIsMobile';
+
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 
 export interface ScrollStackItemProps {
   itemClassName?: string;
@@ -8,7 +14,7 @@ export interface ScrollStackItemProps {
 
 export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({ children, itemClassName = '' }) => (
   <div
-    className={`scroll-stack-card relative w-full max-w-4xl h-80 my-4 p-8 rounded-[40px] shadow-[0_0_30px_rgba(0,0,0,0.1)] box-border origin-top will-change-transform ${itemClassName}`.trim()}
+    className={`scroll-stack-card relative w-full max-w-4xl h-auto md:h-80 my-4 p-8 rounded-[40px] shadow-[0_0_30px_rgba(0,0,0,0.1)] box-border origin-top will-change-transform ${itemClassName}`.trim()}
     style={{
       backfaceVisibility: 'hidden',
       transformStyle: 'preserve-3d'
@@ -31,6 +37,8 @@ interface ScrollStackProps {
   rotationAmount?: number;
   blurAmount?: number;
   onStackComplete?: () => void;
+  title?: string;
+  subtext?: string;
 }
 
 const ScrollStack: React.FC<ScrollStackProps> = ({
@@ -45,7 +53,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   scaleDuration = 0.5,
   rotationAmount = 0,
   blurAmount = 0,
-  onStackComplete
+  onStackComplete,
+  title,
+  subtext
 }) => {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const stackCompletedRef = useRef(false);
@@ -54,6 +64,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const cardsRef = useRef<HTMLElement[]>([]);
   const lastTransformsRef = useRef(new Map<number, any>());
   const isUpdatingRef = useRef(false);
+  const { isMobile, isClient } = useIsMobile();
 
   const calculateProgress = useCallback((scrollTop: number, start: number, end: number) => {
     if (scrollTop < start) return 0;
@@ -207,6 +218,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   }, [handleScroll]);
 
   useLayoutEffect(() => {
+    if (isMobile) return;
+
     const scroller = scrollerRef.current;
     if (!scroller) return;
 
@@ -257,6 +270,38 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     updateCardTransforms
   ]);
 
+  if (!isClient) {
+    return null; 
+  }
+
+  if (isMobile) {
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      adaptiveHeight: true
+    };
+
+    return (
+      <div className="w-full h-full py-8 relative">
+        {title && <h2 className="text-3xl font-bold text-center mb-2">{title}</h2>}
+        <div className="text-center text-gray-500 mb-4">Swipe to explore &gt;</div>
+        <Slider {...settings}>
+          {React.Children.map(children, (child, index) => (
+            <div key={index} className="px-2">
+              {child}
+            </div>
+          ))}
+        </Slider>
+      </div>
+    );
+  }
+
   return (
     <div
       className={`relative w-full h-full overflow-y-auto overflow-x-visible ${className}`.trim()}
@@ -271,6 +316,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       }}
     >
       <div className="scroll-stack-inner pt-6 px-6 pb-6 min-h-full flex flex-col items-center">
+        {title && <h2 className="text-3xl font-bold text-center mb-2">{title}</h2>}
+        {subtext && <div className="text-center text-gray-500 mb-4">{subtext} &gt;</div>}
         {children}
         {/* Spacer so the last pin can release cleanly */}
         <div className="scroll-stack-end w-full h-px" />
