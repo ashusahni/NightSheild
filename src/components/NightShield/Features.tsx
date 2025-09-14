@@ -110,7 +110,7 @@ const Features = () => {
           <path d="M16 8c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4z"/>
         </svg>
       ),
-      eta: "Q2 2024"
+      eta: "Q4 2025"
     },
     {
       title: "Predictive Analytics",
@@ -121,7 +121,7 @@ const Features = () => {
           <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
         </svg>
       ),
-      eta: "Q3 2024"
+      eta: "Q1 2026"
     },
     {
       title: "Integration APIs",
@@ -132,7 +132,7 @@ const Features = () => {
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
         </svg>
       ),
-      eta: "Q4 2024"
+      eta: "Q2 2026"
     },
     {
       title: "Multi-Venue Management",
@@ -143,7 +143,7 @@ const Features = () => {
           <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
         </svg>
       ),
-      eta: "Q1 2025"
+      eta: "Q3 2026"
     }
   ]
 
@@ -200,7 +200,7 @@ const Features = () => {
           </div>
 
           {/* ScrollStack Container - Centered and Optimized */}
-          <div className={`w-full max-w-5xl mx-auto ${isMobile ? 'h-[350px]' : 'h-[480px]'} bg-gradient-to-br from-[#0B0B0F] via-[#1A1A1F] to-[#0B0B0F] rounded-xl sm:rounded-2xl p-3 sm:p-4 overflow-hidden border border-red-500/20 ${isMobile ? 'shadow-lg' : 'shadow-2xl'} ${isMobile ? 'mx-4' : ''}`}>
+          <div className={`w-full max-w-5xl mx-auto ${isMobile ? 'h-[400px]' : 'h-[550px]'} bg-gradient-to-br from-[#0B0B0F] via-[#1A1A1F] to-[#0B0B0F] rounded-xl sm:rounded-2xl p-3 sm:p-4 overflow-hidden border border-red-500/20 ${isMobile ? 'shadow-lg' : 'shadow-2xl'} ${isMobile ? 'mx-4' : ''}`}>
             <ScrollStack
               className="w-full h-full"
               itemDistance={isMobile ? 15 : 30}

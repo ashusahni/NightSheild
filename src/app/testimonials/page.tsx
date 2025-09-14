@@ -21,16 +21,17 @@ const TestimonialsPage = () => {
       role: "Security Manager",
       company: "Royal Casino",
       rating: 5,
-      content: "The facial recognition and threat detection capabilities are outstanding. Our security team can now focus on prevention rather than reaction. NightShield has become an essential part of our operations.",
+      content: "SMS alerts and threat detection capabilities are outstanding. Our security team can now focus on prevention rather than reaction. NightShield has become an essential part of our operations.",
       avatar: "/images/profiles/michael-chen.jpg"
     },
+    
     {
-      name: "Emma Rodriguez",
-      role: "General Manager",
-      company: "Pulse Nightclub",
+      name: "Joseph Anderson",
+      role: "Head of Security",
+      company: "Metroplex Arena",
       rating: 5,
-      content: "The mobile app alerts are game-changing. Our security staff receives instant notifications and can respond immediately. The system has paid for itself many times over in prevented incidents.",
-      avatar: "/images/profiles/emma-rodriguez.jpg"
+      content: "The dashboard clips and SMS alert are game changing. Our security team can now focus on prevention rather than reaction. NightShield has become an essential part of our operations.",
+      avatar: "/images/profiles/jospeh.webp"
     }
   ]
 
@@ -303,10 +304,7 @@ const TestimonialsPage = () => {
                     <span className="text-red-500 mr-3 text-xl">✓</span>
                     <span>Real-time threat detection</span>
                   </div>
-                  <div className="flex items-center text-gray-300">
-                    <span className="text-red-500 mr-3 text-xl">✓</span>
-                    <span>Mobile app access</span>
-                  </div>
+                 
                   <div className="flex items-center text-gray-300">
                     <span className="text-red-500 mr-3 text-xl">✓</span>
                     <span>Analytics dashboard</span>

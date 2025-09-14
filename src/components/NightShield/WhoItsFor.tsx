@@ -360,7 +360,7 @@ const WhoItsFor = () => {
                               whileHover={{ scale: 1.5, rotate: 180 }}
                               transition={{ duration: 0.3 }}
                             ></motion.div>
-                            <span className="text-white text-xs group-hover/item:text-yellow-100 transition-colors duration-300">Alert: Fire protected</span>
+                            <span className="text-white text-xs group-hover/item:text-yellow-100 transition-colors duration-300">Alert: Fight detected</span>
                           </motion.div>
                         </div>
                       </motion.div>

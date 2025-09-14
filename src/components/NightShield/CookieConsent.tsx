@@ -52,12 +52,12 @@ const CookieConsent = () => {
     <>
       {showConsent && (
         <div className="cookie-consent">
-          <div className="flex flex-col lg:flex-row items-center lg:items-center justify-center lg:justify-between gap-4 text-center lg:text-left">
+          <div className="flex flex-col lg:flex-row items-center lg:items-center justify-center lg:justify-between gap-2 lg:gap-4 text-center lg:text-left">
             <div className="flex-1">
-              <h3 className="text-lg font-bold text-white mb-2">
+              <h3 className="text-base lg:text-lg font-bold text-white mb-1 lg:mb-2">
                 We Value Your Privacy
               </h3>
-              <p className="text-gray-300 text-sm mb-4">
+              <p className="text-gray-300 text-xs lg:text-sm mb-2 lg:mb-4 leading-relaxed">
                 NightShield uses cookies to enhance your browsing experience, analyze site traffic, 
                 and personalize content. By continuing to use our site, you consent to our use of cookies 
                 in accordance with our{' '}
@@ -65,13 +65,13 @@ const CookieConsent = () => {
               </p>
               
               {showDetails && (
-                <div className="mt-4 space-y-3">
+                <div className="mt-2 lg:mt-4 space-y-2 lg:space-y-3">
                   {cookieTypes.map((cookie, index) => (
-                    <div key={index} className="bg-black/20 rounded-lg p-3">
+                    <div key={index} className="bg-black/20 rounded-lg p-2 lg:p-3">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-semibold text-white text-sm">{cookie.name}</span>
+                        <span className="font-semibold text-white text-xs lg:text-sm">{cookie.name}</span>
                         {cookie.necessary && (
-                          <span className="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded">
+                          <span className="text-xs bg-red-500/20 text-red-400 px-1.5 lg:px-2 py-0.5 lg:py-1 rounded">
                             Necessary
                           </span>
                         )}
@@ -84,22 +84,22 @@ const CookieConsent = () => {
               
               <button
                 onClick={() => setShowDetails(!showDetails)}
-                className="text-red-500 hover:text-red-400 text-sm underline block mx-auto lg:mx-0"
+                className="text-red-500 hover:text-red-400 text-xs lg:text-sm underline block mx-auto lg:mx-0"
               >
                 {showDetails ? 'Hide Details' : 'Show Details'}
               </button>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-3 lg:flex-shrink-0 justify-center lg:justify-end">
+            <div className="flex flex-col sm:flex-row gap-2 lg:gap-3 lg:flex-shrink-0 justify-center lg:justify-end">
               <button
                 onClick={handleDecline}
-                className="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-600/20 transition-colors text-sm"
+                className="px-3 lg:px-4 py-1.5 lg:py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-600/20 transition-colors text-xs lg:text-sm"
               >
                 Decline
               </button>
               <button
                 onClick={handleAccept}
-                className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm font-semibold"
+                className="px-4 lg:px-6 py-1.5 lg:py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-xs lg:text-sm font-semibold"
               >
                 Accept All
               </button>

@@ -24,7 +24,7 @@ const ResizableNavbar = ({ disableMobile = false }: ResizableNavbarProps) => {
 
   const navItems = [
     { name: 'Features', link: '/features' },
-    { name: 'testimonials', link: '/testimonials' },
+    { name: 'Testimonials', link: '/testimonials' },
     { name: 'About', link: '/about' },
     { name: 'Pricing', link: '/pricing' },
   ]
@@ -69,7 +69,7 @@ const ResizableNavbar = ({ disableMobile = false }: ResizableNavbarProps) => {
         <NavbarButton
           href="#contact"
           variant="gradient"
-          className="navbar-cta bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white border-0 shadow-lg hover:shadow-red-500/25 px-5 py-2 text-sm ml-4"
+          className="navbar-cta bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white border-0 shadow-lg hover:shadow-red-500/25 px-5 py-2 text-sm ml-8"
         >
           Get Started
         </NavbarButton>

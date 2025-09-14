@@ -660,15 +660,26 @@ section {
 /* Cookie consent */
 .cookie-consent {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
   background: #0B0B0F;
   border: 1px solid #E5122F;
   border-radius: 8px;
-  padding: 20px;
+  padding: 12px;
   z-index: 1000;
-  backdrop-filter: blur(5px); /* Reduced from 10px */
+  backdrop-filter: blur(5px);
+}
+
+/* Mobile-specific cookie consent styles */
+@media (max-width: 768px) {
+  .cookie-consent {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    padding: 10px;
+    border-radius: 6px;
+  }
 }
 
 /* Moving Bulletin Card Animations - Optimized */
