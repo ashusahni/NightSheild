@@ -30,7 +30,7 @@ const TestimonialsPage = () => {
       role: "Head of Security",
       company: "Metroplex Arena",
       rating: 5,
-      content: "The dashboard clips and SMS alert are game changing. Our security team can now focus on prevention rather than reaction. NightShield has become an essential part of our operations.",
+      content: "The dashboard clips and SMS alert are game changing for us. It's a great way to keep our security team informed and proactive.",
       avatar: "/images/profiles/jospeh.webp"
     }
   ]
