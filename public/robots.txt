@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nightshield.ai/sitemap.xml
+
+# Block access to sensitive areas
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Allow important pages
+Allow: /about
+Allow: /features
+Allow: /pricing
+Allow: /contact
+Allow: /privacy
+Allow: /security
