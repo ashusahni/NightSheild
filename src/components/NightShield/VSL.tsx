@@ -57,7 +57,7 @@ const VSL = () => {
                 <div className="relative aspect-[16/10]">
                   <iframe
                     className="absolute top-0 left-0 w-full h-full"
-                    src="https://drive.google.com/file/d/1qbR8VUeAJcKvePFYIC_gur8ySI9X2EDw/preview"
+                    src="https://customer-k3cj56a9l7jvykr1.cloudflarestream.com/05611ee0f64fcd0e1b317bed8cfce772/iframe?poster=https%3A%2F%2Fimagedelivery.net%2FsGwlGTkiTjXCqLHfhol7bg%2Fd8dda54a-02da-4f7e-0659-754569d93a00%2Fpublic"
                     title="NightShield VSL Video"
                     frameBorder="0"
                     allow="accelerometer; autoplay; allowfullscreen; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
