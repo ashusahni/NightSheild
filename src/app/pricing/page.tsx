@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 
 import Image from 'next/image'
 import Contact from '@/components/NightShield/Contact'
+import NightShieldROI from '@/components/NightShield/RoiCalc'
 
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = useState('monthly')
@@ -261,6 +262,12 @@ const Pricing = () => {
           </div>
         </div>
       </div>
+      
+      {/* ROI Calculator Section */}
+      <div className="mt-20">
+        <NightShieldROI />
+      </div>
+      
       <Contact compact />
     </section>
   )
