@@ -80,6 +80,7 @@ const Pricing = () => {
       
       <div className="container mx-auto relative z-10 pt-20 md:pt-0">
         {/* Hero Section */}
+        
         <div className="text-center max-w-4xl mx-auto mb-16 lg:pt-20">
           {/* Icon with glow effect */}
           <div className="relative inline-block mb-4 md:mb-6">
@@ -90,7 +91,7 @@ const Pricing = () => {
               </svg>
             </div>
           </div>
-          
+          <br className="block lg:hidden"/>
           {/* Main heading with gradient text */}
           <h1 className="text-2xl sm:text-3xl md:text-5xl font-black mb-4 md:mb-6 leading-tight px-2">
             <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
