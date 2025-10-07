@@ -127,6 +127,13 @@ const Pricing = () => {
           </div>
         </div>
 
+        {/* Founders Pricing Notice */}
+        <div className="max-w-3xl mx-auto -mt-4 mb-8 px-2">
+          <div className="text-xs md:text-sm text-gray-300/90 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-center">
+            <span className="font-semibold text-red-300">Founders pricing</span>: Applies only to customers onboarding in Q4 2025.
+          </div>
+        </div>
+
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto mb-16 px-2">
           {plans.map((plan, index) => (
@@ -213,6 +220,13 @@ const Pricing = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Onboarding Fees Notice */}
+        <div className="max-w-3xl mx-auto -mt-6 mb-16 px-2">
+          <div className="text-xs md:text-sm text-gray-300/90 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-center">
+            One-time onboarding fees apply in addition to subscription pricing.
+          </div>
         </div>
 
         {/* Additional Info */}

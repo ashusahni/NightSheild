@@ -64,7 +64,7 @@ export default function NightShieldROI() {
 
       {/* Header */}
       <header className="relative z-10 mx-auto max-w-6xl px-4 pt-8">
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <div className="h-9 w-9 rounded-xl border border-red-700/40 bg-red-500/10 grid place-items-center">
             <Shield className="h-4 w-4 text-red-500"/>
           </div>
@@ -72,11 +72,11 @@ export default function NightShieldROI() {
             <div className="text-xs uppercase tracking-[0.2em] text-red-500">NightShield</div>
             <h1 className="text-2xl md:text-3xl font-semibold text-zinc-100">ROI Calculator</h1>
           </div>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto w-full md:w-auto md:ml-auto flex items-center gap-2 overflow-x-auto md:overflow-visible whitespace-nowrap py-2 -mx-1 md:mx-0">
             {(["Starter","Professional","Enterprise"] as const).map(s => (
               <button key={s}
                 onClick={()=>setScenario(s)}
-                className={`px-3 py-1 rounded-full border text-xs transition-all ${scenario===s ? 'bg-gradient-to-b from-red-600 to-red-700 text-white border-red-600 shadow-[0_0_24px_rgba(239,68,68,0.45)]' : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-red-600/60 hover:bg-zinc-900/80'}`}
+                className={`mx-1 px-4 py-2 md:px-3 md:py-1 rounded-full border text-sm md:text-xs transition-all ${scenario===s ? 'bg-gradient-to-b from-red-600 to-red-700 text-white border-red-600 shadow-[0_0_24px_rgba(239,68,68,0.45)]' : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-red-600/60 hover:bg-zinc-900/80'}`}
               >{s}</button>
             ))}
           </div>
@@ -84,7 +84,7 @@ export default function NightShieldROI() {
       </header>
 
       {/* Main */}
-      <main className="relative z-10 mx-auto max-w-6xl px-4 pb-28">
+      <main className="relative z-10 mx-auto max-w-6xl px-4 pb-40 md:pb-28">
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Inputs card */}
           <GlassCard className="lg:col-span-7" title="Inputs" icon={<Calculator className="h-4 w-4 text-red-500"/>}>
@@ -153,6 +153,9 @@ export default function NightShieldROI() {
         </div>
       </main>
 
+      {/* Mobile summary bar */}
+      <MobileSummaryBar total={totals.totalBenefit} roiPct={totals.roiPct} />
+
             
     </div>
   );
@@ -192,13 +195,13 @@ function Divider() {
 function NumberField({ label, value, onChange, step = 1 }: { label: string; value: number; onChange: (v: number) => void; step?: number }) {
   return (
     <label className="block">
-      <div className="text-sm text-zinc-300 mb-1">{label}</div>
+      <div className="text-base md:text-sm text-zinc-300 mb-1">{label}</div>
       <input
         type="number"
         step={step}
         value={value}
         onChange={(e)=>onChange(parseFloat(e.target.value || "0"))}
-        className="w-full rounded-xl bg-zinc-900/70 border border-zinc-800 px-3 py-2 text-zinc-100 outline-none focus:ring-2 focus:ring-red-500/60 transition"
+        className="w-full rounded-xl bg-zinc-900/70 border border-zinc-800 px-3 py-3 md:py-2 text-zinc-100 text-base md:text-sm outline-none focus:ring-2 focus:ring-red-500/60 transition"
       />
     </label>
   );
@@ -208,8 +211,8 @@ function SliderField({ label, min=0, max=10, value, onChange }: { label: string;
   return (
     <label className="block">
       <div className="flex items-center justify-between mb-1">
-        <div className="text-sm text-zinc-300">{label}</div>
-        <div className="text-xs text-zinc-500">{value}</div>
+        <div className="text-base md:text-sm text-zinc-300">{label}</div>
+        <div className="text-sm md:text-xs text-zinc-500">{value}</div>
       </div>
       <input
         type="range"
@@ -217,7 +220,7 @@ function SliderField({ label, min=0, max=10, value, onChange }: { label: string;
         max={max}
         value={value}
         onChange={(e)=>onChange(parseInt(e.target.value))}
-        className="w-full accent-red-600 cursor-pointer"
+        className="w-full accent-red-600 cursor-pointer h-2"
       />
     </label>
   );
@@ -250,5 +253,22 @@ function GhostButton({ children, icon, onClick }: { children: React.ReactNode; i
     <button onClick={onClick} className="inline-flex items-center gap-2 rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2 text-zinc-200 hover:border-red-600/60 hover:text-white transition">
       {icon}{children}
     </button>
+  );
+}
+
+function MobileSummaryBar({ total, roiPct }: { total: number; roiPct: number }) {
+  return (
+    <div className="md:hidden fixed inset-x-0 bottom-0 z-20 border-t border-zinc-800 bg-zinc-950/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur-xl px-4 py-3">
+      <div className="mx-auto max-w-6xl grid grid-cols-2 gap-3">
+        <div className="rounded-xl border border-red-900/40 bg-red-950/20 px-3 py-2">
+          <div className="text-[10px] uppercase tracking-wide text-red-300">Total Benefit</div>
+          <div className="text-lg font-semibold text-red-400">{formatGBP(total)}</div>
+        </div>
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/70 px-3 py-2">
+          <div className="text-[10px] uppercase tracking-wide text-zinc-400">ROI %</div>
+          <div className="text-lg font-semibold text-zinc-100">{fmtInt(roiPct)}%</div>
+        </div>
+      </div>
+    </div>
   );
 }
