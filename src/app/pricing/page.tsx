@@ -28,7 +28,7 @@ const Pricing = () => {
     },
     {
       name: "Professional",
-      price: { monthly: 1499, yearly: 799 },
+      price: { monthly: 1499, yearly: 999 },
       description: "Ideal for medium-sized venues and clubs",
       features: [
         "Up to 12 cameras",
@@ -45,9 +45,9 @@ const Pricing = () => {
       uptime: "99.8%"
     },
     {
-      name: "Custom",
-      price: { monthly: 1999, yearly: 1599 },
-      description: "Custom pricing payment by invoice only",
+      name: "Enterprise",
+      price: { monthly: "Custom", yearly: "Custom" },
+      description: "Custom pricing for enterprise needs",
       features: [
         "Unlimited cameras",
         "Premium AI detection",
@@ -57,12 +57,16 @@ const Pricing = () => {
         "Custom integrations",
         "Advanced analytics",
         "Multi-venue management",
-        "Dedicated account manager"
+        "Dedicated account manager",
+        "Pooled usage",
+        "Invoice/PO billing",
+        "Priority support and account management"
       ],
       popular: false,
       bestFor: "Large venues, chains, and multi-location businesses",
       setupTime: "3-5 days",
-      uptime: "99.9%"
+      uptime: "99.9%",
+      isCustom: true
     }
   ]
 
@@ -166,10 +170,21 @@ const Pricing = () => {
                   <div className="mb-4 md:mb-6 relative">
                     <div className="absolute inset-0 bg-red-500/20 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="relative">
-                      <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
-                        £{plan.price[billingCycle as keyof typeof plan.price]}
-                      </span>
-                      <span className="text-gray-400 text-sm md:text-base ml-1">/month</span>
+                      {plan.isCustom ? (
+                        <div>
+                          <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+                            Custom
+                          </span>
+                          <div className="text-gray-400 text-sm md:text-base mt-1">Contact for pricing</div>
+                        </div>
+                      ) : (
+                        <>
+                          <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+                            £{plan.price[billingCycle as keyof typeof plan.price]}
+                          </span>
+                          <span className="text-gray-400 text-sm md:text-base ml-1">/month</span>
+                        </>
+                      )}
                     </div>
                   </div>
 
@@ -194,10 +209,12 @@ const Pricing = () => {
                     className={`w-full py-2.5 md:py-3 px-4 md:px-6 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25 text-sm md:text-base ${
                       plan.popular
                         ? 'bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700'
+                        : plan.isCustom
+                        ? 'bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700'
                         : 'bg-transparent border border-red-500/50 text-red-500 hover:bg-red-500/10 hover:border-red-500'
                     }`}
                   >
-                    Get Started
+                    {plan.isCustom ? 'Contact Sales' : 'Get Started'}
                   </button>
                 </div>
 
