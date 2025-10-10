@@ -7,7 +7,7 @@ import { Calculator, TrendingUp, Info, RefreshCw, Download, Shield } from "lucid
  * Black/red theme • glass cards • soft glow • smooth micro‑interactions
  */
 
-const formatGBP = (n: number) => new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(n);
+const formatGBP = (n: number) => new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(n);
 const fmtInt = (n: number) => new Intl.NumberFormat("en-GB").format(Math.round(n));
 
 export default function NightShieldROI() {
@@ -243,7 +243,7 @@ function SummaryTile({ label, value, kind, isPercent=false }: { label: string; v
   return (
     <motion.div initial={{opacity:0, y:8}} animate={{opacity:1, y:0}} className={`rounded-xl p-4 border ${cls}`}>
       <div className={kind==='accent' ? 'text-xs text-red-300' : 'text-xs text-zinc-400'}>{label}</div>
-      <div className={`mt-1 text-2xl font-semibold ${kind==='accent' ? 'text-red-400' : ''}`}>{display}</div>
+      <div className={`mt-1 text-xl md:text-2xl font-semibold ${kind==='accent' ? 'text-red-400' : ''} break-all`}>{display}</div>
     </motion.div>
   );
 }
@@ -262,7 +262,7 @@ function MobileSummaryBar({ total, roiPct }: { total: number; roiPct: number }) 
       <div className="mx-auto max-w-6xl grid grid-cols-2 gap-3">
         <div className="rounded-xl border border-red-900/40 bg-red-950/20 px-3 py-2">
           <div className="text-[10px] uppercase tracking-wide text-red-300">Total Benefit</div>
-          <div className="text-lg font-semibold text-red-400">{formatGBP(total)}</div>
+          <div className="text-lg font-semibold text-red-400 break-all">{formatGBP(total)}</div>
         </div>
         <div className="rounded-xl border border-zinc-800 bg-zinc-950/70 px-3 py-2">
           <div className="text-[10px] uppercase tracking-wide text-zinc-400">ROI %</div>
