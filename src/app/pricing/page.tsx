@@ -28,7 +28,7 @@ const Pricing = () => {
     },
     {
       name: "Professional",
-      price: { monthly: 999, yearly: 799 },
+      price: { monthly: 1499, yearly: 799 },
       description: "Ideal for medium-sized venues and clubs",
       features: [
         "Up to 12 cameras",
@@ -45,9 +45,9 @@ const Pricing = () => {
       uptime: "99.8%"
     },
     {
-      name: "Enterprise",
+      name: "Custom",
       price: { monthly: 1999, yearly: 1599 },
-      description: "For large venues and multi-location businesses",
+      description: "Custom pricing payment by invoice only",
       features: [
         "Unlimited cameras",
         "Premium AI detection",

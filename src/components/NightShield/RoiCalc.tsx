@@ -200,7 +200,7 @@ function NumberField({ label, value, onChange, step = 1 }: { label: string; valu
         type="number"
         step={step}
         value={value}
-        onChange={(e)=>onChange(parseFloat(e.target.value || "0"))}
+        onChange={(e)=>onChange(parseFloat(e.target.value) || 0)}
         className="w-full rounded-xl bg-zinc-900/70 border border-zinc-800 px-3 py-3 md:py-2 text-zinc-100 text-base md:text-sm outline-none focus:ring-2 focus:ring-red-500/60 transition"
       />
     </label>
@@ -219,7 +219,7 @@ function SliderField({ label, min=0, max=10, value, onChange }: { label: string;
         min={min}
         max={max}
         value={value}
-        onChange={(e)=>onChange(parseInt(e.target.value))}
+        onChange={(e)=>onChange(parseFloat(e.target.value))}
         className="w-full accent-red-600 cursor-pointer h-2"
       />
     </label>
@@ -243,7 +243,7 @@ function SummaryTile({ label, value, kind, isPercent=false }: { label: string; v
   return (
     <motion.div initial={{opacity:0, y:8}} animate={{opacity:1, y:0}} className={`rounded-xl p-4 border ${cls}`}>
       <div className={kind==='accent' ? 'text-xs text-red-300' : 'text-xs text-zinc-400'}>{label}</div>
-      <div className={`mt-1 text-2xl font-semibold ${kind==='accent' ? 'text-red-400' : ''} break-words overflow-hidden`}>{display}</div>
+      <div className={`mt-1 text-2xl font-semibold ${kind==='accent' ? 'text-red-400' : ''}`}>{display}</div>
     </motion.div>
   );
 }
@@ -262,7 +262,7 @@ function MobileSummaryBar({ total, roiPct }: { total: number; roiPct: number }) 
       <div className="mx-auto max-w-6xl grid grid-cols-2 gap-3">
         <div className="rounded-xl border border-red-900/40 bg-red-950/20 px-3 py-2">
           <div className="text-[10px] uppercase tracking-wide text-red-300">Total Benefit</div>
-          <div className="text-lg font-semibold text-red-400 break-words overflow-hidden">{formatGBP(total)}</div>
+          <div className="text-lg font-semibold text-red-400">{formatGBP(total)}</div>
         </div>
         <div className="rounded-xl border border-zinc-800 bg-zinc-950/70 px-3 py-2">
           <div className="text-[10px] uppercase tracking-wide text-zinc-400">ROI %</div>
